@@ -1,7 +1,9 @@
 #include <iostream>
+#include "Physic.hpp"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+  Physic p(10, 23, 45);
+  std::cout << p << std::endl;
+  return 0;
 }

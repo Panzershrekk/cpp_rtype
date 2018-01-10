@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="cpp_rtype"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake_modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="r-type-client">
+				<Option output="/home/thomas/rendu3/cpp_rtype/r-type-client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/thomas/rendu3/cpp_rtype/inc/gameEngine"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 r-type-client"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="r-type-client/fast">
+				<Option output="/home/thomas/rendu3/cpp_rtype/r-type-client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/thomas/rendu3/cpp_rtype/inc/gameEngine"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 r-type-client/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="r-type">
+				<Option output="/home/thomas/rendu3/cpp_rtype/r-type" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/thomas/rendu3/cpp_rtype/inc/gameEngine"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 r-type"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="r-type/fast">
+				<Option output="/home/thomas/rendu3/cpp_rtype/r-type" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/thomas/rendu3/cpp_rtype/inc/gameEngine"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 r-type/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="r-type-server">
+				<Option output="/home/thomas/rendu3/cpp_rtype/r-type-server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/thomas/rendu3/cpp_rtype/inc/gameEngine"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 r-type-server"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="r-type-server/fast">
+				<Option output="/home/thomas/rendu3/cpp_rtype/r-type-server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/thomas/rendu3/cpp_rtype"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/thomas/rendu3/cpp_rtype/inc/gameEngine"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/../../../../include/c++/7.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/7.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 r-type-server/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/thomas/rendu3/cpp_rtype/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Mathematics.hpp">
+			<Option target="r-type"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Physic.hpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Position2D.hpp">
+			<Option target="r-type"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/main.cpp">
+			<Option target="r-type"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/client/main.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Mathematics.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Physic.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Position2D.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/server/main.cpp">
+			<Option target="r-type-server"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/cmake_modules/FindSFML.cmake">
+			<Option virtualFolder="CMake Files\cmake_modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

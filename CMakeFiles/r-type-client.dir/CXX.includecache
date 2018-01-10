@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/thomas/rendu3/cpp_rtype/src/client/main.cpp
+iostream
+-
+Physic.hpp
+/home/thomas/rendu3/cpp_rtype/src/client/Physic.hpp
+
+/home/thomas/rendu3/cpp_rtype/src/gameEngine/Physic.cpp
+Physic.hpp
+/home/thomas/rendu3/cpp_rtype/src/gameEngine/Physic.hpp
+
+inc/gameEngine/Physic.hpp
+ostream
+-
+iosfwd
+-
+
