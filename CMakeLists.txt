@@ -16,10 +16,7 @@ add_executable(r-type-server ${SOURCE_FILES_SERVER} ${SOURCE_FILES_COMMON})
 
 # Client configuration
 set(SOURCE_FILES_CLIENT src/client/main.cpp)
-add_executable(r-type-client ${SOURCE_FILES_CLIENT})
-
-set(SOURCE_FILE main.cpp)
-add_executable(r-type ${SOURCE_FILE})
+add_executable(r-type ${SOURCE_FILES_CLIENT})
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
