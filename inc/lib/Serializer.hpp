@@ -37,7 +37,6 @@ public:
     virtual ~Serializer() {}
 
     /**
-     * \fn static std::array<unsigned char, sizeof(T)>     serialize(const T& object)
      * \brief The serialize function permit to serialize an type of object
      * \tparam T
      * \param object
@@ -56,7 +55,6 @@ public:
     }
 
     /**
-     * \fn static T       &deserialize(const std::array<unsigned char, sizeof(T)> &bytes, T& object)
      * \brief The deserializer function permit to deserialize a trivial, copyable object
      * \idlexcept SerializerException
      * \tparam T
