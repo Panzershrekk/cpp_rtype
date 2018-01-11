@@ -4,7 +4,7 @@
 
 #include "TimeManager.hpp"
 
-TimeManager::TimeManager() : _clock()
+TimeManager::TimeManager() : _clock() , _time()
 {
 }
 
@@ -12,12 +12,12 @@ TimeManager::~TimeManager()
 {
 }
 
-sf::Time TimeManager::getElapsedTime() const
+float TimeManager::getElapsedTime() const
 {
-  return (this->_clock.getElapsedTime());
+  return (_clock.getElapsedTime().asSeconds());
 }
 
-/*sf::Time TimeManager::restart() const
+void TimeManager::restartTimer()
 {
-  return (this->_clock.restart());
-}*/
+  _clock.restart();
+}

@@ -5,8 +5,8 @@
 #ifndef CPP_RTYPE_TIMEMANAGER_HPP
 #define CPP_RTYPE_TIMEMANAGER_HPP
 
-#include "SFML/System/Clock.hpp"
-#include "Time.hpp"
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 
 class TimeManager
 {
@@ -14,11 +14,12 @@ class TimeManager
     TimeManager();
     ~TimeManager();
 
-    sf::Time getElapsedTime() const;
-    //sf::Time restart() const;
+    float getElapsedTime() const;
+    void restartTimer();
 
   private:
     sf::Clock _clock;
+    sf::Time _time;
 };
 
 #endif //CPP_RTYPE_TIMEMANAGER_HPP
