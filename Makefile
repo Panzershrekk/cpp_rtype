@@ -311,6 +311,60 @@ src/gameEngine/Rectangle.cpp.s:
 	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.s
 .PHONY : src/gameEngine/Rectangle.cpp.s
 
+src/gameEngine/Time.o: src/gameEngine/Time.cpp.o
+
+.PHONY : src/gameEngine/Time.o
+
+# target to build an object file
+src/gameEngine/Time.cpp.o:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o
+.PHONY : src/gameEngine/Time.cpp.o
+
+src/gameEngine/Time.i: src/gameEngine/Time.cpp.i
+
+.PHONY : src/gameEngine/Time.i
+
+# target to preprocess a source file
+src/gameEngine/Time.cpp.i:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.i
+.PHONY : src/gameEngine/Time.cpp.i
+
+src/gameEngine/Time.s: src/gameEngine/Time.cpp.s
+
+.PHONY : src/gameEngine/Time.s
+
+# target to generate assembly for a file
+src/gameEngine/Time.cpp.s:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.s
+.PHONY : src/gameEngine/Time.cpp.s
+
+src/gameEngine/TimeManager.o: src/gameEngine/TimeManager.cpp.o
+
+.PHONY : src/gameEngine/TimeManager.o
+
+# target to build an object file
+src/gameEngine/TimeManager.cpp.o:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o
+.PHONY : src/gameEngine/TimeManager.cpp.o
+
+src/gameEngine/TimeManager.i: src/gameEngine/TimeManager.cpp.i
+
+.PHONY : src/gameEngine/TimeManager.i
+
+# target to preprocess a source file
+src/gameEngine/TimeManager.cpp.i:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.i
+.PHONY : src/gameEngine/TimeManager.cpp.i
+
+src/gameEngine/TimeManager.s: src/gameEngine/TimeManager.cpp.s
+
+.PHONY : src/gameEngine/TimeManager.s
+
+# target to generate assembly for a file
+src/gameEngine/TimeManager.cpp.s:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.s
+.PHONY : src/gameEngine/TimeManager.cpp.s
+
 src/server/main.o: src/server/main.cpp.o
 
 .PHONY : src/server/main.o
@@ -367,6 +421,12 @@ help:
 	@echo "... src/gameEngine/Rectangle.o"
 	@echo "... src/gameEngine/Rectangle.i"
 	@echo "... src/gameEngine/Rectangle.s"
+	@echo "... src/gameEngine/Time.o"
+	@echo "... src/gameEngine/Time.i"
+	@echo "... src/gameEngine/Time.s"
+	@echo "... src/gameEngine/TimeManager.o"
+	@echo "... src/gameEngine/TimeManager.i"
+	@echo "... src/gameEngine/TimeManager.s"
 	@echo "... src/server/main.o"
 	@echo "... src/server/main.i"
 	@echo "... src/server/main.s"

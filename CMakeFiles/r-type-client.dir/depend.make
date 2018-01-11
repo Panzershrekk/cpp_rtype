@@ -22,3 +22,10 @@ CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o: src/gameEngine/Rect
 CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o: inc/gameEngine/Position2D.hpp
 CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o: inc/gameEngine/Rectangle.hpp
 
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o: src/gameEngine/Time.cpp
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o: inc/gameEngine/Time.hpp
+
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o: src/gameEngine/TimeManager.cpp
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o: inc/gameEngine/Time.hpp
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o: inc/gameEngine/TimeManager.hpp
+

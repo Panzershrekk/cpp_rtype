@@ -9,6 +9,8 @@
 /home/thomas/rendu3/cpp_rtype/src/client/main.cpp
 iostream
 -
+SFML/System/Clock.hpp
+-
 Physic.hpp
 /home/thomas/rendu3/cpp_rtype/src/client/Physic.hpp
 Mathematics.hpp
@@ -29,6 +31,14 @@ Position2D.hpp
 /home/thomas/rendu3/cpp_rtype/src/gameEngine/Rectangle.cpp
 Rectangle.hpp
 -
+
+/home/thomas/rendu3/cpp_rtype/src/gameEngine/Time.cpp
+Time.hpp
+-
+
+/home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.cpp
+TimeManager.hpp
+/home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.hpp
 
 inc/gameEngine/Mathematics.hpp
 ostream
@@ -55,4 +65,14 @@ SFML/Graphics/Rect.hpp
 -
 Position2D.hpp
 inc/gameEngine/Position2D.hpp
+
+inc/gameEngine/Time.hpp
+SFML/System/Time.hpp
+-
+
+inc/gameEngine/TimeManager.hpp
+SFML/System/Clock.hpp
+inc/gameEngine/SFML/System/Clock.hpp
+Time.hpp
+inc/gameEngine/Time.hpp
 

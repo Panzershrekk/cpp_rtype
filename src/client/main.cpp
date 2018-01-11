@@ -1,10 +1,16 @@
 #include <iostream>
+#include <SFML/System/Clock.hpp>
 #include "Physic.hpp"
 #include "Mathematics.hpp"
 
 int main()
 {
-  Rectangle rec(10, 32, 54, 12);
-  std::cout << rec << std::endl;
+  /*sf::Clock clock;
+  
+  if (clock.getElapsedTime().asSeconds() > 1.0f)
+  {
+    std::cout << "Yolo world" << std::endl;
+    clock.restart();
+  }*/
   return 0;
 }

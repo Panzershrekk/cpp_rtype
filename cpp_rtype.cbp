@@ -188,6 +188,12 @@
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Rectangle.hpp">
 			<Option target="r-type"/>
 		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Time.hpp">
+			<Option target="r-type"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/TimeManager.hpp">
+			<Option target="r-type"/>
+		</Unit>
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/main.cpp">
 			<Option target="r-type"/>
 		</Unit>
@@ -204,6 +210,12 @@
 			<Option target="r-type-client"/>
 		</Unit>
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Rectangle.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Time.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.cpp">
 			<Option target="r-type-client"/>
 		</Unit>
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/server/main.cpp">

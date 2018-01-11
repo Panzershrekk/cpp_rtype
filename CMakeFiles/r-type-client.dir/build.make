@@ -177,13 +177,63 @@ CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o.provides: CMakeFiles
 CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o.provides.build: CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o
 
 
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o: CMakeFiles/r-type-client.dir/flags.make
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o: src/gameEngine/TimeManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thomas/rendu3/cpp_rtype/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o -c /home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.cpp
+
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.cpp > CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.i
+
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.cpp -o CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.s
+
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.requires:
+
+.PHONY : CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.requires
+
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.provides: CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.requires
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.provides.build
+.PHONY : CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.provides
+
+CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.provides.build: CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o
+
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o: CMakeFiles/r-type-client.dir/flags.make
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o: src/gameEngine/Time.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/thomas/rendu3/cpp_rtype/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o -c /home/thomas/rendu3/cpp_rtype/src/gameEngine/Time.cpp
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/thomas/rendu3/cpp_rtype/src/gameEngine/Time.cpp > CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.i
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/thomas/rendu3/cpp_rtype/src/gameEngine/Time.cpp -o CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.s
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.requires:
+
+.PHONY : CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.requires
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.provides: CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.requires
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.provides.build
+.PHONY : CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.provides
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.provides.build: CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o
+
+
 # Object files for target r-type-client
 r__type__client_OBJECTS = \
 "CMakeFiles/r-type-client.dir/src/client/main.cpp.o" \
 "CMakeFiles/r-type-client.dir/src/gameEngine/Physic.cpp.o" \
 "CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o" \
 "CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o" \
-"CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o"
+"CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o" \
+"CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o" \
+"CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o"
 
 # External object files for target r-type-client
 r__type__client_EXTERNAL_OBJECTS =
@@ -193,9 +243,11 @@ r-type-client: CMakeFiles/r-type-client.dir/src/gameEngine/Physic.cpp.o
 r-type-client: CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o
 r-type-client: CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o
 r-type-client: CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o
+r-type-client: CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o
+r-type-client: CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o
 r-type-client: CMakeFiles/r-type-client.dir/build.make
 r-type-client: CMakeFiles/r-type-client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/thomas/rendu3/cpp_rtype/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable r-type-client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/thomas/rendu3/cpp_rtype/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable r-type-client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/r-type-client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -208,6 +260,8 @@ CMakeFiles/r-type-client.dir/requires: CMakeFiles/r-type-client.dir/src/gameEngi
 CMakeFiles/r-type-client.dir/requires: CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o.requires
 CMakeFiles/r-type-client.dir/requires: CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o.requires
 CMakeFiles/r-type-client.dir/requires: CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o.requires
+CMakeFiles/r-type-client.dir/requires: CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o.requires
+CMakeFiles/r-type-client.dir/requires: CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o.requires
 
 .PHONY : CMakeFiles/r-type-client.dir/requires
 

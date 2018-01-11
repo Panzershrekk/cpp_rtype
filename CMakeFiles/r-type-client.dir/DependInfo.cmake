@@ -9,6 +9,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/thomas/rendu3/cpp_rtype/src/gameEngine/Physic.cpp" "/home/thomas/rendu3/cpp_rtype/CMakeFiles/r-type-client.dir/src/gameEngine/Physic.cpp.o"
   "/home/thomas/rendu3/cpp_rtype/src/gameEngine/Position2D.cpp" "/home/thomas/rendu3/cpp_rtype/CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o"
   "/home/thomas/rendu3/cpp_rtype/src/gameEngine/Rectangle.cpp" "/home/thomas/rendu3/cpp_rtype/CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o"
+  "/home/thomas/rendu3/cpp_rtype/src/gameEngine/Time.cpp" "/home/thomas/rendu3/cpp_rtype/CMakeFiles/r-type-client.dir/src/gameEngine/Time.cpp.o"
+  "/home/thomas/rendu3/cpp_rtype/src/gameEngine/TimeManager.cpp" "/home/thomas/rendu3/cpp_rtype/CMakeFiles/r-type-client.dir/src/gameEngine/TimeManager.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
