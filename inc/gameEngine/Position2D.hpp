@@ -14,8 +14,20 @@ class Position2D
     Position2D(int, int);
     Position2D(const Position2D&);
 
+    Position2D operator+(const Position2D&) const;
+    Position2D operator-(const Position2D&) const;
+    Position2D operator+=(const Position2D&);
+    Position2D operator-=(const Position2D&);
+
+
+    bool operator==(const Position2D&) const;
+    bool operator!=(const Position2D&) const;
+
+    int getX() const;
+    int getY() const;
+
   private:
-    sf::Vector2 _vector2;
+    sf::Vector2<int> _vector2;
 
 };
 
