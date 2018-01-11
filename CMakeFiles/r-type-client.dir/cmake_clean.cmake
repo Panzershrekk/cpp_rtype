@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/r-type-client.dir/src/gameEngine/Physic.cpp.o"
   "CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o"
   "CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o"
+  "CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o"
   "r-type-client.pdb"
   "r-type-client"
 )

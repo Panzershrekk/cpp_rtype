@@ -284,6 +284,33 @@ src/gameEngine/Position2D.cpp.s:
 	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.s
 .PHONY : src/gameEngine/Position2D.cpp.s
 
+src/gameEngine/Rectangle.o: src/gameEngine/Rectangle.cpp.o
+
+.PHONY : src/gameEngine/Rectangle.o
+
+# target to build an object file
+src/gameEngine/Rectangle.cpp.o:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o
+.PHONY : src/gameEngine/Rectangle.cpp.o
+
+src/gameEngine/Rectangle.i: src/gameEngine/Rectangle.cpp.i
+
+.PHONY : src/gameEngine/Rectangle.i
+
+# target to preprocess a source file
+src/gameEngine/Rectangle.cpp.i:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.i
+.PHONY : src/gameEngine/Rectangle.cpp.i
+
+src/gameEngine/Rectangle.s: src/gameEngine/Rectangle.cpp.s
+
+.PHONY : src/gameEngine/Rectangle.s
+
+# target to generate assembly for a file
+src/gameEngine/Rectangle.cpp.s:
+	$(MAKE) -f CMakeFiles/r-type-client.dir/build.make CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.s
+.PHONY : src/gameEngine/Rectangle.cpp.s
+
 src/server/main.o: src/server/main.cpp.o
 
 .PHONY : src/server/main.o
@@ -337,6 +364,9 @@ help:
 	@echo "... src/gameEngine/Position2D.o"
 	@echo "... src/gameEngine/Position2D.i"
 	@echo "... src/gameEngine/Position2D.s"
+	@echo "... src/gameEngine/Rectangle.o"
+	@echo "... src/gameEngine/Rectangle.i"
+	@echo "... src/gameEngine/Rectangle.s"
 	@echo "... src/server/main.o"
 	@echo "... src/server/main.i"
 	@echo "... src/server/main.s"

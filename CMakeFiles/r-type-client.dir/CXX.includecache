@@ -13,8 +13,6 @@ Physic.hpp
 /home/thomas/rendu3/cpp_rtype/src/client/Physic.hpp
 Mathematics.hpp
 /home/thomas/rendu3/cpp_rtype/src/client/Mathematics.hpp
-Position2D.hpp
-/home/thomas/rendu3/cpp_rtype/src/client/Position2D.hpp
 
 /home/thomas/rendu3/cpp_rtype/src/gameEngine/Mathematics.cpp
 Mathematics.hpp
@@ -28,6 +26,10 @@ Physic.hpp
 Position2D.hpp
 -
 
+/home/thomas/rendu3/cpp_rtype/src/gameEngine/Rectangle.cpp
+Rectangle.hpp
+-
+
 inc/gameEngine/Mathematics.hpp
 ostream
 -
@@ -35,6 +37,8 @@ iosfwd
 -
 Position2D.hpp
 inc/gameEngine/Position2D.hpp
+Rectangle.hpp
+inc/gameEngine/Rectangle.hpp
 
 inc/gameEngine/Physic.hpp
 ostream
@@ -45,4 +49,10 @@ iosfwd
 inc/gameEngine/Position2D.hpp
 SFML/System/Vector2.hpp
 -
+
+inc/gameEngine/Rectangle.hpp
+SFML/Graphics/Rect.hpp
+-
+Position2D.hpp
+inc/gameEngine/Position2D.hpp
 

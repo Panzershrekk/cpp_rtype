@@ -185,6 +185,9 @@
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Position2D.hpp">
 			<Option target="r-type"/>
 		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/inc/gameEngine/Rectangle.hpp">
+			<Option target="r-type"/>
+		</Unit>
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/main.cpp">
 			<Option target="r-type"/>
 		</Unit>
@@ -198,6 +201,9 @@
 			<Option target="r-type-client"/>
 		</Unit>
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Position2D.cpp">
+			<Option target="r-type-client"/>
+		</Unit>
+		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/gameEngine/Rectangle.cpp">
 			<Option target="r-type-client"/>
 		</Unit>
 		<Unit filename="/home/thomas/rendu3/cpp_rtype/src/server/main.cpp">

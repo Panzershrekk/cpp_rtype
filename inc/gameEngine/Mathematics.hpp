@@ -8,6 +8,7 @@
 #include <ostream>
 #include <iosfwd>
 #include "Position2D.hpp"
+#include "Rectangle.hpp"
 
 class Mathematics
 {
@@ -16,12 +17,17 @@ class Mathematics
     Mathematics();
     ~Mathematics();
     void setPosition(const Position2D& pos);
+    void setRectangle(const Rectangle& rect);
+
     Position2D& getPosition();
+    Rectangle& getRectangle();
 
   private:
-    Position2D _position;
+    Position2D 	_position;
+    Rectangle 	_rect;
 };
 
 std::ostream& operator<< (std::ostream& stream, const Position2D& pos);
+std::ostream& operator<< (std::ostream& stream, const Rectangle& pos);
 
 #endif //CPP_RTYPE_MATHEMATICS_HPP

@@ -5,14 +5,20 @@ CMakeFiles/r-type-client.dir/src/client/main.cpp.o: src/client/main.cpp
 CMakeFiles/r-type-client.dir/src/client/main.cpp.o: inc/gameEngine/Mathematics.hpp
 CMakeFiles/r-type-client.dir/src/client/main.cpp.o: inc/gameEngine/Physic.hpp
 CMakeFiles/r-type-client.dir/src/client/main.cpp.o: inc/gameEngine/Position2D.hpp
+CMakeFiles/r-type-client.dir/src/client/main.cpp.o: inc/gameEngine/Rectangle.hpp
 
 CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o: src/gameEngine/Mathematics.cpp
 CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o: inc/gameEngine/Mathematics.hpp
 CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o: inc/gameEngine/Position2D.hpp
+CMakeFiles/r-type-client.dir/src/gameEngine/Mathematics.cpp.o: inc/gameEngine/Rectangle.hpp
 
 CMakeFiles/r-type-client.dir/src/gameEngine/Physic.cpp.o: src/gameEngine/Physic.cpp
 CMakeFiles/r-type-client.dir/src/gameEngine/Physic.cpp.o: inc/gameEngine/Physic.hpp
 
 CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o: src/gameEngine/Position2D.cpp
 CMakeFiles/r-type-client.dir/src/gameEngine/Position2D.cpp.o: inc/gameEngine/Position2D.hpp
+
+CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o: src/gameEngine/Rectangle.cpp
+CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o: inc/gameEngine/Position2D.hpp
+CMakeFiles/r-type-client.dir/src/gameEngine/Rectangle.cpp.o: inc/gameEngine/Rectangle.hpp
 

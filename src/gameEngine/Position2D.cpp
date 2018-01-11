@@ -64,3 +64,8 @@ int Position2D::getY() const
 {
   return (this->_vector2.y);
 }
+
+sf::Vector2<int> Position2D::getVector() const
+{
+  return (this->_vector2);
+}
