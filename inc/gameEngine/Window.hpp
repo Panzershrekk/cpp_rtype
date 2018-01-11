@@ -5,7 +5,7 @@
 #ifndef CPP_RTYPE_WINDOW_HPP_
 #define CPP_RTYPE_WINDOW_HPP_
 
-#include	<SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "Sprite.hpp"
 
 class Window
