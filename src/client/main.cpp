@@ -12,38 +12,21 @@
 #include "Color.hpp"
 
 #include "TimeManager.hpp"
+#include "AIManager.hpp"
 
 int main()
 {
-
-  /*Window window("bite", 800, 600);
-  Sprite sprite("../Sprite-Logo.jpg");
-
-  // run the program as long as the window is open
-  int x = 0;
-  while (window.isOpen())
-  {
-    window.clear();
-    // check all the window's events that were triggered since the last iteration of the loop
-
-    window.draw(sprite);
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-      // "close requested" event: we close the window
-      if (event.type == sf::Event::Closed)
-	window.close();
-    }
-    window.display();
-  }*/
   TimeManager manger;
+  AIManager iam;
+  Position2D pos(400, 200);
   float dTime;
 
   while (true)
   {
     if (manger.getElapsedTime() > 1.0f)
     {
-      std::cout << "Yolo world" << std::endl;
+      pos = iam.PredefinedRightToLeft(pos, 10);
+      std::cout << pos << std::endl;
       dTime = manger.getDeltaTime();
     }
   }
