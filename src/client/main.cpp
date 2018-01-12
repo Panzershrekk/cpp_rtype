@@ -6,6 +6,11 @@
 #include "Entity.hpp"
 #include "MainSystem.hpp"
 
+#include "Physic.hpp"
+#include "Mathematics.hpp"
+#include "Window.hpp"
+#include "Sprite.hpp"
+
 int main()
 {
   sf::RenderWindow window(sf::VideoMode(1000, 1000), "My window");
