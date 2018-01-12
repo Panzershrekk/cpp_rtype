@@ -7,28 +7,45 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <iostream>
+#include <Keyboard.hpp>
+#include <Mouse.hpp>
 
 #include "Window.hpp"
 #include "Color.hpp"
 
 #include "TimeManager.hpp"
-#include "AIManager.hpp"
 
 int main()
 {
-  TimeManager manger;
-  AIManager iam;
-  Position2D pos(400, 200);
-  float dTime;
 
-  while (true)
+  Window window("bite", 800, 600);
+  Sprite sprite("../Sprite-Logo.jpg");
+
+  // run the program as long as the window is open
+  int x = 0;
+  while (window.isOpen())
   {
-    if (manger.getElapsedTime() > 1.0f)
+    window.clear();
+    // check all the window's events that were triggered since the last iteration of the loop
+
+    window.draw(sprite);
+    sf::Event event;
+    while (window.pollEvent(event))
     {
-      pos = iam.PredefinedRightToLeft(pos, 10);
-      std::cout << pos << std::endl;
-      dTime = manger.getDeltaTime();
+      // "close requested" event: we close the window
+      if (Keyboard::isKeyPressed(Keyboard::Left))
+      {
+	std::cout << "moving" << std::endl;
+      }
+
+      if (Mouse::isButtonPressed(Mouse::Left))
+      {
+	std::cout << Mouse::getPosition() << std::endl;
+      }
+      if (event.type == sf::Event::Closed)
+	window.close();
     }
+    window.display();
   }
   return 0;
 }
