@@ -23,7 +23,9 @@ class Room
     void			join(Player);
     void			leave(Player);
     int				getSize() const;
+    int				getId() const;
     int 			setSize(const int);
+    int 			setId(const int);
     std::vector<Player>		getPlayer() const;
     /*void 			sendData(data); preciser le type de data. Type socket ?*/
 

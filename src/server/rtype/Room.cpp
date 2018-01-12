@@ -30,14 +30,24 @@ void			Room::leave(Player player)
  }
 }
 
-int			setSize(const int size)
+int			Room::setSize(const int size)
 {
   this->_size = size;
 }
 
-int			getSize() const
+int			Room::setId(const int id)
+{
+  this->_id = id;
+}
+
+int			Room::getSize() const
 {
   return(this->_size);
+}
+
+int			Room::getId() const
+{
+  return(this->_id);
 }
 
 std::vector<Player>	Room::getPlayer() const
