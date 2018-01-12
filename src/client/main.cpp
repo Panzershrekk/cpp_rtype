@@ -37,12 +37,14 @@ int main()
     window.display();
   }*/
   TimeManager manger;
+  float dTime;
+
   while (true)
   {
     if (manger.getElapsedTime() > 1.0f)
     {
       std::cout << "Yolo world" << std::endl;
-      manger.restartTimer();
+      dTime = manger.getDeltaTime();
     }
   }
   return 0;

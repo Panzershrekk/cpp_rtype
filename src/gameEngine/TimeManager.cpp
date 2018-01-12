@@ -17,7 +17,12 @@ float TimeManager::getElapsedTime() const
   return (_clock.getElapsedTime().asSeconds());
 }
 
-void TimeManager::restartTimer()
+float TimeManager::getDeltaTime()
 {
-  _clock.restart();
+  return (restartTimer().asSeconds());
+}
+
+sf::Time TimeManager::restartTimer()
+{
+  return (_clock.restart());
 }
