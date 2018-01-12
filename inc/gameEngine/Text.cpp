@@ -5,24 +5,28 @@
 #include <iostream>
 #include "Text.hpp"
 
-Text::Text() : _text(), _font()
+Text::Text() : _text()
 {
+  this->_font = new Font();
 }
 
-Text::Text(const std::string &string, const std::string &fontPath) : _text(), _font(fontPath)
+Text::Text(const std::string &string, const std::string &fontPath) : _text()
 {
-  this->_text.setFont(this->_font.getSfFont());
+  this->_font = new Font(fontPath);
+
+  this->_text.setFont(*this->_font->getSfFont());
   this->_text.setString(string);
-  std::cout << "Construct Text" << std::endl;
 }
 
 Text::~Text()
-= default;
+{
+  delete(this->_font);
+}
 
 void		Text::setFont(const std::string &fontPath)
 {
-  this->_font.setFontPath(fontPath);
-  this->_text.setFont(this->_font.getSfFont());
+  this->_font->setFontPath(fontPath);
+  this->_text.setFont(*this->_font->getSfFont());
 }
 
 void 		Text::setString(const std::string &newString)
@@ -45,7 +49,7 @@ void 		Text::setScale(int scaleX, int scaleY)
   this->_text.setScale(sf::Vector2f(scaleX, scaleY));
 }
 
-sf::Text	Text::getSfText() const
+sf::Text	&Text::getSfText()
 {
   return (this->_text);
 }

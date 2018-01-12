@@ -12,7 +12,7 @@ class Text
 {
   private:
     sf::Text	_text;
-    Font	_font;
+    Font	*_font;
 
   public:
     explicit Text();
@@ -25,7 +25,7 @@ class Text
     void 	setPosition(int, int);
     void 	setScale(int, int);
 
-    sf::Text	getSfText(void) const;
+    sf::Text	&getSfText(void);
 };
 
 

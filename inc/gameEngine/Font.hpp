@@ -20,7 +20,7 @@ class Font
 
     std::string	getFontPath(void) const;
     void 	setFontPath(const std::string &);
-    sf::Font	getSfFont(void);
+    sf::Font	*getSfFont(void);
 };
 
 

@@ -12,21 +12,10 @@
 int main()
 {
 
-  // sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+//  sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 
   Window window("Window", 800, 600);
-/*
-  sf::Font font;
-
-  font.loadFromFile("../Triumph-wheels-rough.ttf");
-
-  sf::Text	text;
-
-  text.setString("Thomas suce");
-  text.setFont(font);
-*/
-
-  Text	*text = new Text("Thomas suce", "../Triumph-wheels-rough.ttf");
+  Text	text("Thomas suce", "../Triumph-wheels-rough.ttf");
 
   // run the program as long as the window is open
   int x = 0;
@@ -34,9 +23,7 @@ int main()
   {
     window.clear();
     // check all the window's events that were triggered since the last iteration of the loop
-
-    std::cout << "Before DRAW" << std::endl;
-    window.draw(*text);
+    window.draw(text);
     sf::Event event;
     while (window.pollEvent(event))
     {

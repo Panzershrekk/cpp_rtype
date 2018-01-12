@@ -13,14 +13,12 @@ Font::Font() : _fontPath("")
 Font::Font(const std::string &path) : _fontPath(path)
 {
   this->_font = new sf::Font();
-
   this->_font->loadFromFile(path);
-  std::cout << "Construct Font" << std::endl;
 }
 
 Font::~Font()
 {
-  delete(this->_font);
+  delete(_font);
 }
 
 void		Font::setFontPath(const std::string &nPath)
@@ -34,7 +32,7 @@ std::string	Font::getFontPath() const
   return (this->_fontPath);
 }
 
-sf::Font	Font::getSfFont()
+sf::Font	*Font::getSfFont()
 {
-  return (*this->_font);
+  return (this->_font);
 }
