@@ -9,8 +9,7 @@ Window::Window(const std::string &title, unsigned int width, unsigned int height
 }
 
 Window::~Window()
-{
-}
+=default;
 
 void Window::close()
 {
@@ -42,11 +41,15 @@ bool Window::pollEvent(sf::Event &event)
   return (this->_win.pollEvent(event));
 }
 
-void Window::draw(Sprite &sprite)
+void	Window::draw(Sprite &sprite)
 {
   _win.draw(sprite.getSfSprite());
 }
 
+void	Window::draw(Text &text)
+{
+  _win.draw(text.getSfText());
+}
 
 /*
 void Window::setPosition(const Position2D &nPos)

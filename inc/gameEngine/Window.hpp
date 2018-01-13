@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Sprite.hpp"
+#include "Text.hpp"
 
 class Window
 {
@@ -14,7 +15,7 @@ class Window
     sf::RenderWindow		_win;
 
   public:
-    Window(const std::string &, unsigned int, unsigned int);
+    explicit Window(const std::string &, unsigned int, unsigned int);
     ~Window();
     void 	close(void);
     void 	clear(void);
@@ -23,6 +24,7 @@ class Window
     void 	display(void);
     bool 	pollEvent(sf::Event &);
     void 	draw(Sprite &);
+    void 	draw(Text &);
 //    void 	setPosition(const Position2D &);
 };
 
