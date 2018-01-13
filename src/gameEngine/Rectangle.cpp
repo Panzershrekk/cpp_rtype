@@ -31,7 +31,7 @@ bool Rectangle::contains(int x, int y)
 
 bool Rectangle::contains(const Position2D &pos)
 {
-  return (this->_rect.contains(pos.getVector()));
+  return (this->_rect.contains(pos.getVector().x, pos.getVector().y));
 }
 
 bool Rectangle::intersects(const Rectangle &rec) const

@@ -1,10 +1,13 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <Sprite.hpp>
+#include <Window.hpp>
+#include <ColliderManager.hpp>
+#include <Mouse.hpp>
 
 int main()
 {
-  sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
+  /*sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
 
   sf::Texture texture;
 
@@ -12,16 +15,20 @@ int main()
   {
     std::cout << "Hey dude wtf" << std::endl;
     exit (87);
-  }
+  }*/
 
 
-  sf::Sprite sprite;
+  /*sf::Sprite sprite;
   sprite.setTexture(texture);
 
   sf::Sprite sprite2;
   sprite2.setTexture(texture);
-  sprite2.setPosition(sf::Vector2f(300, 400));
-  //Sprite sprite();
+  sprite2.setPosition(sf::Vector2f(300, 400));*/
+  Position2D pos(200, 200);
+  ColliderManager collider;
+  Window window("hey", 800, 800);
+  Sprite sprite("../Sprite-Logo.jpg", pos);
+  Sprite sprite2("../Sprite-Logo.jpg", 400, 400);
 
   while (window.isOpen())
   {
@@ -29,6 +36,11 @@ int main()
 
     while (window.pollEvent(event))
     {
+      if (Mouse::isButtonPressed(Mouse::Left))
+      {
+	if (collider.IsMouseOver(sprite, window))
+	  std::cout << "clicked" << std::endl;
+      }
       switch (event.type)
       {
 	case sf::Event::Closed:
@@ -38,8 +50,7 @@ int main()
 
       }
     }
-
-    if (sprite.getGlobalBounds().intersects(sprite2.getGlobalBounds()))
+    if (collider.IsSpriteColliding(sprite, sprite2))
     {
       std::cout << "The sprite have collided" << std::endl;
       //sprite2.move(sf::Vector2f(0.1, 0));

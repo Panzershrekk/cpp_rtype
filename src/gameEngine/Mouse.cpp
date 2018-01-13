@@ -21,3 +21,10 @@ void Mouse::setPosition(const Position2D &position)
 {
 
 }
+
+Position2D Mouse::getPosition(Window &relativeTo)
+{
+  static sf::Vector2i pos;
+  pos = sf::Mouse::getPosition(relativeTo.getRenderWindow());
+  return (Position2D(pos.x, pos.y));
+}

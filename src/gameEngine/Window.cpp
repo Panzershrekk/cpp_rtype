@@ -51,6 +51,11 @@ void	Window::draw(Text &text)
   _win.draw(text.getSfText());
 }
 
+sf::RenderWindow& Window::getRenderWindow()
+{
+  return this->_win;
+}
+
 /*
 void Window::setPosition(const Position2D &nPos)
 {

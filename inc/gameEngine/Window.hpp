@@ -25,6 +25,7 @@ class Window
     bool 	pollEvent(sf::Event &);
     void 	draw(Sprite &);
     void 	draw(Text &);
+    sf::RenderWindow& getRenderWindow();
 //    void 	setPosition(const Position2D &);
 };
 
