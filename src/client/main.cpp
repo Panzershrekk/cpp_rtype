@@ -1,5 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
+#include <Sprite.hpp>
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
   sf::Sprite sprite2;
   sprite2.setTexture(texture);
   sprite2.setPosition(sf::Vector2f(300, 400));
+  //Sprite sprite();
 
   while (window.isOpen())
   {
