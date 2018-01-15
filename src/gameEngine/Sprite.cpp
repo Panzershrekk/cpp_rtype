@@ -13,7 +13,7 @@ Sprite::Sprite(const std::string &path) : _sprite(),
 {
   sf::Texture	*text = new sf::Texture();
 
-  text->loadFromFile("../Sprite-Logo.jpg");
+  text->loadFromFile(path);
   this->_sprite.setTexture(*text);
 }
 
@@ -21,7 +21,7 @@ Sprite::Sprite(const std::string &path, float x, float y) :_sprite(), _texture(p
 {
   sf::Texture	*text = new sf::Texture();
 
-  text->loadFromFile("../Sprite-Logo.jpg");
+  text->loadFromFile(path);
   this->_sprite.setTexture(*text);
   this->_pos = Position2D(x, y);
   this->_sprite.setPosition(this->_pos.getVector().x, this->_pos.getVector().y);
@@ -32,12 +32,11 @@ Sprite::Sprite(const std::string &path, Position2D &pos) :_sprite(), _texture(pa
 {
   sf::Texture	*text = new sf::Texture();
 
-  text->loadFromFile("../Sprite-Logo.jpg");
+  text->loadFromFile(path);
   this->_sprite.setTexture(*text);
   this->_pos = pos;
   this->_sprite.setPosition(pos.getVector().x, pos.getVector().y);
 }
-
 
 Sprite::Sprite(const std::string &path, int x, int y, int width, int height) :
   _sprite(sf::Texture()),
@@ -84,9 +83,25 @@ void Sprite::setPosition(Position2D &pos)
   this->_sprite.setPosition(pos.getVector().x, pos.getVector().y);
 }
 
+void Sprite::setScale(float x, float y)
+{
+  this->_sprite.setScale(x, y);
+}
+
 void Sprite::move(Position2D &pos)
 {
   this->_pos = pos;
   this->_sprite.move(pos.getVector().x, pos.getVector().y);
 
+}
+
+bool Sprite::IsMouseOver(Window& win)
+{
+  return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
+}
+
+void Sprite::onClick(std::function<void(void)> f, Window &win)
+{
+  if (Mouse::isButtonPressed(Mouse::Left) && isMouseOver(win))
+    f();
 }

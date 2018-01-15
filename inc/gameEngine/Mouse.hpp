@@ -9,6 +9,8 @@
 #include "Position2D.hpp"
 #include "Window.hpp"
 
+class Window;
+
 class Mouse
 {
   public:
@@ -22,7 +24,7 @@ class Mouse
       ButtonCount
     };
 
-    static bool isButtonPressed(Button button);
+    static bool isButtonPressed(Button button); //TODO : reference
     static Position2D getPosition();
     static Position2D getPosition(Window& relativeTo);
 

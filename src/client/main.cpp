@@ -1,9 +1,7 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
-#include <Sprite.hpp>
-#include <Window.hpp>
-#include <ColliderManager.hpp>
-#include <Mouse.hpp>
+#include "client/menu/MainMenu.hpp"
+#include "gameEngine/Window.hpp"
 
 int main()
 {
@@ -24,11 +22,8 @@ int main()
   sf::Sprite sprite2;
   sprite2.setTexture(texture);
   sprite2.setPosition(sf::Vector2f(300, 400));*/
-  Position2D pos(200, 200);
-  ColliderManager collider;
-  Window window("hey", 800, 800);
-  Sprite sprite("../Sprite-Logo.jpg", pos);
-  Sprite sprite2("../Sprite-Logo.jpg", 400, 400);
+  Window window("hey", 1920, 1080);
+  MainMenu main;
 
   while (window.isOpen())
   {
@@ -36,49 +31,18 @@ int main()
 
     while (window.pollEvent(event))
     {
-      if (Mouse::isButtonPressed(Mouse::Left))
-      {
-	if (collider.IsMouseOver(sprite, window))
-	  std::cout << "clicked" << std::endl;
-      }
+      main.update(window);
       switch (event.type)
       {
 	case sf::Event::Closed:
 	  window.close();
 
 	  break;
-
       }
-    }
-    if (collider.IsSpriteColliding(sprite, sprite2))
-    {
-      std::cout << "The sprite have collided" << std::endl;
-      //sprite2.move(sf::Vector2f(0.1, 0));
-    }
-    else
-    {
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-      {
-	sprite2.move(-0.1, 0);
-      }
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-      {
-	sprite2.move(0, -0.1);
-      }
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-      {
-	sprite2.move(0, 0.1);
-      }
-      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-      {
-	sprite2.move(0.1, 0);
-      }
-      //sprite2.move(sf::Vector2f(0, -0.1));
     }
 
     window.clear();
-    window.draw(sprite);
-    window.draw(sprite2);
+    main.draw(window);
     window.display();
   }
 }
