@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <memory>
 
 class IEntity
 {
