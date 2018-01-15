@@ -6,15 +6,20 @@
 #define CPP_RTYPE_SPRITE_HPP_
 
 #include	<SFML/Graphics/Sprite.hpp>
+#include	<functional>
 #include	"Texture.hpp"
-#include "Position2D.hpp"
+#include	"Position2D.hpp"
+#include	"Mouse.hpp"
+
+class Window;
 
 class Sprite
 {
   private:
-    sf::Sprite	_sprite;
-    Texture	_texture;
-    Position2D	_pos;
+    sf::Sprite		_sprite;
+    Texture		_texture;
+    Position2D		_pos;
+   // ColliderManager	_collider;
 
   public:
     explicit Sprite();
@@ -30,7 +35,11 @@ class Sprite
 
     Position2D getPosition(void) const;
     void setPosition(Position2D&);
+    void setScale(float, float);
     void move(Position2D&);
+
+    bool isMouseOver(Window &);
+    void onClick(std::function<void(void)>, Window &);
 };
 
 

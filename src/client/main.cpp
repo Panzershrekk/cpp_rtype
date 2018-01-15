@@ -1,20 +1,29 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
-#include <Sprite.hpp>
-#include <Window.hpp>
-#include <ColliderManager.hpp>
-#include <Mouse.hpp>
-#include <Player.hpp>
-#include <Ennemy.hpp>
-#include <MainSystem.hpp>
-#include <RenderSystem.hpp>
+#include "client/menu/MainMenu.hpp"
+#include "gameEngine/Window.hpp"
 
 int main()
 {
-  /*Position2D pos(200, 200);
-  ColliderManager collider;
-  Window window("hey", 800, 800);
-  Sprite sprite("../Sprite-Logo.jpg", pos);
+  /*sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
+
+  sf::Texture texture;
+
+  if (!texture.loadFromFile("../Sprite-Logo.jpg"))
+  {
+    std::cout << "Hey dude wtf" << std::endl;
+    exit (87);
+  }*/
+
+
+  /*sf::Sprite sprite;
+  sprite.setTexture(texture);
+
+  sf::Sprite sprite2;
+  sprite2.setTexture(texture);
+  sprite2.setPosition(sf::Vector2f(300, 400));*/
+  Window window("hey", 1920, 1080);
+  MainMenu main;
 
   while (window.isOpen())
   {
@@ -22,49 +31,19 @@ int main()
 
     while (window.pollEvent(event))
     {
-
-      if (sf::Joystick::isConnected(0))
-      {
-	if (sf::Joystick::isButtonPressed(0, 1))
-	{
-	  std::cout << "FIRE" << std::endl;
-	}
-	float x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
-	float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
-	sprite.move(x/5, y/5);
-      }
-      else
-      {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-	  sprite.move(-10, 0);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-	  sprite.move(0, -10);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-	  sprite.move(0, 10);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-	  sprite.move(10, 0);
-	}
-      }
+      main.update(window);
       switch (event.type)
       {
 	case sf::Event::Closed:
 	  window.close();
 
 	  break;
-
       }
     }
 
 
     window.clear();
-    window.draw(sprite);
+    main.draw(window);
     window.display();
   }*/
   Window window("hey", 800, 800);

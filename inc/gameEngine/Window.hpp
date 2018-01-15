@@ -9,6 +9,8 @@
 #include "Sprite.hpp"
 #include "Text.hpp"
 
+class Sprite;
+
 class Window
 {
   private:
