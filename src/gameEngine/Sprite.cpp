@@ -17,6 +17,28 @@ Sprite::Sprite(const std::string &path) : _sprite(),
   this->_sprite.setTexture(*text);
 }
 
+Sprite::Sprite(const std::string &path, float x, float y) :_sprite(), _texture(path)
+{
+  sf::Texture	*text = new sf::Texture();
+
+  text->loadFromFile("../Sprite-Logo.jpg");
+  this->_sprite.setTexture(*text);
+  this->_pos = Position2D(x, y);
+  this->_sprite.setPosition(this->_pos.getVector().x, this->_pos.getVector().y);
+}
+
+
+Sprite::Sprite(const std::string &path, Position2D &pos) :_sprite(), _texture(path)
+{
+  sf::Texture	*text = new sf::Texture();
+
+  text->loadFromFile("../Sprite-Logo.jpg");
+  this->_sprite.setTexture(*text);
+  this->_pos = pos;
+  this->_sprite.setPosition(pos.getVector().x, pos.getVector().y);
+}
+
+
 Sprite::Sprite(const std::string &path, int x, int y, int width, int height) :
   _sprite(sf::Texture()),
   _texture(path, x, y, width, height)
@@ -51,3 +73,20 @@ sf::Sprite	Sprite::getSfSprite(void) const
   return (this->_sprite);
 }
 
+Position2D Sprite::getPosition(void) const
+{
+  return (this->_pos);
+}
+
+void Sprite::setPosition(Position2D &pos)
+{
+  this->_pos = pos;
+  this->_sprite.setPosition(pos.getVector().x, pos.getVector().y);
+}
+
+void Sprite::move(Position2D &pos)
+{
+  this->_pos = pos;
+  this->_sprite.move(pos.getVector().x, pos.getVector().y);
+
+}

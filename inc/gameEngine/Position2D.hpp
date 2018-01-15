@@ -25,10 +25,11 @@ class Position2D
 
     int getX() const;
     int getY() const;
-    sf::Vector2<int> getVector() const;
+
+    sf::Vector2<float> getVector() const;
 
   private:
-    sf::Vector2<int> _vector2;
+    sf::Vector2<float> _vector2;
 
 };
 

@@ -1,37 +1,84 @@
+#include "SFML/Graphics.hpp"
 #include <iostream>
-#include <SFML/Window.hpp>
-#include <SFML/Graphics/CircleShape.hpp>
-#include <iostream>
-
-#include "Physic.hpp"
-#include "Mathematics.hpp"
-#include "Window.hpp"
-#include "Sprite.hpp"
-#include "Text.hpp"
+#include <Sprite.hpp>
+#include <Window.hpp>
+#include <ColliderManager.hpp>
+#include <Mouse.hpp>
 
 int main()
 {
+  /*sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
 
-//  sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+  sf::Texture texture;
 
-  Window window("Window", 800, 600);
-  Text	text("Thomas suce", "../Triumph-wheels-rough.ttf");
+  if (!texture.loadFromFile("../Sprite-Logo.jpg"))
+  {
+    std::cout << "Hey dude wtf" << std::endl;
+    exit (87);
+  }*/
 
-  // run the program as long as the window is open
-  int x = 0;
+
+  /*sf::Sprite sprite;
+  sprite.setTexture(texture);
+
+  sf::Sprite sprite2;
+  sprite2.setTexture(texture);
+  sprite2.setPosition(sf::Vector2f(300, 400));*/
+  Position2D pos(200, 200);
+  ColliderManager collider;
+  Window window("hey", 800, 800);
+  Sprite sprite("../Sprite-Logo.jpg", pos);
+  Sprite sprite2("../Sprite-Logo.jpg", 400, 400);
+
   while (window.isOpen())
   {
-    window.clear();
-    // check all the window's events that were triggered since the last iteration of the loop
-    window.draw(text);
     sf::Event event;
+
     while (window.pollEvent(event))
     {
-      // "close requested" event: we close the window
-      if (event.type == sf::Event::Closed)
-	window.close();
+      if (Mouse::isButtonPressed(Mouse::Left))
+      {
+	if (collider.IsMouseOver(sprite, window))
+	  std::cout << "clicked" << std::endl;
+      }
+      switch (event.type)
+      {
+	case sf::Event::Closed:
+	  window.close();
+
+	  break;
+
+      }
     }
+    if (collider.IsSpriteColliding(sprite, sprite2))
+    {
+      std::cout << "The sprite have collided" << std::endl;
+      //sprite2.move(sf::Vector2f(0.1, 0));
+    }
+    else
+    {
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+      {
+	sprite2.move(-0.1, 0);
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+      {
+	sprite2.move(0, -0.1);
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+      {
+	sprite2.move(0, 0.1);
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+      {
+	sprite2.move(0.1, 0);
+      }
+      //sprite2.move(sf::Vector2f(0, -0.1));
+    }
+
+    window.clear();
+    window.draw(sprite);
+    window.draw(sprite2);
     window.display();
   }
-  return 0;
 }
