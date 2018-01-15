@@ -1,7 +1,7 @@
 # Project configuration
 cmake_minimum_required(VERSION 3.8)
 project(cpp_rtype)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 # Server configuration
 set(SOURCE_FILES_SERVER src/server/main.cpp)
@@ -13,6 +13,9 @@ include_directories(inc/gameEngine/)
 include_directories(inc/client/)
 set(CMAKE_BUILD_TYPE Debug)
 add_executable(r-type-client ${SOURCE_FILES_CLIENT})
+
+set(SOURCE_FILE main.cpp)
+add_executable(r-type ${SOURCE_FILE})
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
