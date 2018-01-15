@@ -6,10 +6,12 @@
 #include <Mouse.hpp>
 #include <Player.hpp>
 #include <Ennemy.hpp>
+#include <MainSystem.hpp>
+#include <RenderSystem.hpp>
 
 int main()
 {
-  Position2D pos(200, 200);
+  /*Position2D pos(200, 200);
   ColliderManager collider;
   Window window("hey", 800, 800);
   Sprite sprite("../Sprite-Logo.jpg", pos);
@@ -64,5 +66,30 @@ int main()
     window.clear();
     window.draw(sprite);
     window.display();
+  }*/
+  Window window("hey", 800, 800);
+  MainSystem mSystem;
+  RenderSystem renderSystem(window.getRenderWindow());
+  Position2D pos(200, 200);
+  Sprite sprite("../Sprite-Logo.jpg", pos);
+
+
+  std::shared_ptr<IEntity> ptr = std::make_shared<Entity<Sprite>>(sprite);
+  renderSystem.addEntity(ptr);
+
+  while (window.isOpen())
+  {
+    window.clear();
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+      // "close requested" event: we close the window
+      if (event.type == sf::Event::Closed)
+	window.close();
+    }
+    renderSystem.update();
+    window.display();
   }
+
+  return 0;
 }

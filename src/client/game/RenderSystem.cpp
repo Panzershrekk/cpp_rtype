@@ -18,7 +18,7 @@ void RenderSystem::update()
 {
   for (auto &entity : renderer.getEntity())
   {
-    _display.draw(entity->getSprite());
+    _display.draw(entity->getSprite().getSfSprite());
   }
 }
 
