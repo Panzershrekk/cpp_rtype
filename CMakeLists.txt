@@ -43,6 +43,9 @@ set(SOURCE_FILES_CLIENT
         src/gameEngine/Font.cpp
         inc/gameEngine/Text.hpp
         src/gameEngine/Text.cpp
+        src/gameEngine/Music.cpp
+        src/gameEngine/MusicManager.cpp
+        src/gameEngine/SoundSystem.cpp
         inc/client/AEntity.hpp
         inc/client/ACharacter.hpp
         inc/client/Player.hpp
