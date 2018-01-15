@@ -40,9 +40,9 @@ set(SOURCE_FILES_CLIENT
         inc/gameEngine/ColliderManager.hpp
         src/gameEngine/ColliderManager.cpp
         inc/gameEngine/Font.hpp
-        src/Font.cpp
+        src/gameEngine/Font.cpp
         inc/gameEngine/Text.hpp
-        inc/gameEngine/Text.cpp
+        src/gameEngine/Text.cpp
         inc/client/AEntity.hpp
         inc/client/ACharacter.hpp
         inc/client/Player.hpp
@@ -53,9 +53,12 @@ set(SOURCE_FILES_CLIENT
         inc/client/Projectile.hpp
         src/client/game/MainSystem.cpp
         src/client/game/RenderSystem.cpp
-        src/client/game/Renderer.cpp)
+        src/client/game/Renderer.cpp
+        src/client/menu/MainMenu.cpp
+        src/client/menu/MenuWindow.cpp)
 include_directories(inc/gameEngine/)
 include_directories(inc/client/)
+include_directories(inc/client/menu/)
 
 set(CMAKE_BUILD_TYPE Debug)
 add_executable(r-type-client ${SOURCE_FILES_CLIENT})

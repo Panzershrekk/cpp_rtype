@@ -5,8 +5,8 @@
 #ifndef CPP_RTYPE_MAINMENU_HPP_
 #define CPP_RTYPE_MAINMENU_HPP_
 
-#include	<gameEngine/Window.hpp>
-#include	"gameEngine/Sprite.hpp"
+#include	<Window.hpp>
+#include	"Sprite.hpp"
 
 class MainMenu
 {

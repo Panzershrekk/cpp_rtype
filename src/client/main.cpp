@@ -1,27 +1,11 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
-#include "client/menu/MainMenu.hpp"
-#include "gameEngine/Window.hpp"
+#include <Window.hpp>
+#include "MainMenu.hpp"
+#include "Window.hpp"
 
 int main()
 {
-  /*sf::RenderWindow window(sf::VideoMode(600, 600), "SFML WORK!");
-
-  sf::Texture texture;
-
-  if (!texture.loadFromFile("../Sprite-Logo.jpg"))
-  {
-    std::cout << "Hey dude wtf" << std::endl;
-    exit (87);
-  }*/
-
-
-  /*sf::Sprite sprite;
-  sprite.setTexture(texture);
-
-  sf::Sprite sprite2;
-  sprite2.setTexture(texture);
-  sprite2.setPosition(sf::Vector2f(300, 400));*/
   Window window("hey", 1920, 1080);
   MainMenu main;
 
@@ -45,8 +29,8 @@ int main()
     window.clear();
     main.draw(window);
     window.display();
-  }*/
-  Window window("hey", 800, 800);
+  }
+  /*Window window("hey", 800, 800);
   MainSystem mSystem;
   RenderSystem renderSystem(window.getRenderWindow());
   Position2D pos(200, 200);
@@ -68,7 +52,7 @@ int main()
     }
     renderSystem.update();
     window.display();
-  }
+  }*/
 
   return 0;
 }

@@ -2,7 +2,7 @@
 // Created by grodin on 15/01/18.
 //
 
-#include	"client/menu/MenuWindow.hpp"
+#include	"MenuWindow.hpp"
 
 MenuWindow::MenuWindow()
 {

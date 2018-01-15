@@ -3,8 +3,8 @@
 //
 
 #include 	<iostream>
-#include	<gameEngine/Mouse.hpp>
-#include	"client/menu/MainMenu.hpp"
+#include	<Mouse.hpp>
+#include	"MainMenu.hpp"
 
 MainMenu::MainMenu() :
   _splashScreen("../assets/MainMenu_Background.png"),

@@ -95,7 +95,7 @@ void Sprite::move(Position2D &pos)
 
 }
 
-bool Sprite::IsMouseOver(Window& win)
+bool Sprite::isMouseOver(Window& win)
 {
   return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
 }
