@@ -16,8 +16,9 @@ class IMenu
   public:
     virtual ~IMenu() = default;
 
-    virtual void start() = 0;
-    virtual void update() = 0;
+    virtual void start(Window &) = 0;
+    virtual void draw(Window &) = 0;
+    virtual void update(Window &) = 0;
 };
 
 

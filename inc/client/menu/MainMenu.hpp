@@ -23,6 +23,7 @@ class MainMenu
     ~MainMenu();
 
     void draw(Window &);
+    void start(Window &);
     void update(Window &);
 
     void playFunction(Window &);
