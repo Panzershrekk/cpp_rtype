@@ -13,21 +13,33 @@ set(SOURCE_FILES_CLIENT
         src/client/MainSystem.cpp
         src/client/RenderSystem.cpp
         src/client/Renderer.cpp
+        src/gameEngine/Physic.cpp
+        src/gameEngine/Mathematics.cpp
+        src/gameEngine/Position2D.cpp
+        src/gameEngine/Rectangle.cpp
+        src/gameEngine/Color.cpp
+        src/gameEngine/Graphics.cpp
+        src/gameEngine/Sprite.cpp
+        src/gameEngine/Texture.cpp
+        src/gameEngine/Window.cpp
         )
 set(INCLUDE_FILE_CLIENT
         inc/client/MainSystem.hpp
         inc/client/ISystem.hpp
         inc/client/RenderSystem.hpp
         inc/client/Renderer.hpp
-        inc/client/Entity.hpp)
-include_directories(inc/client)
+        inc/client/Entity.hpp
+        inc/gameEngine/Physic.hpp
+        inc/gameEngine/Color.hpp
+        inc/gameEngine/Graphics.hpp
+        inc/gameEngine/Sprite.hpp
+        inc/gameEngine/Texture.hpp
+        inc/gameEngine/Window.hpp
+        )
+include_directories(inc/client
+        inc/gameEngine)
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${INCLUDE_FILE_CLIENT})
-set(SOURCE_FILES_CLIENT src/client/main.cpp src/gameEngine/Physic.cpp inc/gameEngine/Physic.hpp src/gameEngine/Mathematics.cpp src/gameEngine/Position2D.cpp src/gameEngine/Rectangle.cpp inc/gameEngine/Color.hpp src/gameEngine/Color.cpp inc/gameEngine/Graphics.hpp src/gameEngine/Graphics.cpp inc/gameEngine/Sprite.hpp src/gameEngine/Sprite.cpp src/gameEngine/Texture.cpp inc/gameEngine/Texture.hpp inc/gameEngine/Window.hpp src/gameEngine/Window.cpp)
-include_directories(inc/gameEngine/)
-add_executable(r-type-client ${SOURCE_FILES_CLIENT})
 
-set(SOURCE_FILE main.cpp)
-add_executable(r-type ${SOURCE_FILE})
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
