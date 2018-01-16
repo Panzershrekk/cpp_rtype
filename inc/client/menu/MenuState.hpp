@@ -6,10 +6,10 @@
 #define CPP_RTYPE_MENUSTATE_HPP
 
 typedef enum e_MenuState {
-  MainMenu,
-  LoginMenu,
-  RoomListMenu,
-  LobbyMenu
+  EMainMenu,
+  ELoginMenu,
+  ERoomListMenu,
+  ELobbyMenu
 } MenuState;
 
 #endif //CPP_RTYPE_MENUSTATE_HPP

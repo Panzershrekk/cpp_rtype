@@ -5,6 +5,8 @@
 #ifndef CPP_RTYPE_MAINMENU_HPP_
 #define CPP_RTYPE_MAINMENU_HPP_
 
+#include	"Sprite.hpp"
+
 class Window;
 
 class MainMenu

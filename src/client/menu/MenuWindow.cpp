@@ -6,7 +6,8 @@
 
 MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080), _mainMenu()
 {
-  this->_menuState = MainMenu;
+  this->_menuState = EMainMenu;
+  //TODO : Reset la position de la souris pour eviter le bug du clic save
 }
 
 MenuWindow::~MenuWindow()
@@ -35,7 +36,6 @@ void MenuWindow::start()
 	  break;
       }
     }
-
     _win.clear();
     _mainMenu.draw(_win);
     _win.display();

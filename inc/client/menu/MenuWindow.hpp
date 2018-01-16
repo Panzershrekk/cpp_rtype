@@ -7,9 +7,11 @@
 # define	TITLE	"MenuWindow"
 
 #include	<SFML/Graphics.hpp>
+#include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
-#include	"MainMenu.hpp"
+
+class MainMenu;
 
 class MenuWindow
 {
