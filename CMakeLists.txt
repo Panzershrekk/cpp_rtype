@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 # SERVER FILES
 set(SOURCE_FILES_SERVER
+        src/server/ServerCore.cpp
         src/server/main.cpp)
 
 # CLIENT FILES
@@ -12,8 +13,13 @@ set(SOURCE_FILES_CLIENT src/client/main.cpp)
 
 # COMMON FILES NETWORK CORE
 set(SOURCE_FILES_COMMON_NETWORK_CORE
-        src/common/network/core/UdpConnection.cpp
-        src/common/network/core/Endpoint.cpp)
+        inc/common/network/core/UdpConnection.hpp
+        inc/common/network/serialization/APacket.hpp
+        inc/common/network/serialization/Serializer.hpp
+        inc/common/network/core/Error.hpp
+        src/common/network/core/APacket.cpp
+        src/common/network/core/Endpoint.cpp
+        src/common/network/core/Error.cpp)
 
 # EXECUTABLES
 add_executable(r-type-server ${SOURCE_FILES_SERVER} ${SOURCE_FILES_COMMON_NETWORK_CORE})

@@ -44,30 +44,30 @@ public:
      * of raw object data
      */
     template <typename T>
-    static std::array<unsigned char, sizeof(T)>     serialize(const T& object)
+    static std::string     serialize(const T& object)
     {
         std::array<unsigned char, sizeof(T)>    bytes;
 
         auto *begin = reinterpret_cast<const unsigned char *>(std::addressof(object));
         const unsigned char *end = begin + sizeof(T);
         std::copy(begin, end, std::begin(bytes));
-        return (bytes);
+        auto str = std::string(bytes.begin(), bytes.end());
+        return (str);
     }
 
     /**
      * \brief The deserializer function permit to deserialize a trivial, copyable object
-     * \idlexcept SerializerException
      * \tparam T
      * \param bytes
      * \param object
      * \return The unserialized object from the raw bytes give in param
      */
     template <typename T>
-    static T       &deserialize(const std::array<unsigned char, sizeof(T)> &bytes,
+    static T       &deserialize(const std::string &bytes,
                                 T& object)
     {
-        if (!std::is_trivially_copyable<T>::value)
-            throw SerializerException("Cannot deserialize this type");
+        /*if (!std::is_trivially_copyable<T>::value)
+            throw SerializerException("Cannot deserialize this type"); */
         auto begin_object = reinterpret_cast<unsigned char *>(std::addressof(object)) ;
         std::copy(std::begin(bytes), std::end(bytes), begin_object);
         return (object);
