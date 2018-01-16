@@ -11,22 +11,23 @@
 #include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
+#include	"IMenu.hpp"
 
 class MainMenu;
 
-class MenuWindow
+class MenuWindow : public IMenu
 {
 private:
-  MainMenu	_mainMenu;
+  IMenu		_mainMenu;
   Window	_win;
-  std::unordered_map<int, int>	_state;
+  std::unordered_map<int, IMenu>	_state;
 
-public:
-  MenuWindow();
-  ~MenuWindow();
+  public:
+    MenuWindow();
+    ~MenuWindow() override;
 
-  void start();
-  void update();
+    void start() override;
+    void update() override;
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */
