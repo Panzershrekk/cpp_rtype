@@ -6,14 +6,11 @@
 # define 	CPP_RTYPE_MENUWINDOW_HPP_
 # define	TITLE	"MenuWindow"
 
-#include	<SFML/Graphics.hpp>
-#include	"MainMenu.hpp"
-#include	"Window.hpp"
-#include	"MenuState.hpp"
+#include	"IMenu.hpp"
 
 class MainMenu;
 
-class MenuWindow
+class MenuWindow : public IMenu
 {
   private:
     MenuState	_menuState;
@@ -22,10 +19,10 @@ class MenuWindow
 
   public:
     MenuWindow();
-    ~MenuWindow();
+    ~MenuWindow() override;
 
-    void start();
-    void update();
+    void start() override;
+    void update() override;
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */
