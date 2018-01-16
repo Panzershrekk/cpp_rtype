@@ -7,6 +7,7 @@
 # define	TITLE	"MenuWindow"
 
 #include	<SFML/Graphics.hpp>
+#include	<unordered_map>
 #include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
@@ -15,17 +16,17 @@ class MainMenu;
 
 class MenuWindow
 {
-  private:
-    MenuState	_menuState;
-    MainMenu	_mainMenu;
-    Window	_win;
+private:
+  MainMenu	_mainMenu;
+  Window	_win;
+  std::unordered_map<int, int>	_state;
 
-  public:
-    MenuWindow();
-    ~MenuWindow();
+public:
+  MenuWindow();
+  ~MenuWindow();
 
-    void start();
-    void update();
+  void start();
+  void update();
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */
