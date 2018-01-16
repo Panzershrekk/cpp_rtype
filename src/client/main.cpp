@@ -1,7 +1,4 @@
-#include "SFML/Graphics.hpp"
-#include <iostream>
-#include "client/menu/MainMenu.hpp"
-#include "gameEngine/Window.hpp"
+#include "MenuWindow.hpp"
 
 int main()
 {
@@ -22,27 +19,7 @@ int main()
   sf::Sprite sprite2;
   sprite2.setTexture(texture);
   sprite2.setPosition(sf::Vector2f(300, 400));*/
-  Window window("hey", 1920, 1080);
-  MainMenu main;
+  MenuWindow menu;
 
-  while (window.isOpen())
-  {
-    sf::Event event;
-
-    while (window.pollEvent(event))
-    {
-      main.update(window);
-      switch (event.type)
-      {
-	case sf::Event::Closed:
-	  window.close();
-
-	  break;
-      }
-    }
-
-    window.clear();
-    main.draw(window);
-    window.display();
-  }
+  menu.start();
 }

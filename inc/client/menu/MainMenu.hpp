@@ -5,8 +5,7 @@
 #ifndef CPP_RTYPE_MAINMENU_HPP_
 #define CPP_RTYPE_MAINMENU_HPP_
 
-#include	<gameEngine/Window.hpp>
-#include	"gameEngine/Sprite.hpp"
+class Window;
 
 class MainMenu
 {
@@ -24,7 +23,8 @@ class MainMenu
     void draw(Window &);
     void update(Window &);
 
-    void playFunction(void);
+    void playFunction(Window &);
+    void quitFunction(Window &);
 };
 
 
