@@ -11,10 +11,14 @@ RoomListMenu::RoomListMenu()
 RoomListMenu::~RoomListMenu()
 = default;
 
-void RoomListMenu::start()
+void RoomListMenu::start(Window &win)
 {
 }
 
-void RoomListMenu::update()
+void RoomListMenu::update(Window &win)
+{
+}
+
+void RoomListMenu::draw(Window &win)
 {
 }

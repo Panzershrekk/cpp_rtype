@@ -39,6 +39,10 @@ void MainMenu::update(Window &win)
   this->_quitButton.onClick(fQuit, win);
 }
 
+void MainMenu::start(Window &win)
+{
+}
+
 void MainMenu::draw(Window &win)
 {
   win.draw(this->_splashScreen);

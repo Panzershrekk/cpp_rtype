@@ -11,10 +11,14 @@ LobbyMenu::LobbyMenu()
 LobbyMenu::~LobbyMenu()
 = default;
 
-void LobbyMenu::start()
+void LobbyMenu::start(Window &)
 {
 }
 
-void LobbyMenu::update()
+void LobbyMenu::draw(Window &)
+{
+}
+
+void LobbyMenu::update(Window &)
 {
 }

@@ -16,8 +16,9 @@ class LoginMenu : public IMenu
     explicit LoginMenu();
     ~LoginMenu() override;
 
-    void start() override;
-    void update() override;
+    void start(Window &) override;
+    void update(Window &) override;
+    void draw(Window &) override;
 };
 
 

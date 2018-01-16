@@ -11,10 +11,14 @@ LoginMenu::LoginMenu()
 LoginMenu::~LoginMenu()
 = default;
 
-void LoginMenu::start()
+void LoginMenu::start(Window &)
 {
 }
 
-void LoginMenu::update()
+void LoginMenu::update(Window &)
+{
+}
+
+void LoginMenu::draw(Window &)
 {
 }

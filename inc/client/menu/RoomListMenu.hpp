@@ -16,8 +16,9 @@ class RoomListMenu : public IMenu
     RoomListMenu();
     ~RoomListMenu() override;
 
-    void	start() override;
-    void 	update() override;
+    void	start(Window &) override;
+    void 	draw(Window &) override;
+    void 	update(Window &) override;
 };
 
 

@@ -15,8 +15,9 @@ class LobbyMenu : public IMenu
     explicit LobbyMenu();
     ~LobbyMenu() override;
 
-    void start() override;
-    void update() override;
+    void start(Window &) override;
+    void draw(Window &) override;
+    void update(Window &) override;
 };
 
 #endif /* !CPP_RTYPE_LOBBYMENU_HPP_ */

@@ -15,7 +15,7 @@
 
 class MainMenu;
 
-class MenuWindow : public IMenu
+class MenuWindow
 {
 private:
   IMenu		_mainMenu;
@@ -24,10 +24,10 @@ private:
 
   public:
     MenuWindow();
-    ~MenuWindow() override;
+    ~MenuWindow();
 
-    void start() override;
-    void update() override;
+    void start();
+    void update();
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */
