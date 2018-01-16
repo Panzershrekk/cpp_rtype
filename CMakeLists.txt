@@ -1,19 +1,45 @@
 # Project configuration
 cmake_minimum_required(VERSION 3.8)
 project(cpp_rtype)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 # Server configuration
 set(SOURCE_FILES_SERVER src/server/main.cpp)
 add_executable(r-type-server ${SOURCE_FILES_SERVER})
 
 # Client configuration
-set(SOURCE_FILES_CLIENT src/client/main.cpp src/gameEngine/Physic.cpp inc/gameEngine/Physic.hpp src/gameEngine/Mathematics.cpp src/gameEngine/Position2D.cpp src/gameEngine/Rectangle.cpp inc/gameEngine/Color.hpp src/gameEngine/Color.cpp inc/gameEngine/Graphics.hpp src/gameEngine/Graphics.cpp inc/gameEngine/Sprite.hpp src/gameEngine/Sprite.cpp src/gameEngine/Texture.cpp inc/gameEngine/Texture.hpp inc/gameEngine/Window.hpp src/gameEngine/Window.cpp src/gameEngine/TimeManager.cpp inc/gameEngine/AIManager.hpp src/gameEngine/AIManager.cpp inc/gameEngine/ScriptManager.hpp src/gameEngine/ScriptManager.cpp inc/gameEngine/InputManager.hpp inc/gameEngine/Keyboard.hpp src/gameEngine/Keyboard.cpp inc/gameEngine/Mouse.hpp src/gameEngine/Mouse.cpp inc/gameEngine/Joystick.hpp src/gameEngine/Joystick.cpp inc/gameEngine/ColliderManager.hpp src/gameEngine/ColliderManager.cpp inc/gameEngine/Font.hpp src/gameEngine/Font.cpp inc/gameEngine/Text.hpp src/gameEngine/Text.cpp inc/client/menu/MenuWindow.hpp src/client/menu/MenuWindow.cpp inc/client/menu/MenuState.hpp inc/client/menu/MainMenu.hpp src/client/menu/MainMenu.cpp inc/client/menu/LoginMenu.hpp src/client/menu/LoginMenu.cpp src/client/menu/RoomListMenu.cpp inc/client/menu/RoomListMenu.hpp inc/client/menu/LobbyMenu.hpp src/client/menu/LobbyMenu.cpp inc/client/menu/IMenu.hpp)
-include_directories(inc/)
-include_directories(inc/client/menu)
-include_directories(inc/gameEngine)
-set(CMAKE_BUILD_TYPE Debug)
-add_executable(r-type-client ${SOURCE_FILES_CLIENT})
+set(SOURCE_FILES_CLIENT
+        src/client/main.cpp
+        src/client/MainSystem.cpp
+        src/client/RenderSystem.cpp
+        src/client/Renderer.cpp
+        src/gameEngine/Physic.cpp
+        src/gameEngine/Mathematics.cpp
+        src/gameEngine/Position2D.cpp
+        src/gameEngine/Rectangle.cpp
+        src/gameEngine/Color.cpp
+        src/gameEngine/Graphics.cpp
+        src/gameEngine/Sprite.cpp
+        src/gameEngine/Texture.cpp
+        src/gameEngine/Window.cpp
+        )
+set(INCLUDE_FILE_CLIENT
+        inc/client/MainSystem.hpp
+        inc/client/ISystem.hpp
+        inc/client/RenderSystem.hpp
+        inc/client/Renderer.hpp
+        inc/client/Entity.hpp
+        inc/gameEngine/Physic.hpp
+        inc/gameEngine/Color.hpp
+        inc/gameEngine/Graphics.hpp
+        inc/gameEngine/Sprite.hpp
+        inc/gameEngine/Texture.hpp
+        inc/gameEngine/Window.hpp
+        )
+include_directories(inc/client
+        inc/gameEngine)
+add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${INCLUDE_FILE_CLIENT})
+
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
