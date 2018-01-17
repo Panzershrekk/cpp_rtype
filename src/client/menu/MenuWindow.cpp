@@ -5,9 +5,13 @@
 #include	"MenuWindow.hpp"
 #include	<iostream>
 
-MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080), _mainMenu()
+MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
 {
-//  _state.insert(std::pair<MenuState,int>(EMainMenu,1));
+  //std::shared_ptr<IEntity> ptr = std::make_shared<Entity<sf::Sprite>>(sprite);
+ //std::shared_ptr<IMenu> ptr = std::make_shared<MainMenu>();
+  _vec.push_back(std::shared_ptr<IMenu>(_mainMenu));
+  _vec.push_back(std::shared_ptr<IMenu>(_loginMenu));
+ // _state.insert(std::pair<int, std::shared_ptr<IMenu>>(1,_mainMenu));
 //  _state.insert(std::pair<MenuState,int>(ELoginMenu,2));
 //  _state.insert(std::pair<MenuState,int>(ERoomListMenu,3));
 //  _state.insert(std::pair<MenuState,int>(ELobbyMenu,4));
@@ -44,7 +48,7 @@ void MenuWindow::start()
       }
     }
     _win.clear();
-    _mainMenu.draw(_win);
+    _mainMenu->draw(_win);
     _win.display();
   }
 }

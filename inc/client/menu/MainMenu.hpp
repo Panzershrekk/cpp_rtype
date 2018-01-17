@@ -5,11 +5,12 @@
 #ifndef CPP_RTYPE_MAINMENU_HPP_
 #define CPP_RTYPE_MAINMENU_HPP_
 
+#include	"IMenu.hpp"
 #include	"Sprite.hpp"
 
 class Window;
 
-class MainMenu
+class MainMenu : public IMenu
 {
   private:
     Sprite	_splashScreen;

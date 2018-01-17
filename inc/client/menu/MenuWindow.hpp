@@ -7,20 +7,25 @@
 # define	TITLE	"MenuWindow"
 
 #include	<SFML/Graphics.hpp>
-#include	<unordered_map>
+#include	<vector>
+#include	<memory>
 #include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
 #include	"IMenu.hpp"
+#include	"LoginMenu.hpp"
 
 class MainMenu;
 
 class MenuWindow
 {
 private:
-  IMenu		_mainMenu;
+  std::shared_ptr<IMenu> _mainMenu = std::make_shared<MainMenu>();
+  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>();
+
   Window	_win;
-  std::unordered_map<int, IMenu>	_state;
+  std::vector<std::shared_ptr<IMenu>> _vec;
+  //std::unordered_map<int, std::shared_ptr<IMenu>>	_state;
 
   public:
     MenuWindow();

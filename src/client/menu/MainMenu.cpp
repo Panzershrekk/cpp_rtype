@@ -3,7 +3,7 @@
 //
 
 #include 	<iostream>
-#include	<gameEngine/Mouse.hpp>
+#include	"Mouse.hpp"
 #include	"MainMenu.hpp"
 
 MainMenu::MainMenu() :
