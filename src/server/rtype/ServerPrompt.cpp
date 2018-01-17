@@ -6,23 +6,23 @@
 
 ServerPrompt::ServerPrompt()
 {
-  this->_manager = new commandMannager();
+  // this->_manager = new commandMannager();
  /* this->_server = new ServerCore();*/
 }
 
-ServerPrompt::~ServePrompt()
+ServerPrompt::~ServerPrompt()
 {
 }
 
 void	ServerPrompt::startPrompt()
 {
-  std::thread readThread(readCommand);
+  // std::thread readThread(readCommand);
 
   std::cout << "-- Welcome on the server's prompt --" << std::endl;
-  std::cout << "List of Rooms: " << manager.getRooms() << std::endl;
-  std::cout << "List of Player: " << manager.getPlayers() << std::endl;
+  //std::cout << "List of Rooms: " << manager.getRooms() << std::endl;
+  // std::cout << "List of Player: " << manager.getPlayers() << std::endl;
   std::cout << "Commands: getRooms and getPlayers." << std::endl;
-  readThread.join();
+  //readThread.join();
 }
 
 void	ServerPrompt::readCommand()

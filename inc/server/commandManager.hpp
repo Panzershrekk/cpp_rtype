@@ -11,19 +11,26 @@
 #include <iostream>
 #include <vector>
 #include <functional>
+#include <map>
 
-template <typename T>
-class commandManager
+class CommandManager
 {
   private:
-    std::map<std::string, std::function<void(T)>>	_manager;
+    // std::map<std::string, std::function<void(T)>>	_manager;
   public:
-    commandManager();
-    virtual commandManager();
+    CommandManager();
+    virtual ~CommandManager();
 
+    /*
+    template <typename T>
     void				executeCommand(std::string, T);
+
+    template <typename T>
     void				getRooms(T);
+
+    template <typename T>
     void				getPlayers(T);
+     */
 };
 
 #endif //CPP_RTYPE_COMMANDMANAGER_HPP

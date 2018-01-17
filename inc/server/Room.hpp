@@ -7,26 +7,27 @@
 
 #include <iostream>
 #include <vector>
+#include "Player.hpp"
 
 class Room
 {
   private:
-    int				_size;
-    int 			_id;
+    int				        _size;
+    int 			        _id;
     std::vector<Player>		_queue;
 
   public:
     Room();
-    Room(const int, const int);
+    Room(const int &, const int &);
     virtual ~Room();
 
-    void			join(Player);
-    void			leave(Player);
+    void			join(const Player &);
+    void			leave(const Player &);
     int				getSize() const;
     int				getId() const;
-    int 			setSize(const int);
-    int 			setId(const int);
-    std::vector<Player>		getPlayer() const;
+    int 			setSize(const int &);
+    int 			setId(const int &);
+    std::vector<Player>		getPlayers() const;
     /*void 			sendData(data); preciser le type de data. Type socket ?*/
 
 };

@@ -14,11 +14,11 @@
 class ServerPrompt
 {
   private:
-    commandManager<std::vector<Rooms>> *_manager;
+    // CommandManager<std::vector<Rooms>> *_manager;
     /*ServerCore *_server;*/
   public:
     ServerPrompt();
-    virtual ServerPrompt();
+    virtual ~ServerPrompt();
 
     void	startPrompt();
     void	readCommand();

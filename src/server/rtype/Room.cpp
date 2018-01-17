@@ -2,55 +2,49 @@
 // Created by arthaox on 10/01/18.
 //
 
-#include		"../../../inc/server/Room.hpp"
+#include		"Room.hpp"
 
-Room::Room()
+Room::Room() {}
+
+Room::Room(const int &size, const int &id) : _size(size), _id(id) {}
+
+Room::~Room() {}
+
+void	Room::join(const Player &player)
 {
-
+    this->_queue.push_back(player);
 }
 
-Room::Room(const int size, const int id) : _size(size), _id(id) {}
-
-Room::~Room()
+void	Room::leave(const Player &player)
 {
-
+    for (auto it = this->_queue.begin(); it != this->_queue.end(); it++)
+    {
+        if (it->getId() == player.getId())
+            _queue.erase(it);
+    }
 }
 
-void			Room::join(Player player)
+int		Room::setSize(const int &size)
 {
- this->_queue.insert(player);
+    this->_size = size;
 }
 
-void			Room::leave(Player player)
+int		Room::setId(const int &id)
 {
- for (std::vector<Player>::iterator it = _queue.begin(); it != _queue.end(); it++)
- {
-   if (it.getId() == player.getId())
-     _queue.erase(it);
- }
+    this->_id = id;
 }
 
-int			Room::setSize(const int size)
+int		Room::getSize() const
 {
-  this->_size = size;
+    return(this->_size);
 }
 
-int			Room::setId(const int id)
+int		Room::getId() const
 {
-  this->_id = id;
+    return(this->_id);
 }
 
-int			Room::getSize() const
+std::vector<Player> Room::getPlayers() const
 {
-  return(this->_size);
-}
-
-int			Room::getId() const
-{
-  return(this->_id);
-}
-
-std::vector<Player>	Room::getPlayer() const
-{
-  return (this->_queue);
+    return (this->_queue);
 }
