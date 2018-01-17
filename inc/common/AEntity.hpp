@@ -17,8 +17,10 @@ class AEntity
     AEntity();
     void setPosition(Position2D &);
     Position2D getPosition() const;
+    int getId() const;
 
   protected:
+    int _id;
     Position2D _pos;
     Physic _physic;
 };

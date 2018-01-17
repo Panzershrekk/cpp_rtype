@@ -38,7 +38,7 @@ void GameManager::dumpPlayer()
 {
   for (auto it : this->_player)
   {
-    std::cout << it.getName() << " " << it.getPosition().getX() << " "<< it.getPosition().getY() << std::endl;
+    std::cout << it.getId() << " " << it.getName() << " " << it.getPosition().getX() << " "<< it.getPosition().getY() << std::endl;
   }
 }
 
@@ -46,6 +46,6 @@ void GameManager::dumpEnnemy()
 {
   for (auto it : this->_ennemy)
   {
-    std::cout << "This is an ennemy" << " " << it.getPosition().getX() << " "<< it.getPosition().getY() << std::endl;
+    std::cout << "This is an ennemy with id " << it.getId() << " " << it.getPosition().getX() << " "<< it.getPosition().getY() << std::endl;
   }
 }
