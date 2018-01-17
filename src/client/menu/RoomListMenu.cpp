@@ -15,7 +15,7 @@ void RoomListMenu::start(Window &win)
 {
 }
 
-void RoomListMenu::update(Window &win)
+void RoomListMenu::update(Window &win, sf::Event &event)
 {
 }
 

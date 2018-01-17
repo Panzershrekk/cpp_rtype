@@ -7,7 +7,6 @@
 
 MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
 {
-
   _vecMenu.push_back(std::shared_ptr<IMenu>(_mainMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_loginMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
@@ -20,11 +19,7 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::update(sf::Event &event)
 {
-  this->_loginMenu->update(this->_win, event);
- /* auto e = _state.find(EMainMenu);
-  std::cout << e->second << std::endl;
-  _mainMenu.update(this->_win);*/
-  _vecMenu.at(_state)->update(_win);
+  _vecMenu.at(_state)->update(_win, event);
 }
 
 void MenuWindow::start()
@@ -35,13 +30,7 @@ void MenuWindow::start()
     while (_win.pollEvent(event))
     {
       update(event);
-      switch (event.type)
-      {
-	/*case sf::Event::Closed:
-	  _win.close();
-	  break;
-	  */
-      }
+      switch (event.type);
     }
     _win.clear();
     _vecMenu.at(_state)->draw(_win);
