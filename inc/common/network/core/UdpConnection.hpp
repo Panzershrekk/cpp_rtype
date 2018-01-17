@@ -31,6 +31,8 @@ namespace Network
             char                            _inboundHeader[8];
             std::string                     _inboundData;
             std::size_t                     _dataSize = 0;
+            std::string                     _outboundData;
+            std::string                     _outboundHeader;
 
         public:
             UdpConnection(boost::asio::io_service &ioService, const Endpoint &ep) :
@@ -47,24 +49,26 @@ namespace Network
                 this->_socket.open(boost::asio::ip::udp::v4());
             }
 
-            void    send(std::stringstream &ss, const Endpoint &endpoint)
+            template <typename T, typename Handler>
+            void    async_write(const T &t, const Endpoint &endpoint, Handler handler)
             {
                 try
                 {
-                    std::string         outboundData = ss.str();
-                    std::stringstream   headerStream;
+                    this->_outboundData = Serializer::serialize(t);
 
-                    headerStream << std::setw(8) << std::hex << outboundData.size();
-
+                    std::ostringstream      headerStream;
+                    headerStream << std::setw(8) << std::hex << this->_outboundData.size();
                     if (!headerStream || headerStream.str().size() != 8)
                         return;
-                    auto outbound_header = headerStream.str();
-                    this->_socket.send_to(boost::asio::buffer(outbound_header), endpoint.getBoostEndpoint());
-                    this->_socket.send_to(boost::asio::buffer(outboundData), endpoint.getBoostEndpoint());
+                    this->_outboundHeader = headerStream.str();
+                    std::vector<boost::asio::const_buffer>  buffers;
+                    buffers.push_back(boost::asio::buffer(this->_outboundHeader));
+                    buffers.push_back(boost::asio::buffer(this->_outboundData));
+                    this->_socket.async_send_to(buffers, endpoint.getBoostEndpoint(), 0, handler);
                 }
                 catch (const std::exception &e)
                 {
-                    std::cerr << e.what() << std::endl;
+
                 }
             }
 

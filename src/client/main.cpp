@@ -10,19 +10,17 @@
 
 int main()
 {
-  GameRenderer gameRenderer;
-  gameRenderer.startGame();
-  return (0);
+    GameRenderer gameRenderer;
+    gameRenderer.startGame();
     boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
-    std::stringstream               ss;
+    int                             ss = 42;
 
-    ss << "Hello world !";
     socket.openV4();
-    std::cout << "-- Packet has been sent [" << ss.str() << "]" << std::endl;
-    socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
-    socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
-    socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
-    socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
+    std::cout << "-- Packet has been sent [" << ss << "]" << std::endl;
+    socket.async_write(ss, Network::Core::Endpoint("127.0.0.1", 4242),
+                       [](const boost::system::error_code &e, const long unsigned int&)
+                       {
+                       });
     return 0;
 }
