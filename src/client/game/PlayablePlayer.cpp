@@ -3,7 +3,6 @@
 //
 
 #include <PlayablePlayer.hpp>
-#include <Sprite.hpp>
 
 PlayablePlayer::PlayablePlayer() : _pos(140, 140), _sprite("../assets/Ship_White.png"), _physic(0, 0, 5)
 {
@@ -25,7 +24,15 @@ void PlayablePlayer::update()
   if (Keyboard::isKeyPressed(Keyboard::Key::Down))
     this->_pos += Position2D(0, this->_physic.getSpeed());
   this->_sprite.setPosition(this->_pos);
+  if (Keyboard::isKeyPressed(Keyboard::Key::Space))
+    fire();
 }
+
+void PlayablePlayer::fire()
+{
+  std::cout << "" << std::endl;
+}
+
 
 Sprite &PlayablePlayer::getSprite()
 {
@@ -36,5 +43,4 @@ Position2D PlayablePlayer::getPosition() const
 {
   return (this->_pos);
 }
-
 
