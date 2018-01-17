@@ -11,9 +11,10 @@
 class LoginMenu : public IMenu
 {
   private:
+  MenuState	&_state;
 
   public:
-    explicit LoginMenu();
+    explicit LoginMenu(MenuState &);
     ~LoginMenu();
 
     void start(Window &) override;

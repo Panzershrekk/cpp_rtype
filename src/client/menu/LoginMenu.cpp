@@ -4,7 +4,7 @@
 
 #include	"LoginMenu.hpp"
 
-LoginMenu::LoginMenu()
+LoginMenu::LoginMenu(MenuState & state) : _state(state)
 {
 }
 
@@ -22,3 +22,4 @@ void LoginMenu::update(Window &)
 void LoginMenu::draw(Window &)
 {
 }
+

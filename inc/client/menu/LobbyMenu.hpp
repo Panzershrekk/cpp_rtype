@@ -10,9 +10,9 @@
 class LobbyMenu : public IMenu
 {
   private:
-
+  MenuState &_state;
   public:
-    explicit LobbyMenu();
+    explicit LobbyMenu(MenuState &);
     ~LobbyMenu() override;
 
     void start(Window &) override;

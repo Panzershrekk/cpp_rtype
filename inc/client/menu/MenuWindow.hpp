@@ -4,7 +4,7 @@
 
 #ifndef 	CPP_RTYPE_MENUWINDOW_HPP_
 # define 	CPP_RTYPE_MENUWINDOW_HPP_
-# define	TITLE	"MenuWindow"
+# define	TITLE	"R-TYPE"
 
 #include	<SFML/Graphics.hpp>
 #include	<vector>
@@ -14,18 +14,24 @@
 #include	"MenuState.hpp"
 #include	"IMenu.hpp"
 #include	"LoginMenu.hpp"
+#include	"RoomListMenu.hpp"
+#include	"LobbyMenu.hpp"
 
 class MainMenu;
 
 class MenuWindow
 {
 private:
-  std::shared_ptr<IMenu> _mainMenu = std::make_shared<MainMenu>();
-  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>();
+  MenuState 	_state;
+  std::shared_ptr<IMenu> _mainMenu = std::make_shared<MainMenu>(_state);
+  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>(_state);
+  std::shared_ptr<IMenu> _roomListMenu = std::make_shared<RoomListMenu>(_state);
+  std::shared_ptr<IMenu> _lobbyMenu = std::make_shared<LobbyMenu>(_state);
+
+  std::vector<std::shared_ptr<IMenu>> _vecMenu;
 
   Window	_win;
-  std::vector<std::shared_ptr<IMenu>> _vec;
-  //std::unordered_map<int, std::shared_ptr<IMenu>>	_state;
+
 
   public:
     MenuWindow();

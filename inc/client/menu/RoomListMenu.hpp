@@ -11,9 +11,9 @@
 class RoomListMenu : public IMenu
 {
   private:
-
+  MenuState &_state;
   public:
-    RoomListMenu();
+    explicit RoomListMenu(MenuState &);
     ~RoomListMenu() override;
 
     void	start(Window &) override;
