@@ -6,7 +6,9 @@
 
 AEntity::AEntity()
 {
-
+  static int id = 0;
+  this->_id = id;
+  id++;
 }
 
 void AEntity::setPosition(Position2D &pos)
@@ -17,4 +19,9 @@ void AEntity::setPosition(Position2D &pos)
 Position2D AEntity::getPosition() const
 {
   return this->_pos;
+}
+
+int AEntity::getId() const
+{
+  return this->_id;
 }

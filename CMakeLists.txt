@@ -70,11 +70,14 @@ set(SOURCE_FILES_CLIENT
         src/common/game/RenderSystem.cpp
         src/common/game/Renderer.cpp
         src/client/menu/MainMenu.cpp
-        src/client/menu/MenuWindow.cpp)
+        src/client/menu/MenuWindow.cpp
+        inc/client/game/GameRenderer.hpp
+        src/client/game/GameRenderer.cpp)
 include_directories(inc/client/)
 include_directories(inc/client/menu/)
 include_directories(inc/server/)
 include_directories(inc/common/)
+include_directories(inc/client/game)
 
 set(CMAKE_BUILD_TYPE Debug)
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${SOURCE_FILES_ENGINE})
