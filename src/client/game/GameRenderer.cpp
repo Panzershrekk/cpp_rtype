@@ -3,6 +3,8 @@
 //
 
 
+#include <Enemy.hpp>
+#include <game/EnemyRenderer.hpp>
 #include "GameRenderer.hpp"
 
 GameRenderer::GameRenderer() : _player(), _clock()
@@ -18,6 +20,7 @@ GameRenderer::~GameRenderer()
 void GameRenderer::startGame()
 {
   Window window("RTYPE", 1200, 1200);
+  EnemyRenderer e;
 
   while (window.isOpen())
   {
@@ -36,10 +39,12 @@ void GameRenderer::startGame()
     if (this->_clock.getElapsedTime() > 1.0 / 60)
     {
       this->_player.update();
+      e.update();
       this->_clock.restartTimer();
     }
     window.clear();
     window.draw(this->_player.getSprite());
+    window.draw(e.getSprite());
     window.display();
   }
 }

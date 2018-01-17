@@ -8,6 +8,7 @@
 #include <Sprite.hpp>
 #include <Physic.hpp>
 #include <Keyboard.hpp>
+#include <iostream>
 
 class PlayablePlayer
 {
@@ -15,6 +16,7 @@ class PlayablePlayer
     PlayablePlayer();
     ~PlayablePlayer();
     void update();
+    void fire();
     Sprite &getSprite();
     Position2D getPosition() const;
 

@@ -2,6 +2,7 @@
 // Created by thomas on 15/01/18.
 //
 
+#include <Sprite.hpp>
 #include "Enemy.hpp"
 
 Enemy::Enemy() : Character(1)
