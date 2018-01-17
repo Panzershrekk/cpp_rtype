@@ -6,7 +6,7 @@
 
 int main()
 {
-  Window window("hey", 1920, 1080);
+  Window window("hey", 800, 800);
   MainMenu main;
 
   while (window.isOpen())

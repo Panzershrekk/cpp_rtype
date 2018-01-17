@@ -5,15 +5,20 @@
 #ifndef CPP_RTYPE_ENNEMY_HPP
 #define CPP_RTYPE_ENNEMY_HPP
 
-#include "ACharacter.hpp"
+#include <AIManager.hpp>
+#include "Character.hpp"
 
-class Ennemy : public ACharacter
+class Ennemy : public Character
 {
   public:
     Ennemy();
     ~Ennemy();
 
+    void randomizePosition();
+    AIManager getAI() const;
+
   private:
+    AIManager _ai;
 };
 
 #endif //CPP_RTYPE_ENNEMY_HPP

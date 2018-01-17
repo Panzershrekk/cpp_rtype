@@ -5,7 +5,9 @@
 #ifndef CPP_RTYPE_PROJECTILE_HPP
 #define CPP_RTYPE_PROJECTILE_HPP
 
-class Projectile
+#include "AEntity.hpp"
+
+class Projectile : public AEntity
 {
   public:
     Projectile();

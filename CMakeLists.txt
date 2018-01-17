@@ -3,14 +3,8 @@ cmake_minimum_required(VERSION 3.8)
 project(cpp_rtype)
 set(CMAKE_CXX_STANDARD 14)
 
-# Server configuration
-set(SOURCE_FILES_SERVER src/server/main.cpp)
-add_executable(r-type-server ${SOURCE_FILES_SERVER})
-
-# Client configuration
-set(SOURCE_FILES_CLIENT
-        src/client/main.cpp
-        src/gameEngine/Physic.cpp
+#GameEngineConfiguration
+set(SOURCE_FILES_ENGINE src/gameEngine/Physic.cpp
         inc/gameEngine/Physic.hpp
         src/gameEngine/Mathematics.cpp
         src/gameEngine/Position2D.cpp
@@ -45,26 +39,45 @@ set(SOURCE_FILES_CLIENT
         src/gameEngine/Text.cpp
         src/gameEngine/Music.cpp
         src/gameEngine/MusicManager.cpp
-        src/gameEngine/SoundSystem.cpp
-        inc/client/AEntity.hpp
-        inc/client/ACharacter.hpp
-        inc/client/Player.hpp
-        src/client/game/Player.cpp
-        inc/client/Ennemy.hpp
-        src/client/game/Ennemy.cpp
-        src/client/game/ACharacter.cpp
-        inc/client/Projectile.hpp
-        src/client/game/MainSystem.cpp
-        src/client/game/RenderSystem.cpp
-        src/client/game/Renderer.cpp
+        src/gameEngine/SoundSystem.cpp)
+include_directories(inc/gameEngine/)
+
+# Server configuration
+set(SOURCE_FILES_SERVER src/server/main.cpp
+        inc/common/Character.hpp
+        inc/common/Player.hpp
+        src/common/game/Player.cpp
+        inc/common/Ennemy.hpp
+        src/common/game/Ennemy.cpp
+        src/common/game/Character.cpp
+        inc/common/Projectile.hpp
+        src/common/game/MainSystem.cpp
+        src/common/game/RenderSystem.cpp
+        src/common/game/Renderer.cpp
+        inc/server/GameManager.hpp
+        src/server/gameManager/GameManager.cpp
+        inc/common/AEntity.hpp
+        src/common/game/AEntity.cpp
+        src/common/game/Projectile.cpp)
+include_directories(inc/server/)
+include_directories(inc/common/)
+add_executable(r-type-server ${SOURCE_FILES_SERVER} ${SOURCE_FILES_ENGINE})
+
+# Client configuration
+set(SOURCE_FILES_CLIENT
+        src/client/main.cpp
+        src/common/game/MainSystem.cpp
+        src/common/game/RenderSystem.cpp
+        src/common/game/Renderer.cpp
         src/client/menu/MainMenu.cpp
         src/client/menu/MenuWindow.cpp)
-include_directories(inc/gameEngine/)
 include_directories(inc/client/)
 include_directories(inc/client/menu/)
+include_directories(inc/server/)
+include_directories(inc/common/)
 
 set(CMAKE_BUILD_TYPE Debug)
-add_executable(r-type-client ${SOURCE_FILES_CLIENT})
+add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${SOURCE_FILES_ENGINE})
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
@@ -74,6 +87,7 @@ find_package(SFML 2 REQUIRED network audio graphics window system)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(r-type-client ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+    target_link_libraries(r-type-server ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()
 
 

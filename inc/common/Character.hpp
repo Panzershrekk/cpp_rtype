@@ -5,11 +5,14 @@
 #ifndef CPP_RTYPE_ACHARACTER_HPP
 #define CPP_RTYPE_ACHARACTER_HPP
 
-class ACharacter
+#include <Physic.hpp>
+#include "AEntity.hpp"
+
+class Character : public AEntity
 {
   public:
-    ACharacter();
-    ACharacter(int);
+    Character();
+    Character(int);
     void setHp(int);
     int getHp() const;
 
