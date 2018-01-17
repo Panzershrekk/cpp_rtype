@@ -9,7 +9,7 @@
 #include <AEntity.hpp>
 #include <Player.hpp>
 #include <iostream>
-#include <Ennemy.hpp>
+#include <Enemy.hpp>
 #include <Projectile.hpp>
 
 
@@ -29,7 +29,7 @@ class GameManager
 
   private:
     std::vector<Player> _player;
-    std::vector<Ennemy> _ennemy;
+    std::vector<Enemy> _ennemy;
     std::vector<Projectile> _projetcile;
 
 };

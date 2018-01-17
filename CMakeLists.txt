@@ -47,8 +47,8 @@ set(SOURCE_FILES_SERVER src/server/main.cpp
         inc/common/Character.hpp
         inc/common/Player.hpp
         src/common/game/Player.cpp
-        inc/common/Ennemy.hpp
-        src/common/game/Ennemy.cpp
+        inc/common/Enemy.hpp
+        src/common/game/Enemy.cpp
         src/common/game/Character.cpp
         inc/common/Projectile.hpp
         src/common/game/MainSystem.cpp
@@ -72,12 +72,12 @@ set(SOURCE_FILES_CLIENT
         src/client/menu/MainMenu.cpp
         src/client/menu/MenuWindow.cpp
         inc/client/game/GameRenderer.hpp
-        src/client/game/GameRenderer.cpp)
+        src/client/game/GameRenderer.cpp inc/client/game/PlayablePlayer.hpp src/client/game/PlayablePlayer.cpp)
 include_directories(inc/client/)
 include_directories(inc/client/menu/)
 include_directories(inc/server/)
 include_directories(inc/common/)
-include_directories(inc/client/game)
+include_directories(inc/client/game/)
 
 set(CMAKE_BUILD_TYPE Debug)
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${SOURCE_FILES_ENGINE})
