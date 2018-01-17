@@ -18,7 +18,7 @@ class RoomListMenu : public IMenu
 
     void	start(Window &) override;
     void 	draw(Window &) override;
-    void 	update(Window &) override;
+    void 	update(Window &, sf::Event &) override;
 };
 
 

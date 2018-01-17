@@ -25,10 +25,10 @@ class MainMenu : public IMenu
 
     void draw(Window &);
     void start(Window &);
-    void update(Window &);
+    void update(Window &, sf::Event &);
 
-    void playFunction(Window &);
-    void quitFunction(Window &);
+    void playFunction(Window &, sf::Event &);
+    void quitFunction(Window &, sf::Event &);
 };
 
 

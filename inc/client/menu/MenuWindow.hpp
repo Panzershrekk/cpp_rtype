@@ -32,7 +32,7 @@ private:
     ~MenuWindow();
 
     void start();
-    void update();
+    void update(sf::Event &);
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */

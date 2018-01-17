@@ -38,7 +38,7 @@ class Sprite
     void move(Position2D&);
 
     bool isMouseOver(Window &);
-    void onClick(std::function<void(Window &)>, Window &);
+    void onClick(std::function<void(Window &, sf::Event &)>, Window &, sf::Event &);
 };
 
 

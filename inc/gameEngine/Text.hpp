@@ -17,6 +17,7 @@ class Text
   public:
     explicit Text();
     Text(const std::string &, const std::string &);
+    Text(const std::string &, const std::string &, float, float);
     ~Text();
 
     void 	setFont(const std::string &);

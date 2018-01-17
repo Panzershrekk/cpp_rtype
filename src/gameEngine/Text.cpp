@@ -18,6 +18,15 @@ Text::Text(const std::string &string, const std::string &fontPath) : _text()
   this->_text.setString(string);
 }
 
+Text::Text(const std::string &string, const std::string &fontPath, float x, float y)
+{
+  this->_font = new Font(fontPath);
+
+  this->_text.setFont(*this->_font->getSfFont());
+  this->_text.setString(string);
+  this->_text.setPosition(x, y);
+}
+
 Text::~Text()
 {
   delete(this->_font);

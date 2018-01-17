@@ -19,6 +19,6 @@ void LobbyMenu::draw(Window &)
 {
 }
 
-void LobbyMenu::update(Window &)
+void LobbyMenu::update(Window &, sf::Event &)
 {
 }

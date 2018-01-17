@@ -17,7 +17,7 @@ class LobbyMenu : public IMenu
 
     void start(Window &) override;
     void draw(Window &) override;
-    void update(Window &) override;
+    void update(Window &, sf::Event &) override;
 };
 
 #endif /* !CPP_RTYPE_LOBBYMENU_HPP_ */
