@@ -14,10 +14,8 @@ set(SOURCE_FILES_CLIENT src/client/main.cpp)
 # COMMON FILES NETWORK CORE
 set(SOURCE_FILES_COMMON_NETWORK_CORE
         inc/common/network/core/UdpConnection.hpp
-        inc/common/network/serialization/APacket.hpp
         inc/common/network/serialization/Serializer.hpp
         inc/common/network/core/Error.hpp
-        src/common/network/core/APacket.cpp
         src/common/network/core/Endpoint.cpp
         src/common/network/core/Error.cpp)
 

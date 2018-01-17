@@ -20,6 +20,7 @@ class ServerCore
     /* Attributes */
 private:
     Network::Core::UdpConnection    _socket;
+    std::stringstream               _ss;
 
     /* Functions */
 private:

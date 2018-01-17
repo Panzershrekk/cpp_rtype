@@ -21,10 +21,10 @@ namespace Network
         typedef enum    ErrorCode
         {
             NO_ERROR = 0,
-            INVALID_READ,
-            INVALID_HEADER_FORMAT,
-            INVALID_DATA_SIZE,
-            INVALID_DATA_CONTENT,
+            INVALID_READ = 1,
+            INVALID_HEADER_FORMAT = 2,
+            INVALID_DATA_SIZE = 3,
+            INVALID_DATA_CONTENT = 4,
         }               ErrorCode;
 
         class Error

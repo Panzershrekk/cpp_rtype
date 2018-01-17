@@ -9,36 +9,32 @@
  */
 
 #include <iostream>
+#include <sstream>
 #include "server/ServerCore.hpp"
-#include "common/network/core/UdpConnection.hpp"
-#include "common/network/core/Endpoint.hpp"
-#include "common/network/serialization/APacket.hpp"
-#include <boost/asio.hpp>
 
 ServerCore::ServerCore(boost::asio::io_service &service, const Network::Core::Endpoint &ep) :
-    _socket(service, ep) {}
+        _socket(service, ep) {}
 
 ServerCore::~ServerCore() = default;
 
 bool    ServerCore::startExchanges()
 {
-    while (true)
+    while (1)
     {
-        Network::Packet::APacket     packet;
-
-        this->_socket.read(packet, [this, packet](const Network::Core::Error &e, Network::Packet::APacket &packet)
-        {
-            if (e.getCode() != Network::Core::NO_ERROR)
-            {
-                std::cout << "-- Packet has been received [" << packet.getType() << "]" << std::endl;
-                exit(0);
-            }
-            else
-            {
-                // std::cout << "[" << e.getCode() << "] " << e.getMessage() << std::endl;
-            }
-        });
+        this->_socket.read(this->_ss,
+                           [this] (const Network::Core::Error &e)
+                           {
+                               if (e.getCode() == Network::Core::NO_ERROR)
+                                   std::cout << "-- Packet has been received : [" << this->_ss.str() << "]" << std::endl;
+                               else
+                                   std::cout << "-- ERROR [" << e.getCode() << "] " << e.getMessage() << std::endl;
+                           },
+                           [this](const Network::Core::Endpoint &ep)
+                           {
+                               std::cout << "-- NEW CLIENT [" << ep.getIp() << ":"<< ep.getPort() << "]" << std::endl;
+                           });
     }
+
 }
 
 bool    ServerCore::start()

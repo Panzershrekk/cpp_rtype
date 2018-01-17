@@ -16,11 +16,8 @@
 # include <iomanip>
 # include <sstream>
 # include <iostream>
-# include <tuple>
 # include "common/network/core/Endpoint.hpp"
 # include "common/network/serialization/Serializer.hpp"
-# include "common/network/serialization/APacket.hpp"
-# include "common/network/serialization/PacketTest.hpp"
 # include "common/network/core/Error.hpp"
 
 namespace Network
@@ -34,7 +31,6 @@ namespace Network
             char                            _inboundHeader[8];
             std::string                     _inboundData;
             std::size_t                     _dataSize = 0;
-            Network::Packet::PacketType     _packetType = Network::Packet::PacketType::UNDEFINED;
 
         public:
             UdpConnection(boost::asio::io_service &ioService, const Endpoint &ep) :
@@ -51,24 +47,20 @@ namespace Network
                 this->_socket.open(boost::asio::ip::udp::v4());
             }
 
-            void    send(Network::Packet::APacket &packet, const Endpoint &endpoint)
+            void    send(std::stringstream &ss, const Endpoint &endpoint)
             {
                 try
                 {
-                    std::string         outboundData = Serializer::serialize(packet);
+                    std::string         outboundData = ss.str();
                     std::stringstream   headerStream;
 
-                    headerStream << std::setw(4) << std::hex << outboundData.size() << std::setw(4) << packet.getType();
+                    headerStream << std::setw(8) << std::hex << outboundData.size();
 
                     if (!headerStream || headerStream.str().size() != 8)
-                    {
                         return;
-                    }
                     auto outbound_header = headerStream.str();
-                    std::vector<boost::asio::const_buffer>  buffer;
-                    buffer.push_back(boost::asio::buffer(outbound_header));
-                    buffer.push_back(boost::asio::buffer(outboundData));
-                    this->_socket.send_to(buffer, endpoint.getBoostEndpoint());
+                    this->_socket.send_to(boost::asio::buffer(outbound_header), endpoint.getBoostEndpoint());
+                    this->_socket.send_to(boost::asio::buffer(outboundData), endpoint.getBoostEndpoint());
                 }
                 catch (const std::exception &e)
                 {
@@ -76,67 +68,53 @@ namespace Network
                 }
             }
 
-            template <typename Handler>
-            void        read(Network::Packet::APacket &packet, Handler handler)
+            template <typename Handler, typename HandlerEndpoint>
+            void        read(std::stringstream &ss, Handler handler, HandlerEndpoint handlerEp)
             {
                 boost::system::error_code       errorCode;
 
                 try
                 {
-                    boost::asio::ip::udp::endpoint  boostEndpointRemote;
-                    std::array<char, 8>             bufferHeader;
+                    boost::asio::ip::udp::endpoint          boostEndpointRemote;
+                    std::array<char, 8>                     bufferHeader;
 
-                    for (int i = 0; i < 8; ++i)
-                        bufferHeader[i] = ' ';
                     this->_socket.receive_from(boost::asio::buffer(bufferHeader),
                                                boostEndpointRemote, 0, errorCode);
                     if (errorCode)
-                        handler(Error(INVALID_READ), packet);
-                    for (int i = 0; i < 8; ++i)
-                        this->_inboundHeader[i] = bufferHeader[i];
+                        handler(Error(INVALID_READ));
+                    for (auto i = 0; i != 8; ++i) { this->_inboundHeader[i] = 0; }
+                    for (int i = 0; i < 8; ++i) { this->_inboundHeader[i] = bufferHeader[i]; }
                     Endpoint remoteEndpoint(boostEndpointRemote.address().to_string(),
                                             boostEndpointRemote.port());
-                    // TODO: HANDLER REMOTE ENDPOINT
+                    handlerEp(remoteEndpoint); // HANDLE NEW ENDPOINT
                 }
                 catch (const std::exception &e)
                 {
-                    handler(Error(INVALID_READ), packet);
+                    handler(Error(INVALID_READ));
                 }
-                handleReadHeader(Error(NO_ERROR), packet, handler);
+                handleReadHeader(Error(NO_ERROR), ss, handler, handlerEp);
             }
 
-            template<typename Handler>
+            template<typename Handler, typename HandlerEndpoint>
             void    handleReadHeader(const Network::Core::Error &e,
-                                     Network::Packet::APacket &packet,
-                                     Handler handler)
+                                     std::stringstream &ss,
+                                     Handler handler,
+                                     HandlerEndpoint handlerEp)
             {
                 boost::system::error_code   errorCode;
 
                 if (e.getCode() != NO_ERROR)
-                    handler(e, packet);
+                    handler(e);
                 else
                 {
                     std::size_t         packetType = 0;
 
                     try
                     {
-                        /**
-                         * HANDLE HEADER
-                         */
-                        std::istringstream  isDatasize(std::string(this->_inboundHeader, 4));
-                        std::istringstream  isPacketType(std::string(this->_inboundHeader + 4, 4));
-
-                        if (!(isDatasize >> std::setw(4) >> std::hex >> this->_dataSize) ||
-                            !(isPacketType >> std::setw(4) >> std::hex >> packetType))
+                        std::istringstream  isDatasize(std::string(this->_inboundHeader, 8));
+                        if (!(isDatasize >> std::setw(8) >> std::hex >> this->_dataSize))
                         {
-                            handler(Error(INVALID_HEADER_FORMAT), packet);
-                            return;
-                        }
-                        this->_packetType = (Network::Packet::PacketType)packetType;
-                        if (this->_packetType < Network::Packet::MIN ||
-                            this->_packetType > Network::Packet::MAX)
-                        {
-                            handler(Error(INVALID_HEADER_FORMAT), packet);
+                            handler(Error(INVALID_HEADER_FORMAT));
                             return;
                         }
                         this->_inboundData.clear();
@@ -147,59 +125,53 @@ namespace Network
                          */
                         boost::asio::ip::udp::endpoint              boostEndpointRemote;
                         std::array<char, 1000>                      bufferData;
+
                         if (this->_dataSize > 1000)
                         {
-                            handler(Error(INVALID_READ), packet);
+                            handler(Error(INVALID_READ));
                             std::cerr << "DATA TOO LONG" << std::endl;
                             return;
                         }
+                        for (auto i = 0; i != 1000; ++i)
+                        {
+                            bufferData[i] = 0;
+                        }
                         this->_socket.receive_from(boost::asio::buffer(bufferData, this->_dataSize),
                                                    boostEndpointRemote, 0, errorCode);
+                        std::cout << std::endl;
                         if (errorCode)
                         {
-                            handler(Error(INVALID_READ), packet);
+                            handler(Error(INVALID_READ));
                             return;
                         }
-                        this->_inboundData = std::string(bufferData.begin(), bufferData.end());
+                        this->_inboundData = std::string(bufferData.begin(), bufferData.begin() + this->_dataSize);
                         Endpoint   remoteEndpoint(boostEndpointRemote.address().to_string(),
                                                   boostEndpointRemote.port());
-                        // TODO: HANDLER REMOTE ENDPOINT
-                        handleReadData(Error(NO_ERROR), packet, handler);
+                        handlerEp(remoteEndpoint);
+                        handleReadData(Error(NO_ERROR), ss, handler ,handlerEp);
                     }
                     catch (const std::exception &e)
                     {
-                        handler(Error(INVALID_HEADER_FORMAT), packet);
+                        handler(Error(INVALID_HEADER_FORMAT));
                         return;
                     }
                 }
             }
 
-            template<typename Handler>
-            void    handleReadData(const Network::Core::Error &e, Network::Packet::APacket &packet, Handler handler)
+            template<typename Handler, typename HandlerEndpoint>
+            void    handleReadData(const Network::Core::Error &e,
+                                   std::stringstream &ss,
+                                   Handler handler,
+                                   HandlerEndpoint handlerEp)
             {
-                /**
-                 * HANDLE DATA
-                 */
                 if (e.getCode() != NO_ERROR)
                 {
-                    handler(e, packet);
+                    handler(e);
                     return;
                 }
-                else
-                {
-                    try
-                    {
-                        std::cout << packet.getType() << std::endl;
-                        Serializer::deserialize(this->_inboundData, packet);
-                        std::cout << packet.getType() << std::endl;
-                    }
-                    catch (const std::exception &e)
-                    {
-                        std::cerr << e.what() << std::endl;
-                        handler(Error(INVALID_DATA_CONTENT), packet);
-                    }
-                    handler(Error(NO_ERROR), packet);
-                }
+                ss = std::stringstream("");
+                ss << this->_inboundData;
+                handler(Error(NO_ERROR));
             }
         };
     }
