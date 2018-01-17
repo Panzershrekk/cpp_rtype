@@ -66,8 +66,8 @@ public:
     static T       &deserialize(const std::string &bytes,
                                 T& object)
     {
-        /*if (!std::is_trivially_copyable<T>::value)
-            throw SerializerException("Cannot deserialize this type"); */
+        if (!std::is_trivially_copyable<T>::value)
+            throw SerializerException("Cannot deserialize this type");
         auto begin_object = reinterpret_cast<unsigned char *>(std::addressof(object)) ;
         std::copy(std::begin(bytes), std::end(bytes), begin_object);
         return (object);

@@ -20,14 +20,20 @@ namespace Network
     {
         typedef enum    PacketType
         {
-            UNDEFINED = -1,
-            MIN = UNDEFINED,
-            PACKET_ROOM = 2,
-            PACKET_ROOMS = 3,
-            PACKET_TEST = 4,
-            PACKET_PLAYER = 5,
-            PACKET_PLAYERS = 6,
-            MAX = PACKET_PLAYERS
+            UNDEFINED,
+            PLAYER_MOVE,
+            PLAYER_FIRE,
+            PLAYER,
+            ENEMY,
+            ENEMIES,
+            ROOM,
+            ROOMS,
+            GAME,
+            JOIN_ROOM,
+            LEAVE_ROOM,
+            COLLIDE_ENEMY,
+            LIVE,
+
         }               PacketType;
 
         class APacket
