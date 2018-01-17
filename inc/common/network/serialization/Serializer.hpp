@@ -7,70 +7,61 @@
  *
  * EPITECH PROJECT 2020 - RTYPE
  *
- * Library permit to serialize an object to a binary stream or
- * back up an object by deserialization.
  */
 
 #ifndef     _SERIALIZER__HPP_
 # define    _SERIALIZER__HPP_
-# include   <string>
-# include   <array>
-# include   <sstream>
-# include   <exception>
-
-class SerializerException : public std::exception
-{
-private:
-    const std::string   _what;
-
-public:
-    SerializerException(const std::string &what) throw(): _what(what) {}
-    const char  *what() const throw() override {
-        return this->_what.c_str();
-    }
-};
+# include <ostream>
+# include <boost/serialization/export.hpp>
+# include <boost/archive/binary_iarchive.hpp>
+# include <boost/archive/binary_oarchive.hpp>
+# include <boost/serialization/vector.hpp>
+# include <boost/serialization/access.hpp>
+# include <boost/serialization/string.hpp>
+# include <boost/serialization/shared_ptr.hpp>
+# include <boost/serialization/serialization.hpp>
+# include <iostream>
+# include <sstream>
 
 class Serializer
 {
 public:
-    Serializer() {};
-    virtual ~Serializer() {}
+    Serializer() = default;
+    virtual ~Serializer() = default;
 
     /**
-     * \brief The serialize function permit to serialize an type of object
-     * \tparam T
-     * \param object
-     * \return an array of unsigned char corresponding to a binary array
-     * of raw object data
+     * Serializer
+     * @tparam Obj : Represent a type to be serialize (type of obj)
+     * @param obj : The object to be seralize
+     * @param the serialize string
      */
-    template <typename T>
-    static std::string     serialize(const T& object)
+    template <class Obj>
+    static std::string    serialize(Obj &obj)
     {
-        std::array<unsigned char, sizeof(T)>    bytes;
+        std::stringstream          archive_stream;
+        {
+            boost::archive::binary_oarchive archive(archive_stream);
+            archive << obj;
+        }
 
-        auto *begin = reinterpret_cast<const unsigned char *>(std::addressof(object));
-        const unsigned char *end = begin + sizeof(T);
-        std::copy(begin, end, std::begin(bytes));
-        auto str = std::string(bytes.begin(), bytes.end());
-        return (str);
+        std::string test = archive_stream.str();
+        return archive_stream.str();
     }
 
     /**
-     * \brief The deserializer function permit to deserialize a trivial, copyable object
-     * \tparam T
-     * \param bytes
-     * \param object
-     * \return The unserialized object from the raw bytes give in param
+     * DeSerializer
+     * @tparam Obj : Represent the end type return
+     * @param buf : The buffer need be deserialize
+     * @return : The new object made by deserialization
      */
-    template <typename T>
-    static T       &deserialize(const std::string &bytes,
-                                T& object)
+    template <class Obj>
+    static void   deserialize(const std::string &buf, Obj & obj)
     {
-        if (!std::is_trivially_copyable<T>::value)
-            throw SerializerException("Cannot deserialize this type");
-        auto begin_object = reinterpret_cast<unsigned char *>(std::addressof(object)) ;
-        std::copy(std::begin(bytes), std::end(bytes), begin_object);
-        return (object);
+        std::stringstream          archive_stream(buf);
+        {
+            boost::archive::binary_iarchive archive(archive_stream);
+            archive >> obj;
+        }
     }
 };
 
