@@ -10,6 +10,7 @@
 
 class IMenu
 {
+
   public:
   IMenu();
   virtual ~IMenu();

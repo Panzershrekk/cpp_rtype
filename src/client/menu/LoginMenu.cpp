@@ -6,12 +6,16 @@
 #include	<SFML/Window/Event.hpp>
 #include	"LoginMenu.hpp"
 
+<<<<<<< HEAD
 LoginMenu::LoginMenu() : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
 			 _port("", "../Triumph-wheels-rough.ttf", 255, 220),
 			 _name("", "../Triumph-wheels-rough.ttf", 255, 370),
 			 _ipText(),
 			 _portText(),
 			 _nameText()
+=======
+LoginMenu::LoginMenu(MenuState & state) : _state(state)
+>>>>>>> Menu
 {
   this->_sprites.emplace(std::make_pair("Back", Sprite("../assets/LoginMenu_Background.png")));
   this->_sprites.emplace(std::make_pair("IpAddress", Sprite("../assets/LoginMenu_Button_IP.png", 50, 100)));
@@ -85,6 +89,7 @@ void LoginMenu::update(Window &win, sf::Event &event)
 
 void LoginMenu::draw(Window &win)
 {
+<<<<<<< HEAD
   for(auto it : this->_sprites)
   {
     win.draw(it.second);
@@ -93,3 +98,7 @@ void LoginMenu::draw(Window &win)
   win.draw(this->_port);
   win.draw(this->_name);
 }
+=======
+}
+
+>>>>>>> Menu

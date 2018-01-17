@@ -4,9 +4,11 @@
 
 #include	"LobbyMenu.hpp"
 
-LobbyMenu::LobbyMenu()
+LobbyMenu::LobbyMenu(MenuState &state) : _state(state)
 {
+
 }
+
 
 LobbyMenu::~LobbyMenu()
 = default;

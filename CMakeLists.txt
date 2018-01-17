@@ -17,6 +17,8 @@ set(SOURCE_FILES_CLIENT
         src/client/menu/MainMenu.cpp
         src/client/menu/IMenu.cpp
         src/client/menu/LoginMenu.cpp
+        src/client/menu/RoomListMenu.cpp
+        src/client/menu/LobbyMenu.cpp
         src/gameEngine/Physic.cpp
         src/gameEngine/Mathematics.cpp
         src/gameEngine/Position2D.cpp
@@ -36,7 +38,12 @@ set(INCLUDE_FILE_CLIENT
         inc/client/RenderSystem.hpp
         inc/client/Renderer.hpp
         inc/client/Entity.hpp
-        inc/client/menu/
+        inc/client/menu/LobbyMenu.hpp
+        inc/client/menu/LoginMenu.hpp
+        inc/client/menu/RoomListMenu.hpp
+        inc/client/menu/IMenu.hpp
+        inc/client/menu/MenuState.hpp
+        inc/client/menu/MenuWindow.hpp
         inc/gameEngine/Physic.hpp
         inc/gameEngine/Color.hpp
         inc/gameEngine/Graphics.hpp

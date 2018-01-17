@@ -15,6 +15,7 @@ class LoginMenu : public IMenu
     Text				_ip;
     std::string				_ipText;
     bool				_isIPCliked = false;
+  MenuState	&_state;
 
     Text				_port;
     std::string				_portText;
@@ -25,7 +26,7 @@ class LoginMenu : public IMenu
     bool				_isNameCliked = false;
 
   public:
-    explicit LoginMenu();
+    explicit LoginMenu(MenuState &);
     ~LoginMenu();
 
     void start(Window &) override;

@@ -4,7 +4,7 @@
 
 #include "RoomListMenu.hpp"
 
-RoomListMenu::RoomListMenu()
+RoomListMenu::RoomListMenu(MenuState & state) : _state(state)
 {
 }
 

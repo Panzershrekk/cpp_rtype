@@ -7,6 +7,7 @@
 
 #include	"IMenu.hpp"
 #include	"Sprite.hpp"
+#include	"MenuState.hpp"
 
 class Window;
 
@@ -18,9 +19,10 @@ class MainMenu : public IMenu
     Sprite	_optionButton;
     Sprite	_quitButton;
     Sprite	_title;
+  MenuState	&_state;
 
   public:
-    MainMenu();
+  explicit MainMenu(MenuState &);
     ~MainMenu();
 
     void draw(Window &);

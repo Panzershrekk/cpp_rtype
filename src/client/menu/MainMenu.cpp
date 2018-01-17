@@ -6,12 +6,13 @@
 #include	"Mouse.hpp"
 #include	"MainMenu.hpp"
 
-MainMenu::MainMenu() :
-  _splashScreen("../assets/MainMenu_Background.png"),
+MainMenu::MainMenu(MenuState &state) :
+_splashScreen("../assets/MainMenu_Background.png"),
   _playButton("../assets/MainMenu_Button_Play.png", 1700, 450),
   _optionButton("../assets/MainMenu_Button_Options.png", 1700, 575),
   _quitButton("../assets/MainMenu_Button_Quit.png", 1700, 700),
-  _title("../assets/MainMenu_Title.png", 200, 100)
+  _title("../assets/MainMenu_Title.png", 200, 100),
+_state(state)
 {
   this->_title.setScale(3, 3);
 }
@@ -22,7 +23,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::playFunction(Window &win, sf::Event &)
 {
-  std::cout << "Play" << std::endl;
+  _state = ELoginMenu;
 }
 
 void MainMenu::quitFunction(Window &win, sf::Event &)
@@ -51,3 +52,4 @@ void MainMenu::draw(Window &win)
   win.draw(this->_quitButton);
   win.draw(this->_title);
 }
+
