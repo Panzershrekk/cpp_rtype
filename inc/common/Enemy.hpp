@@ -8,11 +8,11 @@
 #include <AIManager.hpp>
 #include "Character.hpp"
 
-class Ennemy : public Character
+class Enemy : public Character
 {
   public:
-    Ennemy();
-    ~Ennemy();
+    Enemy();
+    ~Enemy();
 
     void randomizePosition();
     AIManager getAI() const;

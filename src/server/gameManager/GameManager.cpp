@@ -25,7 +25,7 @@ void GameManager::createProjectile()
 
 void GameManager::spawnEnnemy()
 {
-  Ennemy e;
+  Enemy e;
   this->_ennemy.push_back(e);
 }
 

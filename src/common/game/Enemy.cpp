@@ -2,19 +2,19 @@
 // Created by thomas on 15/01/18.
 //
 
-#include "Ennemy.hpp"
+#include "Enemy.hpp"
 
-Ennemy::Ennemy() : Character(1)
+Enemy::Enemy() : Character(1)
 {
   this->_physic.setSpeed(2);
   randomizePosition();
 }
 
-Ennemy::~Ennemy()
+Enemy::~Enemy()
 {
 }
 
-void Ennemy::randomizePosition()
+void Enemy::randomizePosition()
 {
   std::srand(std::time(nullptr));
   int randNum = std::rand()%(500-1 + 1) + 1;
@@ -22,7 +22,7 @@ void Ennemy::randomizePosition()
   setPosition(p);
 }
 
-AIManager Ennemy::getAI() const
+AIManager Enemy::getAI() const
 {
   return (this->_ai);
 }
