@@ -17,7 +17,7 @@
 # include <sstream>
 # include <iostream>
 # include "common/network/core/Endpoint.hpp"
-# include "common/network/serialization/Serializer.hpp"
+# include "Serializer.hpp"
 # include "common/network/core/Error.hpp"
 
 namespace Network
@@ -49,15 +49,17 @@ namespace Network
                 this->_socket.open(boost::asio::ip::udp::v4());
             }
 
-            template <typename T, typename Handler>
-            void    async_write(const T &t, const Endpoint &endpoint, Handler handler)
+            template <typename Handler>
+            void    async_write(const Network::Packet::APacket &packet, const Endpoint &endpoint, Handler handler)
             {
                 try
                 {
-                    this->_outboundData = Serializer::serialize(t);
+                    this->_outboundData = Serializer::serialize(packet);
 
                     std::ostringstream      headerStream;
-                    headerStream << std::setw(8) << std::hex << this->_outboundData.size();
+                    headerStream << std::setw(4) << std::hex << this->_outboundData.size();
+                    headerStream << std::setw(4) << std::hex << packet.getType();
+
                     if (!headerStream || headerStream.str().size() != 8)
                         return;
                     this->_outboundHeader = headerStream.str();
@@ -68,7 +70,7 @@ namespace Network
                 }
                 catch (const std::exception &e)
                 {
-
+                    // IGNORED
                 }
             }
 

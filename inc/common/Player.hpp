@@ -6,11 +6,17 @@
 #define CPP_RTYPE_PLAYER_HPP
 
 #include <iostream>
+#include <boost/serialization/access.hpp>
 #include "Character.hpp"
 
 class Player : public Character
 {
-  public:
+private:
+    friend class boost::serialization::access;
+    int             _score;
+    std::string     _name;
+
+public:
     Player();
     Player(const std::string &);
     ~Player();
@@ -20,10 +26,6 @@ class Player : public Character
 
     void setName(const std::string &name);
     std::string getName() const;
-
-  private:
-    int _score;
-    std::string _name;
 };
 
 #endif //CPP_RTYPE_PLAYER_HPP

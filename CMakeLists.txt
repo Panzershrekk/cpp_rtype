@@ -79,12 +79,13 @@ set(HEADER_FILES_COMMON
         inc/common/network/core/Error.hpp
         inc/common/network/core/Exception.hpp
         inc/common/network/core/UdpConnection.hpp
-        inc/common/network/serialization/Serializer.hpp
+        inc/common/network/core/Serializer.hpp
+        inc/common/network/packets/APacket.hpp
         inc/common/AEntity.hpp
         inc/common/Character.hpp
         inc/common/Enemy.hpp
         inc/common/Player.hpp
-        inc/common/Projectile.hpp)
+        inc/common/Projectile.hpp inc/common/network/packets/PacketPlayer.hpp)
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp
