@@ -2,6 +2,7 @@
 // Created by baudet_q on 18/01/18.
 //
 
+#include <gameEngine/Color.hpp>
 #include "Starfield.hpp"
 
 //starfield won't work without proper data
@@ -16,12 +17,12 @@ Starfield::Starfield(int xResolution, int yResolution)
   y_Size = yResolution;
 
   //size of the different star sizes in pixels
-  sf::Uint16 smallSize = 1;
-  sf::Uint16 mediumSize = 2;
-  sf::Uint16 largeSize = 4;
+  int smallSize = 1;
+  int mediumSize = 2;
+  int largeSize = 4;
 
   //create the images that will be used to update the background texture
-  smallStarImage.create(smallSize, smallSize, sf::Color::White);
+  smallStarImage.create(smallSize, smallSize, sf::Color::White); //TODO Encapsulé sf::Color
   mediumStarImage.create(mediumSize, mediumSize, sf::Color::White);
   largeStarImage.create(largeSize, largeSize, sf::Color::White);
 
@@ -33,7 +34,7 @@ Starfield::Starfield(int xResolution, int yResolution)
   re_y.seed(std::time(0)+24);
 
   //The higher reduceStars the fewer stars; classDifference sets the proportionality between small, medium and large stars. The higher the number, the fewer stars in each larger class.
-  int reduceStars = 8;
+  int reduceStars = 20;
   int classDifference = 3;
 
   maxSmallStars = (xResolution / (reduceStars * 10)) * (yResolution / reduceStars);
@@ -113,7 +114,7 @@ void Starfield::drawStarfield(sf::Texture& p_Texture)
     p_Texture.update(mediumStarImage, it->getXPos(), it->getYPos());
   }
 
-  system("clear"); //TODO wtf ?
+  //system("clear"); //TODO wtf ?
   for(vector<Star>::iterator it = largeStars.begin(); it != largeStars.end(); ++it){
     p_Texture.update(largeStarImage, it->getXPos(), it->getYPos());
   }

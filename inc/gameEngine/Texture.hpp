@@ -20,7 +20,10 @@ class Texture
     ~Texture();
     void	setSmooth(bool);
     void	setRepeated(bool);
-    sf::Texture	getSfTexture() const;
+
+    void    loadFromImage(const sf::Image &);
+
+    sf::Texture & getSfTexture();
 
     const std::string	&getFilePath(void) const;
 

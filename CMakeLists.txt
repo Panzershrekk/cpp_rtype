@@ -116,7 +116,7 @@ set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/Text.hpp
         inc/gameEngine/Texture.hpp
         inc/gameEngine/TimeManager.hpp
-        inc/gameEngine/Window.hpp)
+        inc/gameEngine/Window.hpp inc/gameEngine/Image.hpp src/gameEngine/Image.cpp)
 
 include_directories("inc/")
 include_directories("inc/gameEngine")

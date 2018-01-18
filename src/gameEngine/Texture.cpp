@@ -2,6 +2,7 @@
 // Created by grodin on 11/01/18.
 //
 
+#include <iostream>
 #include	"Texture.hpp"
 
 Texture::Texture() : _texture(), _filePath()
@@ -33,7 +34,7 @@ void		Texture::setRepeated(bool active)
   this->_texture.setRepeated(active);
 }
 
-sf::Texture	Texture::getSfTexture() const
+sf::Texture & Texture::getSfTexture()
 {
   return (this->_texture);
 }
@@ -41,4 +42,8 @@ sf::Texture	Texture::getSfTexture() const
 const std::string	&Texture::getFilePath(void) const
 {
   return (this->_filePath);
+}
+
+void Texture::loadFromImage(const sf::Image &img) {
+    this->_texture.loadFromImage(img);
 }
