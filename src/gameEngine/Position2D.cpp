@@ -8,7 +8,7 @@ Position2D::Position2D() : _vector2(0, 0)
 {
 }
 
-Position2D::Position2D(int x, int y) : _vector2(x, y)
+Position2D::Position2D(float x, float y) : _vector2(x, y)
 {
 
 }
