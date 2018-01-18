@@ -3,7 +3,7 @@
 //
 
 #include <Sprite.hpp>
-#include "Enemy.hpp"
+#include "server/GameManager/Enemy.hpp"
 
 Enemy::Enemy() : Character(1)
 {

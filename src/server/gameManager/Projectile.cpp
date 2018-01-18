@@ -2,7 +2,7 @@
 // Created by thomas on 16/01/18.
 //
 
-#include <Projectile.hpp>
+#include <server/GameManager/Projectile.hpp>
 
 Projectile::Projectile()
 {

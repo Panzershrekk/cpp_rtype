@@ -24,6 +24,6 @@ void EnemyRenderer::update()
 void EnemyRenderer::simulate()
 {
   AIManager ai;
-  /*this->_pos += */ai.PredefinedRightToLeft(this->_pos, 3);
+  /*this->_pos += */ai.PredefinedRightToLeftSinus(this->_pos, 3);
   this->_sprite.setPosition(this->_pos);
 }

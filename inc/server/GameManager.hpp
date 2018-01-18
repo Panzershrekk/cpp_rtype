@@ -7,10 +7,10 @@
 
 #include <vector>
 #include <iostream>
-#include "AEntity.hpp"
-#include "Player.hpp"
-#include "Projectile.hpp"
-#include "Enemy.hpp"
+#include "server/GameManager/AEntity.hpp"
+#include "server/GameManager/Player.hpp"
+#include "server/GameManager/Projectile.hpp"
+#include "server/GameManager/Enemy.hpp"
 
 class GameManager
 {

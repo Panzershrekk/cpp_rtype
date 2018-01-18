@@ -34,7 +34,3 @@ void AEntityRenderer::setPosition(const Position2D &pos)
 {
   this->_pos = pos;
 }
-
-/*void AEntityRenderer::setSprite(const Sprite sprite) : _sprite(sprite)
-{
-}*/

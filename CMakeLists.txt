@@ -26,12 +26,12 @@ set(SOURCE_FILES_CLIENT
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
         src/common/network/core/Error.cpp
-        src/common/game/AEntity.cpp
-        src/common/game/Character.cpp
-        src/common/game/Enemy.cpp
+        src/server/gameManager/AEntity.cpp
+        src/server/gameManager/Character.cpp
+        src/server/gameManager/Enemy.cpp
         src/common/game/MainSystem.cpp
-        src/common/game/Player.cpp
-        src/common/game/Projectile.cpp
+        src/server/gameManager/Player.cpp
+        src/server/gameManager/Projectile.cpp
         src/common/game/Renderer.cpp
         src/common/game/RenderSystem.cpp)
 
@@ -88,10 +88,10 @@ set(HEADER_FILES_COMMON
         inc/common/network/core/Exception.hpp
         inc/common/network/core/UdpConnection.hpp
         inc/common/network/serialization/Serializer.hpp
-        inc/common/AEntity.hpp
-        inc/common/Character.hpp
-        inc/common/Enemy.hpp
-        inc/common/Player.hpp)
+        inc/server/gameManager/AEntity.hpp
+        inc/server/gameManager/Character.hpp
+        inc/server/gameManager/Enemy.hpp
+        inc/server/gameManager/Player.hpp)
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp

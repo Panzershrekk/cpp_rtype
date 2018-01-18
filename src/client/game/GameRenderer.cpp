@@ -2,8 +2,6 @@
 // Created by thomas on 17/01/18.
 //
 
-
-#include <Enemy.hpp>
 #include <game/EnemyRenderer.hpp>
 #include "game/GameRenderer.hpp"
 
@@ -40,6 +38,7 @@ void GameRenderer::startGame()
     {
       this->_player.update();
       e.update();
+      updateEntities();
       this->_clock.restartTimer();
     }
     if (this->_attackSpeed.getElapsedTime() > 0.4)
@@ -51,16 +50,23 @@ void GameRenderer::startGame()
     window.clear();
     window.draw(this->_player.getSprite());
     window.draw(e.getSprite());
-    drawProjectile(window);
+    drawEntities(window);
     window.display();
   }
 }
 
-void GameRenderer::drawProjectile(Window & window)
+void GameRenderer::drawEntities(Window & window)
 {
     for (auto &it : this->_player.getProjectileVector())
-    {
-        it.update();
         window.draw(it.getSprite());
-    }
+    for (auto &it2 : this->_enemies)
+      window.draw(it2.getSprite());
+}
+
+void GameRenderer::updateEntities()
+{
+  for (auto &it : this->_player.getProjectileVector())
+    it.update();
+  for (auto &it2 : this->_enemies)
+    it2.update();
 }

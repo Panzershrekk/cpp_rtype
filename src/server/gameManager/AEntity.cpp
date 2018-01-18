@@ -2,7 +2,7 @@
 // Created by thomas on 16/01/18.
 //
 
-#include "AEntity.hpp"
+#include "server/GameManager/AEntity.hpp"
 
 AEntity::AEntity()
 {

@@ -2,7 +2,7 @@
 // Created by thomas on 15/01/18.
 //
 
-#include "Character.hpp"
+#include "server/GameManager/Character.hpp"
 
 Character::Character()
 {

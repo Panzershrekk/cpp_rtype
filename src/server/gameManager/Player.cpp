@@ -2,7 +2,7 @@
 // Created by thomas on 15/01/18.
 //
 
-#include "Player.hpp"
+#include "server/GameManager/Player.hpp"
 
 Player::Player() : Character(100)
 {
