@@ -1,5 +1,5 @@
-# Project configuration
-cmake_minimum_required(VERSION 3.8)
+# PROJECT CONFIGURATION
+cmake_minimum_required(VERSION 3.8.2)
 project(cpp_rtype)
 set(CMAKE_CXX_STANDARD 14)
 
@@ -44,7 +44,7 @@ set(SOURCE_FILES_CLIENT
         )
 set(INCLUDE_FILE_CLIENT
         inc/client/MainSystem.hpp
-        inc/client/ISystem.hpp
+        inc/client/Renderer.hpp
         inc/client/RenderSystem.hpp
         inc/client/Renderer.hpp
         inc/client/Entity.hpp
@@ -89,6 +89,5 @@ find_package(SFML 2 REQUIRED network audio graphics window system)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(r-type-client ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+    target_link_libraries(r-type-server ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()
-
-

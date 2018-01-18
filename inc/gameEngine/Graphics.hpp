@@ -6,7 +6,7 @@
 # define	CPP_RTYPE_GRAPHICS_HPP
 
 #include 	"Window.hpp"
-#include	"Color.hpp"sss
+#include	"Color.hpp"
 
 class Graphics
 {

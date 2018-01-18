@@ -28,6 +28,7 @@
             <pair source="c" header="h" />
           </extensions>
         </Objective-C-extensions>
+<<<<<<< HEAD
         <DBN-PSQL>
           <case-options enabled="false">
             <option name="KEYWORD_CASE" value="lower" />
@@ -55,5 +56,10 @@
       </value>
     </option>
     <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default (1)" />
+=======
+      </value>
+    </option>
+    <option name="PREFERRED_PROJECT_CODE_STYLE" value="Default" />
+>>>>>>> GraphicGame
   </component>
 </project>

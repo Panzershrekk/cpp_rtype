@@ -5,14 +5,15 @@
 #ifndef CPP_RTYPE_ENTITY_HPP
 #define CPP_RTYPE_ENTITY_HPP
 
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics.hpp>
+#include "Sprite.hpp"
+#include <memory>
 
 class IEntity
 {
 public:
 virtual ~IEntity() {}
-  virtual sf::Sprite &getSprite() = 0;
+  virtual Sprite &getSprite() = 0;
 };
 
 template <typename T>
@@ -21,12 +22,11 @@ class Entity : public IEntity
 private:
   T _entity;
 public:
-  explicit Entity(T entity)
+  explicit Entity(T &entity) : _entity(entity)
   {
-    _entity = entity;
   }
   virtual ~Entity() {}
-  sf::Sprite &getSprite() { return _entity;}
+  Sprite &getSprite() { return _entity;}
 };
 
 

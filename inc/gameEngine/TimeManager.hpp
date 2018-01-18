@@ -16,12 +16,12 @@ class TimeManager
 
     float getElapsedTime() const;
     float getDeltaTime();
+    sf::Time restartTimer();
 
   private:
     sf::Clock _clock;
     sf::Time _time;
 
-    sf::Time restartTimer();
 };
 
 #endif //CPP_RTYPE_TIMEMANAGER_HPP
