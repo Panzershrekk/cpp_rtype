@@ -5,8 +5,10 @@
 #include <PlayablePlayer.hpp>
 #include <Joystick.hpp>
 
-PlayablePlayer::PlayablePlayer() : _pos(140, 140), _sprite("../assets/Ship_White.png"), _physic(0, 0, 5)
+PlayablePlayer::PlayablePlayer() : _physic(0, 0, 5)
 {
+  setPosition(Position2D(140, 140));
+  //setSprite(Sprite("../assets/Ship_White.png"));
   this->_sprite.setPosition(this->_pos);
 }
 
@@ -42,15 +44,3 @@ void PlayablePlayer::fire()
 {
   std::cout << "" << std::endl;
 }
-
-
-Sprite &PlayablePlayer::getSprite()
-{
-  return (this->_sprite);
-}
-
-Position2D PlayablePlayer::getPosition() const
-{
-  return (this->_pos);
-}
-

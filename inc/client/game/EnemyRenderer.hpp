@@ -5,23 +5,18 @@
 #ifndef CPP_RTYPE_ENEMY_HPP_
 #define CPP_RTYPE_ENEMY_HPP_
 
-
 #include <Sprite.hpp>
+#include "AEntityRenderer.hpp"
 
-class EnemyRenderer
+class EnemyRenderer : public AEntityRenderer
 {
   public:
     EnemyRenderer();
     ~EnemyRenderer();
 
     void update();
-    Sprite &getSprite();
-    Position2D getPosition() const;
 
   private:
-    Sprite _sprite;
-    Position2D _pos;
-
     void simulate();
 };
 

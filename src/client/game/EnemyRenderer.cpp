@@ -6,6 +6,8 @@
 
 EnemyRenderer::EnemyRenderer() : _pos(700, 450), _sprite("../assets/Enemy.png")
 {
+  /*setPosition(Position2D(700, 140));
+  setSprite(Sprite("../assets/Ship_White.png"));*/
   this->_sprite.setPosition(this->_pos);
 }
 
@@ -17,16 +19,6 @@ EnemyRenderer::~EnemyRenderer()
 void EnemyRenderer::update()
 {
   simulate();
-}
-
-Sprite &EnemyRenderer::getSprite()
-{
-  return this->_sprite;
-}
-
-Position2D EnemyRenderer::getPosition() const
-{
-  return this->_pos;
 }
 
 void EnemyRenderer::simulate()

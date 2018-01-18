@@ -9,21 +9,18 @@
 #include <Physic.hpp>
 #include <Keyboard.hpp>
 #include <iostream>
+#include "AEntityRenderer.hpp"
 
-class PlayablePlayer
+class PlayablePlayer : public AEntityRenderer
 {
   public:
     PlayablePlayer();
     ~PlayablePlayer();
-    void update();
     void fire();
-    Sprite &getSprite();
-    Position2D getPosition() const;
+    void update();
 
   private:
-    Sprite _sprite;
     Physic _physic;
-    Position2D _pos;
 
 
 };

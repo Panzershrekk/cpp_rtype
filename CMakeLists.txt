@@ -72,7 +72,7 @@ set(SOURCE_FILES_CLIENT
         src/client/menu/MainMenu.cpp
         src/client/menu/MenuWindow.cpp
         inc/client/game/GameRenderer.hpp
-        src/client/game/GameRenderer.cpp inc/client/game/PlayablePlayer.hpp src/client/game/PlayablePlayer.cpp src/client/game/EnemyRenderer.cpp inc/client/game/EnemyRenderer.hpp)
+        src/client/game/GameRenderer.cpp inc/client/game/PlayablePlayer.hpp src/client/game/PlayablePlayer.cpp src/client/game/EnemyRenderer.cpp inc/client/game/EnemyRenderer.hpp inc/client/game/AEntityRenderer.hpp src/client/game/AEntityRenderer.cpp)
 include_directories(inc/client/)
 include_directories(inc/client/menu/)
 include_directories(inc/server/)
