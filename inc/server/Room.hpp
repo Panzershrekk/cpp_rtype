@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <vector>
-#include "server/GameManager/Player.hpp"
+#include "Player.hpp"
 
 class Room
 {

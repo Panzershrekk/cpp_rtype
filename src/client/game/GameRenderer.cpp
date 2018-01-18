@@ -39,10 +39,10 @@ void GameRenderer::startGame()
       this->_player.update();
       e.update();
       updateEntities();
-        this->_player.forbiddenMove(window);
+      this->_player.forbiddenMove(window);
       this->_clock.restartTimer();
     }
-    if (this->_attackSpeed.getElapsedTime() > 0.4)
+    if (this->_attackSpeed.getElapsedTime() > 0.2)
     {
       if (Keyboard::isKeyPressed(Keyboard::Key::Space))
         this->_player.fire();

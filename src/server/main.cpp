@@ -1,7 +1,7 @@
 #include <iostream>
-#include <server/GameManager/Player.hpp>
+#include <Player.hpp>
 #include <GameManager.hpp>
-#include "ServerCore.hpp"
+//#include "ServerCore.hpp"
 
 int main()
 {
@@ -20,9 +20,9 @@ int main()
     gameManager.dumpPlayer();
     gameManager.spawnEnnemy();
     gameManager.dumpEnnemy();
-    boost::asio::io_service     service;
-    ServerCore                  server(service, Network::Core::Endpoint(4242));
+    /*boost::asio::io_service     service;
+    ServerCore                  server(service, Network::Core::Endpoint(4242));*/
 
-    server.start();
+    //server.start();
     return 0;
 }
