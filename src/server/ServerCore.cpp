@@ -42,7 +42,7 @@ bool    ServerCore::start()
     std::cout << "*******************************" << std::endl;
     std::cout << "* R-TYPE - SERVER version 1.0 *" << std::endl;
     std::cout << "*    Julien PRETET (Lead)     *" << std::endl;
-    std::cout << "*     Guillaume CAUCHOIS      *" << std::endl;
+    std::cout << "*     Guillaume CAUCHOIS :'(  *" << std::endl;
     std::cout << "*     Robin GRATTEPANCHE      *" << std::endl;
     std::cout << "*        Adrien WARIN         *" << std::endl;
     std::cout << "*      Thomas FOSSAERT        *" << std::endl;

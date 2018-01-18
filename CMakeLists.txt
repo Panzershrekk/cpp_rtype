@@ -8,20 +8,26 @@ set(SOURCE_FILES_SERVER
         src/server/main.cpp
         src/server/network/TcpConnections.cpp
         src/server/network/TcpServer.cpp
-        src/server/network/TcpHandler.cpp)
+        src/server/network/TcpHandler.cpp
+        src/server/gameManager/Player.cpp
+        src/server/gameManager/AEntity.cpp
+        src/server/gameManager/Character.cpp
+        src/)
 set(HEADER_FILES_SERVER
         inc/server/network/TcpConnections.hpp
         inc/server/network/TcpServer.hpp
-        inc/server/network/TcpHandler.hpp)
+        inc/server/network/TcpHandler.hpp
+        inc/server/gameManager/Player.hpp
+        inc/server/gameManager/AEntity.hpp
+        inc/server/gameManager/Character.hpp)
 include_directories(inc/server/network)
 include_directories(inc/common)
+include_directories(inc/server/gameManager/)
 add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER})
 
 # Client configuration
 set(SOURCE_FILES_CLIENT
         src/client/main.cpp
-        src/client/RenderSystem.cpp
-        src/client/Renderer.cpp
         src/client/menu/MenuWindow.cpp
         src/client/menu/MainMenu.cpp
         src/client/menu/IMenu.cpp
@@ -74,7 +80,7 @@ set(Boost_USE_STATIC_LIBS       ON) # only find static libs
 set(Boost_USE_MULTITHREADED     ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
 
-find_package(Boost 1.65.1 COMPONENTS system)
+find_package(Boost 1.66.0 COMPONENTS system)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(r-type-server ${Boost_LIBRARIES})
