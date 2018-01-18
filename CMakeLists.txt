@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES_SERVER
         src/server/gameManager/GameManager.cpp
-        src/server/rtype/commandManager.cpp
+        src/server/rtype/CommandManager.cpp
         src/server/rtype/Room.cpp
         src/server/rtype/ServerPrompt.cpp
         src/server/ServerCore.cpp
@@ -55,7 +55,7 @@ set(SOURCE_FILES_GAME_ENGINE
         src/gameEngine/Window.cpp)
 
 set(HEADER_FILES_SERVER
-        inc/server/commandManager.hpp
+        inc/server/CommandManager.hpp
         inc/server/GameManager.hpp
         inc/server/Room.hpp
         inc/server/ServerCore.hpp

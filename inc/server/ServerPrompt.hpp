@@ -5,7 +5,7 @@
 #ifndef CPP_RTYPE_SERVERPROMPT_HPP
 #define CPP_RTYPE_SERVERPROMPT_HPP
 
-#include "commandManager.hpp"
+#include "CommandManager.hpp"
 
 #include <string>
 #include <iostream>
