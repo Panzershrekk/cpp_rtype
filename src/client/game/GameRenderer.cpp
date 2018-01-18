@@ -39,6 +39,7 @@ void GameRenderer::startGame()
       this->_player.update();
       e.update();
       updateEntities();
+        this->_player.forbiddenMove(window);
       this->_clock.restartTimer();
     }
     if (this->_attackSpeed.getElapsedTime() > 0.4)

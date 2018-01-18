@@ -31,7 +31,7 @@ Position2D &AIManager::PredefinedBottomToTop(Position2D &pos, int speed)
 
 Position2D &AIManager::PredefinedRightToLeftSinus(Position2D &pos, int speed)
 {
-  Position2D pos2(speed, sin((pos.getX() * 400)) *10);
+  Position2D pos2(speed,cos((pos.getX() * 400)) *10);
 
   pos -= pos2;
   return (pos);
