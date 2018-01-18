@@ -8,6 +8,8 @@
 #include	<Window.hpp>
 #include	"Sprite.hpp"
 
+class Window;
+
 class MainMenu
 {
   private:
@@ -24,7 +26,8 @@ class MainMenu
     void draw(Window &);
     void update(Window &);
 
-    void playFunction(void);
+    void playFunction(Window &);
+    void quitFunction(Window &);
 };
 
 

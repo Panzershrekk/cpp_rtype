@@ -19,7 +19,6 @@ class Sprite
     sf::Sprite		_sprite;
     Texture		_texture;
     Position2D		_pos;
-   // ColliderManager	_collider;
 
   public:
     explicit Sprite();
@@ -39,7 +38,7 @@ class Sprite
     void move(Position2D&);
 
     bool isMouseOver(Window &);
-    void onClick(std::function<void(void)>, Window &);
+    void onClick(std::function<void(Window &)>, Window &);
 };
 
 

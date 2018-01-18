@@ -20,16 +20,23 @@ MainMenu::~MainMenu()
 {
 }
 
-void MainMenu::playFunction()
+void MainMenu::playFunction(Window &win)
 {
   std::cout << "Play" << std::endl;
 }
 
+void MainMenu::quitFunction(Window &win)
+{
+  win.close();
+}
+
 void MainMenu::update(Window &win)
 {
-  auto f = std::bind(&MainMenu::playFunction, this);
+  auto	fPlay = std::bind(&MainMenu::playFunction, this, std::placeholders::_1);
+  auto	fQuit = std::bind(&MainMenu::quitFunction, this, std::placeholders::_1);
 
-  this->_playButton.onClick(f, win);
+  this->_playButton.onClick(fPlay, win);
+  this->_quitButton.onClick(fQuit, win);
 }
 
 void MainMenu::draw(Window &win)

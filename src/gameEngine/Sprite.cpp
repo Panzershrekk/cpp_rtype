@@ -100,8 +100,10 @@ bool Sprite::isMouseOver(Window& win)
   return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
 }
 
-void Sprite::onClick(std::function<void(void)> f, Window &win)
+void Sprite::onClick(std::function<void(Window &)> f, Window &win)
 {
   if (Mouse::isButtonPressed(Mouse::Left) && isMouseOver(win))
-    f();
+  {
+    f(win);
+  }
 }
