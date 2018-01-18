@@ -55,7 +55,5 @@ int main() {
 
                 //backgroundStars.updateStarfield();
         }
-
         return 0;
-
 }
