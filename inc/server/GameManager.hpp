@@ -6,12 +6,11 @@
 #define CPP_RTYPE_GAMEMANAGER_HPP
 
 #include <vector>
-#include <AEntity.hpp>
-#include <Player.hpp>
 #include <iostream>
-#include <Enemy.hpp>
-#include <Projectile.hpp>
-
+#include "AEntity.hpp"
+#include "Player.hpp"
+#include "Projectile.hpp"
+#include "Enemy.hpp"
 
 class GameManager
 {

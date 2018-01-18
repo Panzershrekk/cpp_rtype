@@ -2,7 +2,7 @@
 // Created by thomas on 17/01/18.
 //
 
-#include <PlayablePlayer.hpp>
+#include <game/PlayablePlayer.hpp>
 #include <Joystick.hpp>
 
 PlayablePlayer::PlayablePlayer() : _physic(0, 0, 5)

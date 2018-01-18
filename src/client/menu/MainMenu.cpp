@@ -4,7 +4,7 @@
 
 #include 	<iostream>
 #include	<Mouse.hpp>
-#include	"MainMenu.hpp"
+#include	"menu/MainMenu.hpp"
 
 MainMenu::MainMenu() :
   _splashScreen("../assets/MainMenu_Background.png"),

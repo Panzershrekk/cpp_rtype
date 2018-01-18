@@ -2,7 +2,7 @@
 // Created by thomas on 17/01/18.
 //
 
-#include "EnemyRenderer.hpp"
+#include "game/EnemyRenderer.hpp"
 
 EnemyRenderer::EnemyRenderer() : _pos(700, 450), _sprite("../assets/Enemy.png")
 {

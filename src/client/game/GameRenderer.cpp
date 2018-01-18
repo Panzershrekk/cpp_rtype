@@ -5,7 +5,7 @@
 
 #include <Enemy.hpp>
 #include <game/EnemyRenderer.hpp>
-#include "GameRenderer.hpp"
+#include "game/GameRenderer.hpp"
 
 GameRenderer::GameRenderer() : _player(), _clock()
 {
