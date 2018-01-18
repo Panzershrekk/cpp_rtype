@@ -4,8 +4,18 @@ project(cpp_rtype)
 set(CMAKE_CXX_STANDARD 14)
 
 # Server configuration
-set(SOURCE_FILES_SERVER src/server/main.cpp)
-add_executable(r-type-server ${SOURCE_FILES_SERVER})
+set(SOURCE_FILES_SERVER
+        src/server/main.cpp
+        src/server/network/TcpConnections.cpp
+        src/server/network/TcpServer.cpp
+        src/server/network/TcpHandler.cpp)
+set(HEADER_FILES_SERVER
+        inc/server/network/TcpConnections.hpp
+        inc/server/network/TcpServer.hpp
+        inc/server/network/TcpHandler.hpp)
+include_directories(inc/server/network)
+include_directories(inc/common)
+add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER})
 
 # Client configuration
 set(SOURCE_FILES_CLIENT
@@ -59,6 +69,17 @@ include_directories(inc/client
         inc/client/menu)
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${INCLUDE_FILE_CLIENT})
 
+
+# Detect and add Boost into server and r-type
+set(Boost_USE_STATIC_LIBS       ON) # only find static libs
+set(Boost_USE_MULTITHREADED     ON)
+set(Boost_USE_STATIC_RUNTIME    OFF)
+
+find_package(Boost 1.65.1 COMPONENTS system)
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    target_link_libraries(r-type-server ${Boost_LIBRARIES})
+endif()
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
