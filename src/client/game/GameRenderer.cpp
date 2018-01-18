@@ -7,7 +7,7 @@
 #include <game/EnemyRenderer.hpp>
 #include "game/GameRenderer.hpp"
 
-GameRenderer::GameRenderer() : _player(), _clock()
+GameRenderer::GameRenderer() : _player(), _clock(), _attackSpeed()
 {
 
 }
@@ -42,9 +42,25 @@ void GameRenderer::startGame()
       e.update();
       this->_clock.restartTimer();
     }
+    if (this->_attackSpeed.getElapsedTime() > 0.4)
+    {
+      if (Keyboard::isKeyPressed(Keyboard::Key::Space))
+        this->_player.fire();
+      this->_attackSpeed.restartTimer();
+    }
     window.clear();
     window.draw(this->_player.getSprite());
     window.draw(e.getSprite());
+    drawProjectile(window);
     window.display();
   }
+}
+
+void GameRenderer::drawProjectile(Window & window)
+{
+    for (auto &it : this->_player.getProjectileVector())
+    {
+        it.update();
+        window.draw(it.getSprite());
+    }
 }

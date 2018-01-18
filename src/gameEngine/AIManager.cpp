@@ -3,6 +3,7 @@
 //
 
 #include <AIManager.hpp>
+#include <cmath>
 
 AIManager::AIManager()
 {
@@ -14,7 +15,9 @@ AIManager::~AIManager()
 
 Position2D& AIManager::PredefinedRightToLeft(Position2D &pos, int speed)
 {
-  Position2D pos2(speed, 0);
+  //float y = sin(x * 400);
+
+  Position2D pos2(speed, sin((pos.getX() * 400)) *10);
 
   pos -= pos2;
   return (pos);
@@ -27,3 +30,11 @@ Position2D &AIManager::PredefinedBottomToTop(Position2D &pos, int speed)
   pos += pos2;
   return (pos);
 }
+
+/*Position2D &AIManager::PredefinedRightToLeftSinusoidale(Position2D &, int speed)
+{
+  Position2D pos2(speed, 0);
+
+  pos -= pos2;
+  return (pos);
+}*/

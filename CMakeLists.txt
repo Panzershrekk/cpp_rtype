@@ -12,11 +12,13 @@ set(SOURCE_FILES_SERVER
         src/server/main.cpp)
 
 set(SOURCE_FILES_CLIENT
+        src/client/game/AEntityRenderer.cpp
         src/client/game/EnemyRenderer.cpp
         src/client/game/GameRenderer.cpp
         src/client/game/PlayablePlayer.cpp
         src/client/menu/MainMenu.cpp
         src/client/menu/MenuWindow.cpp
+        src/client/game/ProjectileRenderer.cpp
         src/client/main.cpp)
 
 set(SOURCE_FILES_COMMON
@@ -62,6 +64,7 @@ set(HEADER_FILES_SERVER
         inc/server/ServerPrompt.hpp)
 
 set(HEADER_FILES_CLIENT
+        inc/client/game/AEntityRenderer.hpp
         inc/client/game/EnemyRenderer.hpp
         inc/client/game/GameRenderer.hpp
         inc/client/game/PlayablePlayer.hpp
@@ -72,7 +75,8 @@ set(HEADER_FILES_CLIENT
         inc/client/ISystem.hpp
         inc/client/MainSystem.hpp
         inc/client/Renderer.hpp
-        inc/client/RenderSystem.hpp)
+        inc/client/RenderSystem.hpp
+        inc/client/game/ProjectileRenderer.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
@@ -83,8 +87,7 @@ set(HEADER_FILES_COMMON
         inc/common/AEntity.hpp
         inc/common/Character.hpp
         inc/common/Enemy.hpp
-        inc/common/Player.hpp
-        inc/common/Projectile.hpp)
+        inc/common/Player.hpp)
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp
@@ -116,9 +119,10 @@ include_directories("inc/gameEngine")
 include_directories("inc/common")
 include_directories("inc/server")
 include_directories("inc/client")
+include_directories("inc/client/game")
 
-add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
-add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
+#add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
+add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE}) #${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON}
 
 # Detect and add Boost
 set(Boost_USE_STATIC_LIBS       ON)
@@ -128,7 +132,9 @@ find_package(Boost 1.65.1 COMPONENTS system)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(r-type-client ${Boost_LIBRARIES})
-    target_link_libraries(r-type-server ${Boost_LIBRARIES})
+    #target_link_libraries(r-type-client PUBLIC "-pthread")
+
+    #target_link_libraries(r-type-server ${Boost_LIBRARIES})
 endif()
 
 # Detect and add SFML
@@ -139,5 +145,5 @@ find_package(SFML 2 REQUIRED network audio graphics window system)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(r-type-client ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-    target_link_libraries(r-type-server ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+    #target_link_libraries(r-type-server ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()

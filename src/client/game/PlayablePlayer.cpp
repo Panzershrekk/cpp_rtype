@@ -5,10 +5,9 @@
 #include <game/PlayablePlayer.hpp>
 #include <Joystick.hpp>
 
-PlayablePlayer::PlayablePlayer() : _physic(0, 0, 5)
+PlayablePlayer::PlayablePlayer() : AEntityRenderer("../assets/Ship_White.png"), _physic(0, 0, 5)
 {
   setPosition(Position2D(140, 140));
-  //setSprite(Sprite("../assets/Ship_White.png"));
   this->_sprite.setPosition(this->_pos);
 }
 
@@ -34,13 +33,17 @@ void PlayablePlayer::update()
       this->_pos -= Position2D(0, this->_physic.getSpeed());
     if (Keyboard::isKeyPressed(Keyboard::Key::Down))
       this->_pos += Position2D(0, this->_physic.getSpeed());
-    if (Keyboard::isKeyPressed(Keyboard::Key::Space))
-      fire();
   }
   this->_sprite.setPosition(this->_pos);
 }
 
 void PlayablePlayer::fire()
 {
-  std::cout << "" << std::endl;
+  std::cout << "Fire" << std::endl;
+    ProjectileRenderer p(this->_pos);
+    this->_projectile.push_back(p);
+}
+
+std::vector<ProjectileRenderer> &PlayablePlayer::getProjectileVector() {
+    return this->_projectile;
 }

@@ -17,11 +17,13 @@ class GameRenderer
     GameRenderer();
     ~GameRenderer();
     void startGame();
+    void drawProjectile(Window &);
 
   private:
     PlayablePlayer _player;
     std::vector<EnemyRenderer> _enemies;
     TimeManager _clock;
+    TimeManager _attackSpeed;
 };
 
 #endif //CPP_RTYPE_GAMERENDERER_HPP

@@ -11,13 +11,13 @@ class AEntityRenderer
 {
   public:
     AEntityRenderer();
+    AEntityRenderer(const std::string &);
     virtual ~AEntityRenderer();
 
     Sprite &getSprite();
     Position2D getPosition() const;
 
     void setPosition(const Position2D&);
-    void setSprite(const Sprite);
 
     virtual void update() = 0;
   protected:

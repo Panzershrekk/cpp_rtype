@@ -1,19 +1,14 @@
-#include "SFML/Graphics.hpp"
-#include <iostream>
-#include <Window.hpp>
-#include <game/GameRenderer.hpp>
-#include "menu/MainMenu.hpp"
-#include "Window.hpp"
-#include <boost/asio.hpp>
+#include <GameRenderer.hpp>
+/*#include <boost/asio.hpp>
 #include "common/network/core/UdpConnection.hpp"
-#include "common/network/core/Endpoint.hpp"
+#include "common/network/core/Endpoint.hpp"*/
 
 int main()
 {
   GameRenderer gameRenderer;
   gameRenderer.startGame();
   return (0);
-    boost::asio::io_service         service;
+    /*boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
     std::stringstream               ss;
 
@@ -24,5 +19,5 @@ int main()
     socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
     socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
     socket.send(ss, Network::Core::Endpoint("127.0.0.1", 4242));
-    return 0;
+    return 0;*/
 }

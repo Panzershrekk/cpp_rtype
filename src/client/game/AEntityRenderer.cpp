@@ -9,6 +9,12 @@ AEntityRenderer::AEntityRenderer()
 
 }
 
+AEntityRenderer::AEntityRenderer(const std::string & path) : _sprite(path)
+{
+
+}
+
+
 AEntityRenderer::~AEntityRenderer()
 {
 

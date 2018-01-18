@@ -10,6 +10,7 @@
 #include <Keyboard.hpp>
 #include <iostream>
 #include "AEntityRenderer.hpp"
+#include "ProjectileRenderer.hpp"
 
 class PlayablePlayer : public AEntityRenderer
 {
@@ -18,9 +19,11 @@ class PlayablePlayer : public AEntityRenderer
     ~PlayablePlayer();
     void fire();
     void update();
+    std::vector<ProjectileRenderer> & getProjectileVector();
 
   private:
     Physic _physic;
+    std::vector<ProjectileRenderer> _projectile;
 
 
 };
