@@ -7,14 +7,24 @@
 
 
 #include "IMenu.hpp"
+#include "ItemRoomListMenu.hpp"
 
 class RoomListMenu : public IMenu
 {
   private:
-  MenuState &_state;
+  MenuState &	_state;
+  Sprite	_back;
+  Text		_title;
+  std::vector<std::shared_ptr<ItemRoomListMenu>>	_vectorRooms;
+
+  //ItemRoomListMenu _item;
+
   public:
     explicit RoomListMenu(MenuState &);
     ~RoomListMenu() override;
+
+    void 	drawItems(Window &);
+    void 	genRooms(int);
 
     void	start(Window &) override;
     void 	draw(Window &) override;

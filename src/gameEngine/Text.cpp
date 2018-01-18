@@ -5,12 +5,12 @@
 #include <iostream>
 #include "Text.hpp"
 
-Text::Text() : _text()
+Text::Text() : _text(), _str()
 {
   this->_font = new Font();
 }
 
-Text::Text(const std::string &string, const std::string &fontPath) : _text()
+Text::Text(const std::string &string, const std::string &fontPath) : _text(), _str(string)
 {
   this->_font = new Font(fontPath);
 
@@ -18,7 +18,7 @@ Text::Text(const std::string &string, const std::string &fontPath) : _text()
   this->_text.setString(string);
 }
 
-Text::Text(const std::string &string, const std::string &fontPath, float x, float y)
+Text::Text(const std::string &string, const std::string &fontPath, float x, float y) : _str(string)
 {
   this->_font = new Font(fontPath);
 
@@ -40,6 +40,7 @@ void		Text::setFont(const std::string &fontPath)
 
 void 		Text::setString(const std::string &newString)
 {
+  this->_str = newString;
   this->_text.setString(newString);
 }
 
@@ -61,4 +62,9 @@ void 		Text::setScale(int scaleX, int scaleY)
 sf::Text	&Text::getSfText()
 {
   return (this->_text);
+}
+
+std::string	Text::getString() const
+{
+  return (this->_str);
 }

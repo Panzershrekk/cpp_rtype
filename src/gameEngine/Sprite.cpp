@@ -88,6 +88,10 @@ void Sprite::setScale(float x, float y)
   this->_sprite.setScale(x, y);
 }
 
+void Sprite::setTexture(const std::string &path) {
+  this->_texture.getSfTexture().loadFromFile(path);
+}
+
 void Sprite::move(Position2D &pos)
 {
   this->_pos = pos;

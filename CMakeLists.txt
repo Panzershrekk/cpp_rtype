@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 3.8)
 project(cpp_rtype)
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE Debug)
 
 # Server configuration
 set(SOURCE_FILES_SERVER src/server/main.cpp)
@@ -31,7 +32,7 @@ set(SOURCE_FILES_CLIENT
         src/gameEngine/Text.cpp
         src/gameEngine/Mouse.cpp
         src/gameEngine/Font.cpp
-        )
+        src/client/menu/ItemRoomListMenu.cpp)
 set(INCLUDE_FILE_CLIENT
         inc/client/MainSystem.hpp
         inc/client/ISystem.hpp
@@ -53,7 +54,7 @@ set(INCLUDE_FILE_CLIENT
         inc/gameEngine/Mouse.hpp
         inc/gameEngine/Text.hpp
         inc/gameEngine/Font.hpp
-        )
+        inc/client/menu/ItemRoomListMenu.hpp)
 include_directories(inc/client
         inc/gameEngine
         inc/client/menu)
