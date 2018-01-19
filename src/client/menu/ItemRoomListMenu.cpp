@@ -8,7 +8,7 @@
 ItemRoomListMenu::ItemRoomListMenu(float x, float y) :
   _back("../assets/RoomListMenu_ItemList.png", x, y),
   _roomName("X", "../KOMIKAX_.ttf"),
-  _enablePlayer("/4", "../KOMIKAX_.ttf")
+  _enablePlayer("0/4", "../KOMIKAX_.ttf")
 {
   Position2D pos = this->_back.getPosition();
 
@@ -44,9 +44,8 @@ void ItemRoomListMenu::updateRoomName(int nb)
 
 void ItemRoomListMenu::updatePlayers(int nPlayer)
 {
-  std::string tmp;
 
-  this->getEnablePlayer().getString().clear();
-  tmp = std::to_string(nPlayer) + this->getEnablePlayer().getString();
+  std::string tmp = this->getEnablePlayer().getString();
+  tmp.replace(0, 1, std::to_string(nPlayer));
   this->getEnablePlayer().setString(tmp);
 }

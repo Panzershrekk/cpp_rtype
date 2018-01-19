@@ -21,8 +21,6 @@ add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER})
 # Client configuration
 set(SOURCE_FILES_CLIENT
         src/client/main.cpp
-        src/client/RenderSystem.cpp
-        src/client/Renderer.cpp
         src/client/menu/MenuWindow.cpp
         src/client/menu/MainMenu.cpp
         src/client/menu/IMenu.cpp

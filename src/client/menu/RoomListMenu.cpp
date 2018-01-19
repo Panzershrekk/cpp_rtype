@@ -32,15 +32,24 @@ void RoomListMenu::genRooms(int nbRoom)
   {
     this->_vectorRooms.push_back(std::make_shared<ItemRoomListMenu>(x, y + 100));
     this->_vectorRooms[i]->updateRoomName(i + 1);
-    x = x;
     y = y + 200;
   }
 }
 
+void RoomListMenu::joinRoom(Window &win, sf::Event &event)
+{
+  this->_state = ELobbyMenu;
+}
+
 void RoomListMenu::update(Window &win, sf::Event &event)
 {
+  auto fJoin = std::bind(&RoomListMenu::joinRoom, this, std::placeholders::_1, std::placeholders::_2);
 
-  //_vectorRooms[0]->updatePlayers(2);
+  for (auto it : this->_vectorRooms)
+  {
+    it->getBack().onClick(fJoin, win, event);
+  }
+  _vectorRooms[0]->updatePlayers(1);
   if (event.type == sf::Event::Closed) {
     win.close();
   }
