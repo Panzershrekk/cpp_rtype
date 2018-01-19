@@ -10,8 +10,10 @@
 class LobbyMenu : public IMenu
 {
   private:
-  MenuState &_state;
-  public:
+  MenuState 	&_state;
+  Sprite	_back;
+
+public:
     explicit LobbyMenu(MenuState &);
     ~LobbyMenu() override;
 
