@@ -27,22 +27,29 @@ bool    ServerCore::startExchanges()
         this->_socket.read(data, endpoint,
                            [&](boost::system::error_code error, std::size_t size)
                            {
-                               Network::Packet::APacket     packet;
-                               Network::Packet::PacketPlayer    pp;
-
-                               if (error || size <= 0)
+                               if (error || size <= 8)
                                {
                                    std::cerr << "PACKET CORROMPU" << std::endl;
                                }
                                try
                                {
-                                   std::cout << std::string(data.begin(), data.begin() + size) << std::endl;
-                                   Serializer::deserialize(std::string(data.begin(), data.begin() + size), pp);
-                                   /*Network::Packet::PacketPlayer     *packetPlayer = new Network::Packet::PacketPlayer();
-                                   *packetPlayer = static_cast<Network::Packet::PacketPlayer>(packet);
-                                   std::cout << "name = " << packetPlayer->getPlayer().getName() << std::endl;*/
-                                   std::cout << "name = " << pp.getPlayer().getName() << std::endl;
+                                   std::istringstream               streamHeader(std::string(data.begin(), 8));
+                                   std::size_t                      dataType;
+                                   Network::Packet::PacketType      packetType;
+                                   Network::Packet::APacket         *packet;
 
+                                   if (!(streamHeader >> std::hex >> dataType))
+                                   {
+                                       std::cerr << "INVALID TYPE" << std::endl;
+                                       this->startExchanges();
+                                       return;
+                                   }
+                                   packetType = (Network::Packet::PacketType)dataType;
+
+                                   packet = Serializer::deserialize(std::string(data.begin() + 8, data.begin() + size), packetType);
+
+                                   std::cout << "type packet =" << dataType << std::endl;
+                                   std::cout << "CP: " << static_cast<Network::Packet::PacketPlayer *>(packet)->getPlayer().getName() << std::endl;
                                }
                                catch (const std::exception &exept)
                                {

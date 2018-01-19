@@ -48,11 +48,14 @@ namespace Network
             }
 
             template <typename Handler>
-            void    async_write(const std::string &data, const Endpoint &endpoint, Handler handler)
+            void    async_write(const std::string &data, const Network::Packet::PacketType &packetType, Endpoint &endpoint, Handler handler)
             {
                 try
                 {
-                    this->_socket.async_send_to(boost::asio::buffer(data),
+                    std::ostringstream       stream;
+
+                    stream << std::setw(8) << std::hex << packetType << data;
+                    this->_socket.async_send_to(boost::asio::buffer(stream.str()),
                                                 endpoint.getBoostEndpoint(),
                                                 0,
                                                 handler);

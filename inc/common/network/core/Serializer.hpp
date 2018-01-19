@@ -22,6 +22,8 @@
 # include <boost/serialization/serialization.hpp>
 # include <iostream>
 # include <sstream>
+# include "common/network/packets/APacket.hpp"
+# include "common/network/packets/PacketPlayer.hpp"
 
 class Serializer
 {
@@ -53,14 +55,23 @@ public:
      * @param buf : The buffer need be deserialize
      * @return : The new object made by deserialization
      */
-    template <class Obj>
-    static void   deserialize(const std::string &buf, Obj & obj)
+    static Network::Packet::APacket   *deserialize(const std::string &buf, const Network::Packet::PacketType &type)
     {
+        return deserializePacketPlayer(buf);
+    }
+
+    static Network::Packet::APacket     *deserializePacketPlayer(const std::string &buf)
+    {
+        Network::Packet::APacket        *packet;
+        Network::Packet::PacketPlayer   *packetPlayer = new Network::Packet::PacketPlayer;
+
         std::stringstream          archive_stream(buf);
         {
             boost::archive::binary_iarchive archive(archive_stream);
-            archive >> obj;
+            archive >> *packetPlayer;
         }
+        packet = packetPlayer;
+        return (packet);
     }
 };
 

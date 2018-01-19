@@ -13,19 +13,19 @@ int main()
     boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
     Player                          player;
+    Network::Core::Endpoint         ep("127.0.0.1", 4244);
     player.setName("Guillaume");
     player.setHp(42);
     player.setScore(0);
-    auto                           *packetPlayer = new Network::Packet::PacketPlayer(player);
-    packetPlayer->getPlayer().setName("GUillaume LE vainqueur du UDP !");
+    Network::Packet::PacketPlayer   packetPlayer;
+    packetPlayer.getPlayer().setName("GUillaume LE vainqueur du UDP !");
 
-    std::cout << packetPlayer->getPlayer().getName() << std::endl;
-    Network::Packet::APacket       *packet;
-    packet = packetPlayer;
-    std::string                     packetSerialized = Serializer::serialize(*packetPlayer);
+    std::cout << packetPlayer.getPlayer().getName() << std::endl;
+    std::string                     packetSerialized = Serializer::serialize(packetPlayer);
 
     socket.openV4();
-    socket.async_write(packetSerialized, Network::Core::Endpoint("127.0.0.1", 4244),
+
+    socket.async_write(packetSerialized, packetPlayer.getType(), ep,
                        [&](const boost::system::error_code &e, const long unsigned int&)
                        {
                            std::cout << "-- Packet has been sent" << std::endl;

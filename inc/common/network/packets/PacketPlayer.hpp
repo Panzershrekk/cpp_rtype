@@ -20,12 +20,11 @@ namespace Network
             Player      _player;
 
         public:
-            PacketPlayer() {}
+            PacketPlayer() : APacket(PACKET_PLAYER) {}
             explicit PacketPlayer(const Player &player) : APacket(PACKET_PLAYER), _player(player) {}
-            virtual ~PacketPlayer() {}
-            PacketPlayer(const APacket &obj) : APacket(obj) {}
 
             Player      &getPlayer() { return this->_player; }
+            void         setPlayer(const Player &player) { this->_player = player; }
 
             template <class Archive>
             void	serialize(Archive& ar, const unsigned int version)
