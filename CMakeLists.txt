@@ -10,10 +10,10 @@ set(SOURCE_FILES_SERVER
         src/server/gameManager/GameManager.cpp
         src/server/gameManager/Player.cpp
         src/server/gameManager/Projectile.cpp
-        #src/server/rtype/commandManager.cpp
-        #src/server/rtype/Room.cpp
-        #src/server/rtype/ServerPrompt.cpp
-        #src/server/ServerCore.cpp
+        src/server/rtype/commandManager.cpp
+        src/server/rtype/Room.cpp
+        src/server/rtype/ServerPrompt.cpp
+        src/server/ServerCore.cpp
         src/server/main.cpp)
 
 set(SOURCE_FILES_CLIENT
@@ -88,11 +88,12 @@ set(HEADER_FILES_CLIENT
         inc/client/game/ProjectileRenderer.hpp)
 
 set(HEADER_FILES_COMMON
-        inc/common/network/core/Endpoint.hpp
-        inc/common/network/core/Error.hpp
-        inc/common/network/core/Exception.hpp
+       inc/common/network/core/Endpoint.hpp
+       inc/common/network/core/Error.hpp
+       inc/common/network/core/Exception.hpp
         inc/common/network/core/UdpConnection.hpp
-        inc/common/network/serialization/Serializer.hpp)
+        inc/common/network/serialization/Serializer.hpp
+        )
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp
@@ -127,20 +128,20 @@ include_directories("inc/client")
 include_directories("inc/client/game")
 include_directories("inc/server/gameManager")
 
-add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE}) #${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON}
-add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE}) #${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON}
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
+add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON})
+add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON})
 
 # Detect and add Boost
+
 set(Boost_USE_STATIC_LIBS       ON)
 set(Boost_USE_MULTITHREADED     ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
-find_package(Boost 1.65.1 COMPONENTS system)
+find_package(Boost 1.66 COMPONENTS system thread)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(r-type-client ${Boost_LIBRARIES})
-    #target_link_libraries(r-type-client PUBLIC "-pthread")
-
-    #target_link_libraries(r-type-server ${Boost_LIBRARIES})
+    target_link_libraries(r-type-server ${Boost_LIBRARIES})
 endif()
 
 # Detect and add SFML

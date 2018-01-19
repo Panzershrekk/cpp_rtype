@@ -2,6 +2,7 @@
 // Created by thomas on 15/01/18.
 //
 
+#include "TimeManager.hpp"
 #include "GameManager.hpp"
 
 GameManager::GameManager()
@@ -17,16 +18,26 @@ GameManager::~GameManager()
 
 void GameManager::update()
 {
+  TimeManager clock;
+
+  while (true) //Todo Connexion rompu? Personnage tous mort ?
+  {
+    if (clock.getElapsedTime() > 1.0 / 60)
+    {
+      // Todo Send les pos de tout les trucs
+    }
+  }
+
 }
 
-void GameManager::createProjectile()
+void GameManager::createProjectile(Player &player)
 {
+  this->_projetcile.emplace_back(Projectile());
 }
 
 void GameManager::spawnEnnemy()
 {
-  Enemy e;
-  this->_ennemy.push_back(e);
+  this->_ennemy.emplace_back(Enemy());
 }
 
 void GameManager::addPlayer(Player &player)
