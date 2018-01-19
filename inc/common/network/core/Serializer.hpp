@@ -54,11 +54,11 @@ public:
         std::map<Network::Packet::PacketType, std::function<Network::Packet::APacket *(const std::string &)>>    factory;
 
         factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_PLAYER, std::bind(
-                &Serializer::deserializePacketPlayer,
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketPlayer>,
                 this,
                 std::placeholders::_1)));
         factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_ROOM, std::bind(
-                &Serializer::deserializePacketRoom,
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketRoom>,
                 this,
                 std::placeholders::_1)));
 
@@ -72,31 +72,18 @@ public:
         return nullptr;
     }
 
-    Network::Packet::APacket     *deserializePacketPlayer(const std::string &buf)
+    template <typename T>
+    Network::Packet::APacket     *deserializeSpecPacket(const std::string &buf)
     {
         Network::Packet::APacket        *packet;
-        auto                            *packetPlayer = new Network::Packet::PacketPlayer;
+        auto                            *packetSpec = new T;
 
         std::stringstream          archive_stream(buf);
         {
             boost::archive::binary_iarchive archive(archive_stream);
-            archive >> *packetPlayer;
+            archive >> *packetSpec;
         }
-        packet = packetPlayer;
-        return (packet);
-    }
-
-    Network::Packet::APacket     *deserializePacketRoom(const std::string &buf)
-    {
-        Network::Packet::APacket        *packet;
-        auto                            *packetRoom = new Network::Packet::PacketRoom;
-
-        std::stringstream          archive_stream(buf);
-        {
-            boost::archive::binary_iarchive archive(archive_stream);
-            archive >> *packetRoom;
-        }
-        packet = packetRoom;
+        packet = packetSpec;
         return (packet);
     }
 };
