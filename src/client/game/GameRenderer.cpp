@@ -67,7 +67,7 @@ void GameRenderer::startGame()
     }
 
       starsTexture.loadFromImage(starsImage.getImage());
-      backgroundStars.drawStarfield(starsTexture.getSfTexture());
+      backgroundStars.drawStarfield(*starsTexture.getSfTexture());
 
     window.clear();
 

@@ -23,6 +23,11 @@ set(SOURCE_FILES_CLIENT
         src/client/game/GameRenderer.cpp
         src/client/game/PlayablePlayer.cpp
         src/client/menu/MainMenu.cpp
+        src/client/menu/IMenu.cpp
+        src/client/menu/LobbyMenu.cpp
+        src/client/menu/LoginMenu.cpp
+        src/client/menu/ItemRoomListMenu.cpp
+        src/client/menu/RoomListMenu.cpp
         src/client/menu/MenuWindow.cpp
         src/client/game/ProjectileRenderer.cpp
         src/client/game/Star.cpp
@@ -54,6 +59,7 @@ set(SOURCE_FILES_GAME_ENGINE
         src/gameEngine/ScriptManager.cpp
         src/gameEngine/SoundSystem.cpp
         src/gameEngine/Sprite.cpp
+        src/gameEngine/Image.cpp
         src/gameEngine/Text.cpp
         src/gameEngine/Texture.cpp
         src/gameEngine/TimeManager.cpp
@@ -77,8 +83,13 @@ set(HEADER_FILES_CLIENT
         inc/client/game/GameRenderer.hpp
         inc/client/game/PlayablePlayer.hpp
         inc/client/menu/MainMenu.hpp
+        inc/client/menu/IMenu.hpp
+        inc/client/menu/ItemRoomListMenu.hpp
+        inc/client/menu/LobbyMenu.hpp
+        inc/client/menu/LoginMenu.hpp
         inc/client/menu/MenuState.hpp
         inc/client/menu/MenuWindow.hpp
+        inc/client/menu/RoomListMenu.hpp
         inc/client/Entity.hpp
         inc/client/ISystem.hpp
         inc/client/MainSystem.hpp
@@ -116,6 +127,7 @@ set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/ScriptManager.hpp
         inc/gameEngine/SoundSystem.hpp
         inc/gameEngine/Sprite.hpp
+        inc/gameEngine/Image.hpp
         inc/gameEngine/Text.hpp
         inc/gameEngine/Texture.hpp
         inc/gameEngine/TimeManager.hpp
@@ -126,6 +138,7 @@ include_directories("inc/gameEngine")
 include_directories("inc/common")
 include_directories("inc/server")
 include_directories("inc/client")
+include_directories("inc/client/menu")
 include_directories("inc/client/game")
 include_directories("inc/server/gameManager")
 
