@@ -12,7 +12,7 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
-  this->_state = ERoomListMenu;
+  this->_state = EMainMenu;
 }
 
 MenuWindow::~MenuWindow()

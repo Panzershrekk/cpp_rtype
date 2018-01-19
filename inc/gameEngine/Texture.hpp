@@ -5,12 +5,14 @@
 #ifndef CPP_RTYPE_TEXTURE_HPP_
 #define CPP_RTYPE_TEXTURE_HPP_
 
-#include	<SFML/Graphics/Texture.hpp>
+#include <memory>
+
+#include	"SFML/Graphics/Texture.hpp"
 
 class Texture
 {
   private:
-    sf::Texture		_texture;
+    std::shared_ptr<sf::Texture>	_texture;
     const std::string	_filePath;
 
   public:
@@ -23,7 +25,7 @@ class Texture
 
     void    loadFromImage(const sf::Image &);
 
-    sf::Texture & getSfTexture();
+    std::shared_ptr<sf::Texture> getSfTexture();
 
     const std::string	&getFilePath(void) const;
 
