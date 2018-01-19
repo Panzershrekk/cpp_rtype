@@ -3,12 +3,9 @@
 
 int main()
 {
-  /*
-  MenuWindow menu;
+  /*MenuWindow menu;
 
-  menu.start();
-  */
-
-  GameRenderer g;
-  g.startGame();
+  menu.start();*/
+  GameRenderer p;
+  p.startGame();
 }

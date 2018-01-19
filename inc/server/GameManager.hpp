@@ -23,8 +23,13 @@ class GameManager
     void createProjectile(Player &);
     void addPlayer(Player& player);
 
+    void updateEntities();
+    void removeEntities();
+
     void dumpPlayer();
     void dumpEnnemy();
+
+    bool playerStillAlive();
 
   private:
     std::vector<Player> _player;

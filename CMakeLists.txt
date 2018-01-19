@@ -72,6 +72,7 @@ set(SOURCE_FILES_GAME_ENGINE
 set(HEADER_FILES_SERVER
         inc/server/commandManager.hpp
         inc/server/GameManager.hpp
+        inc/server/gameManager/Projectile.hpp
         inc/server/Room.hpp
         inc/server/ServerCore.hpp
         inc/server/ServerPrompt.hpp

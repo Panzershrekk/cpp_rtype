@@ -83,9 +83,7 @@ void GameRenderer::startGame()
 
     window.draw(this->_player.getSprite());
     window.draw(e.getSprite());
-    //drawProjectile(window);
     drawEntities(window);
-
     window.display();
 
   }

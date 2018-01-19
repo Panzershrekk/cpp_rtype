@@ -4,6 +4,7 @@
 
 #include <AIManager.hpp>
 #include <cmath>
+#include <iostream>
 
 AIManager::AIManager()
 {
