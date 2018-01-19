@@ -58,7 +58,7 @@ set(INCLUDE_FILE_CLIENT
         inc/gameEngine/Sprite.hpp
         inc/gameEngine/Texture.hpp
         inc/gameEngine/TimeManager.hpp
-        inc/gameEngine/Window.hpp inc/gameEngine/Image.hpp src/gameEngine/Image.cpp)
+        inc/gameEngine/Window.hpp inc/gameEngine/Image.hpp src/gameEngine/Image.cpp
         inc/gameEngine/Window.hpp
         inc/gameEngine/Mouse.hpp
         inc/gameEngine/Text.hpp
