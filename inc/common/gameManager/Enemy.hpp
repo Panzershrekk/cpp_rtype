@@ -10,7 +10,9 @@
 
 class Enemy : public Character
 {
-  public:
+private:
+    AIManager _ai;
+public:
     Enemy();
     ~Enemy();
 
@@ -19,8 +21,11 @@ class Enemy : public Character
 
     void update();
 
-  private:
-    AIManager _ai;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+        ar & _ai;
+    }
 };
 
 #endif //CPP_RTYPE_ENNEMY_HPP

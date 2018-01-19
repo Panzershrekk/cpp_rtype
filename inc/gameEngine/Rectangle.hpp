@@ -10,6 +10,9 @@
 
 class Rectangle
 {
+private:
+    sf::IntRect _rect;
+
   public:
     Rectangle();
     ~Rectangle();
@@ -24,8 +27,10 @@ class Rectangle
 
     sf::IntRect getIntRect() const;
 
-  private:
-    sf::IntRect _rect;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+    }
 };
 
 #endif //CPP_RTYPE_RECTANGLE_HPP

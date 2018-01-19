@@ -8,7 +8,7 @@
 //#include	"Player.hpp";
 //#include	"Bots.hpp";
 //#include	"GameObject.hpp";
-#include	"Room.hpp";
+#include    "common/gameManager/Room.hpp";
 
 #include	<vector>;
 

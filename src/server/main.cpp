@@ -1,5 +1,6 @@
 #include <iostream>
-#include <server/GameManager.hpp>
+#include "server/GameManager.hpp"
+#include "server/ServerCore.hpp"
 #include "TcpServer.hpp"
 
 int main()
@@ -17,6 +18,8 @@ int main()
   }
   return 0;*/
   GameManager gameManager;
+  boost::asio::io_service     service;
+  ServerCore                  server(service, Network::Core::Endpoint(4244));
 
   Player player("Noobdu59");
   Player player1("XXX_PUSSY_DESTROYER_XXX");
@@ -27,10 +30,16 @@ int main()
   gameManager.addPlayer(player1);
   gameManager.addPlayer(player2);
   gameManager.addPlayer(player3);
+    gameManager.dumpPlayer();
+    gameManager.spawnEnnemy();
+    gameManager.dumpEnnemy();
+    
 
   gameManager.dumpPlayer();
   gameManager.spawnEnnemy();
   gameManager.spawnEnnemy();
   gameManager.update();
-  return (0);
+    server.start();
+    service.run();
+    return 0;
 }

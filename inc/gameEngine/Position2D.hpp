@@ -9,9 +9,14 @@
 
 class Position2D
 {
-  public:
+private:
+    sf::Vector2<float>  _vector2;
+    float               _x;
+    float               _y;
+
+public:
     Position2D();
-    Position2D(float, float);
+    Position2D(const float &, const float &);
     Position2D(const Position2D&);
 
     Position2D operator+(const Position2D&) const;
@@ -23,13 +28,17 @@ class Position2D
     bool operator==(const Position2D&) const;
     bool operator!=(const Position2D&) const;
 
-    int getX() const;
-    int getY() const;
+    const float &getX() const;
+    const float &getY() const;
 
     sf::Vector2<float> getVector() const;
 
-  private:
-    sf::Vector2<float> _vector2;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+        ar & _x;
+        ar & _y;
+    }
 
 };
 

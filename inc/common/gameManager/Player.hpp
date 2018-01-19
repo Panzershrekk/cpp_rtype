@@ -6,11 +6,17 @@
 #define CPP_RTYPE_PLAYER_HPP
 
 #include <iostream>
-#include "Character.hpp"
+#include <boost/serialization/access.hpp>
+#include "common/gameManager/Character.hpp"
 
 class Player : public Character
 {
-  public:
+private:
+    friend class boost::serialization::access;
+    int             _score;
+    std::string     _name;
+
+public:
     Player();
     Player(const std::string &);
     ~Player();
@@ -23,9 +29,13 @@ class Player : public Character
 
     void update();
 
-  private:
-    int _score;
-    std::string _name;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+        ar & boost::serialization::base_object<Character>(*this);
+        ar & _score;
+        ar & _name;
+    }
 };
 
 #endif //CPP_RTYPE_PLAYER_HPP

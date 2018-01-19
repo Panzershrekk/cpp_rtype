@@ -4,68 +4,76 @@
 
 #include <Position2D.hpp>
 
-Position2D::Position2D() : _vector2(0, 0)
-{
-}
-
-Position2D::Position2D(float x, float y) : _vector2(x, y)
+Position2D::Position2D() : _vector2(0, 0), _x(0), _y(0)
 {
 
 }
+
+Position2D::Position2D(const float &x, const float &y) : _vector2(x, y), _x(x), _y(y) {}
 
 Position2D::Position2D(const Position2D& pos)
 {
-  this->_vector2 = pos._vector2;
+    this->_vector2 = pos._vector2;
+    this->_x = pos._x;
+    this->_x = pos._y;
 }
 
 Position2D Position2D::operator+(const Position2D &ovec) const
 {
-  Position2D result;
-  result._vector2 = this->_vector2 + ovec._vector2;
-  return (result);
+    Position2D result;
+    result._vector2 = this->_vector2 + ovec._vector2;
+    result._x = this->_x + ovec._x;
+    result._y = this->_y + ovec._y;
+    return (result);
 }
 
 Position2D Position2D::operator-(const Position2D &ovec) const
 {
 
-  Position2D result;
-  result._vector2 = this->_vector2 + ovec._vector2;
-  return (result);
+    Position2D result;
+    result._vector2 = this->_vector2 - ovec._vector2;
+    result._x = this->_x - ovec._x;
+    result._y = this->_y - ovec._y;
+    return (result);
 }
 
 bool Position2D::operator==(const Position2D &ovec) const
 {
-  return this->_vector2 == ovec._vector2;
+    return (ovec.getX() == this->getX() && ovec.getY() == this->getY());
 }
 
 bool Position2D::operator!=(const Position2D &ovec) const
 {
-  return this->_vector2 != ovec._vector2;
+    return !(ovec == *this);
 }
 
 Position2D Position2D::operator+=(const Position2D &ovec)
 {
-  this->_vector2 += ovec._vector2;
-  return (*this);
+    this->_vector2 += ovec._vector2;
+    this->_x += ovec._x;
+    this->_y += ovec._y;
+    return (*this);
 }
 
 Position2D Position2D::operator-=(const Position2D &ovec)
 {
-  this->_vector2 -= ovec._vector2;
-  return (*this);
+    this->_vector2 -= ovec._vector2;
+    this->_x -= ovec._x;
+    this->_y -= ovec._y;
+    return (*this);
 }
 
-int Position2D::getX() const
+const float &Position2D::getX() const
 {
-  return (this->_vector2.x);
+    return (this->_x);
 }
 
-int Position2D::getY() const
+const float &Position2D::getY() const
 {
-  return (this->_vector2.y);
+    return (this->_y);
 }
 
 sf::Vector2<float> Position2D::getVector() const
 {
-  return (this->_vector2);
+    return (this->_vector2);
 }

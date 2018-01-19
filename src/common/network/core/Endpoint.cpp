@@ -24,6 +24,12 @@ Network::Core::Endpoint::Endpoint(const unsigned short &port)
     this->setIp("0.0.0.0");
 }
 
+Network::Core::Endpoint::Endpoint()
+        : _port(0), _endpoint(boost::asio::ip::address::from_string("0.0.0.0"), 0)
+{
+    this->setIp("0.0.0.0");
+}
+
 Network::Core::Endpoint::Endpoint(const Network::Core::Endpoint &obj)
 {
     this->_ip = obj._ip;
