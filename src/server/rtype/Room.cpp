@@ -8,7 +8,7 @@ Room::Room() {}
 
 Room::Room(const int &size, const int &id) : _size(size), _id(id) {}
 
-Room::~Room() {}
+Room::~Room() = default;
 
 void	Room::join(const Player &player)
 {

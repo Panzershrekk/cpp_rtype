@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(SOURCE_FILES_SERVER
         src/server/gameManager/GameManager.cpp
         src/server/rtype/CommandManager.cpp
-        src/server/rtype/Room.cpp
         src/server/rtype/ServerPrompt.cpp
         src/server/ServerCore.cpp
         src/server/main.cpp)
@@ -28,6 +27,7 @@ set(SOURCE_FILES_COMMON
         src/common/game/Enemy.cpp
         src/common/game/MainSystem.cpp
         src/common/game/Player.cpp
+        src/server/rtype/Room.cpp
         src/common/game/Projectile.cpp
         src/common/game/Renderer.cpp
         src/common/game/RenderSystem.cpp)
@@ -58,7 +58,6 @@ set(SOURCE_FILES_GAME_ENGINE
 set(HEADER_FILES_SERVER
         inc/server/CommandManager.hpp
         inc/server/GameManager.hpp
-        inc/server/Room.hpp
         inc/server/ServerCore.hpp
         inc/server/ServerPrompt.hpp)
 
@@ -82,11 +81,14 @@ set(HEADER_FILES_COMMON
         inc/common/network/core/UdpConnection.hpp
         inc/common/network/core/Serializer.hpp
         inc/common/network/packets/APacket.hpp
+        inc/common/network/packets/PacketPlayer.hpp
+        inc/common/network/packets/PacketRoom.hpp
         inc/common/AEntity.hpp
         inc/common/Character.hpp
         inc/common/Enemy.hpp
         inc/common/Player.hpp
-        inc/common/Projectile.hpp inc/common/network/packets/PacketPlayer.hpp)
+        inc/common/Room.hpp
+        inc/common/Projectile.hpp)
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp

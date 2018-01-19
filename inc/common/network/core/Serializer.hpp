@@ -1,5 +1,5 @@
 /**
- * \file main.c
+ * \file Serializer.hpp
  * \brief Serialization Library
  * \author Guillaume CAUCHOIS (guillaume.cauchois@epitech.eu)
  * \version 1.0
@@ -24,19 +24,18 @@
 # include <sstream>
 # include "common/network/packets/APacket.hpp"
 # include "common/network/packets/PacketPlayer.hpp"
+# include "common/network/packets/PacketRoom.hpp"
 
 class Serializer
 {
+
+public:
+
 public:
     Serializer() = default;
+
     virtual ~Serializer() = default;
 
-    /**
-     * Serializer
-     * @tparam Obj : Represent a type to be serialize (type of obj)
-     * @param obj : The object to be seralize
-     * @param the serialize string
-     */
     template <class Obj>
     static std::string    serialize(Obj &obj)
     {
@@ -49,21 +48,34 @@ public:
         return archive_stream.str();
     }
 
-    /**
-     * DeSerializer
-     * @tparam Obj : Represent the end type return
-     * @param buf : The buffer need be deserialize
-     * @return : The new object made by deserialization
-     */
-    static Network::Packet::APacket   *deserialize(const std::string &buf, const Network::Packet::PacketType &type)
+
+    Network::Packet::APacket   *deserialize(const std::string &buf, const Network::Packet::PacketType &type)
     {
-        return deserializePacketPlayer(buf);
+        std::map<Network::Packet::PacketType, std::function<Network::Packet::APacket *(const std::string &)>>    factory;
+
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_PLAYER, std::bind(
+                &Serializer::deserializePacketPlayer,
+                this,
+                std::placeholders::_1)));
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_ROOM, std::bind(
+                &Serializer::deserializePacketRoom,
+                this,
+                std::placeholders::_1)));
+
+        for (auto packetFactory : factory)
+        {
+            if (packetFactory.first == type)
+            {
+                return packetFactory.second(buf);
+            }
+        }
+        return nullptr;
     }
 
-    static Network::Packet::APacket     *deserializePacketPlayer(const std::string &buf)
+    Network::Packet::APacket     *deserializePacketPlayer(const std::string &buf)
     {
         Network::Packet::APacket        *packet;
-        Network::Packet::PacketPlayer   *packetPlayer = new Network::Packet::PacketPlayer;
+        auto                            *packetPlayer = new Network::Packet::PacketPlayer;
 
         std::stringstream          archive_stream(buf);
         {
@@ -71,6 +83,20 @@ public:
             archive >> *packetPlayer;
         }
         packet = packetPlayer;
+        return (packet);
+    }
+
+    Network::Packet::APacket     *deserializePacketRoom(const std::string &buf)
+    {
+        Network::Packet::APacket        *packet;
+        auto                            *packetRoom = new Network::Packet::PacketRoom;
+
+        std::stringstream          archive_stream(buf);
+        {
+            boost::archive::binary_iarchive archive(archive_stream);
+            archive >> *packetRoom;
+        }
+        packet = packetRoom;
         return (packet);
     }
 };

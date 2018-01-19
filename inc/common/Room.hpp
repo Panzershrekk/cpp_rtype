@@ -19,7 +19,7 @@ class Room
   public:
     Room();
     Room(const int &, const int &);
-    virtual ~Room();
+    ~Room();
 
     void			join(const Player &);
     void			leave(const Player &);
@@ -29,6 +29,14 @@ class Room
     int 			setId(const int &);
     std::vector<Player>		getPlayers() const;
     /*void 			sendData(data); preciser le type de data. Type socket ?*/
+
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+        ar & _size;
+        ar & _id;
+        ar & _queue;
+    }
 
 };
 

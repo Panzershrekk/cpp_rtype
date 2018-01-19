@@ -46,7 +46,13 @@ bool    ServerCore::startExchanges()
                                    }
                                    packetType = (Network::Packet::PacketType)dataType;
 
-                                   packet = Serializer::deserialize(std::string(data.begin() + 8, data.begin() + size), packetType);
+                                   Serializer   serializer;
+                                   if (!(packet = serializer.deserialize(std::string(data.begin() + 8, data.begin() + size), packetType)))
+                                   {
+                                       std::cerr << "INVALID TYPE RECEIVED" << std::endl;
+                                       this->startExchanges();
+                                       return;
+                                   }
 
                                    std::cout << "type packet =" << dataType << std::endl;
                                    std::cout << "CP: " << static_cast<Network::Packet::PacketPlayer *>(packet)->getPlayer().getName() << std::endl;
