@@ -13,18 +13,19 @@ class Star
 {
   public:
     Star() {}
-    Star(sf::Uint16, sf::Uint16);
+    Star(int, int);
     ~Star() {}
-    sf::Uint16 getXPos();
-    sf::Uint16 getYPos() const;
-    void setXPos(sf::Uint16);
-    void setYPos(sf::Uint16);
-    void addXPos(sf::Uint16);
-    void addYPos(sf::Uint16);
+
+    int getXPos();
+    int getYPos() const;
+    void setXPos(int);
+    void setYPos(int);
+    void addXPos(int);
+    void addYPos(int);
 
   private:
-    sf::Uint16 xPos;
-    sf::Uint16 yPos;
+    int xPos;
+    int yPos;
 };
 
 #endif //STARFIELD_STAR_HPP

@@ -4,42 +4,38 @@
 
 #include "Star.hpp"
 
-Star::Star(sf::Uint16 p_X_Pos, sf::Uint16 p_Y_Pos)
+Star::Star(int p_X_Pos, int p_Y_Pos)
 {
   xPos = p_X_Pos;
   yPos = p_Y_Pos;
 }
 
-sf::Uint16 Star::getXPos()
+int Star::getXPos()
 {
   return xPos;
 }
 
-sf::Uint16 Star::getYPos() const
+int Star::getYPos() const
 {
   return yPos;
 }
 
-void Star::setXPos(sf::Uint16 x)
+void Star::setXPos(int x)
 {
   xPos = x;
-  return;
 }
 
-void Star::setYPos(sf::Uint16 y)
+void Star::setYPos(int y)
 {
   yPos = y;
-  return;
 }
 
-void Star::addYPos(sf::Uint16 y)
+void Star::addYPos(int y)
 {
   yPos += y;
-  return;
 }
 
-void Star::addXPos(sf::Uint16 x)
+void Star::addXPos(int x)
 {
   xPos += x;
-  return;
 }

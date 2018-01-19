@@ -63,6 +63,8 @@ set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/Graphics.hpp
         inc/gameEngine/Sprite.hpp
         inc/gameEngine/Texture.hpp
+        inc/gameEngine/TimeManager.hpp
+        inc/gameEngine/Window.hpp inc/gameEngine/Image.hpp src/gameEngine/Image.cpp
         inc/gameEngine/Window.hpp
         inc/gameEngine/Mouse.hpp
         inc/gameEngine/Text.hpp
