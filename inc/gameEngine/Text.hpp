@@ -12,6 +12,7 @@ class Text
 {
   private:
     sf::Text	_text;
+    std::string	_str;
     Font	*_font;
 
   public:
@@ -27,6 +28,7 @@ class Text
     void 	setScale(int, int);
 
     sf::Text	&getSfText(void);
+    std::string	getString(void) const;
 };
 
 

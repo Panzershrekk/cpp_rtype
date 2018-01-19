@@ -8,22 +8,22 @@
 #include <unordered_map>
 #include "IMenu.hpp"
 
+enum Buttonchoice {IPButton, PortButton, NameButton, NONE};
+
 class LoginMenu : public IMenu
 {
   private:
     std::map<std::string, Sprite> 	_sprites;
     Text				_ip;
-    std::string				_ipText;
-    bool				_isIPCliked = false;
-  MenuState	&_state;
-
     Text				_port;
-    std::string				_portText;
-    bool				_isPortCliked = false;
-
     Text				_name;
-    std::string				_nameText;
-    bool				_isNameCliked = false;
+
+    //std::vector<std::function<void(Text &, sf::Event)>>	_vecButFunctions;
+
+    MenuState				&_state;
+    Buttonchoice 			_whichBut;
+
+    void getSfLine(Text &, sf::Event &);
 
   public:
     explicit LoginMenu(MenuState &);
@@ -36,6 +36,7 @@ class LoginMenu : public IMenu
     void 	enterIP(Window &, sf::Event &);
     void 	enterPort(Window &, sf::Event &);
     void 	enterName(Window &, sf::Event &);
+    void 	playFunction(Window &, sf::Event &);
 };
 
 

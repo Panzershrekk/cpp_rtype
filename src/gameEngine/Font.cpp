@@ -7,18 +7,17 @@
 
 Font::Font() : _fontPath("")
 {
-  this->_font = new sf::Font();
+  this->_font = std::make_shared<sf::Font>();
 }
 
 Font::Font(const std::string &path) : _fontPath(path)
 {
-  this->_font = new sf::Font();
+  this->_font = std::make_shared<sf::Font>();
   this->_font->loadFromFile(path);
 }
 
 Font::~Font()
 {
-  delete(_font);
 }
 
 void		Font::setFontPath(const std::string &nPath)
@@ -32,7 +31,7 @@ std::string	Font::getFontPath() const
   return (this->_fontPath);
 }
 
-sf::Font	*Font::getSfFont()
+std::shared_ptr<sf::Font>	Font::getSfFont()
 {
   return (this->_font);
 }

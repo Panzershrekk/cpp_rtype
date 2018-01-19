@@ -29,6 +29,7 @@ class Sprite
     ~Sprite();
     Texture	getTexture(void) const;
     void 	setTexture(Texture &);
+    void 	setTexture(const std::string &);
     void 	move(float, float);
     sf::Sprite	getSfSprite(void) const;
 

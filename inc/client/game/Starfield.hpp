@@ -30,8 +30,8 @@ class Starfield
     int maxMediumStars;
     int maxLargeStars;
 
-    sf::Uint16 x_Size;
-    sf::Uint16 y_Size;
+    int x_Size;
+    int y_Size;
 
     vector<Star> smallStars;
     vector<Star> mediumStars;

@@ -20,7 +20,7 @@ class GameManager
 
     void update();
     void spawnEnnemy();
-    void createProjectile();
+    void createProjectile(Player &);
     void addPlayer(Player& player);
 
     void dumpPlayer();
