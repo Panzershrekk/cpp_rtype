@@ -21,6 +21,8 @@ class Player : public Character
     void setName(const std::string &name);
     std::string getName() const;
 
+    void update();
+
   private:
     int _score;
     std::string _name;

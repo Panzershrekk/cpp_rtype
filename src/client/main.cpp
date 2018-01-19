@@ -1,8 +1,11 @@
+#include <client/game/GameRenderer.hpp>
 #include "MenuWindow.hpp"
 
 int main()
 {
-  MenuWindow menu;
+  /*MenuWindow menu;
 
-  menu.start();
+  menu.start();*/
+  GameRenderer p;
+  p.startGame();
 }

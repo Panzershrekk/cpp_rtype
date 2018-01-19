@@ -17,6 +17,8 @@ class Enemy : public Character
     void randomizePosition();
     AIManager getAI() const;
 
+    void update();
+
   private:
     AIManager _ai;
 };

@@ -46,3 +46,7 @@ std::string Player::getName() const
 {
   return this->_name;
 }
+
+void Player::update()
+{
+}

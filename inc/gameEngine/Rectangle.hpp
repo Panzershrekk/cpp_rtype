@@ -16,6 +16,7 @@ class Rectangle
     Rectangle(int left, int top, int width, int height);
     Rectangle(const Rectangle &);
 
+    void changeTopLeft(Position2D& pos);
     bool contains(int x, int y);
     bool contains(const Position2D&);
     bool intersects(const Rectangle &) const;
