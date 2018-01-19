@@ -19,10 +19,7 @@ Sprite::Sprite(const std::string &path) : _sprite(),
 
 Sprite::Sprite(const std::string &path, float x, float y) :_sprite(), _texture(path)
 {
-  sf::Texture	*text = new sf::Texture();
-
-  text->loadFromFile(path);
-  this->_sprite.setTexture(*text);
+  this->_sprite.setTexture(*this->_texture.getSfTexture());
   this->_pos = Position2D(x, y);
   this->_sprite.setPosition(this->_pos.getVector().x, this->_pos.getVector().y);
 }
@@ -59,7 +56,7 @@ Texture		Sprite::getTexture() const
 
 void 		Sprite::setTexture(Texture &texture)
 {
-  this->_sprite.setTexture(texture.getSfTexture());
+  this->_sprite.setTexture(*texture.getSfTexture());
 }
 
 void 		Sprite::move(float x, float y)
@@ -88,6 +85,10 @@ void Sprite::setScale(float x, float y)
   this->_sprite.setScale(x, y);
 }
 
+void Sprite::setTexture(const std::string &path) {
+  this->_texture.getSfTexture()->loadFromFile(path);
+}
+
 void Sprite::move(Position2D &pos)
 {
   this->_pos = pos;
@@ -100,8 +101,10 @@ bool Sprite::isMouseOver(Window& win)
   return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
 }
 
-void Sprite::onClick(std::function<void(void)> f, Window &win)
+void Sprite::onClick(std::function<void(Window &, sf::Event &)> f, Window &win, sf::Event &event)
 {
   if (Mouse::isButtonPressed(Mouse::Left) && isMouseOver(win))
-    f();
+  {
+    f(win, event);
+  }
 }

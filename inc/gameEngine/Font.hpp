@@ -6,11 +6,12 @@
 #define CPP_RTYPE_FONT_HPP_
 
 #include	<SFML/Graphics/Font.hpp>
+#include	<memory>
 
 class Font
 {
   private:
-    sf::Font	*_font;
+    std::shared_ptr<sf::Font>	_font;
     std::string	_fontPath;
 
   public:
@@ -20,7 +21,7 @@ class Font
 
     std::string	getFontPath(void) const;
     void 	setFontPath(const std::string &);
-    sf::Font	*getSfFont(void);
+    std::shared_ptr<sf::Font>	getSfFont(void);
 };
 
 

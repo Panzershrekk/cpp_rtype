@@ -9,6 +9,7 @@
 #include <SFML/Window/Event.hpp>
 #include <TimeManager.hpp>
 #include "PlayablePlayer.hpp"
+#include "EnemyRenderer.hpp"
 
 class GameRenderer
 {
@@ -16,11 +17,14 @@ class GameRenderer
     GameRenderer();
     ~GameRenderer();
     void startGame();
+    void updateEntities();
+    void drawEntities(Window &);
 
   private:
     PlayablePlayer _player;
+    std::vector<EnemyRenderer> _enemies;
     TimeManager _clock;
-
+    TimeManager _attackSpeed;
 };
 
 #endif //CPP_RTYPE_GAMERENDERER_HPP

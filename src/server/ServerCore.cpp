@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "server/ServerCore.hpp"
+#include "ServerCore.hpp"
 
 ServerCore::ServerCore(boost::asio::io_service &service, const Network::Core::Endpoint &ep) :
         _socket(service, ep) {}
@@ -49,5 +49,5 @@ bool    ServerCore::start()
     std::cout << "*       Quentin BAUDET        *" << std::endl;
     std::cout << "*******************************" << std::endl;
     std::cout << std::endl;
-    startExchanges(); //TODO: Guillaume thread l'appel
+  return (startExchanges()); //TODO: Guillaume thread l'appel
 }

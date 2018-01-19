@@ -5,8 +5,9 @@
 #include <game/PlayablePlayer.hpp>
 #include <Joystick.hpp>
 
-PlayablePlayer::PlayablePlayer() : _pos(140, 140), _sprite("../assets/Ship_White.png"), _physic(0, 0, 5)
+PlayablePlayer::PlayablePlayer() : AEntityRenderer("../assets/Ship_White.png"), _physic(0, 0, 5)
 {
+  setPosition(Position2D(140, 140));
   this->_sprite.setPosition(this->_pos);
 }
 
@@ -32,25 +33,27 @@ void PlayablePlayer::update()
       this->_pos -= Position2D(0, this->_physic.getSpeed());
     if (Keyboard::isKeyPressed(Keyboard::Key::Down))
       this->_pos += Position2D(0, this->_physic.getSpeed());
-    if (Keyboard::isKeyPressed(Keyboard::Key::Space))
-      fire();
   }
   this->_sprite.setPosition(this->_pos);
 }
 
 void PlayablePlayer::fire()
 {
-  std::cout << "" << std::endl;
+  this->_projectile.emplace_back(ProjectileRenderer(this->_pos));
 }
 
+std::vector<ProjectileRenderer> &PlayablePlayer::getProjectileVector() {
+    return this->_projectile;
+}
 
-Sprite &PlayablePlayer::getSprite()
+void PlayablePlayer::forbiddenMove(Window &win)
 {
-  return (this->_sprite);
+  if (this->_pos.getX() < 10)
+    this->_pos = Position2D(11, this->_pos.getY());
+  if (this->_pos.getY() < 10)
+    this->_pos = Position2D(this->_pos.getX(), 11);
+  if (this->_pos.getX() > win.getRenderWindow().getSize().x - 10)
+    this->_pos = Position2D(win.getRenderWindow().getSize().x - 11, this->_pos.getY());
+  if (this->_pos.getY() > win.getRenderWindow().getSize().y - 10)
+    this->_pos = Position2D(this->_pos.getX(), win.getRenderWindow().getSize().y - 11);
 }
-
-Position2D PlayablePlayer::getPosition() const
-{
-  return (this->_pos);
-}
-
