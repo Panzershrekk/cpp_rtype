@@ -63,9 +63,9 @@ void GameRenderer::startGame()
       e.update();
       updateEntities();
       this->_player.forbiddenMove(window);
+      backgroundStars.updateStarfield();
       this->_clock.restartTimer();
     }
-
       starsTexture.loadFromImage(starsImage.getImage());
       backgroundStars.drawStarfield(*starsTexture.getSfTexture());
 
@@ -80,13 +80,13 @@ void GameRenderer::startGame()
       this->_attackSpeed.restartTimer();
     }
 
-
     window.draw(this->_player.getSprite());
     window.draw(e.getSprite());
     //drawProjectile(window);
+    drawEntities(window);
+
     window.display();
 
-   backgroundStars.updateStarfield();
   }
 }
 
