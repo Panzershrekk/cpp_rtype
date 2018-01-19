@@ -28,7 +28,8 @@ void GameRenderer::startGame()
 
 
     Image starsImage;
-    starsImage.create(xSize, ySize, sf::Color::Black);
+  Color c(0, 0, 0);
+    starsImage.create(xSize, ySize, c.getColor().Black);
 
     Texture starsTexture;
     starsTexture.loadFromImage(starsImage.getImage());

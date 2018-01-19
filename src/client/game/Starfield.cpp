@@ -22,19 +22,20 @@ Starfield::Starfield(int xResolution, int yResolution)
   int largeSize = 4;
 
   //create the images that will be used to update the background texture
+  Color c(0, 0, 0);
   smallStarImage.create(static_cast<unsigned int>(smallSize),
-			static_cast<unsigned int>(smallSize), sf::Color::White); //TODO Encapsulé sf::Color
+			static_cast<unsigned int>(smallSize), c.getColor().White); //TODO Encapsulé sf::Color
   mediumStarImage.create(static_cast<unsigned int>(mediumSize),
-			 static_cast<unsigned int>(mediumSize), sf::Color::White);
+			 static_cast<unsigned int>(mediumSize), c.getColor().White);
   largeStarImage.create(static_cast<unsigned int>(largeSize),
-			static_cast<unsigned int>(largeSize), sf::Color::White);
+			static_cast<unsigned int>(largeSize), c.getColor().White);
 
   //init random generator
   my_distribution_x = std::uniform_int_distribution<int>(0, xResolution);
   my_distribution_y = std::uniform_int_distribution<int>(0, yResolution);
 
   re_x.seed(static_cast<unsigned long>(std::time(0)));
-  re_y.seed(static_cast<unsigned long>(std::time(0) + 24)); 
+  re_y.seed(static_cast<unsigned long>(std::time(0) + 24));
 
   //The higher reduceStars the fewer stars; classDifference sets the proportionality between small, medium and large stars. The higher the number, the fewer stars in each larger class.
   int reduceStars = 20;
@@ -43,11 +44,6 @@ Starfield::Starfield(int xResolution, int yResolution)
   maxSmallStars = (xResolution / (reduceStars * 10)) * (yResolution / reduceStars);
   maxMediumStars = (xResolution / (reduceStars * 10 * classDifference)) * (yResolution / (reduceStars * classDifference));
   maxLargeStars = (xResolution / (reduceStars * 10 * classDifference * classDifference)) * (yResolution / (reduceStars * classDifference * classDifference));
-   /*
-  maxSmallStars = 300;
-  maxMediumStars = 80;
-  maxLargeStars = 30;
-   */
 
   //generate a start set of stars
   while((int)smallStars.size() <= maxSmallStars){

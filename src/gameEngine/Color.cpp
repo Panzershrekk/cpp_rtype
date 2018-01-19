@@ -34,7 +34,13 @@ int	Color::getBlue(void) const
   return this->_color.b;
 }
 
+sf::Color Color::getColor(void) const {
+  return sf::Color();
+}
+
 int	Color::getAlpha(void) const
 {
   return this->_color.a;
 }
+
+
