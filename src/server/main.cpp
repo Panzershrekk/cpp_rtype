@@ -18,8 +18,8 @@ int main()
   }
   return 0;*/
   GameManager gameManager;
-  boost::asio::io_service     service;
-  ServerCore                  server(service, Network::Core::Endpoint(4244));
+  /*boost::asio::io_service     service;
+  ServerCore                  server(service, Network::Core::Endpoint(4244));*/
 
   Player player("Noobdu59");
   Player player1("XXX_PUSSY_DESTROYER_XXX");
@@ -30,16 +30,13 @@ int main()
   gameManager.addPlayer(player1);
   gameManager.addPlayer(player2);
   gameManager.addPlayer(player3);
-    gameManager.dumpPlayer();
-    gameManager.spawnEnnemy();
-    gameManager.dumpEnnemy();
-    
-
   gameManager.dumpPlayer();
   gameManager.spawnEnnemy();
-  gameManager.spawnEnnemy();
+  gameManager.dumpEnnemy();
+
+  gameManager.dumpPlayer();
   gameManager.update();
-    server.start();
-    service.run();
+    /*server.start();
+    service.run();*/
     return 0;
 }

@@ -11,12 +11,12 @@ class Position2D
 {
 private:
     sf::Vector2<float>  _vector2;
-    float               _x;
-    float               _y;
+    int               _x;
+    int               _y;
 
 public:
     Position2D();
-    Position2D(const float &, const float &);
+    Position2D(int, int);
     Position2D(const Position2D&);
 
     Position2D operator+(const Position2D&) const;
@@ -28,8 +28,8 @@ public:
     bool operator==(const Position2D&) const;
     bool operator!=(const Position2D&) const;
 
-    const float &getX() const;
-    const float &getY() const;
+    int getX() const;
+    int getY() const;
 
     sf::Vector2<float> getVector() const;
 
