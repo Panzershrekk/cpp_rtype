@@ -9,7 +9,7 @@
 LoginMenu::LoginMenu(MenuState & state) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
 			 _port("", "../Triumph-wheels-rough.ttf", 255, 220),
 			 _name("", "../Triumph-wheels-rough.ttf", 255, 370),
-			 _state(state)
+			 _state(state), _client()
 {
 
 
@@ -50,7 +50,20 @@ void LoginMenu::enterName(Window &win, sf::Event &event)
 
 void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
-  this->_state = ERoomListMenu;
+  try {
+    boost::asio::ip::tcp::endpoint endpoint(
+      boost::asio::ip::address::from_string(_ip.getString()),
+      static_cast<unsigned short>(std::stoi(_port.getString())));
+
+    std::cout << _ip.getString() << std::endl;
+    std::cout << static_cast<unsigned short>(std::stoi(_port.getString())) << std::endl;
+    _client = std::make_unique<TcpClient>(_io_service, endpoint);
+    this->_state = ERoomListMenu;
+  }
+  catch (std::exception& e)
+  {
+    std::cout << e.what() << std::endl;
+  }
 }
 
 void LoginMenu::getSfLine(Text &text, sf::Event &event)
@@ -106,3 +119,4 @@ void LoginMenu::draw(Window &win)
   win.draw(this->_port);
   win.draw(this->_name);
 }
+

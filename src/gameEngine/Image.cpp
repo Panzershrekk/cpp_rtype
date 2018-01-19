@@ -5,8 +5,13 @@
 #include "Image.hpp"
 
 
-Image::Image() {
+Image::Image()
+{
+}
 
+Image::Image(std::string &path)
+{
+  _image.loadFromFile(path);
 }
 
 void Image::create(int x, int y, const sf::Color color) {
@@ -19,6 +24,22 @@ void Image::setImage(sf::Image image) {
 
 sf::Image Image::getImage() const {
     return this->_image;
+}
+
+
+unsigned int Image::getHeight()
+{
+  return _image.getSize().y;
+}
+
+const sf::Uint8* Image::getPixelsPtr()
+{
+  return (_image.getPixelsPtr());
+}
+
+unsigned int Image::getWidht()
+{
+  return _image.getSize().x;
 }
 
 Image::~Image() = default;

@@ -35,7 +35,9 @@ set(SOURCE_FILES_CLIENT
         src/client/game/ProjectileRenderer.cpp
         src/client/game/Star.cpp
         src/client/game/Starfield.cpp
-        src/client/main.cpp)
+        src/client/main.cpp
+        src/client/network/TcpClient.cpp
+        src/client/network/TcpClientConnections.cpp)
 
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
@@ -103,7 +105,9 @@ set(HEADER_FILES_CLIENT
         inc/client/RenderSystem.hpp
         inc/client/game/Star.hpp
         inc/client/game/Starfield.hpp
-        inc/client/game/ProjectileRenderer.hpp)
+        inc/client/game/ProjectileRenderer.hpp
+        inc/client/network/TcpClient.hpp
+        inc/client/network/TcpClientConnections.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
@@ -148,6 +152,7 @@ include_directories("inc/client/menu")
 include_directories("inc/client/game")
 include_directories("inc/server/gameManager")
 include_directories("inc/server/network")
+include_directories("inc/client/network")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
 add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON})

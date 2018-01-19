@@ -16,6 +16,7 @@
 #include	"LoginMenu.hpp"
 #include	"RoomListMenu.hpp"
 #include	"LobbyMenu.hpp"
+#include	"Image.hpp"
 
 class MainMenu;
 
