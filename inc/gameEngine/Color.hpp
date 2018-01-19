@@ -16,6 +16,7 @@ class Color
     Color();
     Color(int, int, int);
     Color(int, int, int, int);
+  sf::Color getColor(void) const;
     int getRed(void) const;
     int getGreen(void) const;
     int getBlue(void) const;

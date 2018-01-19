@@ -10,12 +10,16 @@
 
 class Rectangle
 {
+private:
+    sf::IntRect _rect;
+
   public:
     Rectangle();
     ~Rectangle();
     Rectangle(int left, int top, int width, int height);
     Rectangle(const Rectangle &);
 
+    void changeTopLeft(Position2D& pos);
     bool contains(int x, int y);
     bool contains(const Position2D&);
     bool intersects(const Rectangle &) const;
@@ -23,8 +27,10 @@ class Rectangle
 
     sf::IntRect getIntRect() const;
 
-  private:
-    sf::IntRect _rect;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+    }
 };
 
 #endif //CPP_RTYPE_RECTANGLE_HPP

@@ -13,19 +13,19 @@ class Star
 {
   public:
     Star() {}
-    Star(int, int);
+    Star(float, float);
     ~Star() {}
 
-    int getXPos();
-    int getYPos() const;
-    void setXPos(int);
-    void setYPos(int);
-    void addXPos(int);
-    void addYPos(int);
+    float getXPos() const;
+    float getYPos() const;
+    void setXPos(float);
+    void setYPos(float);
+    void addXPos(float);
+    void addYPos(float);
 
   private:
-    int xPos;
-    int yPos;
+    float xPos;
+    float yPos;
 };
 
 #endif //STARFIELD_STAR_HPP

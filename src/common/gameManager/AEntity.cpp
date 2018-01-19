@@ -11,12 +11,17 @@ AEntity::AEntity()
   id++;
 }
 
+AEntity::~AEntity() {
+
+}
+
+
 void AEntity::setPosition(Position2D &pos)
 {
   this->_pos = pos;
 }
 
-Position2D AEntity::getPosition() const
+Position2D& AEntity::getPosition()
 {
   return this->_pos;
 }
