@@ -39,11 +39,21 @@ void PlayablePlayer::update()
 
 void PlayablePlayer::fire()
 {
-  std::cout << "Fire" << std::endl;
-    ProjectileRenderer p(this->_pos);
-    this->_projectile.push_back(p);
+  this->_projectile.emplace_back(ProjectileRenderer(this->_pos));
 }
 
 std::vector<ProjectileRenderer> &PlayablePlayer::getProjectileVector() {
     return this->_projectile;
+}
+
+void PlayablePlayer::forbiddenMove(Window &win)
+{
+  if (this->_pos.getX() < 10)
+    this->_pos = Position2D(11, this->_pos.getY());
+  if (this->_pos.getY() < 10)
+    this->_pos = Position2D(this->_pos.getX(), 11);
+  if (this->_pos.getX() > win.getRenderWindow().getSize().x - 10)
+    this->_pos = Position2D(win.getRenderWindow().getSize().x - 11, this->_pos.getY());
+  if (this->_pos.getY() > win.getRenderWindow().getSize().y - 10)
+    this->_pos = Position2D(this->_pos.getX(), win.getRenderWindow().getSize().y - 11);
 }

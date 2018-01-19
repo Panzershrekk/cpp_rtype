@@ -61,6 +61,8 @@ void GameRenderer::startGame()
     {
       this->_player.update();
       e.update();
+      updateEntities();
+      this->_player.forbiddenMove(window);
       this->_clock.restartTimer();
     }
 
@@ -88,11 +90,18 @@ void GameRenderer::startGame()
   }
 }
 
-void GameRenderer::drawProjectile(Window & window)
+void GameRenderer::drawEntities(Window & window)
 {
     for (auto &it : this->_player.getProjectileVector())
-    {
-        it.update();
         window.draw(it.getSprite());
-    }
+    for (auto &it2 : this->_enemies)
+      window.draw(it2.getSprite());
+}
+
+void GameRenderer::updateEntities()
+{
+  for (auto &it : this->_player.getProjectileVector())
+    it.update();
+  for (auto &it2 : this->_enemies)
+    it2.update();
 }

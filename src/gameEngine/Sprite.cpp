@@ -88,6 +88,10 @@ void Sprite::setScale(float x, float y)
   this->_sprite.setScale(x, y);
 }
 
+void Sprite::setTexture(const std::string &path) {
+  this->_texture.getSfTexture().loadFromFile(path);
+}
+
 void Sprite::move(Position2D &pos)
 {
   this->_pos = pos;
@@ -100,10 +104,10 @@ bool Sprite::isMouseOver(Window& win)
   return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
 }
 
-void Sprite::onClick(std::function<void(Window &)> f, Window &win)
+void Sprite::onClick(std::function<void(Window &, sf::Event &)> f, Window &win, sf::Event &event)
 {
   if (Mouse::isButtonPressed(Mouse::Left) && isMouseOver(win))
   {
-    f(win);
+    f(win, event);
   }
 }

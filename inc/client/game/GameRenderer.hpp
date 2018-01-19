@@ -17,7 +17,8 @@ class GameRenderer
     GameRenderer();
     ~GameRenderer();
     void startGame();
-    void drawProjectile(Window &);
+    void updateEntities();
+    void drawEntities(Window &);
 
   private:
     PlayablePlayer _player;

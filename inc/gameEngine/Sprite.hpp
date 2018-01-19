@@ -29,6 +29,7 @@ class Sprite
     ~Sprite();
     Texture	getTexture(void) const;
     void 	setTexture(Texture &);
+    void 	setTexture(const std::string &);
     void 	move(float, float);
     sf::Sprite	getSfSprite(void) const;
 
@@ -38,7 +39,7 @@ class Sprite
     void move(Position2D&);
 
     bool isMouseOver(Window &);
-    void onClick(std::function<void(Window &)>, Window &);
+    void onClick(std::function<void(Window &, sf::Event &)>, Window &, sf::Event &);
 };
 
 

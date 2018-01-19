@@ -15,9 +15,7 @@ AIManager::~AIManager()
 
 Position2D& AIManager::PredefinedRightToLeft(Position2D &pos, int speed)
 {
-  //float y = sin(x * 400);
-
-  Position2D pos2(speed, sin((pos.getX() * 400)) *10);
+  Position2D pos2(speed, 0);
 
   pos -= pos2;
   return (pos);
@@ -31,10 +29,26 @@ Position2D &AIManager::PredefinedBottomToTop(Position2D &pos, int speed)
   return (pos);
 }
 
-/*Position2D &AIManager::PredefinedRightToLeftSinusoidale(Position2D &, int speed)
+Position2D &AIManager::PredefinedRightToLeftSinus(Position2D &pos, int speed)
 {
-  Position2D pos2(speed, 0);
+  Position2D pos2(speed,cos((pos.getX() * 400)) *10);
 
   pos -= pos2;
   return (pos);
-}*/
+}
+
+Position2D &AIManager::PredefinedLeftToRight(Position2D &pos, int speed)
+{
+    Position2D pos2(speed, 0);
+
+    pos += pos2;
+    return (pos);
+}
+
+Position2D &AIManager::PredefinedLeftToRightSinus(Position2D &pos, int speed)
+{
+    Position2D pos2(speed, sin((pos.getX() * 400)) *10);
+
+    pos += pos2;
+    return (pos);
+}

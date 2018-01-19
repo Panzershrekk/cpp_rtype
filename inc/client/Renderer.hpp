@@ -6,6 +6,7 @@
 #define CPP_RTYPE_RENDERER_HPP
 
 #include <vector>
+#include <memory>
 #include "Entity.hpp"
 
 class Renderer

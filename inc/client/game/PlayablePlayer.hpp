@@ -19,6 +19,7 @@ class PlayablePlayer : public AEntityRenderer
     ~PlayablePlayer();
     void fire();
     void update();
+    void forbiddenMove(Window &);
     std::vector<ProjectileRenderer> & getProjectileVector();
 
   private:

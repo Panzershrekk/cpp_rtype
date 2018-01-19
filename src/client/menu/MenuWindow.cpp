@@ -2,42 +2,40 @@
 // Created by grodin on 15/01/18.
 //
 
-#include	"menu/MenuWindow.hpp"
+#include	"MenuWindow.hpp"
+#include	<iostream>
 
-MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080), _mainMenu()
+MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
 {
-  this->_menuState = EMainMenu;
-  //TODO : Reset la position de la souris pour eviter le bug du clic save
+  _vecMenu.push_back(std::shared_ptr<IMenu>(_mainMenu));
+  _vecMenu.push_back(std::shared_ptr<IMenu>(_loginMenu));
+  _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
+  _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
+
+  this->_state = ERoomListMenu;
 }
 
 MenuWindow::~MenuWindow()
 {
 }
 
-void MenuWindow::update()
+void MenuWindow::update(sf::Event &event)
 {
-  _mainMenu.update(this->_win);
+  _vecMenu.at(_state)->update(_win, event);
 }
 
 void MenuWindow::start()
 {
   while (_win.isOpen())
   {
-    sf::Event event;
-
+    sf::Event	event;
     while (_win.pollEvent(event))
     {
-      update();
-      switch (event.type)
-      {
-	case sf::Event::Closed:
-	  _win.close();
-
-	  break;
-      }
+      update(event);
+      switch (event.type);
     }
     _win.clear();
-    _mainMenu.draw(_win);
+    _vecMenu.at(_state)->draw(_win);
     _win.display();
   }
 }

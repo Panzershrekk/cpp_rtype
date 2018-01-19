@@ -3,8 +3,9 @@
 //
 
 #include <ProjectileRenderer.hpp>
+#include <gameEngine/AIManager.hpp>
 
-ProjectileRenderer::ProjectileRenderer(Position2D  pos) : AEntityRenderer("../assets/Missile.png")
+ProjectileRenderer::ProjectileRenderer(Position2D  pos) : AEntityRenderer("../assets/boule.png")
 {
     setPosition(pos + Position2D(20, 0));
     this->_sprite.setPosition(this->_pos);
@@ -21,6 +22,8 @@ void ProjectileRenderer::update()
 
 void ProjectileRenderer::simulate()
 {
-    this->_pos += Position2D(1, 0);
+    AIManager ai;
+
+    ai.PredefinedLeftToRight(this->_pos, 10);
     this->_sprite.setPosition(this->_pos);
 }

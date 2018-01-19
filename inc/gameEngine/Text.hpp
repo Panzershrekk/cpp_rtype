@@ -12,11 +12,13 @@ class Text
 {
   private:
     sf::Text	_text;
+    std::string	_str;
     Font	*_font;
 
   public:
     explicit Text();
     Text(const std::string &, const std::string &);
+    Text(const std::string &, const std::string &, float, float);
     ~Text();
 
     void 	setFont(const std::string &);
@@ -26,6 +28,7 @@ class Text
     void 	setScale(int, int);
 
     sf::Text	&getSfText(void);
+    std::string	getString(void) const;
 };
 
 

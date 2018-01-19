@@ -14,9 +14,13 @@ class AIManager
     ~AIManager();
 
     Position2D& PredefinedRightToLeft(Position2D &, int speed);
+    Position2D& PredefinedLeftToRight(Position2D &, int speed);
     Position2D& PredefinedBottomToTop(Position2D &, int speed);
+    Position2D& PredefinedRightToLeftSinus(Position2D &, int speed);
+    Position2D& PredefinedLeftToRightSinus(Position2D &, int speed);
 
-  private:
+
+private:
 
 };
 
