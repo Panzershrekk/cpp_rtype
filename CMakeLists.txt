@@ -14,8 +14,10 @@ set(SOURCE_FILES_SERVER
         src/server/rtype/Room.cpp
         src/server/rtype/ServerPrompt.cpp
         src/server/ServerCore.cpp
-        src/server/main.cpp)
-        inc/server/network/TcpConnections.hpp
+        src/server/main.cpp
+        src/server/network/TcpConnections.cpp
+        src/server/network/TcpServer.cpp
+        src/server/network/TcpHandler.cpp)
 
 set(SOURCE_FILES_CLIENT
 
@@ -76,7 +78,10 @@ set(HEADER_FILES_SERVER
         inc/server/gameManager/AEntity.hpp
         inc/server/gameManager/Character.hpp
         inc/server/gameManager/Enemy.hpp
-        inc/server/gameManager/Player.hpp)
+        inc/server/gameManager/Player.hpp
+        inc/server/network/TcpConnections.hpp
+        inc/server/network/TcpServer.hpp
+        inc/server/network/TcpHandler.hpp)
 
 set(HEADER_FILES_CLIENT
         inc/client/game/AEntityRenderer.hpp
@@ -142,6 +147,7 @@ include_directories("inc/client")
 include_directories("inc/client/menu")
 include_directories("inc/client/game")
 include_directories("inc/server/gameManager")
+include_directories("inc/server/network")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
 add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON})

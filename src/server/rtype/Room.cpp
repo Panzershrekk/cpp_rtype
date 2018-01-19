@@ -24,12 +24,12 @@ void	Room::leave(const Player &player)
     }
 }
 
-int		Room::setSize(const int &size)
+void		Room::setSize(const int &size)
 {
     this->_size = size;
 }
 
-int		Room::setId(const int &id)
+void		Room::setId(const int &id)
 {
     this->_id = id;
 }
