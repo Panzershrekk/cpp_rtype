@@ -19,6 +19,8 @@
 # include "common/network/core/Endpoint.hpp"
 # include "Serializer.hpp"
 # include "common/network/core/Error.hpp"
+# include "common/network/packets/APacket.hpp"
+# define MAX_READ (1500)
 
 namespace Network
 {
@@ -28,11 +30,7 @@ namespace Network
         {
         private:
             boost::asio::ip::udp::socket    _socket;
-            char                            _inboundHeader[8];
             std::string                     _inboundData;
-            std::size_t                     _dataSize = 0;
-            std::string                     _outboundData;
-            std::string                     _outboundHeader;
 
         public:
             UdpConnection(boost::asio::io_service &ioService, const Endpoint &ep) :
@@ -50,23 +48,14 @@ namespace Network
             }
 
             template <typename Handler>
-            void    async_write(const Network::Packet::APacket &packet, const Endpoint &endpoint, Handler handler)
+            void    async_write(const std::string &data, const Endpoint &endpoint, Handler handler)
             {
                 try
                 {
-                    this->_outboundData = Serializer::serialize(packet);
-
-                    std::ostringstream      headerStream;
-                    headerStream << std::setw(4) << std::hex << this->_outboundData.size();
-                    headerStream << std::setw(4) << std::hex << packet.getType();
-
-                    if (!headerStream || headerStream.str().size() != 8)
-                        return;
-                    this->_outboundHeader = headerStream.str();
-                    std::vector<boost::asio::const_buffer>  buffers;
-                    buffers.push_back(boost::asio::buffer(this->_outboundHeader));
-                    buffers.push_back(boost::asio::buffer(this->_outboundData));
-                    this->_socket.async_send_to(buffers, endpoint.getBoostEndpoint(), 0, handler);
+                    this->_socket.async_send_to(boost::asio::buffer(data),
+                                                endpoint.getBoostEndpoint(),
+                                                0,
+                                                handler);
                 }
                 catch (const std::exception &e)
                 {
@@ -74,111 +63,22 @@ namespace Network
                 }
             }
 
-            template <typename Handler, typename HandlerEndpoint>
-            void        read(std::stringstream &ss, Handler handler, HandlerEndpoint handlerEp)
+            template <typename Handler>
+            void        read(std::array<char, MAX_READ> &data, boost::asio::ip::udp::endpoint &ep, Handler handler)
             {
-                boost::system::error_code       errorCode;
-
                 try
                 {
-                    boost::asio::ip::udp::endpoint          boostEndpointRemote;
-                    std::array<char, 8>                     bufferHeader;
-
-                    this->_socket.receive_from(boost::asio::buffer(bufferHeader),
-                                               boostEndpointRemote, 0, errorCode);
-                    if (errorCode)
-                        handler(Error(INVALID_READ));
-                    for (auto i = 0; i != 8; ++i) { this->_inboundHeader[i] = 0; }
-                    for (int i = 0; i < 8; ++i) { this->_inboundHeader[i] = bufferHeader[i]; }
-                    Endpoint remoteEndpoint(boostEndpointRemote.address().to_string(),
-                                            boostEndpointRemote.port());
-                    handlerEp(remoteEndpoint); // HANDLE NEW ENDPOINT
+                    this->_socket.async_receive_from(boost::asio::buffer(data),
+                                                     ep,
+                                                     handler
+                    );
                 }
                 catch (const std::exception &e)
                 {
-                    handler(Error(INVALID_READ));
-                }
-                handleReadHeader(Error(NO_ERROR), ss, handler, handlerEp);
-            }
-
-            template<typename Handler, typename HandlerEndpoint>
-            void    handleReadHeader(const Network::Core::Error &e,
-                                     std::stringstream &ss,
-                                     Handler handler,
-                                     HandlerEndpoint handlerEp)
-            {
-                boost::system::error_code   errorCode;
-
-                if (e.getCode() != NO_ERROR)
-                    handler(e);
-                else
-                {
-                    std::size_t         packetType = 0;
-
-                    try
-                    {
-                        std::istringstream  isDatasize(std::string(this->_inboundHeader, 8));
-                        if (!(isDatasize >> std::setw(8) >> std::hex >> this->_dataSize))
-                        {
-                            handler(Error(INVALID_HEADER_FORMAT));
-                            return;
-                        }
-                        this->_inboundData.clear();
-                        this->_inboundData.resize(this->_dataSize);
-
-                        /**
-                         * READ DATA
-                         */
-                        boost::asio::ip::udp::endpoint              boostEndpointRemote;
-                        std::array<char, 1000>                      bufferData;
-
-                        if (this->_dataSize > 1000)
-                        {
-                            handler(Error(INVALID_READ));
-                            std::cerr << "DATA TOO LONG" << std::endl;
-                            return;
-                        }
-                        for (auto i = 0; i != 1000; ++i)
-                        {
-                            bufferData[i] = 0;
-                        }
-                        this->_socket.receive_from(boost::asio::buffer(bufferData, this->_dataSize),
-                                                   boostEndpointRemote, 0, errorCode);
-                        std::cout << std::endl;
-                        if (errorCode)
-                        {
-                            handler(Error(INVALID_READ));
-                            return;
-                        }
-                        this->_inboundData = std::string(bufferData.begin(), bufferData.begin() + this->_dataSize);
-                        Endpoint   remoteEndpoint(boostEndpointRemote.address().to_string(),
-                                                  boostEndpointRemote.port());
-                        handlerEp(remoteEndpoint);
-                        handleReadData(Error(NO_ERROR), ss, handler ,handlerEp);
-                    }
-                    catch (const std::exception &e)
-                    {
-                        handler(Error(INVALID_HEADER_FORMAT));
-                        return;
-                    }
+                    // IGNORED
                 }
             }
 
-            template<typename Handler, typename HandlerEndpoint>
-            void    handleReadData(const Network::Core::Error &e,
-                                   std::stringstream &ss,
-                                   Handler handler,
-                                   HandlerEndpoint handlerEp)
-            {
-                if (e.getCode() != NO_ERROR)
-                {
-                    handler(e);
-                    return;
-                }
-                ss = std::stringstream("");
-                ss << this->_inboundData;
-                handler(Error(NO_ERROR));
-            }
         };
     }
 }

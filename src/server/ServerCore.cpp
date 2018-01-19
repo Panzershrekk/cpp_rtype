@@ -10,7 +10,9 @@
 
 #include <iostream>
 #include <sstream>
+#include <common/network/packets/PacketPlayer.hpp>
 #include "server/ServerCore.hpp"
+#include "common/network/packets/APacket.hpp"
 
 ServerCore::ServerCore(boost::asio::io_service &service, const Network::Core::Endpoint &ep) :
         _socket(service, ep) {}
@@ -19,22 +21,36 @@ ServerCore::~ServerCore() = default;
 
 bool    ServerCore::startExchanges()
 {
-    while (1)
-    {
-        this->_socket.read(this->_ss,
-                           [this] (const Network::Core::Error &e)
-                           {
-                               if (e.getCode() == Network::Core::NO_ERROR)
-                                   std::cout << "-- Packet has been received : [" << this->_ss.str() << "]" << std::endl;
-                               else
-                                   std::cout << "-- ERROR [" << e.getCode() << "] " << e.getMessage() << std::endl;
-                           },
-                           [this](const Network::Core::Endpoint &ep)
-                           {
-                               std::cout << "-- NEW CLIENT [" << ep.getIp() << ":"<< ep.getPort() << "]" << std::endl;
-                           });
-    }
+        std::array<char, MAX_READ> data{ 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
+        boost::asio::ip::udp::endpoint  endpoint;
 
+        this->_socket.read(data, endpoint,
+                           [&](boost::system::error_code error, std::size_t size)
+                           {
+                               Network::Packet::APacket     packet;
+                               Network::Packet::PacketPlayer    pp;
+
+                               if (error || size <= 0)
+                               {
+                                   std::cerr << "PACKET CORROMPU" << std::endl;
+                               }
+                               try
+                               {
+                                   std::cout << std::string(data.begin(), data.begin() + size) << std::endl;
+                                   Serializer::deserialize(std::string(data.begin(), data.begin() + size), pp);
+                                   /*Network::Packet::PacketPlayer     *packetPlayer = new Network::Packet::PacketPlayer();
+                                   *packetPlayer = static_cast<Network::Packet::PacketPlayer>(packet);
+                                   std::cout << "name = " << packetPlayer->getPlayer().getName() << std::endl;*/
+                                   std::cout << "name = " << pp.getPlayer().getName() << std::endl;
+
+                               }
+                               catch (const std::exception &exept)
+                               {
+                                   std::cerr << exept.what() << std::endl;
+                               }
+                               this->startExchanges();
+                           }
+        );
 }
 
 bool    ServerCore::start()

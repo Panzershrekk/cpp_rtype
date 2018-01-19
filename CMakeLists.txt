@@ -1,6 +1,7 @@
 # PROJECT CONFIGURATION
 cmake_minimum_required(VERSION 3.8.2)
 project(cpp_rtype)
+SET(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES_SERVER
@@ -118,6 +119,8 @@ include_directories("inc/common")
 include_directories("inc/server")
 include_directories("inc/client")
 
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
+
 add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
 
@@ -125,7 +128,7 @@ add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${SOU
 set(Boost_USE_STATIC_LIBS       ON)
 set(Boost_USE_MULTITHREADED     ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
-find_package(Boost 1.65.1 COMPONENTS system serialization)
+find_package(Boost 1.66 COMPONENTS system serialization)
 if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(r-type-client ${Boost_LIBRARIES})

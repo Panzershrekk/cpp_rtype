@@ -24,7 +24,9 @@ namespace Network
             PacketType      _type;
 
         public:
+            APacket() : _type(UNDEFINED) {}
             explicit APacket(const PacketType &type) : _type(type) {}
+            APacket(const APacket& obj) { *this = obj; }
 
             PacketType		getType(void) const {return this->_type;}
             void			setType(const PacketType &type) {this->_type = type;}

@@ -29,6 +29,7 @@ namespace Network
             Endpoint(const std::string &, const unsigned short &);
             Endpoint(const unsigned short &);
             Endpoint(const Endpoint &);
+            Endpoint();
             ~Endpoint();
 
             Endpoint    &operator=(const Endpoint &);

@@ -43,7 +43,6 @@ public:
             boost::archive::binary_oarchive archive(archive_stream);
             archive << obj;
         }
-
         std::string test = archive_stream.str();
         return archive_stream.str();
     }

@@ -26,6 +26,13 @@ public:
 
     void setName(const std::string &name);
     std::string getName() const;
+
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+        ar & _score;
+        ar & _name;
+    }
 };
 
 #endif //CPP_RTYPE_PLAYER_HPP
