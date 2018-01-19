@@ -58,10 +58,12 @@ void LoginMenu::getSfLine(Text &text, sf::Event &event)
   std::string str = text.getString();
 
   if (event.type == sf::Event::TextEntered) {
-    if (event.text.unicode == '\b')
-      str.erase(str.size() - 1, 1);
+    if (event.text.unicode == '\b') {
+      if (!str.empty())
+	str.erase(str.size() - 1, 1);
+    }
     else
-      str += static_cast<char>(event.text.unicode);
+    	str += static_cast<char>(event.text.unicode);
     text.setString(str);
   }
 }
