@@ -12,7 +12,6 @@ LobbyMenu::LobbyMenu(MenuState &state) :
 
 }
 
-
 LobbyMenu::~LobbyMenu()
 = default;
 
