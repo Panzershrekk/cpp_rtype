@@ -12,8 +12,9 @@ class Music : public IAudio
   public:
     Music();
     Music(const std::string &, const std::string &);
+  Music(const Music &);
     virtual ~Music();
-    void loadAudio(const std::string & filename, const std::string &);
+    void loadAudio(const std::string & , const std::string &);
     void playAudio();
     void stopAudio();
     void setAudioVolume(float);
@@ -24,6 +25,7 @@ class Music : public IAudio
     void setLoop(bool);
     void setMusicFilePath(std::string);
     std::string getMusicFilePath() const;
+  sf::Music getMusic() const;
 
   private:
     sf::Music		_music;

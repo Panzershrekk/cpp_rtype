@@ -5,6 +5,8 @@
 
 #include <Enemy.hpp>
 #include <gameEngine/Image.hpp>
+#include <gameEngine/Music.hpp>
+#include <gameEngine/MusicManager.hpp>
 #include "game/EnemyRenderer.hpp"
 #include "client/game/Starfield.hpp"
 #include "game/GameRenderer.hpp"
@@ -26,7 +28,7 @@ void GameRenderer::startGame()
     Window window("RTYPE", 1200, 1200);
     EnemyRenderer e;
 
-
+  /* STARFIELD */
     Image starsImage;
   Color c(0, 0, 0);
     starsImage.create(xSize, ySize, c.getColor().Black);
@@ -42,8 +44,12 @@ void GameRenderer::startGame()
     starsSprite.setPosition(p);
 
     Starfield backgroundStars(1200, 1200);
+/* starfield */
 
-
+  MusicManager m;
+  Music music("../resources/MainMenu.ogg", "MainMenu");
+  m.AddNewMusic(music);
+  m.getMusicByName("MainMenu").playAudio();
   while (window.isOpen())
   {
     sf::Event event;

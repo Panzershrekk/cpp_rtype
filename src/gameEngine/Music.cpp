@@ -88,4 +88,16 @@ std::string Music::getMusicFilePath() const {
   return (this->_musicFilePath);
 }
 
+sf::Music Music::getMusic() const { //TODO bad idea to const ?
+  return (this->_music);
+}
+
+Music::Music(const Music &obj) {
+  this->_currMusic = obj.getCurrentName();
+  this->_musicFilePath = obj.getMusicFilePath();
+  this->_music = obj.getMusic();
+
+}
+
 Music::~Music() {}
+
