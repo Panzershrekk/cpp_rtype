@@ -93,12 +93,13 @@ void Sprite::move(Position2D &pos)
 {
   this->_pos = pos;
   this->_sprite.move(pos.getVector().x, pos.getVector().y);
-
 }
 
 bool Sprite::isMouseOver(Window& win)
 {
-  return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
+  sf::Vector2i pixelPos = sf::Mouse::getPosition(win.getSfWindow());
+
+  return this->_sprite.getGlobalBounds().contains(win.getSfWindow().mapPixelToCoords(pixelPos));
 }
 
 void Sprite::onClick(std::function<void(Window &, sf::Event &)> f, Window &win, sf::Event &event)

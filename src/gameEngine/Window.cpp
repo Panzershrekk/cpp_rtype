@@ -16,6 +16,11 @@ void Window::close()
   this->_win.close();
 }
 
+sf::RenderWindow &Window::getSfWindow()
+{
+  return (this->_win);
+}
+
 void Window::clear()
 {
   this->_win.clear();
