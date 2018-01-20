@@ -7,6 +7,7 @@
 
 #include "IMenu.hpp"
 #include "ItemLobbyMenu.hpp"
+#include "TcpClient.hpp"
 
 class LobbyMenu : public IMenu
 {
@@ -14,11 +15,12 @@ class LobbyMenu : public IMenu
   MenuState 	&_state;
   Sprite	_back;
   Sprite	_return;
+  TcpClient	*_client;
 
   std::vector<std::shared_ptr<ItemLobbyMenu>>	_players;
 
 public:
-    explicit LobbyMenu(MenuState &);
+    explicit LobbyMenu(MenuState & ,TcpClient *);
     ~LobbyMenu() override;
 
     void start(Window &) override;

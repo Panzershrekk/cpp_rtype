@@ -6,12 +6,11 @@
 #include	<SFML/Window/Event.hpp>
 #include	"LoginMenu.hpp"
 
-LoginMenu::LoginMenu(MenuState & state, TcpClient & client) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
+LoginMenu::LoginMenu(MenuState & state, TcpClient *client) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
 			 _port("", "../Triumph-wheels-rough.ttf", 255, 220),
 			 _name("", "../Triumph-wheels-rough.ttf", 255, 370),
-			 _state(state), _client(&client)
+			 _state(state), _client(client)
 {
-
 
   this->_whichBut = NONE;
 
@@ -60,7 +59,7 @@ void LoginMenu::soloFunction(Window &win, sf::Event &event)
 void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
   if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
-    if (_client == nullptr || (_client != nullptr && !_client->isConnected())) {
+    if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
       try {
 	boost::asio::ip::tcp::endpoint endpoint(
 	  boost::asio::ip::address::from_string(_ip.getString()),

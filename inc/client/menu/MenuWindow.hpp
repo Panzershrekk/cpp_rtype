@@ -10,6 +10,8 @@
 #include	<vector>
 #include	<memory>
 #include	<exception>
+#include	<boost/asio.hpp>
+#include	<boost/array.hpp>
 #include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
@@ -18,21 +20,24 @@
 #include	"RoomListMenu.hpp"
 #include	"LobbyMenu.hpp"
 #include	"Image.hpp"
-#include	"TcpClient.hpp"
+
+extern boost::array<char, 128> my_buffer;
+
 
 class MainMenu;
+
 
 class MenuWindow
 {
 private:
   MenuState 	_state;
   std::shared_ptr<IMenu> _mainMenu = std::make_shared<MainMenu>(_state);
-  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>(_state, *_client);
-  std::shared_ptr<IMenu> _roomListMenu = std::make_shared<RoomListMenu>(_state, *_client);
-  std::shared_ptr<IMenu> _lobbyMenu = std::make_shared<LobbyMenu>(_state);
+  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>(_state, _client);
+  std::shared_ptr<IMenu> _roomListMenu = std::make_shared<RoomListMenu>(_state, _client);
+  std::shared_ptr<IMenu> _lobbyMenu = std::make_shared<LobbyMenu>(_state, _client);
 
-  std::vector<std::shared_ptr<IMenu>> _vecMenu;
-  TcpClient				*_client;
+  std::vector<std::shared_ptr<IMenu>>	_vecMenu;
+  TcpClient				*_client = nullptr;
   Window	_win;
 
 
@@ -42,6 +47,8 @@ private:
 
     void start();
     void update(sf::Event &);
+    static void handleData(const boost::system::error_code& error,
+			   size_t number_bytes_read);
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */

@@ -21,7 +21,7 @@ std::cout << "Destroy" << std::endl;
 void TcpClient::connect(boost::asio::ip::tcp::endpoint &endpoint)
 {
   std::cout << "async_connect" << std::endl;
-  _connection = TcpClientConnections::create(_io_service);
+  _connection = TcpClientConnections::create(_io_service, _vecMenu);
   boost::asio::ip::tcp::socket& socket = _connection->getSocket();
  socket.async_connect(endpoint,
 		       boost::bind(&TcpClient::handleConnect, this, _connection, boost::asio::placeholders::error
@@ -33,7 +33,7 @@ void TcpClient::handleConnect(TcpClientConnections::ptr connect, const boost::sy
   if (!error) {
     std::cout << "connected" << std::endl;
     connect->read();
-   // _state = ERoomListMenu;
+    _state = ERoomListMenu;
   } else
   {
     std::cout << error.message() << std::endl;
@@ -67,6 +67,22 @@ bool TcpClient::isConnected()
 {
   std::cout << _connection->getSocket().is_open() << std::endl;
   return _connection->getSocket().is_open();
+}
+
+void TcpClient::write(std::string &str)
+{
+  _connection->write(str);
+}
+
+void TcpClient::setMenu(std::vector<std::shared_ptr<IMenu>> *vecMenu)
+{
+  _vecMenu = *vecMenu;
+  _menuSet = 1;
+}
+
+int TcpClient::getMenu()
+{
+ return _menuSet;
 }
 
 

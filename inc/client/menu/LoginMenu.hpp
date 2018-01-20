@@ -32,7 +32,7 @@ class LoginMenu : public IMenu
   void getSfLine(Text &, sf::Event &);
 
   public:
-    explicit LoginMenu(MenuState &, TcpClient &);
+    explicit LoginMenu(MenuState &, TcpClient *);
     ~LoginMenu();
 
     void start(Window &) override;
@@ -44,7 +44,6 @@ class LoginMenu : public IMenu
     void 	enterName(Window &, sf::Event &);
     void 	playFunction(Window &, sf::Event &);
     void 	soloFunction(Window &, sf::Event &);
-  void		run();
 
   void returnFunction(Window &, sf::Event &);
 };

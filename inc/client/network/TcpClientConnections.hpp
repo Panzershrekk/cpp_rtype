@@ -11,21 +11,22 @@
 #include	<boost/array.hpp>
 #include	<functional>
 #include	<iostream>
-
+#include	"IMenu.hpp"
 
 class TcpClientConnections : public std::enable_shared_from_this<TcpClientConnections>
 {
 private:
   TcpClientConnections(boost::asio::io_service&);
   void handle_read(const boost::system::error_code& , size_t);
-
-
+  void handleWrite();
   boost::array<char, 128>				_network_buffer;
   boost::asio::ip::tcp::socket				_socket;
+  std::vector<std::shared_ptr<IMenu>>	_vecMenu;
 
 public:
   typedef std::shared_ptr<TcpClientConnections> ptr;
-  static ptr create(boost::asio::io_service& ios)
+  void write(const std::string &);
+  static ptr create(boost::asio::io_service& ios, std::vector<std::shared_ptr<IMenu>>&)
   {
     return ptr(new TcpClientConnections(ios));
   }

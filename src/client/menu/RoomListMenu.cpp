@@ -7,12 +7,12 @@
 #include <memory>
 #include "RoomListMenu.hpp"
 
-RoomListMenu::RoomListMenu(MenuState & state, TcpClient &client) :
+RoomListMenu::RoomListMenu(MenuState & state, TcpClient *client) :
   _state(state),
   _back("../assets/RoomListMenu_Background.jpg"),
   _return("../assets/Menu_Button_Back.png", 25, 900),
   _title("Choose your room", "../Triumph-wheels-rough.ttf", 600, 50),
-  _client(&client)
+  _client(client)
 {
   this->_return.setScale(0.5f, 0.5f);
   this->_title.setCharacterSize(150);
@@ -46,8 +46,10 @@ void RoomListMenu::joinRoom(Window &win, sf::Event &event)
 
 void RoomListMenu::returnFunction(Window &win, sf::Event &event)
 {
-  if (_client != nullptr)
+  if (_client != nullptr) {
     _client->disconnect();
+    _client = nullptr;
+  }
   else
     std::cout << "problem" << std::endl;
   this->_state = ELoginMenu;

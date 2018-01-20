@@ -20,7 +20,7 @@ class RoomListMenu : public IMenu
   std::vector<std::shared_ptr<ItemRoomListMenu>>	_vectorRooms;
   TcpClient				*_client;
   public:
-    explicit RoomListMenu(MenuState &, TcpClient &);
+    explicit RoomListMenu(MenuState &, TcpClient *);
     ~RoomListMenu() override;
 
     void 	drawItems(Window &);

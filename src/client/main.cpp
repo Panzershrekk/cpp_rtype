@@ -9,9 +9,9 @@
 
 int main()
 {
-   // GameRenderer gameRenderer;
-   // gameRenderer.startGame();
-
+ /*   GameRenderer gameRenderer;
+    gameRenderer.startGame();
+*/
   MenuWindow menu;
 
   menu.start();

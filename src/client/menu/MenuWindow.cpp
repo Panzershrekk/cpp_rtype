@@ -5,6 +5,7 @@
 #include	"MenuWindow.hpp"
 #include	<iostream>
 
+
 MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
 {
   _vecMenu.push_back(std::shared_ptr<IMenu>(_mainMenu));
@@ -12,7 +13,7 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
-  this->_state = ELobbyMenu;
+  this->_state = EMainMenu;
   try
   {
     std::string path = "../assets/pierre.jpg";
@@ -25,7 +26,6 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   {
     std::cout << e.what() << std::endl;
   }
-
 }
 
 MenuWindow::~MenuWindow()
@@ -34,6 +34,8 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::update(sf::Event &event)
 {
+  if (_client != nullptr && _client->getMenu() != 1)
+    _client->setMenu(&_vecMenu);
   _vecMenu.at(_state)->update(_win, event);
 }
 
@@ -51,4 +53,23 @@ void MenuWindow::start()
     _vecMenu.at(_state)->draw(_win);
     _win.display();
   }
+}
+
+
+ void MenuWindow::handleData(const boost::system::error_code& error,
+				   size_t number_bytes_read)
+
+{
+  if (!error) {
+    std::cout << "buffer" << std::endl;
+    std::cout << my_buffer.data() << std::endl;
+    std::string test(my_buffer.data());
+    if (test == "Welcome!\n")
+    {
+      std::cout << "slt" << std::endl;
+      //_client->write("slt");
+    }
+  }
+  else
+    std::cout << error.message();
 }
