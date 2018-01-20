@@ -59,12 +59,13 @@ void LoginMenu::soloFunction(Window &win, sf::Event &event)
 void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
   if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
+    std::cout << "in play" << std::endl;
     if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
       try {
 	boost::asio::ip::tcp::endpoint endpoint(
 	  boost::asio::ip::address::from_string(_ip.getString()),
 	  static_cast<unsigned short>(std::stoi(_port.getString())));
-
+	std::cout << "in play out" << std::endl;
 	std::cout << _ip.getString() << std::endl;
 	std::cout << static_cast<unsigned short>(std::stoi(_port.getString()))
 		  << std::endl;
@@ -100,6 +101,11 @@ void LoginMenu::getSfLine(Text &text, sf::Event &event)
     }
     text.setString(str);
   }
+}
+
+std::string LoginMenu::getName() const
+{
+  return (this->_name.getString());
 }
 
 void LoginMenu::update(Window &win, sf::Event &event)
