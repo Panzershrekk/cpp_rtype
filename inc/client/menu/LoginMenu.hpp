@@ -37,6 +37,8 @@ class LoginMenu : public IMenu
     void 	enterPort(Window &, sf::Event &);
     void 	enterName(Window &, sf::Event &);
     void 	playFunction(Window &, sf::Event &);
+
+  void returnFunction(Window &, sf::Event &);
 };
 
 

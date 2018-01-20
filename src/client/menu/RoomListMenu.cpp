@@ -10,8 +10,10 @@
 RoomListMenu::RoomListMenu(MenuState & state) :
   _state(state),
   _back("../assets/RoomListMenu_Background.jpg"),
+  _return("../assets/Menu_Button_Back.png", 25, 900),
   _title("Choose your room", "../Triumph-wheels-rough.ttf", 600, 50)
 {
+  this->_return.setScale(0.5f, 0.5f);
   this->_title.setCharacterSize(150);
   genRooms(3);
 }
@@ -41,9 +43,17 @@ void RoomListMenu::joinRoom(Window &win, sf::Event &event)
   this->_state = ELobbyMenu;
 }
 
+void RoomListMenu::returnFunction(Window &win, sf::Event &event)
+{
+  this->_state = ELoginMenu;
+}
+
 void RoomListMenu::update(Window &win, sf::Event &event)
 {
   auto fJoin = std::bind(&RoomListMenu::joinRoom, this, std::placeholders::_1, std::placeholders::_2);
+  auto fBack = std::bind(&RoomListMenu::returnFunction, this, std::placeholders::_1, std::placeholders::_2);
+
+  this->_return.onClick(fBack, win, event);
 
   for (auto it : this->_vectorRooms)
   {
@@ -68,6 +78,7 @@ void RoomListMenu::drawItems(Window &win)
 void RoomListMenu::draw(Window &win)
 {
   win.draw(this->_back);
+  win.draw(this->_return);
   win.draw(this->_title);
   drawItems(win);
 }

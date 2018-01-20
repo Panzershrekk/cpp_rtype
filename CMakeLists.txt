@@ -35,7 +35,8 @@ set(SOURCE_FILES_CLIENT
         src/client/game/ProjectileRenderer.cpp
         src/client/game/Star.cpp
         src/client/game/Starfield.cpp
-        src/client/main.cpp)
+        src/client/main.cpp
+        src/client/menu/ItemLobbyMenu.cpp)
 
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
@@ -103,7 +104,8 @@ set(HEADER_FILES_CLIENT
         inc/client/RenderSystem.hpp
         inc/client/game/Star.hpp
         inc/client/game/Starfield.hpp
-        inc/client/game/ProjectileRenderer.hpp)
+        inc/client/game/ProjectileRenderer.hpp
+        inc/client/menu/ItemLobbyMenu.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
