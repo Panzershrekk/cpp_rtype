@@ -9,6 +9,7 @@
 #include	<SFML/Graphics.hpp>
 #include	<vector>
 #include	<memory>
+#include	<exception>
 #include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
@@ -16,6 +17,7 @@
 #include	"LoginMenu.hpp"
 #include	"RoomListMenu.hpp"
 #include	"LobbyMenu.hpp"
+#include	"Image.hpp"
 
 class MainMenu;
 
