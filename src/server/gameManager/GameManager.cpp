@@ -5,9 +5,8 @@
 #include "TimeManager.hpp"
 #include "GameManager.hpp"
 
-GameManager::GameManager()
+GameManager::GameManager(Network::Core::UdpConnection &socket) : _socket(socket)
 {
-
 }
 
 GameManager::~GameManager()
@@ -20,6 +19,7 @@ void GameManager::update()
 {
   TimeManager clock;
   TimeManager spwanRate;
+  Network::Core::Endpoint ep("127.0.0.1", 4242);
 
   while (playerStillAlive()) //Todo Connexion rompu? Personnage tous mort ?
   {
@@ -31,7 +31,11 @@ void GameManager::update()
        * if player fire
        * createProjectile(Player that fired)
        * */
-
+      this->_socket.async_write("mdr", Network::Packet::PacketType::PACKET_PLAYER, ep,
+			 [&](const boost::system::error_code &e, const long unsigned int&)
+			 {
+			   std::cout << "-- Packet has been sent" << std::endl;
+			 });
 
       updateEntities();
       dumpEnnemy();

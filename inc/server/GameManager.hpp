@@ -11,11 +11,13 @@
 #include "Player.hpp"
 #include "Projectile.hpp"
 #include "Enemy.hpp"
+#include "common/network/core/UdpConnection.hpp"
+
 
 class GameManager
 {
   public:
-    GameManager();
+    GameManager(Network::Core::UdpConnection &);
     ~GameManager();
 
     void update();
@@ -32,6 +34,7 @@ class GameManager
     bool playerStillAlive();
 
   private:
+    Network::Core::UdpConnection &_socket;
     std::vector<Player> _player;
     std::vector<Enemy> _ennemy;
     std::vector<Projectile> _projetcile;

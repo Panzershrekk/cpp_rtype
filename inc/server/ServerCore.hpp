@@ -30,6 +30,7 @@ public:
     ~ServerCore();
 
     bool    start(void);
+  std::thread	runService();
 };
 
 #endif      /* !_SERVER_CORE__HPP_! */

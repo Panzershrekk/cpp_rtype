@@ -20,7 +20,7 @@ Enemy::~Enemy()
 void Enemy::randomizePosition()
 {
   std::srand(std::time(nullptr));
-  int randNum = std::rand()%(500-1 + 1) + 1;
+  int randNum = std::rand()%(1080-1 + 1) + 1;
   Position2D p(1800, randNum);
   setPosition(p);
 }

@@ -10,7 +10,8 @@
 
 #include <iostream>
 #include <sstream>
-#include <common/network/packets/PacketPlayer.hpp>
+#include "common/network/packets/PacketPlayer.hpp"
+#include "server/GameManager.hpp"
 #include "server/ServerCore.hpp"
 #include "common/network/packets/APacket.hpp"
 
@@ -62,21 +63,43 @@ bool    ServerCore::startExchanges()
                                    std::cerr << exept.what() << std::endl;
                                }
                                this->startExchanges();
-                           }
-        );
+			   }
+	);
 }
 
 bool    ServerCore::start()
 {
-    std::cout << "*******************************" << std::endl;
-    std::cout << "* R-TYPE - SERVER version 1.0 *" << std::endl;
-    std::cout << "*    Julien PRETET (Lead)     *" << std::endl;
-    std::cout << "*     Guillaume CAUCHOIS      *" << std::endl;
-    std::cout << "*     Robin GRATTEPANCHE      *" << std::endl;
-    std::cout << "*        Adrien WARIN         *" << std::endl;
-    std::cout << "*      Thomas FOSSAERT        *" << std::endl;
-    std::cout << "*       Quentin BAUDET        *" << std::endl;
-    std::cout << "*******************************" << std::endl;
-    std::cout << std::endl;
-  return (startExchanges()); //TODO: Guillaume thread l'appel
+  std::cout << "*******************************" << std::endl;
+  std::cout << "* R-TYPE - SERVER version 1.0 *" << std::endl;
+  std::cout << "*    Julien PRETET (Lead)     *" << std::endl;
+  std::cout << "*     Guillaume CAUCHOIS      *" << std::endl;
+  std::cout << "*     Robin GRATTEPANCHE      *" << std::endl;
+  std::cout << "*        Adrien WARIN         *" << std::endl;
+  std::cout << "*      Thomas FOSSAERT        *" << std::endl;
+  std::cout << "*       Quentin BAUDET        *" << std::endl;
+  std::cout << "*******************************" << std::endl;
+  std::cout << std::endl;
+  startExchanges();
+  std::thread		threadRun(&ServerCore::runService, this);
+
+  GameManager gameManager(this->_socket);
+  Player player("Noobdu59");
+  /*
+  Player player1("XXX_PUSSY_DESTROYER_XXX");
+  Player player2("Johnny la classe");
+  Player player3("G@MER");
+   */
+  gameManager.addPlayer(player);
+  /*gameManager.addPlayer(player1);
+  gameManager.addPlayer(player2);
+  gameManager.addPlayer(player3);*/
+  gameManager.spawnEnnemy();
+  gameManager.update();
+  threadRun.join();
+}
+
+
+std::thread 	ServerCore::runService()
+{
+  this->_socket.run();
 }

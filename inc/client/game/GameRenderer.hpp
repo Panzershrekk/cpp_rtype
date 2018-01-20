@@ -19,6 +19,7 @@ class GameRenderer
     void startGame();
     void updateEntities();
     void drawEntities(Window &);
+    void destroyEntities();
 
   private:
     PlayablePlayer _player;
