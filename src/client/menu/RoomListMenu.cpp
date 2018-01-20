@@ -7,6 +7,7 @@
 #include <memory>
 #include "RoomListMenu.hpp"
 
+
 RoomListMenu::RoomListMenu(MenuState & state, TcpClient *client) :
   _state(state),
   _back("../assets/RoomListMenu_Background.jpg"),
@@ -42,6 +43,7 @@ void RoomListMenu::genRooms(int nbRoom)
 void RoomListMenu::joinRoom(Window &win, sf::Event &event)
 {
   this->_state = ELobbyMenu;
+  getWhichRoom();
 }
 
 void RoomListMenu::returnFunction(Window &win, sf::Event &event)
@@ -55,6 +57,12 @@ void RoomListMenu::returnFunction(Window &win, sf::Event &event)
   this->_state = ELoginMenu;
 }
 
+int RoomListMenu::getWhichRoom()
+{
+  std::cout << "room" << this->_nbRoom << std::endl;
+  return (this->_nbRoom);
+}
+
 void RoomListMenu::update(Window &win, sf::Event &event)
 {
   auto fJoin = std::bind(&RoomListMenu::joinRoom, this, std::placeholders::_1, std::placeholders::_2);
@@ -62,9 +70,11 @@ void RoomListMenu::update(Window &win, sf::Event &event)
 
   this->_return.onClick(fBack, win, event);
 
+  this->_nbRoom = 0;
   for (auto it : this->_vectorRooms)
   {
     it->getBack().onClick(fJoin, win, event);
+    this->_nbRoom++;
   }
   _vectorRooms[0]->updatePlayers(1);
   if (event.type == sf::Event::Closed) {

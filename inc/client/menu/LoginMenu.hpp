@@ -46,6 +46,8 @@ class LoginMenu : public IMenu
     void 	soloFunction(Window &, sf::Event &);
 
   void returnFunction(Window &, sf::Event &);
+
+  const std::string &getName() const;
 };
 
 

@@ -13,7 +13,7 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
-  this->_state = EMainMenu;
+  this->_state = ERoomListMenu;
   try
   {
     std::string path = "../assets/pierre.jpg";

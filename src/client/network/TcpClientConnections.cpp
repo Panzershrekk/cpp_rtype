@@ -45,11 +45,17 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
   {
     std::cout << _network_buffer.data() << std::endl;
     std::string test(_network_buffer.data());
-    if (test == "Welcome!\n")
+    if (test == "200:Welcome!\n")
     {
+      this->write(std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName());
       std::cout << "slt" << std::endl;
       this->write("hello serveur");
     }
+    if (test.find("200:Room:") != std::string::npos) {
+      int nbRooms = test.at(test.size() - 2);
+      std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->genRooms(nbRooms);
+      this->write("200:join_room:" + std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->getWhichRoom());
+      }
     read();
   }
   else {

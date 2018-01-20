@@ -13,6 +13,7 @@
 class RoomListMenu : public IMenu
 {
   private:
+  int		_nbRoom = 0;
   MenuState &	_state;
   Sprite	_back;
   Sprite	_return;
@@ -33,6 +34,8 @@ class RoomListMenu : public IMenu
     void 	update(Window &, sf::Event &) override;
 
   void returnFunction(Window &win, sf::Event &event);
+
+  int getWhichRoom();
 };
 
 #endif /* !CPP_RTYPE_ROOMLISTMENU_HPP_ */
