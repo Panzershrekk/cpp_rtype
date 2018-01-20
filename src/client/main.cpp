@@ -9,9 +9,9 @@
 
 int main()
 {
-    /*GameRenderer gameRenderer;
-    gameRenderer.startGame(); */
-    boost::asio::io_service         service;
+    GameRenderer gameRenderer;
+    gameRenderer.startGame();
+   /* boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
     Player                          player;
     Network::Core::Endpoint         ep("127.0.0.1", 4244);
@@ -31,6 +31,6 @@ int main()
                        {
                            std::cout << "-- Packet has been sent" << std::endl;
                        });
-    service.run();
+    service.run();*/
     return 0;
 }

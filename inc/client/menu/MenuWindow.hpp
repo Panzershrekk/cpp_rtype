@@ -9,6 +9,7 @@
 #include	<SFML/Graphics.hpp>
 #include	<vector>
 #include	<memory>
+#include	<exception>
 #include	"MainMenu.hpp"
 #include	"Window.hpp"
 #include	"MenuState.hpp"
