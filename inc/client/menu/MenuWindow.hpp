@@ -21,9 +21,6 @@
 #include	"LobbyMenu.hpp"
 #include	"Image.hpp"
 
-extern boost::array<char, 128> my_buffer;
-
-
 class MainMenu;
 
 
@@ -47,8 +44,6 @@ private:
 
     void start();
     void update(sf::Event &);
-    static void handleData(const boost::system::error_code& error,
-			   size_t number_bytes_read);
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */

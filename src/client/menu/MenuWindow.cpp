@@ -54,22 +54,3 @@ void MenuWindow::start()
     _win.display();
   }
 }
-
-
- void MenuWindow::handleData(const boost::system::error_code& error,
-				   size_t number_bytes_read)
-
-{
-  if (!error) {
-    std::cout << "buffer" << std::endl;
-    std::cout << my_buffer.data() << std::endl;
-    std::string test(my_buffer.data());
-    if (test == "Welcome!\n")
-    {
-      std::cout << "slt" << std::endl;
-      //_client->write("slt");
-    }
-  }
-  else
-    std::cout << error.message();
-}

@@ -18,7 +18,7 @@ class TcpClientConnections : public std::enable_shared_from_this<TcpClientConnec
 private:
   TcpClientConnections(boost::asio::io_service&);
   void handle_read(const boost::system::error_code& , size_t);
-  void handleWrite();
+  void handleWrite(const boost::system::error_code&, std::size_t);
   boost::array<char, 128>				_network_buffer;
   boost::asio::ip::tcp::socket				_socket;
   std::vector<std::shared_ptr<IMenu>>	_vecMenu;

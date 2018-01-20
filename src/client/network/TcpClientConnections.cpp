@@ -5,8 +5,6 @@
 #include "TcpClientConnections.hpp"
 #include "MenuWindow.hpp"
 
-boost::array<char, 128> my_buffer;
-
 
 TcpClientConnections::TcpClientConnections(boost::asio::io_service &service): _socket(service)
 {
@@ -20,23 +18,11 @@ boost::asio::ip::tcp::socket& TcpClientConnections::getSocket()
 
 void TcpClientConnections::read()
 {
-  //auto f_static = std::bind((int(*)(int, int, int))&Foo::foo_static, 1, 2, 3);
-
   boost::asio::async_read(_socket, boost::asio::buffer(_network_buffer),
 			  boost::asio::transfer_at_least(1),
 			  std::bind(&TcpClientConnections::handle_read, shared_from_this(),
 				    std::placeholders::_1 ,
 				    std::placeholders::_2));
-			 /* boost::bind((void(*)(const boost::system::error_code& ,
-  					size_t ,
-  boost::array<char, 128> ))
-			    &MenuWindow::handleData,
-  				std::placeholders::_1 ,
-				      std::placeholders::_2,
-				    std::placeholders::_3)
-    std::bind(&MenuWindow::handleData,std::placeholders::_1 ,
-	      std::placeholders::_2)
-  );*/
 }
 
 void TcpClientConnections::handle_read(const boost::system::error_code& error, size_t number_bytes_read)
@@ -58,9 +44,21 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
 }
 
 void TcpClientConnections::write(const std::string &str)
-{/* boost::asio::async_write(_socket, str,
+{
+  boost::asio::async_write(_socket, boost::asio::buffer(str.c_str(), str.size()),
 			   boost::bind(&TcpClientConnections::handleWrite,
-				       this));
-  boost::asio::async_write(_socket)*/
+				       this,
+				       boost::asio::placeholders::error,
+				       boost::asio::placeholders::bytes_transferred
+			   ));
+}
+
+void TcpClientConnections::handleWrite(const boost::system::error_code&error, std::size_t size)
+{
+  if (!error)
+  {
+    std::cout << "success" << std::endl;
+  } else
+    std::cerr << error.message() << std::endl;
 }
 
