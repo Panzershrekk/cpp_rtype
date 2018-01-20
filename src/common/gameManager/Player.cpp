@@ -8,7 +8,7 @@ Player::Player() : Character(100)
 {
   this->_physic.setSpeed(2);
   this->_score = 0;
-  this->_name = "unknow";
+  this->_name = "Unknown";
 }
 
 Player::Player(const std::string & name) : Character(100)
@@ -45,4 +45,8 @@ void Player::setName(const std::string &name)
 std::string Player::getName() const
 {
   return this->_name;
+}
+
+void Player::update()
+{
 }

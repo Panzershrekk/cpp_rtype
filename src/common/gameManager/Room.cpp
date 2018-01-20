@@ -2,13 +2,13 @@
 // Created by arthaox on 10/01/18.
 //
 
-#include		"Room.hpp"
+#include        "common/gameManager/Room.hpp"
 
 Room::Room() {}
 
 Room::Room(const int &size, const int &id) : _size(size), _id(id) {}
 
-Room::~Room() {}
+Room::~Room() = default;
 
 void	Room::join(const Player &player)
 {
@@ -24,22 +24,22 @@ void	Room::leave(const Player &player)
     }
 }
 
-int		Room::setSize(const int &size)
+void		Room::setSize(const int &size)
 {
     this->_size = size;
 }
 
-int		Room::setId(const int &id)
+void		Room::setId(const int &id)
 {
     this->_id = id;
 }
 
-int		Room::getSize() const
+const int		&Room::getSize() const
 {
     return(this->_size);
 }
 
-int		Room::getId() const
+const int		&Room::getId() const
 {
     return(this->_id);
 }

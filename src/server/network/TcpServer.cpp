@@ -24,7 +24,11 @@ void TcpServer::handleAccept(const boost::system::error_code& error, TcpConnecti
 {
   std::cout << "New client" << std::endl;
   if (!error)
+  {
+    Player player;
+    _vecPlayer.push_back(player);
     connector->start();
+  }
   waitForConnection();
 }
 

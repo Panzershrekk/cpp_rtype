@@ -10,6 +10,7 @@
 #include	"TcpConnections.hpp"
 #include	"TcpHandler.hpp"
 #include	<vector>
+#include	"Player.hpp"
 
 class TcpServer
 {
@@ -21,6 +22,7 @@ public:
 private:
   boost::asio::ip::tcp::acceptor	_acceptor;
   boost::asio::io_service&		_io_service;
+  std::vector<Player>			_vecPlayer;
 
   void waitForConnection();
   void handleAccept(const boost::system::error_code&, TcpConnections::connectorPtr &);

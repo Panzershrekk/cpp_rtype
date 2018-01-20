@@ -13,7 +13,7 @@ Music::Music()
 Music::Music(const std::string & pathFile, const std::string & newCurrMusic)
 {
   this->loadAudio(pathFile, newCurrMusic);
-  this->_music.openFromFile(this->_musicFilePath);
+  this->_music.openFromFile(pathFile);
 }
 
 
@@ -88,4 +88,11 @@ std::string Music::getMusicFilePath() const {
   return (this->_musicFilePath);
 }
 
+sf::Music &Music::getMusic()
+{ //TODO bad idea to const ?
+  return (this->_music);
+}
+
+
 Music::~Music() {}
+

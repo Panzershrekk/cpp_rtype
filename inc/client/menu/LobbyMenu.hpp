@@ -6,12 +6,16 @@
 #define CPP_RTYPE_LOBBYMENU_HPP_
 
 #include "IMenu.hpp"
+#include "ItemLobbyMenu.hpp"
 
 class LobbyMenu : public IMenu
 {
   private:
   MenuState 	&_state;
   Sprite	_back;
+  Sprite	_return;
+
+  std::vector<std::shared_ptr<ItemLobbyMenu>>	_players;
 
 public:
     explicit LobbyMenu(MenuState &);
@@ -20,6 +24,11 @@ public:
     void start(Window &) override;
     void draw(Window &) override;
     void update(Window &, sf::Event &) override;
+
+    void drawItems(Window &, ItemLobbyMenu &);
+    void setActivePlayers(int);
+
+  void returnFunction(Window &, sf::Event &);
 };
 
 #endif /* !CPP_RTYPE_LOBBYMENU_HPP_ */

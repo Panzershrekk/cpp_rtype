@@ -5,6 +5,8 @@
 #ifndef     _NETWORK_EXCEPTION__HPP_
 # define    _NETWORK_EXCEPTION__HPP_
 
+#include	<string>
+
 namespace Network
 {
     namespace Core

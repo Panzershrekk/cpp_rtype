@@ -5,8 +5,11 @@
 #ifndef CPP_RTYPE_LOGINMENU_HPP_
 #define CPP_RTYPE_LOGINMENU_HPP_
 
-#include <unordered_map>
-#include "IMenu.hpp"
+#include	<unordered_map>
+#include	<boost/asio.hpp>
+#include	"IMenu.hpp"
+#include	"TcpClient.hpp"
+#include	<memory>
 
 enum Buttonchoice {IPButton, PortButton, NameButton, NONE};
 
@@ -22,11 +25,14 @@ class LoginMenu : public IMenu
 
     MenuState				&_state;
     Buttonchoice 			_whichBut;
+  TcpClient				*_client;
 
-    void getSfLine(Text &, sf::Event &);
+
+
+  void getSfLine(Text &, sf::Event &);
 
   public:
-    explicit LoginMenu(MenuState &);
+    explicit LoginMenu(MenuState &, TcpClient &);
     ~LoginMenu();
 
     void start(Window &) override;
@@ -37,6 +43,10 @@ class LoginMenu : public IMenu
     void 	enterPort(Window &, sf::Event &);
     void 	enterName(Window &, sf::Event &);
     void 	playFunction(Window &, sf::Event &);
+    void 	soloFunction(Window &, sf::Event &);
+  void		run();
+
+  void returnFunction(Window &, sf::Event &);
 };
 
 

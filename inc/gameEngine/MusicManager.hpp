@@ -5,21 +5,24 @@
 #ifndef CPP_RTYPE_MUSICMANAGER_HPP
 #define CPP_RTYPE_MUSICMANAGER_HPP
 
+# include <memory>
 # include <iostream>
 # include <SFML/Audio.hpp>
 # include <vector>
-
 # include "Music.hpp"
 
+class MusicManager
+{
+public:
+  MusicManager();
+  virtual ~MusicManager();
 
-class MusicManager {
-  public:
-    MusicManager();
-    virtual ~MusicManager();
-    Music *GetRandomMusic() const;
-    void AddNewMusic(Music *); //TODO Metter Music en const & ?
-  private:
-    std::vector<Music *> _musicManager;
+  std::shared_ptr<Music>		&GetRandomMusic();
+  void		AddNewMusic(const std::string & , const std::string & );
+  Music		&getMusicByName(const std::string &) ;
+
+private:
+  std::vector<std::shared_ptr<Music>> _musicManager;
 };
 
 #endif //CPP_RTYPE_MUSICMANAGER_HPP

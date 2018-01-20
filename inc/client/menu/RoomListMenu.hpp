@@ -8,17 +8,19 @@
 
 #include "IMenu.hpp"
 #include "ItemRoomListMenu.hpp"
+#include "TcpClient.hpp"
 
 class RoomListMenu : public IMenu
 {
   private:
   MenuState &	_state;
   Sprite	_back;
+  Sprite	_return;
   Text		_title;
   std::vector<std::shared_ptr<ItemRoomListMenu>>	_vectorRooms;
-
+  TcpClient				*_client;
   public:
-    explicit RoomListMenu(MenuState &);
+    explicit RoomListMenu(MenuState &, TcpClient &);
     ~RoomListMenu() override;
 
     void 	drawItems(Window &);
@@ -29,6 +31,8 @@ class RoomListMenu : public IMenu
     void	start(Window &) override;
     void 	draw(Window &) override;
     void 	update(Window &, sf::Event &) override;
+
+  void returnFunction(Window &win, sf::Event &event);
 };
 
 #endif /* !CPP_RTYPE_ROOMLISTMENU_HPP_ */

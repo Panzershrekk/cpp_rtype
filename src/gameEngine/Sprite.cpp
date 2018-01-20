@@ -64,7 +64,7 @@ void 		Sprite::move(float x, float y)
   this->_sprite.move(x, y);
 }
 
-sf::Sprite	Sprite::getSfSprite(void) const
+sf::Sprite	&Sprite::getSfSprite(void)
 {
   return (this->_sprite);
 }
@@ -85,6 +85,11 @@ void Sprite::setScale(float x, float y)
   this->_sprite.setScale(x, y);
 }
 
+void Sprite::setColor(int r, int g, int b, int alpha)
+{
+  this->_sprite.setColor(sf::Color(r, g, b, alpha));
+}
+
 void Sprite::setTexture(const std::string &path) {
   this->_texture.getSfTexture()->loadFromFile(path);
 }
@@ -93,12 +98,13 @@ void Sprite::move(Position2D &pos)
 {
   this->_pos = pos;
   this->_sprite.move(pos.getVector().x, pos.getVector().y);
-
 }
 
 bool Sprite::isMouseOver(Window& win)
 {
-  return this->_sprite.getGlobalBounds().contains(Mouse::getPosition(win).getVector());
+  sf::Vector2i pixelPos = sf::Mouse::getPosition(win.getSfWindow());
+
+  return this->_sprite.getGlobalBounds().contains(win.getSfWindow().mapPixelToCoords(pixelPos));
 }
 
 void Sprite::onClick(std::function<void(Window &, sf::Event &)> f, Window &win, sf::Event &event)
