@@ -37,7 +37,7 @@ set(SOURCE_FILES_CLIENT
         src/client/game/Starfield.cpp
         src/client/main.cpp
         src/client/network/TcpClient.cpp
-        src/client/network/TcpClientConnections.cpp)
+        src/client/network/TcpClientConnections.cpp
         src/client/menu/ItemLobbyMenu.cpp)
 
 set(SOURCE_FILES_COMMON
@@ -109,7 +109,7 @@ set(HEADER_FILES_CLIENT
         inc/client/game/Starfield.hpp
         inc/client/game/ProjectileRenderer.hpp
         inc/client/network/TcpClient.hpp
-        inc/client/network/TcpClientConnections.hpp)
+        inc/client/network/TcpClientConnections.hpp
         inc/client/menu/ItemLobbyMenu.hpp)
 
 set(HEADER_FILES_COMMON
