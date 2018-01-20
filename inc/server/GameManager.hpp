@@ -26,6 +26,9 @@ class GameManager
     void dumpPlayer();
     void dumpEnnemy();
 
+    const std::vector<Player>   &getPlayers() const;
+    const std::vector<Enemy>   &getEnemies() const;
+
   private:
     std::vector<Player> _player;
     std::vector<Enemy> _ennemy;

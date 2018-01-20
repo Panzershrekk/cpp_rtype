@@ -2,7 +2,7 @@
 // Created by arthaox on 11/01/18.
 //
 
-#include "../../../inc/server/ServerPrompt.hpp"
+#include "server/ServerPrompt.hpp"
 
 ServerPrompt::ServerPrompt()
 {

@@ -13,7 +13,7 @@ int main()
     boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
     Player                          player;
-    Network::Core::Endpoint         ep("127.0.0.1", 4244);
+    const Network::Core::Endpoint         ep("127.0.0.1", 4244);
     player.setName("Guillaume");
     player.setHp(42);
     player.setScore(0);

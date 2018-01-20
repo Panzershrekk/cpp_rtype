@@ -22,6 +22,7 @@
 # include <boost/serialization/serialization.hpp>
 # include <iostream>
 # include <sstream>
+# include <unordered_map>
 # include "common/network/packets/APacket.hpp"
 # include "common/network/packets/PacketPlayer.hpp"
 # include "common/network/packets/PacketRoom.hpp"
@@ -51,7 +52,7 @@ public:
 
     Network::Packet::APacket   *deserialize(const std::string &buf, const Network::Packet::PacketType &type)
     {
-        std::map<Network::Packet::PacketType, std::function<Network::Packet::APacket *(const std::string &)>>    factory;
+        std::unordered_map<Network::Packet::PacketType, std::function<Network::Packet::APacket *(const std::string &)>>    factory;
 
         factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_PLAYER, std::bind(
                 &Serializer::deserializeSpecPacket<Network::Packet::PacketPlayer>,
@@ -65,9 +66,7 @@ public:
         for (auto packetFactory : factory)
         {
             if (packetFactory.first == type)
-            {
                 return packetFactory.second(buf);
-            }
         }
         return nullptr;
     }

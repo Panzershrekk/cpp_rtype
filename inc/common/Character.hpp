@@ -13,8 +13,8 @@ class Character : public AEntity
   public:
     Character();
     Character(int);
-    void setHp(int);
-    int getHp() const;
+    void    setHp(int);
+    int     getHp() const;
 
   protected:
     int _hp;

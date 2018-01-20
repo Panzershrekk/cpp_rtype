@@ -6,16 +6,16 @@
 
 Player::Player() : Character(100)
 {
-  this->_physic.setSpeed(2);
-  this->_score = 0;
-  this->_name = "Unknown";
+    this->_physic.setSpeed(2);
+    this->_score = 0;
+    this->_name = "Unknown";
 }
 
 Player::Player(const std::string & name) : Character(100)
 {
-  this->_physic.setSpeed(2);
-  this->_score = 0;
-  this->_name = name;
+    this->_physic.setSpeed(2);
+    this->_score = 0;
+    this->_name = name;
 }
 
 Player::~Player()
@@ -24,25 +24,30 @@ Player::~Player()
 
 void Player::setScore(int score)
 {
-  this->_score = score;
+    this->_score = score;
 }
 
 int Player::getScore() const
 {
-  return (this->_score);
+    return (this->_score);
 }
 
 void Player::addScore(int score)
 {
-  this->_score += score;
+    this->_score += score;
 }
 
 void Player::setName(const std::string &name)
 {
-  this->_name = name;
+    this->_name = name;
 }
 
-std::string Player::getName() const
+const std::string   &Player::getName() const
 {
-  return this->_name;
+    return this->_name;
+}
+
+const Network::Core::Endpoint& Player::getEndpoint() const
+{
+    return this->_endpoint;
 }

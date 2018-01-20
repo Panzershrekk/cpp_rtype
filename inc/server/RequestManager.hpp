@@ -2,29 +2,28 @@
 // Created by arthaox on 17/01/18.
 //
 
-#ifndef CPP_RTYPE_REQUESTMANAGER_HPP
-#define CPP_RTYPE_REQUESTMANAGER_HPP
+#ifndef     _REQUEST_MANAGER__HPP_
+# define    _REQUEST_MANAGER__HPP_
+# include <map>
+# include <functional>
+# include <unordered_map>
+# include "common/network/packets/APacket.hpp"
+# include "GameManager.hpp"
 
-#include	"IPacket.hpp"
-
-#include	<map>
-
-template <typename T>
 class RequestManager
 {
-  private:
-    std::unordered_map<string, std::function<T>>	_manager;
-  public:
+    /*
+private:
+    std::unordered_map<Network::Packet::APacket, std::function<void (const Network::Packet::APacket &, GameManager &)>>	_manager;
+
+public:
     RequestManager();
     virtual ~RequestManager();
 
-    void	CheckPacket(Packet &);
-    void	handleRequest(Request, Object&);
-    void	handleFireRequest(Object&);
-    void	handleMoveRequest(Object&);
-    void	handleConnection(Object&);
-    void	handleJoin(Object&);
-    void	handleReady(Object&);
+    void	handleRequest(const Network::Packet::APacket &, GameManager &);
+    void	handleFireRequest(const Network::Packet::APacket &, GameManager &);
+    void	handleMoveRequest(const Network::Packet::APacket &, GameManager &);
+     */
 };
 
-#endif //CPP_RTYPE_REQUESTMANAGER_HPP
+#endif      /* _REQUEST_MANAGER__HPP_ */

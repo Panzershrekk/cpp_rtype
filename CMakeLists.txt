@@ -6,10 +6,13 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES_SERVER
         src/server/gameManager/GameManager.cpp
-        src/server/rtype/CommandManager.cpp
-        src/server/rtype/ServerPrompt.cpp
+        src/server/ServerPrompt.cpp
         src/server/ServerCore.cpp
-        src/server/main.cpp)
+        src/server/main.cpp
+        src/server/CommandManager.cpp
+        src/server/EventManager.cpp
+        src/server/RequestManager.cpp
+        )
 
 set(SOURCE_FILES_CLIENT
         src/client/game/EnemyRenderer.cpp
@@ -27,10 +30,11 @@ set(SOURCE_FILES_COMMON
         src/common/game/Enemy.cpp
         src/common/game/MainSystem.cpp
         src/common/game/Player.cpp
-        src/server/rtype/Room.cpp
+        src/server/Room.cpp
         src/common/game/Projectile.cpp
         src/common/game/Renderer.cpp
-        src/common/game/RenderSystem.cpp)
+        src/common/game/RenderSystem.cpp
+        )
 
 set(SOURCE_FILES_GAME_ENGINE
         src/gameEngine/AIManager.cpp
@@ -59,7 +63,10 @@ set(HEADER_FILES_SERVER
         inc/server/CommandManager.hpp
         inc/server/GameManager.hpp
         inc/server/ServerCore.hpp
-        inc/server/ServerPrompt.hpp)
+        inc/server/ServerPrompt.hpp
+        inc/server/CommandManager.hpp
+        inc/server/EventManager.hpp
+        inc/server/RequestManager.hpp)
 
 set(HEADER_FILES_CLIENT
         inc/client/game/EnemyRenderer.hpp
@@ -83,6 +90,9 @@ set(HEADER_FILES_COMMON
         inc/common/network/packets/APacket.hpp
         inc/common/network/packets/PacketPlayer.hpp
         inc/common/network/packets/PacketRoom.hpp
+        inc/common/network/packets/PacketEnemies.hpp
+        inc/common/network/packets/PacketFire.hpp
+        inc/common/network/packets/PacketMove.hpp
         inc/common/AEntity.hpp
         inc/common/Character.hpp
         inc/common/Enemy.hpp

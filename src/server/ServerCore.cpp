@@ -11,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <common/network/packets/PacketPlayer.hpp>
+#include "server/EventManager.hpp"
 #include "server/ServerCore.hpp"
 #include "common/network/packets/APacket.hpp"
 
@@ -21,7 +22,7 @@ ServerCore::~ServerCore() = default;
 
 bool    ServerCore::startExchanges()
 {
-        std::array<char, MAX_READ> data{ 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
+        std::array<char, MAX_READ> data { 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
         boost::asio::ip::udp::endpoint  endpoint;
 
         this->_socket.read(data, endpoint,
@@ -79,4 +80,5 @@ bool    ServerCore::start()
     std::cout << "*******************************" << std::endl;
     std::cout << std::endl;
     startExchanges(); //TODO: Guillaume thread l'appel
+    // EventManager::RefreshEnemies(this->_socket, );
 }

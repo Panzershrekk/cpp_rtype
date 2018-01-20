@@ -2,29 +2,22 @@
 // Created by arthaox on 17/01/18.
 //
 
-#ifndef _EVENTMANAGER_HPP_
-#define _EVENTMANAGER_HPP_
-
-//#include	"Player.hpp";
-//#include	"Bots.hpp";
-//#include	"GameObject.hpp";
-#include	"Room.hpp";
-
-#include	<vector>;
+#ifndef     _EVENTMANAGER__HPP_
+# define    _EVENTMANAGER__HPP_
+# include <vector>
+# include "Player.hpp"
+# include "Enemy.hpp"
+# include "Room.hpp"
+# include "common/network/core/UdpConnection.hpp"
+# include "GameManager.hpp"
 
 class EventManager
 {
-  private:
   public:
     EventManager();
     virtual ~EventManager();
 
-    void	RefreshPlayer(Room &room, Player &player);
-    void	RefreshBot(Room &room, std::vector<Bots> &bots);
-    void	RefreshEntities(Room &room, std::vector<GameObject> &entities);
-    void	RefreshEndOfGame(Room &room);
-    void	RefreshStartOfGame(Room &room);
-    void	RefreshIsAlive(Player &player);
+    static void	RefreshEnemies(Network::Core::UdpConnection &, const std::vector<Enemy> &, const GameManager &gm);
 };
 
-#endif //_EVENTMANAGER_HPP_
+#endif      /* !_EVENTMANAGER__HPP_! */

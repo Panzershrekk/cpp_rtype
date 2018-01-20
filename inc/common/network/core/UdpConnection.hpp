@@ -48,7 +48,7 @@ namespace Network
             }
 
             template <typename Handler>
-            void    async_write(const std::string &data, const Network::Packet::PacketType &packetType, Endpoint &endpoint, Handler handler)
+            void    async_write(const std::string &data, const Network::Packet::PacketType &packetType, const Endpoint &endpoint, Handler handler)
             {
                 try
                 {

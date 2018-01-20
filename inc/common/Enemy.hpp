@@ -2,23 +2,30 @@
 // Created by thomas on 15/01/18.
 //
 
-#ifndef CPP_RTYPE_ENNEMY_HPP
-#define CPP_RTYPE_ENNEMY_HPP
+#ifndef     _ENEMY__HPP_
+#define     _ENEMY__HPP_
 
-#include <AIManager.hpp>
+#include <boost/serialization/access.hpp>
+#include "AIManager.hpp"
 #include "Character.hpp"
 
 class Enemy : public Character
 {
-  public:
+private:
+    friend class boost::serialization::access;
+    AIManager   _ai;
+
+public:
     Enemy();
     ~Enemy();
 
-    void randomizePosition();
-    AIManager getAI() const;
+    void        randomizePosition();
+    AIManager   getAI() const;
 
-  private:
-    AIManager _ai;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+    }
 };
 
-#endif //CPP_RTYPE_ENNEMY_HPP
+#endif      /* !_ENEMY__HPP_! */

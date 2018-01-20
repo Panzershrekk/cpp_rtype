@@ -13,7 +13,10 @@ namespace Network
             MIN = UNDEFINED,
             PACKET_ROOM = 0,
             PACKET_PLAYER = 1,
-            MAX = PACKET_PLAYER
+            PACKET_FIRE = 2,
+            PACKET_MOVE = 3,
+            PACKET_ENEMIES = 4,
+            MAX = PACKET_ENEMIES
         }               PacketType;
 
         class APacket

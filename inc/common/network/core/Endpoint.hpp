@@ -13,6 +13,7 @@
 # define    _ENDPOINT__HPP_
 # include <string>
 # include <boost/asio.hpp>
+# include <boost/serialization/access.hpp>
 
 namespace Network
 {
@@ -21,6 +22,7 @@ namespace Network
         class Endpoint
         {
         private:
+            friend class boost::serialization::access;
             boost::asio::ip::address        _ip;
             unsigned short                  _port;
             boost::asio::ip::udp::endpoint  _endpoint;
@@ -40,6 +42,11 @@ namespace Network
             const boost::asio::ip::address  &getIp() const;
             const unsigned short            &getPort() const;
             const boost::asio::ip::udp::endpoint    &getBoostEndpoint() const;
+
+            template <class Archive>
+            void	serialize(Archive& ar, const unsigned int version)
+            {
+            }
         };
     }
 }
