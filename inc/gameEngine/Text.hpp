@@ -26,6 +26,7 @@ class Text
     void 	setCharacterSize(unsigned int);
     void 	setPosition(int, int);
     void 	setScale(int, int);
+    void 	setColor(int, int, int, int);
 
     sf::Text	&getSfText(void);
     std::string	getString(void) const;

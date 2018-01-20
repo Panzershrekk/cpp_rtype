@@ -23,6 +23,12 @@ Sprite	&ItemLobbyMenu::getSprite()
   return (this->_sprite);
 }
 
+void 	ItemLobbyMenu::activeItem(int alpha)
+{
+  this->_sprite.setColor(255, 255, 255, alpha);
+  this->_text.setColor(255, 255, 255, alpha);
+}
+
 Text	&ItemLobbyMenu::getText()
 {
   return (this->_text);
