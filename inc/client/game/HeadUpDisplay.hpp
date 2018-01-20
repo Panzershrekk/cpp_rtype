@@ -1,0 +1,8 @@
+//
+// Created by arthaox on 20/01/18.
+//
+
+#ifndef CPP_RTYPE_HEADUPDISPLAY_HPP
+#define CPP_RTYPE_HEADUPDISPLAY_HPP
+
+#endif //CPP_RTYPE_HEADUPDISPLAY_HPP
