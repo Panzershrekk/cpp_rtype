@@ -5,21 +5,28 @@
 #ifndef _HUDPLAYER_HPP_
 #define _HUDPLAYER_HPP_
 
-#include "Sprite.hpp";
+#include <iostream>
+#include <string>
 
-class HUDPlayer
+//#include "Player.hpp"
+//#include "Character.hpp"
+#include "Sprite.hpp"
+
+class HudPlayer
 {
 private:
     Sprite  _ship;
+    Text    _name;
     Text    _score;
-    Test    _hp;
+    Text    _hp;
 
 public:
-    HUDPlayer();
-    virtual ~HUDPlayer();
+    HudPlayer(const std::string &, int, int);
+    ~HudPlayer();
 
-    void UpdateHp(int);
-    void UpdateScore(int);
+    void updateHp(int);
+    void updateScore(int);
+    void displayInfo(Window&);
 };
 
 #endif //_HUDPLAYER_HPP_
