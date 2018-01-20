@@ -44,6 +44,8 @@ class LoginMenu : public IMenu
     void 	enterName(Window &, sf::Event &);
     void 	playFunction(Window &, sf::Event &);
   void		run();
+
+  void returnFunction(Window &, sf::Event &);
 };
 
 

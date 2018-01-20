@@ -38,6 +38,7 @@ set(SOURCE_FILES_CLIENT
         src/client/main.cpp
         src/client/network/TcpClient.cpp
         src/client/network/TcpClientConnections.cpp)
+        src/client/menu/ItemLobbyMenu.cpp)
 
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
@@ -109,6 +110,7 @@ set(HEADER_FILES_CLIENT
         inc/client/game/ProjectileRenderer.hpp
         inc/client/network/TcpClient.hpp
         inc/client/network/TcpClientConnections.hpp)
+        inc/client/menu/ItemLobbyMenu.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
