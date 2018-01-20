@@ -103,7 +103,7 @@ void LoginMenu::getSfLine(Text &text, sf::Event &event)
   }
 }
 
-const std::string &LoginMenu::getName() const
+std::string LoginMenu::getName() const
 {
   return (this->_name.getString());
 }
