@@ -9,21 +9,22 @@
 #include <Physic.hpp>
 #include <Keyboard.hpp>
 #include <iostream>
+#include "AEntityRenderer.hpp"
+#include "ProjectileRenderer.hpp"
 
-class PlayablePlayer
+class PlayablePlayer : public AEntityRenderer
 {
   public:
     PlayablePlayer();
     ~PlayablePlayer();
-    void update();
     void fire();
-    Sprite &getSprite();
-    Position2D getPosition() const;
+    void update();
+    void forbiddenMove(Window &);
+    std::vector<ProjectileRenderer> & getProjectileVector();
 
   private:
-    Sprite _sprite;
     Physic _physic;
-    Position2D _pos;
+    std::vector<ProjectileRenderer> _projectile;
 
 
 };

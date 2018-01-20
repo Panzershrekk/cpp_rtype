@@ -14,10 +14,10 @@ class AIManager
     ~AIManager();
 
     Position2D& PredefinedRightToLeft(Position2D &, int speed);
+    Position2D& PredefinedLeftToRight(Position2D &, int speed);
     Position2D& PredefinedBottomToTop(Position2D &, int speed);
-
-  private:
-
+    Position2D& PredefinedRightToLeftSinus(Position2D &, int speed);
+    Position2D& PredefinedLeftToRightSinus(Position2D &, int speed);
 };
 
 #endif //CPP_RTYPE_AIMANAGER_HPP

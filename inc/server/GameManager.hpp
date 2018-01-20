@@ -20,11 +20,16 @@ class GameManager
 
     void update();
     void spawnEnnemy();
-    void createProjectile();
+    void createProjectile(Player &);
     void addPlayer(Player& player);
+
+    void updateEntities();
+    void removeEntities();
 
     void dumpPlayer();
     void dumpEnnemy();
+
+    bool playerStillAlive();
 
     const std::vector<Player>   &getPlayers() const;
     const std::vector<Enemy>   &getEnemies() const;

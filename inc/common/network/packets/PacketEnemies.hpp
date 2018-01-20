@@ -8,7 +8,7 @@
 # include <vector>
 # include <boost/serialization/base_object.hpp>
 # include "APacket.hpp"
-# include "common/Enemy.hpp"
+# include "common/gameManager/Enemy.hpp"
 
 namespace Network
 {

@@ -29,6 +29,7 @@ class Window
     void 	draw(Text &);
     sf::RenderWindow& getRenderWindow();
 //    void 	setPosition(const Position2D &);
+  sf::RenderWindow &getSfWindow();
 };
 
 

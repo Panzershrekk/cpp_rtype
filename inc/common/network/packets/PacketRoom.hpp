@@ -6,7 +6,7 @@
 # define    _PACKET_ROOM__HPP_
 # include <boost/serialization/base_object.hpp>
 # include "APacket.hpp"
-# include "common/Room.hpp"
+# include "common/gameManager/Room.hpp"
 
 namespace Network
 {

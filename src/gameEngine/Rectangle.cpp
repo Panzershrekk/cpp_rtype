@@ -24,6 +24,13 @@ Rectangle::Rectangle(const Rectangle & rect)
   this->_rect = rect._rect;
 }
 
+void Rectangle::changeTopLeft(Position2D &pos)
+{
+  this->_rect.left = pos.getX();
+  this->_rect.top = pos.getY();
+}
+
+
 bool Rectangle::contains(int x, int y)
 {
   return (this->_rect.contains(x, y));
@@ -48,4 +55,3 @@ sf::IntRect Rectangle::getIntRect() const
 {
   return (this->_rect);
 }
-

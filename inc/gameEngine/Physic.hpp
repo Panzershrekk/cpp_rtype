@@ -10,7 +10,12 @@
 
 class Physic
 {
-  public:
+private:
+    int _gravity;
+    unsigned int _speed;
+    unsigned int _rotateSpeed;
+
+public:
     Physic();
     ~Physic();
     Physic(int, unsigned, unsigned);
@@ -23,10 +28,13 @@ class Physic
     unsigned int getSpeed() const;
     unsigned int getRotateSpeed() const;
 
-  private:
-    int _gravity;
-    unsigned int _speed;
-    unsigned int _rotateSpeed;
+    template <class Archive>
+    void	serialize(Archive& ar, const unsigned int version)
+    {
+        ar & _gravity;
+        ar & _speed;
+        ar & _rotateSpeed;
+    }
 };
 
 std::ostream& operator<< (std::ostream& stream, const Physic& physic);

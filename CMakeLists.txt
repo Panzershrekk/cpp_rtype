@@ -5,6 +5,9 @@ SET(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_STANDARD 14)
 
 set(SOURCE_FILES_SERVER
+        src/common/gameManager/AEntity.cpp
+        src/common/gameManager/Character.cpp
+        src/common/gameManager/Enemy.cpp
         src/server/gameManager/GameManager.cpp
         src/server/ServerPrompt.cpp
         src/server/ServerCore.cpp
@@ -12,28 +15,38 @@ set(SOURCE_FILES_SERVER
         src/server/CommandManager.cpp
         src/server/EventManager.cpp
         src/server/RequestManager.cpp
-        )
+        src/server/network/TcpConnections.cpp
+        src/server/network/TcpServer.cpp
+        src/server/network/TcpHandler.cpp)
 
 set(SOURCE_FILES_CLIENT
+        src/client/game/AEntityRenderer.cpp
         src/client/game/EnemyRenderer.cpp
         src/client/game/GameRenderer.cpp
         src/client/game/PlayablePlayer.cpp
         src/client/menu/MainMenu.cpp
+        src/client/menu/IMenu.cpp
+        src/client/menu/LobbyMenu.cpp
+        src/client/menu/LoginMenu.cpp
+        src/client/menu/ItemRoomListMenu.cpp
+        src/client/menu/RoomListMenu.cpp
         src/client/menu/MenuWindow.cpp
-        src/client/main.cpp)
+        src/client/game/ProjectileRenderer.cpp
+        src/client/game/Star.cpp
+        src/client/game/Starfield.cpp
+        src/client/main.cpp
+        src/client/network/TcpClient.cpp
+        src/client/network/TcpClientConnections.cpp
+        src/client/menu/ItemLobbyMenu.cpp)
 
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
         src/common/network/core/Error.cpp
-        src/common/game/AEntity.cpp
-        src/common/game/Character.cpp
-        src/common/game/Enemy.cpp
-        src/common/game/MainSystem.cpp
-        src/common/game/Player.cpp
-        src/server/Room.cpp
-        src/common/game/Projectile.cpp
-        src/common/game/Renderer.cpp
-        src/common/game/RenderSystem.cpp
+        src/common/gameManager/Projectile.cpp
+        src/common/gameManager/Player.cpp
+        src/common/gameManager/Character.cpp
+        src/common/gameManager/AEntity.cpp
+        src/common/gameManager/Room.cpp
         )
 
 set(SOURCE_FILES_GAME_ENGINE
@@ -54,10 +67,12 @@ set(SOURCE_FILES_GAME_ENGINE
         src/gameEngine/ScriptManager.cpp
         src/gameEngine/SoundSystem.cpp
         src/gameEngine/Sprite.cpp
+        src/gameEngine/Image.cpp
         src/gameEngine/Text.cpp
         src/gameEngine/Texture.cpp
         src/gameEngine/TimeManager.cpp
         src/gameEngine/Window.cpp)
+
 
 set(HEADER_FILES_SERVER
         inc/server/CommandManager.hpp
@@ -66,20 +81,35 @@ set(HEADER_FILES_SERVER
         inc/server/ServerPrompt.hpp
         inc/server/CommandManager.hpp
         inc/server/EventManager.hpp
-        inc/server/RequestManager.hpp)
+        inc/server/RequestManager.hpp
+        inc/server/network/TcpConnections.hpp
+        inc/server/network/TcpServer.hpp
+        inc/server/network/TcpHandler.hpp)
 
 set(HEADER_FILES_CLIENT
+        inc/client/game/AEntityRenderer.hpp
         inc/client/game/EnemyRenderer.hpp
         inc/client/game/GameRenderer.hpp
         inc/client/game/PlayablePlayer.hpp
         inc/client/menu/MainMenu.hpp
+        inc/client/menu/IMenu.hpp
+        inc/client/menu/ItemRoomListMenu.hpp
+        inc/client/menu/LobbyMenu.hpp
+        inc/client/menu/LoginMenu.hpp
         inc/client/menu/MenuState.hpp
         inc/client/menu/MenuWindow.hpp
+        inc/client/menu/RoomListMenu.hpp
         inc/client/Entity.hpp
         inc/client/ISystem.hpp
         inc/client/MainSystem.hpp
         inc/client/Renderer.hpp
-        inc/client/RenderSystem.hpp)
+        inc/client/RenderSystem.hpp
+        inc/client/game/Star.hpp
+        inc/client/game/Starfield.hpp
+        inc/client/game/ProjectileRenderer.hpp
+        inc/client/network/TcpClient.hpp
+        inc/client/network/TcpClientConnections.hpp
+        inc/client/menu/ItemLobbyMenu.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
@@ -93,12 +123,13 @@ set(HEADER_FILES_COMMON
         inc/common/network/packets/PacketEnemies.hpp
         inc/common/network/packets/PacketFire.hpp
         inc/common/network/packets/PacketMove.hpp
-        inc/common/AEntity.hpp
-        inc/common/Character.hpp
-        inc/common/Enemy.hpp
-        inc/common/Player.hpp
-        inc/common/Room.hpp
-        inc/common/Projectile.hpp)
+        inc/common/gameManager/AEntity.hpp
+        inc/common/gameManager/Character.hpp
+        inc/common/gameManager/Enemy.hpp
+        inc/common/gameManager/Room.hpp
+        inc/common/gameManager/Projectile.hpp
+        inc/common/gameManager/Player.hpp
+        )
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp
@@ -120,6 +151,7 @@ set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/ScriptManager.hpp
         inc/gameEngine/SoundSystem.hpp
         inc/gameEngine/Sprite.hpp
+        inc/gameEngine/Image.hpp
         inc/gameEngine/Text.hpp
         inc/gameEngine/Texture.hpp
         inc/gameEngine/TimeManager.hpp
@@ -130,6 +162,11 @@ include_directories("inc/gameEngine")
 include_directories("inc/common")
 include_directories("inc/server")
 include_directories("inc/client")
+include_directories("inc/client/menu")
+include_directories("inc/client/game")
+include_directories("inc/common/gameManager")
+include_directories("inc/server/network")
+include_directories("inc/client/network")
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
 
@@ -137,14 +174,15 @@ add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${SOU
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
 
 # Detect and add Boost
+
 set(Boost_USE_STATIC_LIBS       ON)
 set(Boost_USE_MULTITHREADED     ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
 find_package(Boost 1.66 COMPONENTS system serialization)
 if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-    target_link_libraries(r-type-client ${Boost_LIBRARIES})
-    target_link_libraries(r-type-server ${Boost_LIBRARIES})
+include_directories(${Boost_INCLUDE_DIRS})
+target_link_libraries(r-type-client ${Boost_LIBRARIES})
+target_link_libraries(r-type-server ${Boost_LIBRARIES})
 endif()
 
 # Detect and add SFML
@@ -153,7 +191,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 #See the FindSFML.cmake file for additional details and instructions
 find_package(SFML 2 REQUIRED network audio graphics window system)
 if(SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(r-type-client ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-    target_link_libraries(r-type-server ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+include_directories(${SFML_INCLUDE_DIR})
+target_link_libraries(r-type-client ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+target_link_libraries(r-type-server ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()

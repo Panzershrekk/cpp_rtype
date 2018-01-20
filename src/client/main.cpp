@@ -1,16 +1,17 @@
+#include "client/game/GameRenderer.hpp"
+#include "MenuWindow.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <Window.hpp>
 #include <boost/asio.hpp>
-#include "game/GameRenderer.hpp"
 #include "common/network/packets/PacketPlayer.hpp"
 #include "common/network/core/UdpConnection.hpp"
 
 int main()
 {
-    /*GameRenderer gameRenderer;
-    gameRenderer.startGame(); */
-    boost::asio::io_service         service;
+    GameRenderer gameRenderer;
+    gameRenderer.startGame();
+   /* boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
     Player                          player;
     const Network::Core::Endpoint         ep("127.0.0.1", 4244);
@@ -30,6 +31,6 @@ int main()
                        {
                            std::cout << "-- Packet has been sent" << std::endl;
                        });
-    service.run();
+    service.run();*/
     return 0;
 }

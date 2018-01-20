@@ -5,7 +5,7 @@
 #ifndef _COMMANDMANAGER_HPP_
 #define _COMMANDMANAGER_HPP_
 
-#include "Room.hpp"
+#include "common/gameManager/Room.hpp"
 
 #include <string>
 #include <iostream>

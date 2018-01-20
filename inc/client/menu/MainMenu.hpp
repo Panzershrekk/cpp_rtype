@@ -5,26 +5,35 @@
 #ifndef CPP_RTYPE_MAINMENU_HPP_
 #define CPP_RTYPE_MAINMENU_HPP_
 
-#include	<Window.hpp>
+#include	"IMenu.hpp"
 #include	"Sprite.hpp"
+#include	"MenuState.hpp"
 
-class MainMenu
+class Window;
+
+class MainMenu : public IMenu
 {
   private:
     Sprite	_splashScreen;
     Sprite	_playButton;
+    Sprite	_soloButton;
     Sprite	_optionButton;
     Sprite	_quitButton;
     Sprite	_title;
+  MenuState	&_state;
 
   public:
-    MainMenu();
+  explicit MainMenu(MenuState &);
     ~MainMenu();
 
     void draw(Window &);
-    void update(Window &);
+    void start(Window &);
+    void update(Window &, sf::Event &);
 
-    void playFunction(void);
+    void playMultiFunction(Window &, sf::Event &);
+    void quitFunction(Window &, sf::Event &);
+
+    void playSoloFunction(Window &, sf::Event &);
 };
 
 

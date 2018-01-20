@@ -7,7 +7,7 @@
 
 #include <boost/serialization/base_object.hpp>
 # include "APacket.hpp"
-# include "common/Player.hpp"
+# include "common/gameManager/Player.hpp"
 
 namespace Network
 {
