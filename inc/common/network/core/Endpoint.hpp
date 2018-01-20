@@ -28,14 +28,15 @@ namespace Network
             boost::asio::ip::udp::endpoint  _endpoint;
 
         public:
-            Endpoint(const std::string &, const unsigned short &);
+            Endpoint(const std::string, const unsigned short);
             Endpoint(const unsigned short &);
             Endpoint(const Endpoint &);
             Endpoint();
             ~Endpoint();
 
+            /* Operator overloading */
             Endpoint    &operator=(const Endpoint &);
-
+            bool        operator==(const Endpoint &oep) const;
 
             void                            setIp(const std::string &);
             void                            setPort(const unsigned short &);

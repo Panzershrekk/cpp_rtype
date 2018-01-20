@@ -31,16 +31,23 @@ namespace Network
         private:
             boost::asio::ip::udp::socket    _socket;
             std::string                     _inboundData;
+	  boost::asio::io_service		&_ioService;
 
         public:
             UdpConnection(boost::asio::io_service &ioService, const Endpoint &ep) :
-                    _socket(ioService, ep.getBoostEndpoint()) {}
+                    _socket(ioService, ep.getBoostEndpoint()) , _ioService(ioService) {}
             UdpConnection(boost::asio::io_service &ioService)
-                    : _socket(ioService) {}
+                    : _socket(ioService) , _ioService(ioService) {}
             UdpConnection(const std::string &ip, const unsigned short &port,
-                          boost::asio::io_service &io_service)
-                    : _socket(io_service, Endpoint(ip, port).getBoostEndpoint()){};
+                          boost::asio::io_service &ioService)
+                    : _socket(ioService, Endpoint(ip, port).getBoostEndpoint()),_ioService(ioService) {};
             ~UdpConnection() = default;
+
+	  std::thread		run()
+	  {
+	    _ioService.run();
+	  }
+
 
             void    openV4()
             {

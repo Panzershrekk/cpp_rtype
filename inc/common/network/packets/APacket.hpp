@@ -11,11 +11,12 @@ namespace Network
         {
             UNDEFINED = -1,
             MIN = UNDEFINED,
-            PACKET_ROOM = 0,
-            PACKET_PLAYER = 1,
-            PACKET_FIRE = 2,
-            PACKET_MOVE = 3,
-            PACKET_ENEMIES = 4,
+            PACKET_READY = 0,
+            PACKET_ROOM = 1,
+            PACKET_PLAYER = 2,
+            PACKET_FIRE = 3,
+            PACKET_MOVE = 4,
+            PACKET_ENEMIES = 5,
             MAX = PACKET_ENEMIES
         }               PacketType;
 

@@ -97,15 +97,15 @@ void Starfield::updateStarfield()
 
   //create new stars until the set limit is reached
   while((int)smallStars.size() <= maxSmallStars){
-    smallStars.emplace_back(1200, my_distribution_y(re_y));
+    smallStars.emplace_back(x_Size, my_distribution_y(re_y));
   }
 
   while((int)mediumStars.size() <= maxMediumStars){
-    mediumStars.emplace_back(1200, my_distribution_y(re_y));
+    mediumStars.emplace_back(x_Size, my_distribution_y(re_y));
   }
 
   while((int)largeStars.size() <= maxLargeStars){
-    largeStars.emplace_back(1200, my_distribution_y(re_y));
+    largeStars.emplace_back(x_Size, my_distribution_y(re_y));
   }
 }
 

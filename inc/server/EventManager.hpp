@@ -17,7 +17,7 @@ class EventManager
     EventManager();
     virtual ~EventManager();
 
-    static void	RefreshEnemies(Network::Core::UdpConnection &, const std::vector<Enemy> &, const GameManager &gm);
+    static void	RefreshEnemies(Network::Core::UdpConnection &, const GameManager &);
 };
 
 #endif      /* !_EVENTMANAGER__HPP_! */

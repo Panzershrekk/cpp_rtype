@@ -11,17 +11,19 @@
 #include "Player.hpp"
 #include "Projectile.hpp"
 #include "Enemy.hpp"
+#include "common/network/core/UdpConnection.hpp"
+#include "RtypeApp.hpp"
 
 class GameManager
 {
   public:
-    GameManager();
+    GameManager(Network::Core::UdpConnection &);
     ~GameManager();
 
     void update();
     void spawnEnnemy();
     void createProjectile(Player &);
-    void addPlayer(Player& player);
+    void addPlayer(Player player);
 
     void updateEntities();
     void removeEntities();
@@ -35,6 +37,7 @@ class GameManager
     const std::vector<Enemy>   &getEnemies() const;
 
   private:
+    Network::Core::UdpConnection &_socket;
     std::vector<Player> _player;
     std::vector<Enemy> _ennemy;
     std::vector<Projectile> _projetcile;

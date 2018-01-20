@@ -13,13 +13,19 @@
 # define    _SERVER_CORE__HPP_
 # include <boost/asio.hpp>
 # include <string>
-# include "common/network/core/UdpConnection.hpp"
+# include "network/core/UdpConnection.hpp"
+# include "RequestManager.hpp"
+# include "EventManager.hpp"
+# include "RtypeApp.hpp"
 
 class ServerCore
 {
     /* Attributes */
 private:
     Network::Core::UdpConnection    _socket;
+    GameManager                     _gameManager;
+    EventManager                    _eventManager;
+    RequestManager                  _requestManager;
 
     /* Functions */
 private:
@@ -29,7 +35,8 @@ public:
     ServerCore(boost::asio::io_service &service, const Network::Core::Endpoint &);
     ~ServerCore();
 
-    bool    start(void);
+    bool        start(void);
+  std::thread	runService();
 };
 
 #endif      /* !_SERVER_CORE__HPP_! */

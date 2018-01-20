@@ -12,7 +12,7 @@
 #include <iostream>
 #include "common/network/core/Endpoint.hpp"
 
-Network::Core::Endpoint::Endpoint(const std::string &ip, const unsigned short &port)
+Network::Core::Endpoint::Endpoint(const std::string ip, const unsigned short port)
         : _port(port), _endpoint(boost::asio::ip::address::from_string(ip), port)
 {
     this->setIp(ip);
@@ -46,6 +46,12 @@ Network::Core::Endpoint    &Network::Core::Endpoint::operator=(const Network::Co
     this->_endpoint = obj._endpoint;
     return (*this);
 }
+
+bool    Network::Core::Endpoint::operator==(const Endpoint &oep) const
+{
+    return (this->getPort() == oep.getPort() && this->getIp() == oep.getIp());
+}
+
 
 void    Network::Core::Endpoint::setIp(const std::string &ip)
 {

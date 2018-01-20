@@ -55,3 +55,8 @@ const Network::Core::Endpoint& Player::getEndpoint() const
 {
   return this->_endpoint;
 }
+
+void    Player::setEndpoint(const Network::Core::Endpoint ep)
+{
+    this->_endpoint = ep;
+}

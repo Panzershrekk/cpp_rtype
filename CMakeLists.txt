@@ -37,7 +37,7 @@ set(SOURCE_FILES_CLIENT
         src/client/main.cpp
         src/client/network/TcpClient.cpp
         src/client/network/TcpClientConnections.cpp
-        src/client/menu/ItemLobbyMenu.cpp)
+        src/client/menu/ItemLobbyMenu.cpp src/client/ClientCore.cpp)
 
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
@@ -109,7 +109,7 @@ set(HEADER_FILES_CLIENT
         inc/client/game/ProjectileRenderer.hpp
         inc/client/network/TcpClient.hpp
         inc/client/network/TcpClientConnections.hpp
-        inc/client/menu/ItemLobbyMenu.hpp)
+        inc/client/menu/ItemLobbyMenu.hpp inc/client/ClientCore.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
@@ -129,7 +129,7 @@ set(HEADER_FILES_COMMON
         inc/common/gameManager/Room.hpp
         inc/common/gameManager/Projectile.hpp
         inc/common/gameManager/Player.hpp
-        )
+        inc/common/RtypeApp.hpp)
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp

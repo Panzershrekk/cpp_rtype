@@ -23,35 +23,29 @@ GameRenderer::~GameRenderer()
 
 void GameRenderer::startGame()
 {
-    int xSize = 1200;
-    int ySize = 1200;
-    Window window("RTYPE", 1200, 1200);
-    EnemyRenderer e;
+    int xSize = 1920;
+    int ySize = 1080;
+    Window window("RTYPE", 1920, 1080);
 
   /* STARFIELD */
     Image starsImage;
   Color c(0, 0, 0);
     starsImage.create(xSize, ySize, c.getColor().Black);
-
     Texture starsTexture;
     starsTexture.loadFromImage(starsImage.getImage());
-
     Sprite starsSprite;
     starsSprite.setTexture(starsTexture);
-
     Position2D p(0, 0);
     //starsSprite.setPosition(0,0);
     starsSprite.setPosition(p);
-
-    Starfield backgroundStars(1200, 1200);
+    Starfield backgroundStars(1920, 1080);
 /* starfield */
-
   MusicManager m;
   //Music music("../resources/MainMenu.ogg", "MainMenu");
   m.AddNewMusic("../resources/MainMenu.ogg", "MainMenu");
   m.AddNewMusic("../resources/shootingstar.ogg", "ShootingStar");
   m.AddNewMusic("../resources/shrabelmatador.ogg", "Matador");
-  m.getMusicByName("Matador").playAudio();
+  m.getMusicByName("ShootingStar").playAudio();
   while (window.isOpen())
   {
     sf::Event event;
@@ -69,9 +63,8 @@ void GameRenderer::startGame()
     if (this->_clock.getElapsedTime() > 1.0 / 60)
     {
       this->_player.update();
-      e.update();
-      updateEntities();
       this->_player.forbiddenMove(window);
+      updateEntities();
       backgroundStars.updateStarfield();
       this->_clock.restartTimer();
     }
@@ -90,7 +83,6 @@ void GameRenderer::startGame()
     }
 
     window.draw(this->_player.getSprite());
-    window.draw(e.getSprite());
     drawEntities(window);
     window.display();
 
