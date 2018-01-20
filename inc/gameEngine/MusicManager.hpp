@@ -17,12 +17,12 @@ public:
   MusicManager();
   virtual ~MusicManager();
 
-  Music		&GetRandomMusic();
-  void		AddNewMusic(Music &); //TODO Metter Music en const & ?
+  std::shared_ptr<Music>		&GetRandomMusic();
+  void		AddNewMusic(const std::string & , const std::string & );
   Music		&getMusicByName(const std::string &) ;
 
 private:
-  std::vector<Music> _musicManager;
+  std::vector<std::shared_ptr<Music>> _musicManager;
 };
 
 #endif //CPP_RTYPE_MUSICMANAGER_HPP

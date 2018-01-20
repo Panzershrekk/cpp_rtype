@@ -15,12 +15,12 @@ MusicManager::~MusicManager()
 
 }
 
-void MusicManager::AddNewMusic(Music &music)
+void MusicManager::AddNewMusic(const std::string &pathFile, const std::string &newCurrMusic)
 {
-  this->_musicManager.push_back(music);
+  this->_musicManager.push_back(std::make_shared<Music>(pathFile, newCurrMusic));
 }
 
-Music &MusicManager::GetRandomMusic()
+std::shared_ptr<Music> &MusicManager::GetRandomMusic()
 {
   srand (static_cast<unsigned int>(time(nullptr)));
   auto randomIndex = static_cast<int>(std::rand() % this->_musicManager.size()); //TODO throw si jamais il y a pas de musique
@@ -31,26 +31,11 @@ Music &MusicManager::getMusicByName(const std::string &musicName)
 {
   for (auto it = this->_musicManager.begin(); it != this->_musicManager.end(); ++it)
   {
-    if (it->getCurrentName() == musicName)
+    if (it->get()->getCurrentName() == musicName)
     {
-      return *it;
+      return *it->get();
     }
   }
   auto it = this->_musicManager.begin();
-  return *it;
+  return *it->get();
 }
-/*
-
-std::shared_ptr<Music> MusicManager::getMusicByName(const std::string &musicName) {
-  for (auto it = this->_musicManager.begin(); it != this->_musicManager.end(); ++it) {
-    if (it->get()->getCurrentName() == musicName)
-    {
-      auto music = std::make_shared<Music>(it->get()->getMusicFilePath(), it->get()->getCurrentName());
-      return (music);
-    }
-  }
-  auto music = std::make_shared<Music>("../resources/MainMenu.ogg", "MainMenu");
-  return music;
-}
-
-*/

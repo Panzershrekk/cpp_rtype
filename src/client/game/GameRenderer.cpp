@@ -47,9 +47,11 @@ void GameRenderer::startGame()
 /* starfield */
 
   MusicManager m;
-  Music music("../resources/MainMenu.ogg", "MainMenu");
-  m.AddNewMusic(music);
-  m.getMusicByName("MainMenu").playAudio();
+  //Music music("../resources/MainMenu.ogg", "MainMenu");
+  m.AddNewMusic("../resources/MainMenu.ogg", "MainMenu");
+  m.AddNewMusic("../resources/shootingstar.ogg", "ShootingStar");
+  m.AddNewMusic("../resources/shrabelmatador.ogg", "Matador");
+  m.getMusicByName("Matador").playAudio();
   while (window.isOpen())
   {
     sf::Event event;
