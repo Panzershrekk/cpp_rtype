@@ -6,10 +6,10 @@
 #include	<SFML/Window/Event.hpp>
 #include	"LoginMenu.hpp"
 
-LoginMenu::LoginMenu(MenuState & state) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
+LoginMenu::LoginMenu(MenuState & state, TcpClient & client) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
 			 _port("", "../Triumph-wheels-rough.ttf", 255, 220),
 			 _name("", "../Triumph-wheels-rough.ttf", 255, 370),
-			 _state(state), _client()
+			 _state(state), _client(&client)
 {
 
 
@@ -59,24 +59,32 @@ void LoginMenu::soloFunction(Window &win, sf::Event &event)
 
 void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
-  try {
-    boost::asio::ip::tcp::endpoint endpoint(
-      boost::asio::ip::address::from_string(_ip.getString()),
-      static_cast<unsigned short>(std::stoi(_port.getString())));
+  if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
+    if (_client == nullptr || (_client != nullptr && !_client->isConnected())) {
+      try {
+	boost::asio::ip::tcp::endpoint endpoint(
+	  boost::asio::ip::address::from_string(_ip.getString()),
+	  static_cast<unsigned short>(std::stoi(_port.getString())));
 
-    std::cout << _ip.getString() << std::endl;
-    std::cout << static_cast<unsigned short>(std::stoi(_port.getString())) << std::endl;
-    _client = std::make_unique<TcpClient>(_io_service, endpoint);
-    this->_state = ERoomListMenu;
-  }
-  catch (std::exception& e)
-  {
-    std::cout << e.what() << std::endl;
+	std::cout << _ip.getString() << std::endl;
+	std::cout << static_cast<unsigned short>(std::stoi(_port.getString()))
+		  << std::endl;
+	_client = new TcpClient(endpoint, _state);
+	std::cout << "fin du scope" << std::endl;
+      }
+      catch (std::exception &e) {
+	std::cout << e.what() << std::endl;
+      }
+    }
   }
 }
 
 void LoginMenu::returnFunction(Window &win, sf::Event &event)
 {
+  if (_client != nullptr) {
+    _client->disconnect();
+    _client = nullptr;
+  }
   this->_state = EMainMenu;
 }
 

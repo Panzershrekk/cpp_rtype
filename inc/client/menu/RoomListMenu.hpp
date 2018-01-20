@@ -8,6 +8,7 @@
 
 #include "IMenu.hpp"
 #include "ItemRoomListMenu.hpp"
+#include "TcpClient.hpp"
 
 class RoomListMenu : public IMenu
 {
@@ -17,9 +18,9 @@ class RoomListMenu : public IMenu
   Sprite	_return;
   Text		_title;
   std::vector<std::shared_ptr<ItemRoomListMenu>>	_vectorRooms;
-
+  TcpClient				*_client;
   public:
-    explicit RoomListMenu(MenuState &);
+    explicit RoomListMenu(MenuState &, TcpClient &);
     ~RoomListMenu() override;
 
     void 	drawItems(Window &);
