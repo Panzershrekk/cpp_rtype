@@ -9,8 +9,11 @@
 
 int main()
 {
-    GameRenderer gameRenderer;
-    gameRenderer.startGame();
+  MenuWindow window;
+
+  window.start();
+  //  GameRenderer gameRenderer;
+  //  gameRenderer.startGame();
    /* boost::asio::io_service         service;
     Network::Core::UdpConnection    socket(service);
     Player                          player;

@@ -5,37 +5,57 @@
 #include "network/TcpClient.hpp"
 
 
-TcpClient::TcpClient(boost::asio::io_service & service,
-		     boost::asio::ip::tcp::endpoint &endpoint) : _io_service(service)
+/*TcpClient::TcpClient(boost::asio::io_service & service,
+		     boost::asio::ip::tcp::endpoint &endpoint,
+		     MenuState &state) : _io_service(service), _state(state)
 {
   connect(endpoint);
- _thread = std::thread(std::bind(&TcpClient::run, this));
-}
+  //_io_service.run();
+  _thread = std::thread(std::bind(&TcpClient::run, this));
+}*/
 
 TcpClient::~TcpClient()
 {
-
+std::cout << "Destroy" << std::endl;
 }
 
 void TcpClient::connect(boost::asio::ip::tcp::endpoint &endpoint)
 {
-  std::cout << "connect" << std::endl;
+  std::cout << "async_connect" << std::endl;
   TcpClientConnections::ptr connection = TcpClientConnections::create(_io_service);
   boost::asio::ip::tcp::socket& socket = connection->getSocket();
  socket.async_connect(endpoint,
-		       std::bind(&TcpClient::handleConnect, this, connection
+		       boost::bind(&TcpClient::handleConnect, this, connection, boost::asio::placeholders::error
 				 ));
 }
 
-void TcpClient::handleConnect(TcpClientConnections::ptr connect)
+void TcpClient::handleConnect(TcpClientConnections::ptr connect, const boost::system::error_code& error)
 {
-  std::cout << "connected" << std::endl;
-  connect->read();
+  if (!error) {
+    std::cout << "connected" << std::endl;
+    connect->read();
+    _state = ERoomListMenu;
+  } else
+  {
+    std::cout << error.message() << std::endl;
+  }
 }
 
 void TcpClient::run()
 {
   _io_service.run();
+}
+
+TcpClient::TcpClient()
+{
+}
+
+void TcpClient::start(MenuState &state, boost::asio::ip::tcp::endpoint &endpoint)
+{
+  _state = state;
+  connect(endpoint);
+  _thread = std::thread(std::bind(&TcpClient::run, this));
+
 }
 
 

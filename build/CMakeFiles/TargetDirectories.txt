@@ -1,0 +1,4 @@
+/Users/blue/Epitech/cpp/cpp_rtype/build/CMakeFiles/rebuild_cache.dir
+/Users/blue/Epitech/cpp/cpp_rtype/build/CMakeFiles/edit_cache.dir
+/Users/blue/Epitech/cpp/cpp_rtype/build/CMakeFiles/r-type-client.dir
+/Users/blue/Epitech/cpp/cpp_rtype/build/CMakeFiles/r-type-server.dir

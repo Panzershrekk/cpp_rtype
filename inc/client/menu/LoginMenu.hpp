@@ -25,9 +25,9 @@ class LoginMenu : public IMenu
 
     MenuState				&_state;
     Buttonchoice 			_whichBut;
+  TcpClient				_client;
 
-  boost::asio::io_service		_io_service;
-  std::unique_ptr<TcpClient>		_client;
+//  std::unique_ptr<TcpClient>		_client;
 
     void getSfLine(Text &, sf::Event &);
 
@@ -43,7 +43,6 @@ class LoginMenu : public IMenu
     void 	enterPort(Window &, sf::Event &);
     void 	enterName(Window &, sf::Event &);
     void 	playFunction(Window &, sf::Event &);
-  void		run();
 
   void returnFunction(Window &, sf::Event &);
 };

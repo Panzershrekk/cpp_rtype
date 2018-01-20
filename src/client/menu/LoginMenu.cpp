@@ -53,19 +53,23 @@ void LoginMenu::enterName(Window &win, sf::Event &event)
 
 void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
-  try {
-    boost::asio::ip::tcp::endpoint endpoint(
-      boost::asio::ip::address::from_string(_ip.getString()),
-      static_cast<unsigned short>(std::stoi(_port.getString())));
+  if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
+    try {
+      boost::asio::ip::tcp::endpoint endpoint(
+	boost::asio::ip::address::from_string(_ip.getString()),
+	static_cast<unsigned short>(std::stoi(_port.getString())));
 
-    std::cout << _ip.getString() << std::endl;
-    std::cout << static_cast<unsigned short>(std::stoi(_port.getString())) << std::endl;
-    _client = std::make_unique<TcpClient>(_io_service, endpoint);
-    this->_state = ERoomListMenu;
-  }
-  catch (std::exception& e)
-  {
-    std::cout << e.what() << std::endl;
+      std::cout << _ip.getString() << std::endl;
+      std::cout << static_cast<unsigned short>(std::stoi(_port.getString()))
+		<< std::endl;
+      _client.start(_state, endpoint);
+      //TcpClient client(_io_service, endpoint, _state);
+      std::cout << "fin du scope" << std::endl;
+      //_client = std::make_unique<TcpClient>(_io_service, endpoint, _state);
+    }
+    catch (std::exception &e) {
+      std::cout << e.what() << std::endl;
+    }
   }
 }
 
