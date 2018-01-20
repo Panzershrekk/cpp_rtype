@@ -19,6 +19,8 @@ class ItemLobbyMenu
 
     Sprite 	&getSprite();
     Text	&getText();
+
+    void 	activeItem(int);
 };
 
 

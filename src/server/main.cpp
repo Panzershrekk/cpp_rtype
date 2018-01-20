@@ -5,7 +5,7 @@
 
 int main()
 {
-  /*boost::asio::io_service	service;
+  boost::asio::io_service	service;
 
   try
   {
@@ -16,10 +16,10 @@ int main()
   {
     std::cerr << e.what() << std::endl;
   }
-  return 0;*/
-  GameManager gameManager;
-  /*boost::asio::io_service     service;
-  ServerCore                  server(service, Network::Core::Endpoint(4244));*/
+  return 0;
+  /*GameManager gameManager;
+  boost::asio::io_service     service;
+  ServerCore                  server(service, Network::Core::Endpoint(4244));
 
   Player player("Noobdu59");
   Player player1("XXX_PUSSY_DESTROYER_XXX");
@@ -36,7 +36,7 @@ int main()
 
   gameManager.dumpPlayer();
   gameManager.update();
-    /*server.start();
+    server.start();
     service.run();*/
     return 0;
 }

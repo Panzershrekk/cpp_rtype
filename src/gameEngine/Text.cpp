@@ -64,6 +64,11 @@ sf::Text	&Text::getSfText()
   return (this->_text);
 }
 
+void 		Text::setColor(int r, int g, int b, int alpha)
+{
+  this->_text.setFillColor(sf::Color(r, g, b, alpha));
+}
+
 std::string	Text::getString() const
 {
   return (this->_str);

@@ -27,18 +27,19 @@ class Sprite
     Sprite(const std::string &, Position2D &pos);
     Sprite(const std::string &, int, int, int, int);
     ~Sprite();
+
+    sf::Sprite	&getSfSprite(void);
     Texture	getTexture(void) const;
     void 	setTexture(Texture &);
     void 	setTexture(const std::string &);
+    Position2D 	getPosition(void) const;
+    void 	setPosition(Position2D&);
+    void setColor(int, int, int, int);
+    void 	setScale(float, float);
+    void 	move(Position2D&);
     void 	move(float, float);
-    sf::Sprite	getSfSprite(void) const;
 
-    Position2D getPosition(void) const;
-    void setPosition(Position2D&);
-    void setScale(float, float);
-    void move(Position2D&);
-
-    bool isMouseOver(Window &);
+  bool isMouseOver(Window &);
     void onClick(std::function<void(Window &, sf::Event &)>, Window &, sf::Event &);
 };
 
