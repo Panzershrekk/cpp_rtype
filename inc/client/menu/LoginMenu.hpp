@@ -25,14 +25,14 @@ class LoginMenu : public IMenu
 
     MenuState				&_state;
     Buttonchoice 			_whichBut;
-  TcpClient				_client;
+  TcpClient				*_client;
 
-//  std::unique_ptr<TcpClient>		_client;
 
-    void getSfLine(Text &, sf::Event &);
+
+  void getSfLine(Text &, sf::Event &);
 
   public:
-    explicit LoginMenu(MenuState &);
+    explicit LoginMenu(MenuState &, TcpClient &);
     ~LoginMenu();
 
     void start(Window &) override;
