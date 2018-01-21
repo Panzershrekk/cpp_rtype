@@ -34,9 +34,9 @@ void GameManager::update()
              * if player fire
              * createProjectile(Player that fired)
              * */
-            //EventManager::RefreshEnemies(this->_socket, *this);
-	    dumpEnemy();
-	    missileCollide();
+            EventManager::RefreshEnemies(this->_socket, *this);
+            dumpEnemy();
+            missileCollide();
             updateEntities();
             removeEntities();
             clock.restartTimer();
@@ -122,16 +122,16 @@ void GameManager::dumpEnemy()
 
 bool GameManager::missileCollide()
 {
-  /*for (auto it : this->_projetcile)
-  {
-    for (auto it2 : this->_ennemy)
+    /*for (auto it : this->_projetcile)
     {
-	if (it.getRectangle().intersects(it2.getRectangle())) {
-	  std::cout << it.getId() << std::endl;
-	  std::cout << it2.getId() << std::endl;
-	  return (true);
-	}
-    }
-  }*/
-  return false;
+      for (auto it2 : this->_ennemy)
+      {
+      if (it.getRectangle().intersects(it2.getRectangle())) {
+        std::cout << it.getId() << std::endl;
+        std::cout << it2.getId() << std::endl;
+        return (true);
+      }
+      }
+    }*/
+    return false;
 }
