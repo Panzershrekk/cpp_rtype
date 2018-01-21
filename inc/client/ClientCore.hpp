@@ -18,6 +18,7 @@ private:
     // MenuWindow                      _menu;
     GameRenderer                    _gameRender;
     RequestManager                  _requestManager;
+    Network::Core::Endpoint         _endpointServer; //TODO
 
 public:
     explicit ClientCore(boost::asio::io_service &service);
