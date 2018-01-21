@@ -15,7 +15,7 @@ class EventManager
 {
   public:
     EventManager();
-    virtual ~EventManager();
+    ~EventManager();
 
     static void	RefreshEnemies(Network::Core::UdpConnection &, GameManager &);
 };

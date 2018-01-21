@@ -17,7 +17,7 @@ private:
 
 public:
     RequestManager();
-    virtual ~RequestManager();
+    ~RequestManager();
 
     // HANDLE CLIENT CONNECTION
     void    handleNewUdpClient(const Network::Core::Endpoint &, GameManager &);
