@@ -8,7 +8,7 @@
 EnemyRenderer::EnemyRenderer(int id) : AEntityRenderer("../assets/Enemy.png")
 {
   this->_id = id;
-  setPosition(Position2D(700, 140));
+  setPosition(Position2D(2700, 2700));
   this->_sprite.setPosition(this->_pos);
 }
 

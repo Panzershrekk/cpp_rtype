@@ -25,8 +25,6 @@ class PlayablePlayer : public AEntityRenderer
   private:
     Physic _physic;
     std::vector<std::shared_ptr<ProjectileRenderer>> _projectile;
-
-
 };
 
 #endif //CPP_RTYPE_PLAYABLEPLAYER_HPP

@@ -7,7 +7,7 @@
 
 Enemy::Enemy() : Character(1)
 {
-    this->_physic.setSpeed(3);
+    this->_physic.setSpeed(5);
     this->_hitboxSize = Position2D(25, 24);
     this->_rect = Rectangle(this->_pos.getX() - this->_hitboxSize.getX(), this->_pos.getY() - this->_hitboxSize.getY(), 14, 12);
     randomizePosition();

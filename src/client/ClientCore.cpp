@@ -6,8 +6,10 @@
 #include "common/network/packets/PacketReady.hpp"
 #include "ClientCore.hpp"
 
-ClientCore::ClientCore(boost::asio::io_service &service) :
-        _socket(service)
+ClientCore::ClientCore(boost::asio::io_service &service, Player &me) :
+        _socket(service),
+        _player(me),
+        _gameRender(_socket, _endpointServer)
 {
     this->_socket.openV4();
 }

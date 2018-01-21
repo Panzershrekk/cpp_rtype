@@ -18,6 +18,8 @@ class EventManager
     ~EventManager();
 
     static void	RefreshEnemies(Network::Core::UdpConnection &, GameManager &);
+    static void RefreshProjectile(Network::Core::UdpConnection &, GameManager &gm);
+
 };
 
 #endif      /* !_EVENTMANAGER__HPP_! */

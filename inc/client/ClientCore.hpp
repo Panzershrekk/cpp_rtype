@@ -15,10 +15,11 @@ class ClientCore
 {
 private:
     Network::Core::UdpConnection    _socket;
-    // MenuWindow                      _menu;
+    // MenuWindow                   _menu;
     GameRenderer                    _gameRender;
     RequestManager                  _requestManager;
     Network::Core::Endpoint         _endpointServer; //TODO
+    Player                          _player;
 
 public:
     explicit ClientCore(boost::asio::io_service &service);

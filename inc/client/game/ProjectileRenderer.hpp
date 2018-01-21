@@ -11,8 +11,8 @@
 class ProjectileRenderer : public AEntityRenderer
 {
 public:
-    ProjectileRenderer(Position2D pos);
-    ~ProjectileRenderer();
+    explicit ProjectileRenderer(Position2D pos);
+    ~ProjectileRenderer() override;
 
     void update();
 

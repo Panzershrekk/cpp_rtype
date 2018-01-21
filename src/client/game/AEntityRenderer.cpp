@@ -22,15 +22,20 @@ AEntityRenderer::~AEntityRenderer()
 
 Sprite &AEntityRenderer::getSprite()
 {
-  return (this->_sprite);
+    return (this->_sprite);
 }
 
 Position2D AEntityRenderer::getPosition() const
 {
-  return (this->_pos);
+    return (this->_pos);
 }
 
 void AEntityRenderer::setPosition(const Position2D &pos)
 {
-  this->_pos = pos;
+    this->_pos = pos;
+}
+
+int   &AEntityRenderer::getId()
+{
+    return this->_id;
 }

@@ -2,8 +2,8 @@
 // Created by thomas on 17/01/18.
 //
 
-#include <game/PlayablePlayer.hpp>
-#include <Joystick.hpp>
+#include "game/PlayablePlayer.hpp"
+#include "Joystick.hpp"
 
 PlayablePlayer::PlayablePlayer() : AEntityRenderer("../assets/Ship_White.png"), _physic(0, 0, 5)
 {

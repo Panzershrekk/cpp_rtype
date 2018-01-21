@@ -17,6 +17,8 @@ class AEntityRenderer
     Sprite &getSprite();
     Position2D getPosition() const;
 
+
+    int   &getId();
     void setPosition(const Position2D&);
 
     virtual void update() = 0;

@@ -35,6 +35,7 @@ void    RequestManager::handlePacketEnemies(Network::Packet::APacket *packet, Ga
     {
         std::cout << "---- Enemy | id: " << enemy.getId() << " | hp: " << enemy.getHp();
         std::cout << " | pos: (" << enemy.getPosition().getX() << ", " << enemy.getPosition().getY() << std::endl;
+        gr.addEnemies(enemy);
     }
 }
 

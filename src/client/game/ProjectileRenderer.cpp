@@ -11,9 +11,7 @@ ProjectileRenderer::ProjectileRenderer(Position2D  pos) : AEntityRenderer("../as
     this->_sprite.setPosition(this->_pos);
 }
 
-ProjectileRenderer::~ProjectileRenderer() {
-
-}
+ProjectileRenderer::~ProjectileRenderer() = default;
 
 void ProjectileRenderer::update()
 {
