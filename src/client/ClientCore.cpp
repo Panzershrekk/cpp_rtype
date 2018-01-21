@@ -38,7 +38,8 @@ void    ClientCore::start()
                               {
                                   std::cout << "FIRST PACKET HAS BEEN SENT" << std::endl;
                               });
-    // this->_gameRender.startGame();
+    sleep(1);
+    this->_gameRender.startGame();
     // this->_menu.start();
     threadRun.join();
 }
