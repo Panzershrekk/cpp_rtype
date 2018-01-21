@@ -17,7 +17,7 @@ class EventManager
   private:
   public:
     EventManager();
-    virtual ~EventManager();
+    ~EventManager();
 
     void	RefreshPlayer(Room &room, Player &player);
     void	RefreshBot(Room &room, std::vector<Bots> &bots);

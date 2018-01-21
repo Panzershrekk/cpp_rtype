@@ -18,7 +18,7 @@ class ServerPrompt
     /*ServerCore *_server;*/
   public:
     ServerPrompt();
-    virtual ~ServerPrompt();
+    ~ServerPrompt();
 
     void	startPrompt();
     void	readCommand();
