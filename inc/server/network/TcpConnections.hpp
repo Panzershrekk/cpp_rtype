@@ -17,6 +17,8 @@ private:
   boost::array<char, 128>		m_buffer;
   boost::asio::ip::tcp::socket		_socket;
 
+  void handleData();
+
 public:
   explicit TcpConnections(boost::asio::io_service&);
   ~TcpConnections();

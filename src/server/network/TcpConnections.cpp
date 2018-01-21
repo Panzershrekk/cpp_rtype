@@ -14,7 +14,7 @@ TcpConnections::~TcpConnections() = default;
 
 void TcpConnections::start()
 {
-  std::string welcome = "Welcome!\n";
+  std::string welcome = "Welcome!	";
   asyncWrite(welcome);
 }
 
@@ -51,4 +51,9 @@ void	TcpConnections::doRead()
 			  boost::asio::transfer_at_least(1),
 			  std::bind(&TcpConnections::asyncRead,
 				    shared_from_this(), std::placeholders::_1));
+}
+
+void TcpConnections::handleData()
+{
+  std::string tmp(m_buffer.data());
 }
