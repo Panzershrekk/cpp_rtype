@@ -15,7 +15,12 @@ GameManager::~GameManager()
 
 }
 
+std::vector<Player>& GameManager::getPlayers() { return this->_player; }
+const std::vector<Enemy>& GameManager::getEnemies() const { return this->_ennemy; }
 
+/**
+ *
+ */
 void GameManager::update()
 {
     TimeManager clock;
@@ -33,6 +38,7 @@ void GameManager::update()
              * createProjectile(Player that fired)
              * */
             EventManager::RefreshEnemies(this->_socket, *this);
+                  missileCollide();
             updateEntities();
             dumpEnemy();
             removeEntities();
@@ -117,12 +123,19 @@ void GameManager::dumpEnemy()
     std::cout << "--------------------------" << std::endl;
 }
 
-std::vector<Player>& GameManager::getPlayers()
+bool GameManager::missileCollide()
 {
-    return this->_player;
-}
-
-const std::vector<Enemy>& GameManager::getEnemies() const
-{
-    return this->_ennemy;
+  for (auto it : this->_projetcile)
+  {
+    for (auto it2 : this->_ennemy)
+    {
+	if (it.getRectangle().intersects(it2.getRectangle())) {
+	  std::cout << it.getId() << std::endl;
+	  std::cout << it2.getId() << std::endl;
+	  exit(0);
+	  return (true);
+	}
+    }
+  }
+  return false;
 }

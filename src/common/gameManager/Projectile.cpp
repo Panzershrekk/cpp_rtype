@@ -20,5 +20,7 @@ Projectile::~Projectile()
 void Projectile::update()
 {
   this->_ai.PredefinedLeftToRight(this->_pos, this->_physic.getSpeed());
-  this->_rect.changeTopLeft(this->_hitboxSize);
+  //this->_rect.changeTopLeft(this->_hitboxSize);
+  Position2D p(Position2D(this->_pos.getX() - this->_hitboxSize.getX(), this->_pos.getY() - this->_hitboxSize.getY()));
+  this->_rect.changeTopLeft(p);
 }

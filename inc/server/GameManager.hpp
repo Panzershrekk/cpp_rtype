@@ -32,6 +32,7 @@ class GameManager
     void dumpEnemy();
 
     bool playerStillAlive();
+    bool missileCollide();
 
     std::vector<Player>   &getPlayers();
     const std::vector<Enemy>    &getEnemies() const;

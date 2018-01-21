@@ -39,10 +39,10 @@ void PlayablePlayer::update()
 
 void PlayablePlayer::fire()
 {
-  this->_projectile.emplace_back(ProjectileRenderer(this->_pos));
+  this->_projectile.emplace_back(std::make_shared<ProjectileRenderer>(this->_pos));
 }
 
-std::vector<ProjectileRenderer> &PlayablePlayer::getProjectileVector() {
+std::vector<std::shared_ptr<ProjectileRenderer>>&PlayablePlayer::getProjectileVector() {
     return this->_projectile;
 }
 
