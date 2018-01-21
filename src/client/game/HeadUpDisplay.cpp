@@ -7,11 +7,36 @@
 HeadUpDisplay::HeadUpDisplay(std::vector<Player> &player, const std::string &path, int x, int y) : _splashScreen(path, x, y)
 {
     this->_splashScreen.setScale(1.3, 1.5);
-    //TODO obtenir le vector de player ici et set les name à la place de player1, player2 etc..
-    this->_hudPlayer.emplace(std::make_pair(player.at(0).getName(), std::make_shared<HudPlayer>(player.at(0).getName(), "../assets/LobbyMenu_SpaceShip_1.png", 80, 905)));
-    this->_hudPlayer.emplace(std::make_pair(player.at(1).getName(), std::make_shared<HudPlayer>(player.at(1).getName(), "../assets/LobbyMenu_SpaceShip_2.png", 80, 953)));
-    this->_hudPlayer.emplace(std::make_pair(player.at(2).getName(), std::make_shared<HudPlayer>(player.at(2).getName(), "../assets/LobbyMenu_SpaceShip_3.png", 605, 905)));
-    this->_hudPlayer.emplace(std::make_pair(player.at(3).getName(), std::make_shared<HudPlayer>(player.at(3).getName(), "../assets/LobbyMenu_SpaceShip_4.png", 605, 953)));
+  for (int i = 0; i < player.size(); i++) {
+    switch (i) {
+      case 0 : this->_hudPlayer.emplace(std::make_pair(player.at(0).getName(),
+					      std::make_shared<HudPlayer>(
+						player.at(0).getName(),
+						"../assets/LobbyMenu_SpaceShip_1.png",
+						80, 905)));
+	break;
+      case 1 : this->_hudPlayer.emplace(std::make_pair(player.at(1).getName(),
+					      std::make_shared<HudPlayer>(
+						player.at(1).getName(),
+						"../assets/LobbyMenu_SpaceShip_2.png",
+						80, 953)));
+	break;
+      case 2 : this->_hudPlayer.emplace(std::make_pair(player.at(2).getName(),
+					      std::make_shared<HudPlayer>(
+						player.at(2).getName(),
+						"../assets/LobbyMenu_SpaceShip_3.png",
+						605, 905)));
+	break;
+      case 3 : this->_hudPlayer.emplace(std::make_pair(player.at(3).getName(),
+					      std::make_shared<HudPlayer>(
+						player.at(3).getName(),
+						"../assets/LobbyMenu_SpaceShip_4.png",
+						605, 953)));
+	break;
+      default:
+	break;
+    }
+  }
 }
 
 HeadUpDisplay::~HeadUpDisplay()
