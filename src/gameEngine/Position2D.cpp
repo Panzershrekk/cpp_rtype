@@ -67,6 +67,14 @@ Position2D Position2D::operator-=(const Position2D &ovec)
     return (*this);
 }
 
+Position2D  &Position2D::operator=(const Position2D &other)
+{
+    this->_x = other._x;
+    this->_y = other._y;
+    this->_vector2 = other._vector2;
+    return (*this);
+}
+
 int Position2D::getX() const
 {
   //std::cout << "GETT" << this->_x << std::endl;

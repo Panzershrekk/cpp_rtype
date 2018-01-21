@@ -12,7 +12,6 @@
 #include "Projectile.hpp"
 #include "Enemy.hpp"
 #include "common/network/core/UdpConnection.hpp"
-#include "RtypeApp.hpp"
 
 class GameManager
 {
@@ -36,12 +35,13 @@ class GameManager
 
     std::vector<Player>   &getPlayers();
     const std::vector<Enemy>    &getEnemies() const;
+    const std::vector<Projectile>    &getProjectiles() const;
 
   private:
-    Network::Core::UdpConnection &_socket;
-    std::vector<Player> _player;
-    std::vector<Enemy> _ennemy;
-    std::vector<Projectile> _projetcile;
+    Network::Core::UdpConnection    &_socket;
+    std::vector<Player>             _player;
+    std::vector<Enemy>              _ennemy;
+    std::vector<Projectile>         _projectile;
 
 };
 

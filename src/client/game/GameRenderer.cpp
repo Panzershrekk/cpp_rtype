@@ -75,23 +75,23 @@ void GameRenderer::startGame(Player &me, const Network::Core::Endpoint &serverEn
 
         if (this->_attackSpeed.getElapsedTime() > 0.4)
         {
-            bool    hasFire = false;
-
             if (sf::Joystick::isConnected(0))
             {
                 if (sf::Joystick::isButtonPressed(0, 0))
-                    hasFire = true;
+                {
+                    me.setPosition(this->_player.getPosition());
+                    EventManager::sendFire(this->_socket, me, serverEndpoint);
+                }
             }
             else
             {
                 if (Keyboard::isKeyPressed(Keyboard::Key::Space))
-                    hasFire = true;
+                {
+                    me.setPosition(this->_player.getPosition());
+                    EventManager::sendFire(this->_socket, me, serverEndpoint);
+                }
             }
-            if (hasFire)
-            {
-                this->_player.fire();
-                //EventManager::sendFire(this->_socket, me, serverEndpoint);
-            }
+
             this->_attackSpeed.restartTimer();
         }
         window.draw(this->_player.getSprite());
@@ -102,19 +102,22 @@ void GameRenderer::startGame(Player &me, const Network::Core::Endpoint &serverEn
 
 void GameRenderer::drawEntities(Window & window)
 {
-    /*for (auto &it : this->_player.getProjectileVector())
+    for (auto &it : this->_player.getProjectileVector())
+    {
         window.draw(it->getSprite());
-         */
-    for (auto &it2 : this->_enemies)
-        window.draw(it2->getSprite());
+
+    }
+    for (auto &it : this->_enemies)
+    {
+        window.draw(it->getSprite());
+    }
 
 }
 
 void GameRenderer::updateEntities()
 {
-   /* for (auto &it : this->_player.getProjectileVector())
-        it->update(); */
-    // TODO WTF
+   for (auto &it : this->_player.getProjectileVector())
+        it->update();
     for (auto &it2 : this->_enemies)
         it2->update();
 }
@@ -147,4 +150,16 @@ void    GameRenderer::addEnemies(Enemy &newEnemy)
     auto    newRenderEnemy = std::make_shared<EnemyRenderer>(newEnemy.getId());
     newRenderEnemy->setPosition(newEnemy.getPosition());
     this->_enemies.emplace_back(newRenderEnemy);
+}
+
+void    GameRenderer::addProjectiles(Projectile &newProjectile)
+{
+    for (const auto projectile : this->_player.getProjectileVector())
+    {
+        if (projectile->getId() == newProjectile.getId())
+            return;
+    }
+    auto    newRenderProjectile = std::make_shared<ProjectileRenderer>(newProjectile.getPosition(), newProjectile.getId());
+    newRenderProjectile->setPosition(newProjectile.getPosition());
+    this->_player.getProjectileVector().emplace_back(newRenderProjectile);
 }

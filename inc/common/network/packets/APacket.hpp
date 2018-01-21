@@ -17,7 +17,8 @@ namespace Network
             PACKET_FIRE = 3,
             PACKET_MOVE = 4,
             PACKET_ENEMIES = 5,
-            MAX = PACKET_ENEMIES
+            PACKET_PROJECTILES = 6,
+            MAX = PACKET_PROJECTILES
         }               PacketType;
 
         class APacket

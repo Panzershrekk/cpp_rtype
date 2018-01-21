@@ -22,6 +22,7 @@ public:
     // HANDLE PACKET
     void	handleRequest(Network::Packet::APacket *, GameRenderer &);
     void    handlePacketEnemies(Network::Packet::APacket *, GameRenderer &);
+    void    handlePacketProjectiles(Network::Packet::APacket *, GameRenderer &);
 
 };
 

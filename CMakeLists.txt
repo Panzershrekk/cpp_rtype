@@ -133,6 +133,7 @@ set(HEADER_FILES_COMMON
         inc/common/network/packets/PacketPlayer.hpp
         inc/common/network/packets/PacketRoom.hpp
         inc/common/network/packets/PacketEnemies.hpp
+        inc/common/network/packets/PacketProjectiles.hpp
         inc/common/network/packets/PacketFire.hpp
         inc/common/network/packets/PacketMove.hpp
         inc/common/network/packets/PacketReady.hpp
@@ -142,7 +143,7 @@ set(HEADER_FILES_COMMON
         inc/common/gameManager/Room.hpp
         inc/common/gameManager/Projectile.hpp
         inc/common/gameManager/Player.hpp
-        inc/common/RtypeApp.hpp)
+        )
 
 set(HEADER_FILES_GAME_ENGINE
         inc/gameEngine/AIManager.hpp

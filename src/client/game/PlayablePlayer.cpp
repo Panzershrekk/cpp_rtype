@@ -37,12 +37,8 @@ void PlayablePlayer::update()
   this->_sprite.setPosition(this->_pos);
 }
 
-void PlayablePlayer::fire()
+std::vector<std::shared_ptr<ProjectileRenderer>>    &PlayablePlayer::getProjectileVector()
 {
-  this->_projectile.emplace_back(std::make_shared<ProjectileRenderer>(this->_pos));
-}
-
-std::vector<std::shared_ptr<ProjectileRenderer>>&PlayablePlayer::getProjectileVector() {
     return this->_projectile;
 }
 

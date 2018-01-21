@@ -38,7 +38,7 @@ void    RequestManager::handleNewUdpClient(const Network::Core::Endpoint &endpoi
  * @param packet
  * @param gm
  */
-void	RequestManager::handleRequest(const Network::Packet::APacket *packet, GameManager &gm)
+void	RequestManager::handleRequest(Network::Packet::APacket *packet, GameManager &gm)
 {
     for (auto handler : this->_manager)
     {
@@ -50,13 +50,17 @@ void	RequestManager::handleRequest(const Network::Packet::APacket *packet, GameM
     }
 }
 
-void	RequestManager::handleFireRequest(const Network::Packet::APacket *packet, GameManager &)
+void	RequestManager::handleFireRequest(Network::Packet::APacket *packet, GameManager &gm)
 {
-    const auto    pFire = static_cast<const Network::Packet::PacketFire *>(packet);
+    auto    pFire = static_cast<Network::Packet::PacketFire *>(packet);
 
+    std::cout << "-- Received PacketFire request" << std::endl;
+    std::cout << "---- Player who fire | id: " << pFire->getPlayer().getId() << " | hp: " << pFire->getPlayer().getHp();
+    std::cout << " | pos: (" << pFire->getPlayer().getPosition().getX() << ", " << pFire->getPlayer().getPosition().getY() << std::endl;
+    gm.createProjectile(pFire->getPlayer());
 }
 
-void	RequestManager::handleMoveRequest(const Network::Packet::APacket *packet, GameManager &)
+void	RequestManager::handleMoveRequest(Network::Packet::APacket *packet, GameManager &)
 {
     const auto    pMove = static_cast<const Network::Packet::PacketMove *>(packet);
 

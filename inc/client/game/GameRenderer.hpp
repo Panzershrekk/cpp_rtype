@@ -11,19 +11,23 @@
 #include "PlayablePlayer.hpp"
 #include "EnemyRenderer.hpp"
 #include "gameManager/Enemy.hpp"
+#include "network/core/UdpConnection.hpp"
+#include "Projectile.hpp"
 
 class GameRenderer
 {
   public:
     explicit GameRenderer(Network::Core::UdpConnection &);
     ~GameRenderer();
-    void startGame(Player &me, const Network::Core::Endpoint &);
-    void updateEntities();
-    void drawEntities(Window &);
-    void destroyEntities();
-    void addEnemies(Enemy &);
+    void    startGame(Player &me, const Network::Core::Endpoint &);
+    void    updateEntities();
+    void    drawEntities(Window &);
+    void    destroyEntities();
+    void    addEnemies(Enemy &);
+    void    addProjectiles(Projectile &);
 
-  private:
+
+private:
     PlayablePlayer                                  _player;
     std::vector<std::shared_ptr<EnemyRenderer>>     _enemies;
     TimeManager                                     _clock;

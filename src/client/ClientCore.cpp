@@ -6,10 +6,9 @@
 #include "common/network/packets/PacketReady.hpp"
 #include "ClientCore.hpp"
 
-ClientCore::ClientCore(boost::asio::io_service &service, Player &me) :
+ClientCore::ClientCore(boost::asio::io_service &service) :
         _socket(service),
-        _player(me),
-        _gameRender(_socket, _endpointServer)
+        _gameRender(_socket)
 {
     this->_socket.openV4();
 }
@@ -32,16 +31,20 @@ void    ClientCore::start()
     startExchanges();
     std::thread		threadRun(&ClientCore::runService, this);
 
+
+    /* MENU*/
+    this->_endpointServer = Network::Core::Endpoint("0.0.0.0", 4242); // TODO Determined by Menu
+
     Network::Packet::PacketReady    packetReady;
     packetReady.setPlayer(1234);
     auto ser = Serializer::serialize(packetReady);
-    this->_socket.async_write(ser, Network::Packet::PACKET_READY, Network::Core::Endpoint("0.0.0.0", 4242), // TODO AUTOMATE SERVER PORT
+    this->_socket.async_write(ser, Network::Packet::PACKET_READY, this->_endpointServer,
                               [&](const boost::system::error_code &e, const long unsigned int&)
                               {
                                   std::cout << "FIRST PACKET HAS BEEN SENT" << std::endl;
                               });
     sleep(1);
-    this->_gameRender.startGame();
+    this->_gameRender.startGame(this->_player, this->_endpointServer);
     // this->_menu.start();
     threadRun.join();
 }
@@ -84,7 +87,6 @@ void    ClientCore::startExchanges()
 
                                std::cout << "-- Received packet a " << packet->getType() << " packet";
                                this->_requestManager.handleRequest(packet, this->_gameRender);
-
                            }
                            catch (const std::exception &exept)
                            {

@@ -3,11 +3,14 @@
 //
 
 #include <common/network/packets/PacketEnemies.hpp>
+#include <common/network/packets/PacketProjectiles.hpp>
 #include "client/RequestManager.hpp"
 
 RequestManager::RequestManager()
 {
-   this->_manager[Network::Packet::PacketType::PACKET_ENEMIES] = std::bind(&RequestManager::handlePacketEnemies, this, std::placeholders::_1, std::placeholders::_2);
+    this->_manager[Network::Packet::PacketType::PACKET_ENEMIES] = std::bind(&RequestManager::handlePacketEnemies, this, std::placeholders::_1, std::placeholders::_2);
+    this->_manager[Network::Packet::PacketType::PACKET_PROJECTILES] = std::bind(&RequestManager::handlePacketProjectiles, this, std::placeholders::_1, std::placeholders::_2);
+
 }
 
 RequestManager::~RequestManager()
@@ -39,3 +42,15 @@ void    RequestManager::handlePacketEnemies(Network::Packet::APacket *packet, Ga
     }
 }
 
+void    RequestManager::handlePacketProjectiles(Network::Packet::APacket *packet, GameRenderer &gr)
+{
+    auto    pProjectiles = static_cast<Network::Packet::PacketProjectiles *>(packet);
+
+    std::cout << "-- Received UpdatePacketProjectile request" << std::endl;
+    for (auto &projectile : pProjectiles->getProjectiles())
+    {
+        std::cout << "---- Projectile | id: " << projectile.getId();
+        std::cout << " | pos: (" << projectile.getPosition().getX() << ", " << projectile.getPosition().getY() << std::endl;
+        gr.addProjectiles(projectile);
+    }
+}

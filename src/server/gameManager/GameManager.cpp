@@ -14,6 +14,7 @@ GameManager::~GameManager() = default;
 
 std::vector<Player>& GameManager::getPlayers() { return this->_player; }
 const std::vector<Enemy>& GameManager::getEnemies() const { return this->_ennemy; }
+const std::vector<Projectile>& GameManager::getProjectiles() const { return this->_projectile; }
 
 /**
  *
@@ -34,6 +35,7 @@ void GameManager::update()
              * if player fire
              * createProjectile(Player that fired)
              * */
+            EventManager::RefreshProjectiles(this->_socket, *this);
             EventManager::RefreshEnemies(this->_socket, *this);
 
             dumpEnemy();
@@ -48,12 +50,11 @@ void GameManager::update()
             spwanRate.restartTimer();
         }
     }
-
 }
 
 void GameManager::createProjectile(Player &player)
 {
-    this->_projetcile.emplace_back(Projectile(player.getPosition()));
+    this->_projectile.emplace_back(Projectile(player.getPosition()));
 }
 
 void GameManager::spawnEnnemy()
@@ -81,7 +82,7 @@ void GameManager::updateEntities()
 {
     for (auto &it : this->_ennemy)
         it.update();
-    for (auto &it2 : this->_projetcile)
+    for (auto &it2 : this->_projectile)
         it2.update();
 }
 
@@ -95,9 +96,9 @@ void GameManager::removeEntities()
         }
     }
 
-    for (auto it = this->_projetcile.begin(); it != this->_projetcile.end(); ++it) {
+    for (auto it = this->_projectile.begin(); it != this->_projectile.end(); ++it) {
         if (it->getPosition().getX() > 1700) {
-            it = this->_projetcile.erase(it);
+            it = this->_projectile.erase(it);
             it--;
         }
     }

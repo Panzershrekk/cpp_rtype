@@ -28,7 +28,6 @@ namespace Network
             std::vector<Enemy>  &getEnemies() { return this->_enemies; }
             void                setEnemies(const std::vector<Enemy> enemies) { this->_enemies = enemies; }
 
-
             template <class Archive>
             void	serialize(Archive& ar, const unsigned int version)
             {

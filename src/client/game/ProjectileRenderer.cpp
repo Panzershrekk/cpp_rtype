@@ -5,10 +5,11 @@
 #include <ProjectileRenderer.hpp>
 #include <gameEngine/AIManager.hpp>
 
-ProjectileRenderer::ProjectileRenderer(Position2D  pos) : AEntityRenderer("../assets/boule.png")
+ProjectileRenderer::ProjectileRenderer(Position2D  pos, const int &id) : AEntityRenderer("../assets/boule.png")
 {
     setPosition(pos + Position2D(20, 0));
     this->_sprite.setPosition(this->_pos);
+    this->_id = id;
 }
 
 ProjectileRenderer::~ProjectileRenderer() = default;

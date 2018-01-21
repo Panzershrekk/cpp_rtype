@@ -16,7 +16,6 @@
 # include "network/core/UdpConnection.hpp"
 # include "RequestManager.hpp"
 # include "EventManager.hpp"
-# include "RtypeApp.hpp"
 
 class ServerCore
 {

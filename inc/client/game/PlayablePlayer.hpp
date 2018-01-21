@@ -17,7 +17,6 @@ class PlayablePlayer : public AEntityRenderer
   public:
     PlayablePlayer();
     ~PlayablePlayer();
-    void fire();
     void update();
     void forbiddenMove(Window &);
     std::vector<std::shared_ptr<ProjectileRenderer>> & getProjectileVector();

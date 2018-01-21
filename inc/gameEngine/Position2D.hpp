@@ -18,11 +18,13 @@ public:
     Position2D();
     Position2D(int, int);
     Position2D(const Position2D&);
+    Position2D  &operator=(const Position2D &);
 
     Position2D operator+(const Position2D&) const;
     Position2D operator-(const Position2D&) const;
     Position2D operator+=(const Position2D&);
     Position2D operator-=(const Position2D&);
+
 
 
     bool operator==(const Position2D&) const;
