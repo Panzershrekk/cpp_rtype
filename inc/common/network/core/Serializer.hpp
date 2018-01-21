@@ -23,6 +23,7 @@
 # include <iostream>
 # include <sstream>
 # include <unordered_map>
+# include "common/network/packets/PacketReady.hpp"
 # include "common/network/packets/APacket.hpp"
 # include "common/network/packets/PacketPlayer.hpp"
 # include "common/network/packets/PacketRoom.hpp"
@@ -45,7 +46,6 @@ public:
             boost::archive::binary_oarchive archive(archive_stream);
             archive << obj;
         }
-        std::string test = archive_stream.str();
         return archive_stream.str();
     }
 
@@ -62,6 +62,16 @@ public:
                 &Serializer::deserializeSpecPacket<Network::Packet::PacketRoom>,
                 this,
                 std::placeholders::_1)));
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_READY, std::bind(
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketReady>,
+                this,
+                std::placeholders::_1)));
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_ENEMIES, std::bind(
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketReady>,
+                this,
+                std::placeholders::_1)));
+
+        //TODO Guillaume
 
         for (auto packetFactory : factory)
         {

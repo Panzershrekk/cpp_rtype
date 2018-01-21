@@ -27,6 +27,11 @@ public:
     void addScore(int);
     const Network::Core::Endpoint  &getEndpoint() const;
 
+    void    setId(const int &id) // TODO TO DELETE
+    {
+        this->_id = id;
+    }
+
     void            setEndpoint(const Network::Core::Endpoint);
     void            setName(const std::string &name);
     const std::string     &getName() const;

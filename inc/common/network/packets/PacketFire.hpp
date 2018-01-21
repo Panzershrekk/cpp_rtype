@@ -7,7 +7,7 @@
 
 # include <boost/serialization/base_object.hpp>
 # include "APacket.hpp"
-# include "common/Player.hpp"
+# include "common/gameManager/Player.hpp"
 
 namespace Network
 {
@@ -21,7 +21,7 @@ namespace Network
 
         public:
             PacketFire() : APacket(PACKET_FIRE) {}
-            explicit PacketFire(const Player &player) : APacket(PACKET_PLAYER), _player(player) {}
+            explicit PacketFire(const Player &player) : APacket(PACKET_FIRE), _player(player) {}
 
             Player      &getPlayer() { return this->_player; }
             void         setPlayer(const Player &player) { this->_player = player; }

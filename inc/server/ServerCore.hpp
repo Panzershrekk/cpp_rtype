@@ -24,7 +24,6 @@ class ServerCore
 private:
     Network::Core::UdpConnection    _socket;
     GameManager                     _gameManager;
-    EventManager                    _eventManager;
     RequestManager                  _requestManager;
 
     /* Functions */

@@ -7,6 +7,7 @@
 
 #include <thread>
 #include "client/game/GameRenderer.hpp"
+#include "client/RequestManager.hpp"
 #include "common/network/core/UdpConnection.hpp"
 
 class ClientCore
@@ -14,10 +15,12 @@ class ClientCore
 private:
     Network::Core::UdpConnection    _socket;
     GameRenderer                    _gameRender;
+    RequestManager                  _requestManager;
+
 
 
 public:
-    ClientCore(boost::asio::io_service &service);
+    explicit ClientCore(boost::asio::io_service &service);
     ~ClientCore();
     void            start();
     void            startExchanges();

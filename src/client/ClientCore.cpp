@@ -2,6 +2,8 @@
 // Created by guillobits on 20/01/18.
 //
 
+#include "common/network/packets/PacketEnemies.hpp"
+#include "common/network/packets/PacketReady.hpp"
 #include "ClientCore.hpp"
 
 ClientCore::ClientCore(boost::asio::io_service &service) : _socket(service)
@@ -28,13 +30,15 @@ void    ClientCore::start()
     startExchanges();
     std::thread		threadRun(&ClientCore::runService, this);
 
-    sleep(1);
-    this->_socket.async_write("Hello world !", Network::Packet::PACKET_FIRE, Network::Core::Endpoint("0.0.0.0", 4242),
+    Network::Packet::PacketReady    packetReady;
+    packetReady.setPlayer(1234);
+    auto ser = Serializer::serialize(packetReady);
+    this->_socket.async_write(ser, Network::Packet::PACKET_READY, Network::Core::Endpoint("0.0.0.0", 4242), // TODO AUTOMATE SERVER PORT
                               [&](const boost::system::error_code &e, const long unsigned int&)
                               {
                                   std::cout << "FIRST PACKET HAS BEEN SENT" << std::endl;
                               });
-    this->_gameRender.startGame();
+    // this->_gameRender.startGame();
     threadRun.join();
 }
 
@@ -49,7 +53,7 @@ void    ClientCore::startExchanges()
                        {
                            if (error || size <= 8)
                            {
-                               std::cerr << "PACKET CORROMPU" << std::endl;
+                               std::cerr << "-- Received corrupted packet" << std::endl;
                            }
                            try
                            {
@@ -60,7 +64,7 @@ void    ClientCore::startExchanges()
 
                                if (!(streamHeader >> std::hex >> dataType))
                                {
-                                   std::cerr << "INVALID TYPE" << std::endl;
+                                   std::cerr << "-- Received corrupted packet header" << std::endl;
                                    this->startExchanges();
                                    return;
                                }
@@ -69,27 +73,13 @@ void    ClientCore::startExchanges()
                                Serializer   serializer;
                                if (!(packet = serializer.deserialize(std::string(data.begin() + 8, data.begin() + size), packetType)))
                                {
-                                   std::cerr << "INVALID TYPE RECEIVED" << std::endl;
+                                   std::cerr << "-- Received unhandled packet" << std::endl;
                                    this->startExchanges();
                                    return;
                                }
 
-                               std::cout << "type packet =" << dataType << std::endl;
-                               std::cout << "CP: " << static_cast<Network::Packet::PacketPlayer *>(packet)->getPlayer().getName() << std::endl;
-
-                               Player                          player;
-                               const Network::Core::Endpoint   ep("127.0.0.1", 4242);
-                               player.setName("Guillaume");
-                               player.setHp(42);
-                               player.setScore(0);
-                               Network::Packet::PacketPlayer   packetPlayer;
-                               packetPlayer.getPlayer().setName("GUillaume LE vainqueur du UDP !");
-                               std::string                     packetSerialized = Serializer::serialize(packetPlayer);
-                               this->_socket.async_write(packetSerialized, packetPlayer.getType(), ep,
-                                                         [&](const boost::system::error_code &e, const long unsigned int&)
-                                                         {
-                                                             std::cout << "-- Packet has been sent" << std::endl;
-                                                         });
+                               std::cout << "-- Received packet a " << packet->getType() << " packet";
+                               this->_requestManager.handleRequest(packet, this->_gameRender);
 
                            }
                            catch (const std::exception &exept)

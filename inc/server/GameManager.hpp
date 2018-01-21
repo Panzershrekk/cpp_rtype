@@ -29,12 +29,12 @@ class GameManager
     void removeEntities();
 
     void dumpPlayer();
-    void dumpEnnemy();
+    void dumpEnemy();
 
     bool playerStillAlive();
 
-    const std::vector<Player>   &getPlayers() const;
-    const std::vector<Enemy>   &getEnemies() const;
+    std::vector<Player>   &getPlayers();
+    const std::vector<Enemy>    &getEnemies() const;
 
   private:
     Network::Core::UdpConnection &_socket;

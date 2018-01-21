@@ -37,7 +37,10 @@ set(SOURCE_FILES_CLIENT
         src/client/main.cpp
         src/client/network/TcpClient.cpp
         src/client/network/TcpClientConnections.cpp
-        src/client/menu/ItemLobbyMenu.cpp src/client/ClientCore.cpp)
+        src/client/menu/ItemLobbyMenu.cpp
+        src/client/ClientCore.cpp
+        src/client/EventManager.cpp
+        src/client/RequestManager.cpp)
 
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
@@ -47,6 +50,7 @@ set(SOURCE_FILES_COMMON
         src/common/gameManager/Character.cpp
         src/common/gameManager/AEntity.cpp
         src/common/gameManager/Room.cpp
+        src/common/gameManager/Enemy.cpp
         )
 
 set(SOURCE_FILES_GAME_ENGINE
@@ -109,7 +113,11 @@ set(HEADER_FILES_CLIENT
         inc/client/game/ProjectileRenderer.hpp
         inc/client/network/TcpClient.hpp
         inc/client/network/TcpClientConnections.hpp
-        inc/client/menu/ItemLobbyMenu.hpp inc/client/ClientCore.hpp)
+        inc/client/menu/ItemLobbyMenu.hpp
+        inc/client/ClientCore.hpp
+        inc/client/EventManager.hpp
+        inc/client/RequestManager.hpp
+        )
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
@@ -123,6 +131,7 @@ set(HEADER_FILES_COMMON
         inc/common/network/packets/PacketEnemies.hpp
         inc/common/network/packets/PacketFire.hpp
         inc/common/network/packets/PacketMove.hpp
+        inc/common/network/packets/PacketReady.hpp
         inc/common/gameManager/AEntity.hpp
         inc/common/gameManager/Character.hpp
         inc/common/gameManager/Enemy.hpp
@@ -168,13 +177,12 @@ include_directories("inc/common/gameManager")
 include_directories("inc/server/network")
 include_directories("inc/client/network")
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -pthread -g")
 
 add_executable(r-type-server ${SOURCE_FILES_SERVER} ${HEADER_FILES_SERVER} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
 add_executable(r-type-client ${SOURCE_FILES_CLIENT} ${HEADER_FILES_CLIENT} ${SOURCE_FILES_COMMON} ${HEADER_FILES_COMMON} ${HEADER_FILES_GAME_ENGINE} ${SOURCE_FILES_GAME_ENGINE})
 
 # Detect and add Boost
-
 set(Boost_USE_STATIC_LIBS       ON)
 set(Boost_USE_MULTITHREADED     ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)

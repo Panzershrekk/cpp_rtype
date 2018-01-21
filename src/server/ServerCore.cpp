@@ -19,7 +19,7 @@
 ServerCore::ServerCore(boost::asio::io_service &service, const Network::Core::Endpoint &ep) :
         _socket(service, ep),
         _gameManager(_socket),
-        _requestManager(RtypeApp::SERVER) {}
+        _requestManager() {}
 
 ServerCore::~ServerCore() = default;
 
@@ -31,12 +31,11 @@ bool    ServerCore::startExchanges()
     this->_socket.read(data, endpoint,
                        [&](boost::system::error_code error, std::size_t size)
                        {
-                           Network::Core::Endpoint ep(endpoint.address().to_string(), endpoint.port());
-                           this->_requestManager.handleNewUdpClient(ep, this->_gameManager);
-
                            if (error || size <= 8)
                            {
-                               std::cerr << "PACKET CORROMPU" << std::endl;
+                               std::cerr << "-- Received corrupted packet" << std::endl;
+                               this->startExchanges();
+                               return;
                            }
                            try
                            {
@@ -47,7 +46,7 @@ bool    ServerCore::startExchanges()
 
                                if (!(streamHeader >> std::hex >> dataType))
                                {
-                                   std::cerr << "INVALID TYPE" << std::endl;
+                                   std::cerr << "-- Received corrupted packet header" << std::endl;
                                    this->startExchanges();
                                    return;
                                }
@@ -56,13 +55,18 @@ bool    ServerCore::startExchanges()
                                Serializer   serializer;
                                if (!(packet = serializer.deserialize(std::string(data.begin() + 8, data.begin() + size), packetType)))
                                {
-                                   std::cerr << "INVALID TYPE RECEIVED" << std::endl;
+                                   std::cerr << "-- Received unhandled packet" << std::endl;
                                    this->startExchanges();
                                    return;
                                }
+                               if (dataType == Network::Packet::PACKET_READY)
+                               {
+                                   Network::Core::Endpoint  ep(endpoint.address().to_string(), endpoint.port());
+                                   this->_requestManager.handleNewUdpClient(ep, this->_gameManager);
+                               }
+                               else
+                                   this->_requestManager.handleRequest(packet, this->_gameManager);
 
-                               std::cout << "type packet =" << dataType << std::endl;
-                               std::cout << "CP: " << static_cast<Network::Packet::PacketPlayer *>(packet)->getPlayer().getName() << std::endl;
                            }
                            catch (const std::exception &exept)
                            {
@@ -91,6 +95,7 @@ bool    ServerCore::start()
 
     Player   newPlayer;
     newPlayer.setName("Emmanuel CARLI");
+    newPlayer.setId(1234);
     this->_gameManager.addPlayer(newPlayer);
     this->_gameManager.spawnEnnemy();
     this->_gameManager.update();

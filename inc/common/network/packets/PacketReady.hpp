@@ -7,7 +7,6 @@
 
 # include <boost/serialization/base_object.hpp>
 # include "APacket.hpp"
-# include "common/Player.hpp"
 
 // TODO: Envoie de ce paquet en boucle par le client graphique et attente d'une réponse d'une serveur.
 
@@ -19,15 +18,14 @@ namespace Network
         {
         private:
             friend class boost::serialization::access;
-            Endpoint    _endpoint;
-            Player      _player;
+            int      _player;
 
         public:
-            PacketFire() : APacket(PACKET_FIRE) {}
-            explicit PacketFire(const Player &player) : APacket(PACKET_PLAYER), _player(player) {}
+            PacketReady() : APacket(PACKET_FIRE) {}
+            explicit PacketReady(const int &player) : APacket(PACKET_PLAYER), _player(player) {}
 
-            Player      &getPlayer() { return this->_player; }
-            void         setPlayer(const Player &player) { this->_player = player; }
+            const int    &getPlayer() { return this->_player; }
+            void         setPlayer(const int &player) { this->_player = player; }
 
             template <class Archive>
             void	serialize(Archive& ar, const unsigned int version)
@@ -39,4 +37,4 @@ namespace Network
     }
 }
 
-#endif      /* !_PACKET_FIRE__HPP_! */
+#endif      /* !_PACKET_READY__HPP_! */

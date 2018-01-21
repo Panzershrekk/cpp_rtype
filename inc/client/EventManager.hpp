@@ -17,7 +17,8 @@ class EventManager
     EventManager();
     virtual ~EventManager();
 
-    static void	RefreshEnemies(Network::Core::UdpConnection &, GameManager &);
+    static void	sendFire(Network::Core::UdpConnection &, const Player &, const Network::Core::Endpoint &);
+    static void	sendMove(Network::Core::UdpConnection &, const Player &, const Network::Core::Endpoint &);
 };
 
 #endif      /* !_EVENTMANAGER__HPP_! */

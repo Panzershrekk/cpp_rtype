@@ -5,21 +5,17 @@
 
 int main()
 {
-  /*boost::asio::io_service	service;
+    try
+    {
+        boost::asio::io_service     service;
+        ServerCore                  server(service, Network::Core::Endpoint(4242));
 
-  try
-  {
-    TcpServer server(service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string("0.0.0.0"), 4242));
-    service.run();
-  }
-  catch (const std::exception &e)
-  {
-    std::cerr << e.what() << std::endl;
-  }
-  return 0;*/
-  boost::asio::io_service     service;
-  ServerCore                  server(service, Network::Core::Endpoint(4242));
-
-  server.start();
-  return 0;
+        server.start();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+        return (1);
+    }
+    return 0;
 }
