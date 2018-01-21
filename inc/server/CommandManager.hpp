@@ -20,7 +20,7 @@ class CommandManager
      std::unordered_map<std::string, std::function<void(const std::vector<Room>&)>>	_manager;
   public:
     CommandManager();
-    virtual ~CommandManager();
+    ~CommandManager();
 
     void    executeCommand(std::string funcName, std::vector<Room>&);
     void	getRooms(const std::vector<Room>&);

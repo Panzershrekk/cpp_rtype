@@ -7,6 +7,7 @@
 
 #include <map>
 #include <iostream>
+#include <vector>
 
 #include "Sprite.hpp"
 #include "HudPlayer.hpp"

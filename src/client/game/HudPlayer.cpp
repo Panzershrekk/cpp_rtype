@@ -2,7 +2,7 @@
 // Created by arthaox on 20/01/18.
 //
 
-#include "HudPlayer.hpp"
+#include "client/game/HudPlayer.hpp"
 
 HudPlayer::HudPlayer(const std::string &path, int x, int y) : _ship(path, x, y), _name("toto", "../KOMIKAX_.ttf"), _hp("100", "../KOMIKAX_.ttf"), _score("0", "../KOMIKAX_.ttf")
 {

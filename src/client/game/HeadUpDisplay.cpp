@@ -2,7 +2,7 @@
 // Created by arthaox on 20/01/18.
 //
 
-#include "HeadUpDisplay.hpp"
+#include <client/game/HeadUpDisplay.hpp>
 
 HeadUpDisplay::HeadUpDisplay(const std::string &path, int x, int y) : _splashScreen(path, x, y)
 {
