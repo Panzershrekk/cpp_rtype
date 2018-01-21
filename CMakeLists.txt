@@ -45,6 +45,7 @@ set(SOURCE_FILES_CLIENT
 set(SOURCE_FILES_COMMON
         src/common/network/core/Endpoint.cpp
         src/common/network/core/Error.cpp
+        src/common/network/core/StringSplit.cpp
         src/common/game/MainSystem.cpp
         src/common/game/Renderer.cpp
         src/common/game/RenderSystem.cpp
@@ -119,6 +120,7 @@ set(HEADER_FILES_CLIENT
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
         inc/common/network/core/Error.hpp
+        inc/common/network/core/StringSplit.hpp
         inc/common/network/core/Exception.hpp
         inc/common/network/core/UdpConnection.hpp
         inc/common/network/core/Serializer.hpp
