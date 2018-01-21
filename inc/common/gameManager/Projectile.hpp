@@ -6,18 +6,24 @@
 #define CPP_RTYPE_PROJECTILE_HPP
 
 #include <AIManager.hpp>
+#include <boost/serialization/base_object.hpp>
 #include "AEntity.hpp"
 
 class Projectile : public AEntity
 {
-  public:
-    explicit Projectile(const Position2D &);
-    ~Projectile();
-
-    void update();
-
   private:
    AIManager _ai;
+public:
+  explicit Projectile();
+  ~Projectile();
+
+  void update();
+
+  template <class Archive>
+  void	serialize(Archive& ar, const unsigned int version)
+  {
+    ar & boost::serialization::base_object<AEntity>(*this);
+  }
 };
 
 #endif //CPP_RTYPE_PROJECTILE_HPP

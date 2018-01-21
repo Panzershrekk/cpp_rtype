@@ -16,7 +16,7 @@ void EventManager::sendFire(Network::Core::UdpConnection &socketUdp,
     Network::Packet::PacketFire     packetFire(player);
     const std::string               serPacket = Serializer::serialize(packetFire);
     std::cout << "-- sendFire()" << std::endl;
-    socketUdp.async_write(serPacket, Network::Packet::PACKET_FIRE, serverEndpoint,
+    socketUdp.async_write(serPacket, Network::Packet::PACKET_PROJECTILES, serverEndpoint,
                           [&](const boost::system::error_code &e, const long unsigned int&)
                           {
                               std::cout << "----- Player " << player.getId() << " has fired" << std::endl;

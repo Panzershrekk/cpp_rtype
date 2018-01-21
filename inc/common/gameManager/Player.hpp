@@ -41,7 +41,9 @@ public:
     template <class Archive>
     void	serialize(Archive& ar, const unsigned int version)
     {
-        ar & _score;
+      ar & boost::serialization::base_object<Character>(*this);
+
+      ar & _score;
         ar & _name;
         ar & _endpoint;
     }
