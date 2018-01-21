@@ -38,7 +38,7 @@ set(SOURCE_FILES_CLIENT
         src/client/network/TcpClient.cpp
         src/client/network/TcpClientConnections.cpp
         src/client/game/HudPlayer.cpp
-        src/client/game/HeadUpDisplay.cpp)
+        src/client/game/HeadUpDisplay.cpp
         src/client/menu/ItemLobbyMenu.cpp
         src/client/ClientCore.cpp
         src/client/EventManager.cpp
@@ -116,7 +116,7 @@ set(HEADER_FILES_CLIENT
         inc/client/network/TcpClient.hpp
         inc/client/network/TcpClientConnections.hpp
         inc/client/game/HudPlayer.hpp
-        inc/client/game/HeadUpDisplay.hpp)
+        inc/client/game/HeadUpDisplay.hpp
         inc/client/menu/ItemLobbyMenu.hpp
         inc/client/ClientCore.hpp
         inc/client/EventManager.hpp

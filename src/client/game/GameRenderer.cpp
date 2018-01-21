@@ -7,6 +7,7 @@
 #include <gameEngine/Image.hpp>
 #include <gameEngine/Music.hpp>
 #include <gameEngine/MusicManager.hpp>
+#include <client/game/HeadUpDisplay.hpp>
 #include "game/EnemyRenderer.hpp"
 #include "client/game/Starfield.hpp"
 #include "game/GameRenderer.hpp"
@@ -26,7 +27,7 @@ void GameRenderer::startGame()
     int xSize = 1920;
     int ySize = 1080;
     Window window("RTYPE", 1920, 1080);
-
+  
   /* STARFIELD */
     Image starsImage;
   Color c(0, 0, 0);
