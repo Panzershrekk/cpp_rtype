@@ -11,6 +11,7 @@ Enemy::Enemy() : Character(1)
     this->_hitboxSize = Position2D(25, 24);
     this->_rect = Rectangle(this->_pos.getX() - this->_hitboxSize.getX(), this->_pos.getY() - this->_hitboxSize.getY(), 14, 12);
     randomizePosition();
+
 }
 
 Enemy::~Enemy()
@@ -38,6 +39,7 @@ AIManager Enemy::getAI() const
 
 void  Enemy::update()
 {
+  std::cout << "Before updating" << this->_pos.getX() << " " << this->_pos.getY() << std::endl;
   this->_ai.PredefinedRightToLeftSinus(this->_pos, this->_physic.getSpeed());
   Position2D p(Position2D(this->_pos.getX() - this->_hitboxSize.getX(), this->_pos.getY() - this->_hitboxSize.getY()));
   this->_rect.changeTopLeft(p);

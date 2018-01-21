@@ -22,9 +22,10 @@ AEntity::AEntity(const AEntity &obj)
     this->_rect = obj._rect;
     this->_physic = obj._physic;
     this->_hitboxSize = obj._hitboxSize;
+    this->_pos = obj._pos;
 }
 
-void AEntity::setPosition(Position2D &pos)
+void AEntity::setPosition(Position2D pos)
 {
     this->_pos = pos;
 }

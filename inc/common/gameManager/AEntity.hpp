@@ -26,7 +26,7 @@ public:
     ~AEntity();
     AEntity(const AEntity &);
 
-    void setPosition(Position2D &);
+    void setPosition(Position2D);
     Position2D& getPosition();
     Rectangle & getRectangle();
 

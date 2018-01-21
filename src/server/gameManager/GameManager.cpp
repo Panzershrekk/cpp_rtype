@@ -37,14 +37,14 @@ void GameManager::update()
              * if player fire
              * createProjectile(Player that fired)
              * */
-            EventManager::RefreshEnemies(this->_socket, *this);
-                  missileCollide();
+            //EventManager::RefreshEnemies(this->_socket, *this);
+	    dumpEnemy();
+	    missileCollide();
             updateEntities();
-            dumpEnemy();
             removeEntities();
             clock.restartTimer();
         }
-        if (spwanRate.getElapsedTime() > 5.0)
+        if (spwanRate.getElapsedTime() > 1.0)
         {
             spawnEnnemy();
             spwanRate.restartTimer();
@@ -116,7 +116,7 @@ void GameManager::dumpPlayer()
 void GameManager::dumpEnemy()
 {
     std::cout << "-------------------------" << std::endl;
-    for (auto it : this->_ennemy)
+    for (auto &it : this->_ennemy)
     {
         std::cout << "This is an ennemy with id " << it.getId() << " " << it.getPosition().getX() << " "<< it.getPosition().getY() << std::endl;
     }
@@ -125,17 +125,16 @@ void GameManager::dumpEnemy()
 
 bool GameManager::missileCollide()
 {
-  for (auto it : this->_projetcile)
+  /*for (auto it : this->_projetcile)
   {
     for (auto it2 : this->_ennemy)
     {
 	if (it.getRectangle().intersects(it2.getRectangle())) {
 	  std::cout << it.getId() << std::endl;
 	  std::cout << it2.getId() << std::endl;
-	  exit(0);
 	  return (true);
 	}
     }
-  }
+  }*/
   return false;
 }
