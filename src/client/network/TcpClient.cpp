@@ -65,8 +65,9 @@ void TcpClient::disconnect()
 
 bool TcpClient::isConnected()
 {
-  std::cout << _connection->getSocket().is_open() << std::endl;
-  return _connection->getSocket().is_open();
+  return (true);
+  //std::cout << _connection->getSocket().is_open() << std::endl;
+  //return _connection->getSocket().is_open();
 }
 
 void TcpClient::write(std::string &str)
