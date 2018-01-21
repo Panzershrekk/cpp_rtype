@@ -92,7 +92,6 @@ bool    ServerCore::start()
     startExchanges();
     std::thread		threadRun(&ServerCore::runService, this);
 
-
     Player   newPlayer;
     newPlayer.setName("Emmanuel CARLI");
     newPlayer.setId(1234);

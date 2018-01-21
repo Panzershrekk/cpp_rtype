@@ -6,14 +6,14 @@
 #include "common/network/packets/PacketReady.hpp"
 #include "ClientCore.hpp"
 
-ClientCore::ClientCore(boost::asio::io_service &service) : _socket(service)
+ClientCore::ClientCore(boost::asio::io_service &service) :
+        _socket(service)
 {
     this->_socket.openV4();
 }
 
 ClientCore::~ClientCore()
 {
-
 }
 
 void    ClientCore::start()

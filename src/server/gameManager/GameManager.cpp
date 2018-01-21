@@ -10,10 +10,7 @@ GameManager::GameManager(Network::Core::UdpConnection &socket) : _socket(socket)
 {
 }
 
-GameManager::~GameManager()
-{
-
-}
+GameManager::~GameManager() = default;
 
 std::vector<Player>& GameManager::getPlayers() { return this->_player; }
 const std::vector<Enemy>& GameManager::getEnemies() const { return this->_ennemy; }
