@@ -46,6 +46,15 @@ void    RequestManager::handlePacketProjectiles(Network::Packet::APacket *packet
 {
     auto    pProjectiles = static_cast<Network::Packet::PacketProjectiles *>(packet);
 
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
     std::cout << "-- Received UpdatePacketProjectile request" << std::endl;
     for (auto &projectile : pProjectiles->getProjectiles())
     {

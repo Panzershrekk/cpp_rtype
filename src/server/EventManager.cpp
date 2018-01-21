@@ -30,7 +30,7 @@ void    EventManager::RefreshEnemies(Network::Core::UdpConnection &socketUdp, Ga
 
 void    EventManager::RefreshProjectiles(Network::Core::UdpConnection &socketUdp, GameManager &gm)
 {
-    Network::Packet::PacketProjectiles  packetProjectiles(gm.getProjectiles()); // TODO PLAYER
+    Network::Packet::PacketProjectiles  packetProjectiles(gm.getProjectiles());
     const std::string                   serPacket = Serializer::serialize(packetProjectiles);
     std::cout << "-- RefreshProjectiles (size= " << packetProjectiles.getProjectiles().size() << ")" << std::endl;
     for (auto &player : gm.getPlayers())

@@ -38,7 +38,7 @@ void GameManager::update()
             EventManager::RefreshProjectiles(this->_socket, *this);
             EventManager::RefreshEnemies(this->_socket, *this);
 
-            dumpEnemy();
+            // dumpEnemy();
             missileCollide();
             updateEntities();
             removeEntities();

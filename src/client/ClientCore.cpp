@@ -49,7 +49,6 @@ void    ClientCore::start()
     threadRun.join();
 }
 
-// TODO PASSER LE GROS BLOC DANS FN
 void    ClientCore::startExchanges()
 {
     std::array<char, MAX_READ>      data { 0 };

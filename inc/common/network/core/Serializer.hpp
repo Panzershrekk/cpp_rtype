@@ -82,6 +82,10 @@ public:
                 &Serializer::deserializeSpecPacket<Network::Packet::PacketMove>,
                 this,
                 std::placeholders::_1)));
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_PROJECTILES, std::bind(
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketMove>,
+                this,
+                std::placeholders::_1)));
         //TODO Guillaume
 
         for (auto packetFactory : factory)

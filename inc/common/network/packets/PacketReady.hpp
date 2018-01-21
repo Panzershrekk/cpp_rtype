@@ -8,8 +8,6 @@
 # include <boost/serialization/base_object.hpp>
 # include "APacket.hpp"
 
-// TODO: Envoie de ce paquet en boucle par le client graphique et attente d'une réponse d'une serveur.
-
 namespace Network
 {
     namespace Packet
