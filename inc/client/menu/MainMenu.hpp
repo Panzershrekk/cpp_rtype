@@ -28,7 +28,7 @@ class MainMenu : public IMenu
     void draw(Window &);
     void start(Window &);
     void update(Window &, sf::Event &);
-    void setClient(TcpClient *);
+    void setClient(TcpClient *&);
 
     void playMultiFunction(Window &, sf::Event &);
     void quitFunction(Window &, sf::Event &);

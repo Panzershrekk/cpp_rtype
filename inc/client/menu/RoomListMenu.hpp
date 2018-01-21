@@ -20,6 +20,7 @@ class RoomListMenu : public IMenu
   Text		_title;
   std::vector<std::shared_ptr<ItemRoomListMenu>>	_vectorRooms;
   TcpClient				*_client;
+
   public:
     explicit RoomListMenu(MenuState &);
     ~RoomListMenu() override;
@@ -32,7 +33,7 @@ class RoomListMenu : public IMenu
     void	start(Window &) override;
     void 	draw(Window &) override;
     void 	update(Window &, sf::Event &) override;
-    void	setClient(TcpClient *);
+    void	setClient(TcpClient *&);
 
   void returnFunction(Window &win, sf::Event &event);
 

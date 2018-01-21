@@ -70,7 +70,11 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
 	std::cout << _ip.getString() << std::endl;
 	std::cout << static_cast<unsigned short>(std::stoi(_port.getString()))
 		  << std::endl;
-	_client = new TcpClient(endpoint, _state);
+	  _client = new TcpClient(endpoint, _state);
+	  _client->setMenu(_vecMenu);
+	  _client->getVecMenu().at(2)->setClient(_client);
+	  _client->getVecMenu().at(3)->setClient(_client);
+
 	std::cout << "fin du scope" << std::endl;
       }
       catch (std::exception &e) {
@@ -152,11 +156,20 @@ void LoginMenu::draw(Window &win)
   win.draw(this->_name);
 }
 
-void LoginMenu::setClient(TcpClient *client) {
+void LoginMenu::setClient(TcpClient *&client) {
   _client = client;
 }
 
-TcpClient *LoginMenu::getClient() const {
-  return this->_client;
+void LoginMenu::setMenu(std::vector<std::shared_ptr<IMenu>> &menu)
+{
+  std::cout << "menu = " << menu.size() << std::endl;
+  _vecMenu = menu;
+  std::cout << "menu = " << _vecMenu.size() << std::endl;
+
+}
+
+TcpClient *LoginMenu::getClient()
+{
+  return _client;
 }
 

@@ -74,14 +74,16 @@ bool TcpClient::isConnected()
   //return _connection->getSocket().is_open();
 }
 
-void TcpClient::write(std::string &str)
+void TcpClient::write(const std::string &str)
 {
   _connection->write(str);
 }
 
-void TcpClient::setMenu(std::vector<std::shared_ptr<IMenu>> *vecMenu)
+void TcpClient::setMenu(std::vector<std::shared_ptr<IMenu>> &vecMenu)
 {
-  _vecMenu = *vecMenu;
+  _vecMenu = vecMenu;
+  std::cout << "menu size = " << _vecMenu.size() << std::endl;
+  _connection->setMenu(_vecMenu);
   _menuSet = 1;
 }
 
@@ -89,6 +91,12 @@ int TcpClient::getMenu()
 {
  return _menuSet;
 }
+
+std::vector<std::shared_ptr<IMenu>> &TcpClient::getVecMenu()
+{
+  return _connection->getVecMenu();
+}
+
 
 
 

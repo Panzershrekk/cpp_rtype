@@ -28,23 +28,23 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
 {
   if (!error)
   {
-    std::cout << _network_buffer.data() << "|" << std::endl;
-    std::cout << number_bytes_read << std::endl;
     std::string test(_network_buffer.data());
     test.resize(number_bytes_read);
-    if (test == "Welcome!")
+    std::cout << test << std::endl;
+    if (test == "200:Welcome!")
     {
       std::cout << "in Welcome" << std::endl;
       std::cout << _vecMenu.size() << std::endl;
-  //    std::cout << "donnee :" << std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName() << std::endl;
+      this->write("200:name:Julien");
+      //    std::cout << "donnee :" << std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName() << std::endl;
       //this->write(std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName());
       std::cout << "slt" << std::endl;
     }
-    if (test.find("200:Room:") != std::string::npos)
+    if (test == "200:Room:")
     {
-      int nbRooms = test.at(test.size() - 2);
-      //std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->genRooms(nbRooms);
-      this->write("200:join_room:" + std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->getWhichRoom());
+   //   int nbRooms = test.at(test.size() - 2);
+      std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->genRooms(1);
+ //     this->write("200:join_room:" + std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->getWhichRoom());
     }
     if (test.find("OK:") != std::string::npos)
     {
@@ -59,6 +59,7 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
 
 void TcpClientConnections::write(const std::string &str)
 {
+  std::cout << "my menu = " << _vecMenu.size() << std::endl;
   boost::asio::async_write(_socket, boost::asio::buffer(str.c_str(), str.size()),
 			   boost::bind(&TcpClientConnections::handleWrite,
 				       this,
@@ -76,3 +77,13 @@ void TcpClientConnections::handleWrite(const boost::system::error_code&error, st
     std::cerr << error.message() << std::endl;
 }
 
+void TcpClientConnections::setMenu(std::vector<std::shared_ptr<IMenu>> &menu)
+{
+  _vecMenu = menu;
+  std::cout << "client co size = " << _vecMenu.size() << std::endl;
+}
+
+std::vector<std::shared_ptr<IMenu>>& TcpClientConnections::getVecMenu()
+{
+  return _vecMenu;
+}

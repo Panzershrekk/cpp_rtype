@@ -34,8 +34,9 @@ public:
   void start(MenuState &, boost::asio::ip::tcp::endpoint &);
   void disconnect();
   bool isConnected();
-  void write(std::string &);
-  void setMenu(std::vector<std::shared_ptr<IMenu>>	*);
+  void write(const std::string &);
+  void setMenu(std::vector<std::shared_ptr<IMenu>>&);
+  std::vector<std::shared_ptr<IMenu>>& getVecMenu();
   int	getMenu();
 
 };

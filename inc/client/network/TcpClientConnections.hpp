@@ -33,7 +33,9 @@ public:
   }
   boost::asio::ip::tcp::socket& getSocket();
 
+  void setMenu(std::vector<std::shared_ptr<IMenu>>&);
   void read();
+  std::vector<std::shared_ptr<IMenu>>& getVecMenu();
 };
 
 

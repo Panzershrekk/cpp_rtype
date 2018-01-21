@@ -14,9 +14,8 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
   _loginMenu->setClient(_client);
-  _roomListMenu->setClient(_client);
-  _lobbyMenu->setClient(_client);
 
+  std::static_pointer_cast<LoginMenu>(_loginMenu)->setMenu(_vecMenu);
   this->_state = EMainMenu;
   try
   {
@@ -43,12 +42,8 @@ void MenuWindow::setClient(TcpClient *client)
 
 void MenuWindow::update(sf::Event &event)
 {
-  _vecMenu.at(_state)->update(_win, event);
 
-  if (_client != nullptr) {
-    std::cout << "OK client not null" << std::endl;
-    _client->setMenu(&_vecMenu);
-  }
+  _vecMenu.at(_state)->update(_win, event);
 }
 
 void MenuWindow::start()

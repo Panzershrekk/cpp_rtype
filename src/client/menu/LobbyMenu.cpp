@@ -83,6 +83,6 @@ void LobbyMenu::update(Window &win, sf::Event &event)
     win.close();
 }
 
-void LobbyMenu::setClient(TcpClient *client) {
+void LobbyMenu::setClient(TcpClient *&client) {
   _client = client;
 }

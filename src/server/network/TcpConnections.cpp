@@ -14,7 +14,7 @@ TcpConnections::~TcpConnections() = default;
 
 void TcpConnections::start()
 {
-  std::string welcome = "Welcome!	";
+  std::string welcome = "200:Welcome!";
   asyncWrite(welcome);
 }
 
@@ -28,21 +28,21 @@ TcpConnections::connectorPtr TcpConnections::create(boost::asio::io_service &io_
   return connectorPtr(new TcpConnections(io_service));
 }
 
-void TcpConnections::asyncWrite(std::string &buff)
+void TcpConnections::asyncWrite(const std::string &buff)
 {
   boost::asio::async_write(_socket, boost::asio::buffer(buff),
 			   std::bind(&TcpConnections::doRead, shared_from_this()));
 }
 
-void TcpConnections::asyncRead(const boost::system::error_code& error)
+void TcpConnections::asyncRead(const boost::system::error_code& error, size_t nbBytes)
 {
   if (!error)
    {
-     std::cout << m_buffer.data() << std::endl;
+     handleData(nbBytes);
      doRead();
    }
   else
-     std::cout << error.message() << std::endl;
+     std::cout << "error = " << error.message() << std::endl;
 }
 
 void	TcpConnections::doRead()
@@ -50,10 +50,23 @@ void	TcpConnections::doRead()
   boost::asio::async_read(_socket, boost::asio::buffer(m_buffer),
 			  boost::asio::transfer_at_least(1),
 			  std::bind(&TcpConnections::asyncRead,
-				    shared_from_this(), std::placeholders::_1));
+				    shared_from_this(), std::placeholders::_1, std::placeholders::_2));
 }
 
-void TcpConnections::handleData()
+void TcpConnections::handleData(size_t nbBytes)
 {
   std::string tmp(m_buffer.data());
+  tmp.resize(nbBytes);
+  if (tmp == "200:name:Julien")
+  {
+    std::cout << "Player new name is Julien" << std::endl;
+    _player.setName("Julien");
+    asyncWrite("200:Room:");
+  }
+  if (tmp == "join_room:0")
+  {
+    roomList.at(0).join(_player);
+    std::cout << "try to join room0";
+    std::cout << "room size = " <<roomList.at(0).getSize() << std::endl;
+  }
 }

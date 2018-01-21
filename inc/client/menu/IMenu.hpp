@@ -16,7 +16,7 @@ class IMenu
   IMenu();
   virtual ~IMenu();
 
-    virtual void setClient(TcpClient *) = 0;
+    virtual void setClient(TcpClient *&) = 0;
     virtual void start(Window &) = 0;
     virtual void draw(Window &) = 0;
     virtual void update(Window &, sf::Event &) = 0;

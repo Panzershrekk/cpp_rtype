@@ -34,7 +34,7 @@ private:
   std::shared_ptr<IMenu> _lobbyMenu = std::make_shared<LobbyMenu>(_state);
 
   std::vector<std::shared_ptr<IMenu>>	_vecMenu;
-  TcpClient				*_client = nullptr;
+  TcpClient				*_client;
   Window	_win;
 
 
