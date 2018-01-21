@@ -16,7 +16,6 @@ RoomListMenu::RoomListMenu(MenuState & state) :
 {
   this->_return.setScale(0.5f, 0.5f);
   this->_title.setCharacterSize(150);
- // genRooms(3);
 }
 
 RoomListMenu::~RoomListMenu()

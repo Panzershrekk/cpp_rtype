@@ -61,8 +61,6 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
     std::cout << "in play" << std::endl;
     if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
       try {
-    if (_client == nullptr|| (_client != nullptr && _client->isConnected())) {
-	try {
 	boost::asio::ip::tcp::endpoint endpoint(
 	  boost::asio::ip::address::from_string(_ip.getString()),
 	  static_cast<unsigned short>(std::stoi(_port.getString())));
@@ -74,6 +72,7 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
 	  _client->setMenu(_vecMenu);
 	  _client->getVecMenu().at(2)->setClient(_client);
 	  _client->getVecMenu().at(3)->setClient(_client);
+	_client->write("200:name:Julien");
 
 	std::cout << "fin du scope" << std::endl;
       }

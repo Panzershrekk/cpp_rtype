@@ -31,15 +31,6 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
     std::string test(_network_buffer.data());
     test.resize(number_bytes_read);
     std::cout << test << std::endl;
-    if (test == "200:Welcome!")
-    {
-      std::cout << "in Welcome" << std::endl;
-      std::cout << _vecMenu.size() << std::endl;
-      this->write("200:name:Julien");
-      //    std::cout << "donnee :" << std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName() << std::endl;
-      //this->write(std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName());
-      std::cout << "slt" << std::endl;
-    }
     if (test == "200:Room:")
     {
    //   int nbRooms = test.at(test.size() - 2);
