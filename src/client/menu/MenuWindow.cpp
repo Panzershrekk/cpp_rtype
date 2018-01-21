@@ -13,9 +13,12 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
-  _loginMenu->setClient(_client);
+
 
   std::static_pointer_cast<LoginMenu>(_loginMenu)->setMenu(_vecMenu);
+  std::static_pointer_cast<LoginMenu>(_loginMenu)->setClient(_client);
+  std::static_pointer_cast<LoginMenu>(_roomListMenu)->setClient(_client);
+
   this->_state = EMainMenu;
   try
   {
@@ -42,7 +45,6 @@ void MenuWindow::setClient(TcpClient *client)
 
 void MenuWindow::update(sf::Event &event)
 {
-
   _vecMenu.at(_state)->update(_win, event);
 }
 
@@ -55,6 +57,8 @@ void MenuWindow::start()
     {
       update(event);
       switch (event.type);
+      if (_client)
+	_client->isConnected();
     }
     _win.clear();
     _vecMenu.at(_state)->draw(_win);

@@ -52,6 +52,7 @@ class LoginMenu : public IMenu
 
   std::string 	getName() const;
   TcpClient	*getClient() const;
+
 };
 
 

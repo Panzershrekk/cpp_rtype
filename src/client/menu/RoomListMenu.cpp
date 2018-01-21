@@ -16,6 +16,7 @@ RoomListMenu::RoomListMenu(MenuState & state) :
 {
   this->_return.setScale(0.5f, 0.5f);
   this->_title.setCharacterSize(150);
+  genRooms(3);
 }
 
 RoomListMenu::~RoomListMenu()
@@ -48,8 +49,10 @@ void RoomListMenu::returnFunction(Window &win, sf::Event &event)
 {
   if (_client == nullptr)
     std::cout << "problem" << std::endl;
-  else
+  else {
     std::cout << "working" << std::endl;
+    _client->write("back button");
+  }
   /*
   if (_client != nullptr) {
     _client->disconnect();
@@ -104,5 +107,6 @@ void RoomListMenu::draw(Window &win)
 }
 
 void RoomListMenu::setClient(TcpClient *&client) {
-  this->_client = client;
+  _client = std::move(client);
 }
+

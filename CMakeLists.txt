@@ -115,7 +115,7 @@ set(HEADER_FILES_CLIENT
         inc/client/network/TcpClientConnections.hpp
         inc/client/menu/ItemLobbyMenu.hpp
         inc/client/game/HudPlayer.hpp
-        inc/client/game/HeadUpDisplay.hpp)
+        inc/client/game/HeadUpDisplay.hpp src/client/menu/MenuTest.cpp src/client/menu/MenuTest.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
@@ -169,6 +169,7 @@ include_directories("inc/client")
 include_directories("inc/client/menu")
 include_directories("inc/client/game")
 include_directories("inc/common/gameManager")
+include_directories("inc/common/network/core")
 include_directories("inc/server/network")
 include_directories("inc/client/network")
 

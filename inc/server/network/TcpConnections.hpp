@@ -12,6 +12,7 @@
 #include	<boost/array.hpp>
 #include	"Player.hpp"
 #include	"Room.hpp"
+#include	"StringSplit.hpp"
 
 extern std::vector<Room> roomList;
 
@@ -21,7 +22,9 @@ private:
   boost::array<char, 128>		m_buffer;
   boost::asio::ip::tcp::socket		_socket;
   Player				_player;
-  std::vector<Room> roomList;
+  std::vector<Room>			roomList;
+  StringSplit				_split;
+  std::string				_buff;
   void handleData(size_t);
 
 public:

@@ -9,7 +9,6 @@ TcpClient::TcpClient(boost::asio::ip::tcp::endpoint &endpoint,
 		     MenuState &state) :  _state(state)
 {
   connect(endpoint);
-  //_io_service.run();
   _thread = std::thread(std::bind(&TcpClient::run, this));
 }
 
@@ -33,7 +32,6 @@ void TcpClient::handleConnect(TcpClientConnections::ptr connect, const boost::sy
   if (!error) {
     std::cout << "connected" << std::endl;
     connect->read();
-    _state = ERoomListMenu;
   } else
   {
     std::cout << error.message() << std::endl;

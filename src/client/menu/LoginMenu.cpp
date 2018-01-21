@@ -37,6 +37,7 @@ void LoginMenu::start(Window &)
 
 void LoginMenu::enterIP(Window &win, sf::Event &event)
 {
+  std::cout << "nb" << std::endl;
   this->_whichBut = IPButton;
 }
 
@@ -52,11 +53,6 @@ void LoginMenu::enterName(Window &win, sf::Event &event)
 
 void LoginMenu::soloFunction(Window &win, sf::Event &event)
 {
-  std::cout << "Play Solo" << std::endl;;
-}
-
-void LoginMenu::playFunction(Window &win, sf::Event &event)
-{
   if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
     std::cout << "in play" << std::endl;
     if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
@@ -68,12 +64,10 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
 	std::cout << _ip.getString() << std::endl;
 	std::cout << static_cast<unsigned short>(std::stoi(_port.getString()))
 		  << std::endl;
-	  _client = new TcpClient(endpoint, _state);
-	  _client->setMenu(_vecMenu);
-	  _client->getVecMenu().at(2)->setClient(_client);
-	  _client->getVecMenu().at(3)->setClient(_client);
-	_client->write("200:name:Julien");
-
+	_client = new TcpClient(endpoint, _state);
+	std::cout << "name = " << getName() << std::endl;
+	const std::string name("200:name:" + getName());
+	_client->write(name);
 	std::cout << "fin du scope" << std::endl;
       }
       catch (std::exception &e) {
@@ -81,6 +75,11 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
       }
     }
   }
+}
+
+void LoginMenu::playFunction(Window &win, sf::Event &event)
+{
+
 }
 
 void LoginMenu::returnFunction(Window &win, sf::Event &event)
@@ -156,7 +155,7 @@ void LoginMenu::draw(Window &win)
 }
 
 void LoginMenu::setClient(TcpClient *&client) {
-  _client = client;
+  _client = std::move(client);
 }
 
 void LoginMenu::setMenu(std::vector<std::shared_ptr<IMenu>> &menu)

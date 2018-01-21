@@ -55,12 +55,22 @@ void	TcpConnections::doRead()
 
 void TcpConnections::handleData(size_t nbBytes)
 {
+  std::cout << "nb bytes lu = " << nbBytes << std::endl;
+  std::cout << "buff " << m_buffer.data() << std::endl;
   std::string tmp(m_buffer.data());
   tmp.resize(nbBytes);
-  if (tmp == "200:name:Julien")
+  std::cout << tmp << std::endl;
+
+  std::replace(tmp.begin(), tmp.end(), ':', ' ');  // replace ':' by ' '
+  std::vector<std::string> array;
+  std::stringstream ss(tmp);
+  std::string temp;
+  while (ss >> temp)
+    array.push_back(temp);
+  if (array[1] == "name")
   {
-    std::cout << "Player new name is Julien" << std::endl;
-    _player.setName("Julien");
+    std::cout << "Player new name is " << array[2] << std::endl;
+    _player.setName(array[2]);
     asyncWrite("200:Room:");
   }
   if (tmp == "join_room:0")

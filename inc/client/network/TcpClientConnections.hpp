@@ -22,6 +22,7 @@ private:
   void handleWrite(const boost::system::error_code&, std::size_t);
   boost::array<char, 128>				_network_buffer;
   boost::asio::ip::tcp::socket				_socket;
+  std::string						_buff;
   std::vector<std::shared_ptr<IMenu>>	_vecMenu;
 
 public:

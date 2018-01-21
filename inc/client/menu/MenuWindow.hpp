@@ -26,19 +26,23 @@ class MainMenu;
 
 class MenuWindow
 {
-private:
+protected:
+  TcpClient				*_client;
   MenuState 	_state;
+
+
+private:
   std::shared_ptr<IMenu> _mainMenu = std::make_shared<MainMenu>(_state);
   std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>(_state);
   std::shared_ptr<IMenu> _roomListMenu = std::make_shared<RoomListMenu>(_state);
   std::shared_ptr<IMenu> _lobbyMenu = std::make_shared<LobbyMenu>(_state);
 
   std::vector<std::shared_ptr<IMenu>>	_vecMenu;
-  TcpClient				*_client;
   Window	_win;
 
 
-  public:
+
+public:
     MenuWindow();
     ~MenuWindow();
 

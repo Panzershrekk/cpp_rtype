@@ -33,13 +33,7 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
     std::cout << test << std::endl;
     if (test == "200:Room:")
     {
-   //   int nbRooms = test.at(test.size() - 2);
-      std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->genRooms(1);
- //     this->write("200:join_room:" + std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->getWhichRoom());
-    }
-    if (test.find("OK:") != std::string::npos)
-    {
-      this->write("ready!");
+      std::cout << "200Room" << std::endl;
     }
     read();
   }
@@ -63,7 +57,7 @@ void TcpClientConnections::handleWrite(const boost::system::error_code&error, st
 {
   if (!error)
   {
-    std::cout << "success" << std::endl;
+    std::cout << "success nb bytes ecrit = " << size << std::endl;
   } else
     std::cerr << error.message() << std::endl;
 }
