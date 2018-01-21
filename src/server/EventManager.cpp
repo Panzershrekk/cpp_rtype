@@ -13,7 +13,17 @@ EventManager::~EventManager() = default;
 void    EventManager::RefreshEnemies(Network::Core::UdpConnection &socketUdp, GameManager &gm)
 {
     Network::Packet::PacketEnemies  packetEnemies(gm.getEnemies());
+    std::cout << "NOMBRE D'ENEMIE DANS LE PAQUET : " << packetEnemies.getEnemies().size() << std::endl;
     const std::string               serPacket = Serializer::serialize(packetEnemies);
+
+    Serializer      ser;
+    auto    obj = ser.deserialize(serPacket, Network::Packet::PACKET_ENEMIES);
+    Network::Packet::PacketEnemies  *pE;
+    pE = static_cast<Network::Packet::PacketEnemies *>(obj);
+
+    std::cout << "APRES DESER : " << pE->getEnemies().size() << std::endl;
+
+
     std::cout << "-- RefreshEnemies()" << std::endl;
     for (auto &player : gm.getPlayers())
     {

@@ -7,6 +7,7 @@
 
 # include <vector>
 # include <boost/serialization/base_object.hpp>
+# include <boost/serialization/vector.hpp>
 # include "APacket.hpp"
 # include "common/gameManager/Enemy.hpp"
 
@@ -22,10 +23,10 @@ namespace Network
 
         public:
             PacketEnemies() : APacket(PACKET_ENEMIES) {}
-            explicit PacketEnemies(const std::vector<Enemy> &enemies) : APacket(PACKET_ENEMIES), _enemies(enemies) {}
+            explicit PacketEnemies(const std::vector<Enemy> enemies) : APacket(PACKET_ENEMIES), _enemies(enemies) {}
 
             std::vector<Enemy>  &getEnemies() { return this->_enemies; }
-            void                setEnemies(const std::vector<Enemy> &enemies) { this->_enemies = enemies; }
+            void                setEnemies(const std::vector<Enemy> enemies) { this->_enemies = enemies; }
 
 
             template <class Archive>

@@ -8,13 +8,18 @@
 LobbyMenu::LobbyMenu(MenuState &state) :
   _state(state),
   _back("../assets/LobbyMenu_Background.jpg"),
-  _return("../assets/Menu_Button_Back.png", 25, 900),
-  _playerOne("../assets/LobbyMenu_SpaceShip_1.png", 100, 100),
-  _playerTwo("../assets/LobbyMenu_SpaceShip_2.png", 1000, 100),
-  _playerThree("../assets/LobbyMenu_SpaceShip_3.png", 100, 600),
-  _playerFour("../assets/LobbyMenu_SpaceShip_4.png", 1000, 600)
+  _return("../assets/Menu_Button_Back.png", 25, 900)
 {
+  this->_players.push_back(std::make_shared<ItemLobbyMenu>("../assets/LobbyMenu_SpaceShip_1.png", 400, 200));
+  this->_players.push_back(std::make_shared<ItemLobbyMenu>("../assets/LobbyMenu_SpaceShip_2.png", 1100, 200));
+  this->_players.push_back(std::make_shared<ItemLobbyMenu>("../assets/LobbyMenu_SpaceShip_3.png", 400, 600));
+  this->_players.push_back(std::make_shared<ItemLobbyMenu>("../assets/LobbyMenu_SpaceShip_4.png", 1100, 600));
+
   this->_return.setScale(0.5f, 0.5f);
+  for (auto it : this->_players)
+    it->activeItem(64);
+
+  setActivePlayers(3);
 }
 
 LobbyMenu::~LobbyMenu()
@@ -34,10 +39,16 @@ void LobbyMenu::draw(Window &win)
 {
   win.draw(this->_back);
   win.draw(this->_return);
-  drawItems(win, this->_playerOne);
-  drawItems(win, this->_playerTwo);
-  drawItems(win, this->_playerThree);
-  drawItems(win, this->_playerFour);
+  for (auto it : this->_players)
+  {
+    drawItems(win, *it);
+  }
+}
+
+void LobbyMenu::setActivePlayers(int nbPlayer)
+{
+  for (int i = 0; i < nbPlayer; i++)
+    this->_players.at(i)->activeItem(255);
 }
 
 void LobbyMenu::returnFunction(Window &, sf::Event &)

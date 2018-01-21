@@ -24,6 +24,8 @@ protected:
 public:
     AEntity();
     ~AEntity();
+    AEntity(const AEntity &);
+
     void setPosition(Position2D &);
     Position2D& getPosition();
 

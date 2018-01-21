@@ -16,7 +16,6 @@ class MainMenu : public IMenu
   private:
     Sprite	_splashScreen;
     Sprite	_playButton;
-    Sprite	_soloButton;
     Sprite	_optionButton;
     Sprite	_quitButton;
     Sprite	_title;
@@ -32,8 +31,6 @@ class MainMenu : public IMenu
 
     void playMultiFunction(Window &, sf::Event &);
     void quitFunction(Window &, sf::Event &);
-
-    void playSoloFunction(Window &, sf::Event &);
 };
 
 

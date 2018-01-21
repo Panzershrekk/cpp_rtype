@@ -18,6 +18,7 @@
 #include	"RoomListMenu.hpp"
 #include	"LobbyMenu.hpp"
 #include	"Image.hpp"
+#include	"TcpClient.hpp"
 
 class MainMenu;
 
@@ -26,12 +27,12 @@ class MenuWindow
 private:
   MenuState 	_state;
   std::shared_ptr<IMenu> _mainMenu = std::make_shared<MainMenu>(_state);
-  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>(_state);
-  std::shared_ptr<IMenu> _roomListMenu = std::make_shared<RoomListMenu>(_state);
+  std::shared_ptr<IMenu> _loginMenu = std::make_shared<LoginMenu>(_state, *_client);
+  std::shared_ptr<IMenu> _roomListMenu = std::make_shared<RoomListMenu>(_state, *_client);
   std::shared_ptr<IMenu> _lobbyMenu = std::make_shared<LobbyMenu>(_state);
 
   std::vector<std::shared_ptr<IMenu>> _vecMenu;
-
+  TcpClient				*_client;
   Window	_win;
 
 

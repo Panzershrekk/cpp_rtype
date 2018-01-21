@@ -22,6 +22,7 @@ protected:
 public:
     Character();
     Character(const int&);
+    Character(const Character &);
     ~Character();
     void setHp(const int &);
 

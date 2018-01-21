@@ -39,13 +39,14 @@ void    ClientCore::start()
                                   std::cout << "FIRST PACKET HAS BEEN SENT" << std::endl;
                               });
     // this->_gameRender.startGame();
+    // this->_menu.start();
     threadRun.join();
 }
 
 // TODO PASSER LE GROS BLOC DANS FN
 void    ClientCore::startExchanges()
 {
-    std::array<char, MAX_READ> data { 0 };
+    std::array<char, MAX_READ>      data { 0 };
     boost::asio::ip::udp::endpoint  endpoint;
 
     this->_socket.read(data, endpoint,

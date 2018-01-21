@@ -24,9 +24,13 @@
 # include <sstream>
 # include <unordered_map>
 # include "common/network/packets/PacketReady.hpp"
+# include "common/network/packets/PacketEnemies.hpp"
 # include "common/network/packets/APacket.hpp"
 # include "common/network/packets/PacketPlayer.hpp"
 # include "common/network/packets/PacketRoom.hpp"
+# include "common/network/packets/PacketFire.hpp"
+# include "common/network/packets/PacketMove.hpp"
+
 
 class Serializer
 {
@@ -67,10 +71,17 @@ public:
                 this,
                 std::placeholders::_1)));
         factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_ENEMIES, std::bind(
-                &Serializer::deserializeSpecPacket<Network::Packet::PacketReady>,
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketEnemies>,
                 this,
                 std::placeholders::_1)));
-
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_FIRE, std::bind(
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketFire>,
+                this,
+                std::placeholders::_1)));
+        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_MOVE, std::bind(
+                &Serializer::deserializeSpecPacket<Network::Packet::PacketMove>,
+                this,
+                std::placeholders::_1)));
         //TODO Guillaume
 
         for (auto packetFactory : factory)
@@ -85,7 +96,7 @@ public:
     Network::Packet::APacket     *deserializeSpecPacket(const std::string &buf)
     {
         Network::Packet::APacket        *packet;
-        auto                            *packetSpec = new T;
+        T                               *packetSpec = new T;
 
         std::stringstream          archive_stream(buf);
         {

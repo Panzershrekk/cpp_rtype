@@ -8,6 +8,7 @@ int main()
     try
     {
         boost::asio::io_service     service;
+        TcpServer                   socketTcp(service, boost::asio::ip::tcp::endpoint(boost::asio::ip::address::from_string("0.0.0.0"), 4242));
         ServerCore                  server(service, Network::Core::Endpoint(4242));
 
         server.start();

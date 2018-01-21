@@ -14,10 +14,8 @@ class LobbyMenu : public IMenu
   MenuState 	&_state;
   Sprite	_back;
   Sprite	_return;
-  ItemLobbyMenu	_playerOne;
-  ItemLobbyMenu	_playerTwo;
-  ItemLobbyMenu	_playerThree;
-  ItemLobbyMenu	_playerFour;
+
+  std::vector<std::shared_ptr<ItemLobbyMenu>>	_players;
 
 public:
     explicit LobbyMenu(MenuState &);
@@ -28,6 +26,7 @@ public:
     void update(Window &, sf::Event &) override;
 
     void drawItems(Window &, ItemLobbyMenu &);
+    void setActivePlayers(int);
 
   void returnFunction(Window &, sf::Event &);
 };

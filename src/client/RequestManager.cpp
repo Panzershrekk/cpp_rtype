@@ -31,10 +31,10 @@ void    RequestManager::handlePacketEnemies(Network::Packet::APacket *packet, Ga
     auto    pEnemies = static_cast<Network::Packet::PacketEnemies *>(packet);
 
     std::cout << "-- Received UpdatePacketEnemies request" << std::endl;
-    /*for (auto &enemy : pEnemies->getEnemies())
+    for (auto &enemy : pEnemies->getEnemies())
     {
         std::cout << "---- Enemy | id: " << enemy.getId() << " | hp: " << enemy.getHp();
         std::cout << " | pos: (" << enemy.getPosition().getX() << ", " << enemy.getPosition().getY() << std::endl;
-    }*/
+    }
 }
 

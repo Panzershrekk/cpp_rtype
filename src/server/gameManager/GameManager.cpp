@@ -34,7 +34,7 @@ void GameManager::update()
              * */
             EventManager::RefreshEnemies(this->_socket, *this);
             updateEntities();
-            // dumpEnemy();
+            dumpEnemy();
             removeEntities();
             clock.restartTimer();
         }

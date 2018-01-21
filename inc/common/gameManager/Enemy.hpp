@@ -18,6 +18,7 @@ private:
 public:
     Enemy();
     ~Enemy();
+    Enemy(const Enemy &);
 
     void        randomizePosition();
     AIManager   getAI() const;

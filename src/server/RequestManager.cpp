@@ -33,7 +33,6 @@ void    RequestManager::handleNewUdpClient(const Network::Core::Endpoint &endpoi
     }
 }
 
-
 /**
  *
  * @param packet

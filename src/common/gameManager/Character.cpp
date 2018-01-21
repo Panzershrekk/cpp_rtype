@@ -14,6 +14,11 @@ Character::Character(const int &hp)
     this->_hp = hp;
 }
 
+Character::Character(const Character &obj) : AEntity(obj)
+{
+    this->_hp = obj._hp;
+}
+
 Character::~Character() = default;
 
 const int &Character::getHp() const
