@@ -29,13 +29,14 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
 {
   if (!error)
   {
-    std::cout << _network_buffer.data() << std::endl;
+    std::cout << _network_buffer.data() << "|" << std::endl;
     std::string test(_network_buffer.data());
-    if (test == "200:Welcome!\n")
+    if (test == "Welcome!")
     {
-      this->write(std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName());
+      std::cout << "in Welcome" << std::endl;
+      std::cout << "donnee :" << std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName() << std::endl;
+      //this->write(std::static_pointer_cast<LoginMenu>(this->_vecMenu.at(1))->getName());
       std::cout << "slt" << std::endl;
-      this->write("hello serveur");
     }
     if (test.find("200:Room:") != std::string::npos)
     {
