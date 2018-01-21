@@ -93,7 +93,7 @@ bool    ServerCore::start()
     std::thread		threadRun(&ServerCore::runService, this);
 
     Player   newPlayer;
-    newPlayer.setName("Emmanuel CARLI");
+    newPlayer.setName("wiart_m");
     newPlayer.setId(1234);
     this->_gameManager.addPlayer(newPlayer);
     this->_gameManager.spawnEnnemy();

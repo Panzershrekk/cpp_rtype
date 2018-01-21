@@ -8,7 +8,6 @@
 #include	<unordered_map>
 #include	<boost/asio.hpp>
 #include	"IMenu.hpp"
-#include	"TcpClient.hpp"
 #include	<memory>
 
 enum Buttonchoice {IPButton, PortButton, NameButton, NONE};
@@ -20,21 +19,24 @@ class LoginMenu : public IMenu
     Text				_ip;
     Text				_port;
     Text				_name;
+  std::vector<std::shared_ptr<IMenu>>	_vecMenu;
 
-    //std::vector<std::function<void(Text &, sf::Event)>>	_vecButFunctions;
+  //std::vector<std::function<void(Text &, sf::Event)>>	_vecButFunctions;
 
     MenuState				&_state;
     Buttonchoice 			_whichBut;
   TcpClient				*_client;
 
 
-
   void getSfLine(Text &, sf::Event &);
 
   public:
-    explicit LoginMenu(MenuState &, TcpClient &);
+    explicit LoginMenu(MenuState &);
     ~LoginMenu();
 
+  void setClient(TcpClient *&);
+
+  TcpClient *getClient();
     void start(Window &) override;
     void update(Window &, sf::Event &) override;
     void draw(Window &) override;
@@ -44,9 +46,13 @@ class LoginMenu : public IMenu
     void 	enterName(Window &, sf::Event &);
     void 	playFunction(Window &, sf::Event &);
     void 	soloFunction(Window &, sf::Event &);
-  void		run();
+  void setMenu(std::vector<std::shared_ptr<IMenu>>&);
 
   void returnFunction(Window &, sf::Event &);
+
+  std::string 	getName() const;
+  TcpClient	*getClient() const;
+
 };
 
 

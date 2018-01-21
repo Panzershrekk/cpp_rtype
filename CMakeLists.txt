@@ -15,9 +15,10 @@ set(SOURCE_FILES_SERVER
         src/server/CommandManager.cpp
         src/server/EventManager.cpp
         src/server/RequestManager.cpp
-        src/server/network/TcpConnections.cpp
-        src/server/network/TcpServer.cpp
-        src/server/network/TcpHandler.cpp)
+       # src/server/network/TcpConnections.cpp
+       # src/server/network/TcpServer.cpp
+       # src/server/network/TcpHandler.cpp
+        )
 
 set(SOURCE_FILES_CLIENT
         src/client/game/AEntityRenderer.cpp
@@ -121,11 +122,13 @@ set(HEADER_FILES_CLIENT
         inc/client/ClientCore.hpp
         inc/client/EventManager.hpp
         inc/client/RequestManager.hpp
-        )
+        inc/client/game/HudPlayer.hpp
+        inc/client/game/HeadUpDisplay.hpp)
 
 set(HEADER_FILES_COMMON
         inc/common/network/core/Endpoint.hpp
         inc/common/network/core/Error.hpp
+        inc/common/network/core/StringSplit.hpp
         inc/common/network/core/Exception.hpp
         inc/common/network/core/UdpConnection.hpp
         inc/common/network/core/Serializer.hpp
@@ -179,6 +182,7 @@ include_directories("inc/client")
 include_directories("inc/client/menu")
 include_directories("inc/client/game")
 include_directories("inc/common/gameManager")
+include_directories("inc/common/network/core")
 include_directories("inc/server/network")
 include_directories("inc/client/network")
 

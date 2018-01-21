@@ -13,19 +13,19 @@ HeadUpDisplay::HeadUpDisplay(std::vector<Player> &player, const std::string &pat
 					      std::make_shared<HudPlayer>(
 						player.at(0).getName(),
 						"../assets/LobbyMenu_SpaceShip_1.png",
-						80, 905)));
+						x + 10, 905)));
 	break;
       case 1 : this->_hudPlayer.emplace(std::make_pair(player.at(1).getName(),
 					      std::make_shared<HudPlayer>(
 						player.at(1).getName(),
 						"../assets/LobbyMenu_SpaceShip_2.png",
-						80, 953)));
+						x + 10, 953)));
 	break;
       case 2 : this->_hudPlayer.emplace(std::make_pair(player.at(2).getName(),
 					      std::make_shared<HudPlayer>(
 						player.at(2).getName(),
 						"../assets/LobbyMenu_SpaceShip_3.png",
-						605, 905)));
+						x + 605, 905)));
 	break;
       case 3 : this->_hudPlayer.emplace(std::make_pair(player.at(3).getName(),
 					      std::make_shared<HudPlayer>(

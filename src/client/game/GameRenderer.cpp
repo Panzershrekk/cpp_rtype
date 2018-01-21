@@ -23,6 +23,11 @@ void GameRenderer::startGame(Player &me, const Network::Core::Endpoint &serverEn
     int xSize = 1920;
     int ySize = 1080;
     Window window("RTYPE", 1920, 1080);
+    me.setName("wiart_m");
+    std::vector<Player>     hudPlayers;
+    hudPlayers.emplace_back(me);
+    HeadUpDisplay       hud(hudPlayers, "../assets/HUD_Player.png", 400, 900);
+
 
     /* STARFIELD */
     Image starsImage;
@@ -80,7 +85,7 @@ void GameRenderer::startGame(Player &me, const Network::Core::Endpoint &serverEn
                 if (sf::Joystick::isButtonPressed(0, 0))
                 {
                     me.setPosition(this->_player.getPosition());
-                    EventManager::sendFire(this->_socket, me, serverEndpoint);
+                    //EventManager::sendFire(this->_socket, me, serverEndpoint);
                 }
             }
             else
@@ -88,7 +93,7 @@ void GameRenderer::startGame(Player &me, const Network::Core::Endpoint &serverEn
                 if (Keyboard::isKeyPressed(Keyboard::Key::Space))
                 {
                     me.setPosition(this->_player.getPosition());
-                    EventManager::sendFire(this->_socket, me, serverEndpoint);
+                    // EventManager::sendFire(this->_socket, me, serverEndpoint);
                 }
             }
 
@@ -96,6 +101,7 @@ void GameRenderer::startGame(Player &me, const Network::Core::Endpoint &serverEn
         }
         window.draw(this->_player.getSprite());
         drawEntities(window);
+        hud.update(hudPlayers, window);
         window.display();
     }
 }

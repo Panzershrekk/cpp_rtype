@@ -12,26 +12,31 @@
 #include	<functional>
 #include	<iostream>
 
+class IMenu;
 
 class TcpClientConnections : public std::enable_shared_from_this<TcpClientConnections>
 {
 private:
   TcpClientConnections(boost::asio::io_service&);
   void handle_read(const boost::system::error_code& , size_t);
-
-
+  void handleWrite(const boost::system::error_code&, std::size_t);
   boost::array<char, 128>				_network_buffer;
   boost::asio::ip::tcp::socket				_socket;
+  std::string						_buff;
+  std::vector<std::shared_ptr<IMenu>>	_vecMenu;
 
 public:
   typedef std::shared_ptr<TcpClientConnections> ptr;
-  static ptr create(boost::asio::io_service& ios)
+  void write(const std::string &);
+  static ptr create(boost::asio::io_service& ios, std::vector<std::shared_ptr<IMenu>>&)
   {
     return ptr(new TcpClientConnections(ios));
   }
   boost::asio::ip::tcp::socket& getSocket();
 
+  void setMenu(std::vector<std::shared_ptr<IMenu>>&);
   void read();
+  std::vector<std::shared_ptr<IMenu>>& getVecMenu();
 };
 
 
