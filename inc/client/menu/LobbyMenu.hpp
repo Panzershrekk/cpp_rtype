@@ -27,7 +27,7 @@ public:
     void start(Window &) override;
     void draw(Window &) override;
     void update(Window &, sf::Event &) override;
-    void setClient(TcpClient *);
+    void setClient(TcpClient *) override ;
 
     void drawItems(Window &, ItemLobbyMenu &);
     void setActivePlayers(int);

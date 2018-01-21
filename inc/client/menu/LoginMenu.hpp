@@ -48,7 +48,8 @@ class LoginMenu : public IMenu
 
   void returnFunction(Window &, sf::Event &);
 
-  std::string getName() const;
+  std::string 	getName() const;
+  TcpClient	*getClient() const;
 };
 
 

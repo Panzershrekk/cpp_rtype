@@ -44,6 +44,8 @@ private:
 
     void start();
     void update(sf::Event &);
+
+  void setClient(TcpClient *);
 };
 
 #endif /* !CPP_RTYPE_MENUWINDOW_HPP_ */

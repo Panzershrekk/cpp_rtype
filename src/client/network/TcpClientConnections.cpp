@@ -8,7 +8,6 @@
 
 TcpClientConnections::TcpClientConnections(boost::asio::io_service &service): _socket(service)
 {
-
 }
 
 boost::asio::ip::tcp::socket& TcpClientConnections::getSocket()
@@ -44,7 +43,7 @@ void TcpClientConnections::handle_read(const boost::system::error_code& error, s
     if (test.find("200:Room:") != std::string::npos)
     {
       int nbRooms = test.at(test.size() - 2);
-      std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->genRooms(nbRooms);
+      //std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->genRooms(nbRooms);
       this->write("200:join_room:" + std::static_pointer_cast<RoomListMenu>(this->_vecMenu.at(2))->getWhichRoom());
     }
     if (test.find("OK:") != std::string::npos)

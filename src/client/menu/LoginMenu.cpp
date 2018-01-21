@@ -59,6 +59,8 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
   if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
     std::cout << "in play" << std::endl;
+    if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
+      try {
     if (_client == nullptr|| (_client != nullptr && _client->isConnected())) {
 	try {
 	boost::asio::ip::tcp::endpoint endpoint(
@@ -152,5 +154,9 @@ void LoginMenu::draw(Window &win)
 
 void LoginMenu::setClient(TcpClient *client) {
   _client = client;
+}
+
+TcpClient *LoginMenu::getClient() const {
+  return this->_client;
 }
 

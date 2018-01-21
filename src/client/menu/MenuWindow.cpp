@@ -36,11 +36,19 @@ MenuWindow::~MenuWindow()
 {
 }
 
+void MenuWindow::setClient(TcpClient *client)
+{
+  this->_client = client;
+}
+
 void MenuWindow::update(sf::Event &event)
 {
-  if (_client != nullptr && _client->getMenu() != 1)
-    _client->setMenu(&_vecMenu);
   _vecMenu.at(_state)->update(_win, event);
+
+  if (_client != nullptr) {
+    std::cout << "OK client not null" << std::endl;
+    _client->setMenu(&_vecMenu);
+  }
 }
 
 void MenuWindow::start()
