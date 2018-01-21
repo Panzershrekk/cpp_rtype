@@ -5,6 +5,7 @@
 #include	"MenuWindow.hpp"
 #include	<iostream>
 
+
 MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
 {
   _vecMenu.push_back(std::shared_ptr<IMenu>(_mainMenu));
@@ -12,7 +13,13 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
-  this->_state = ELobbyMenu;
+
+
+  std::static_pointer_cast<LoginMenu>(_loginMenu)->setMenu(_vecMenu);
+  std::static_pointer_cast<LoginMenu>(_loginMenu)->setClient(_client);
+  std::static_pointer_cast<LoginMenu>(_roomListMenu)->setClient(_client);
+
+  this->_state = EMainMenu;
   try
   {
     std::string path = "../assets/pierre.jpg";
@@ -25,11 +32,15 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   {
     std::cout << e.what() << std::endl;
   }
-
 }
 
 MenuWindow::~MenuWindow()
 {
+}
+
+void MenuWindow::setClient(TcpClient *client)
+{
+  this->_client = client;
 }
 
 void MenuWindow::update(sf::Event &event)
@@ -46,6 +57,8 @@ void MenuWindow::start()
     {
       update(event);
       switch (event.type);
+      if (_client)
+	_client->isConnected();
     }
     _win.clear();
     _vecMenu.at(_state)->draw(_win);

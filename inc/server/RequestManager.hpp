@@ -16,7 +16,7 @@ class RequestManager
     std::unordered_map<string, std::function<T>>	_manager;
   public:
     RequestManager();
-    virtual ~RequestManager();
+    ~RequestManager();
 
     void	CheckPacket(Packet &);
     void	handleRequest(Request, Object&);

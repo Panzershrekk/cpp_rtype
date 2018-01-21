@@ -6,6 +6,7 @@
 #define CPP_RTYPE_IMENU_HPP_
 
 #include	"Window.hpp"
+#include 	"TcpClient.hpp"
 #include	"MenuState.hpp"
 
 class IMenu
@@ -15,6 +16,7 @@ class IMenu
   IMenu();
   virtual ~IMenu();
 
+    virtual void setClient(TcpClient *&) = 0;
     virtual void start(Window &) = 0;
     virtual void draw(Window &) = 0;
     virtual void update(Window &, sf::Event &) = 0;

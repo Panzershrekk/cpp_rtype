@@ -6,15 +6,13 @@
 #include	<SFML/Window/Event.hpp>
 #include	"LoginMenu.hpp"
 
-LoginMenu::LoginMenu(MenuState & state, TcpClient & client) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
+LoginMenu::LoginMenu(MenuState & state) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
 			 _port("", "../Triumph-wheels-rough.ttf", 255, 220),
 			 _name("", "../Triumph-wheels-rough.ttf", 255, 370),
-			 _state(state), _client(&client)
+			 _state(state)
 {
 
-
   this->_whichBut = NONE;
-
   this->_sprites.emplace(std::make_pair("Back", Sprite("../assets/LoginMenu_Background.png")));
   this->_sprites.emplace(std::make_pair("IpAddress", Sprite("../assets/LoginMenu_Button_IP.png", 50, 100)));
   this->_sprites.emplace(std::make_pair("Port", Sprite("../assets/LoginMenu_Button_Port.png", 50, 250)));
@@ -39,6 +37,7 @@ void LoginMenu::start(Window &)
 
 void LoginMenu::enterIP(Window &win, sf::Event &event)
 {
+  std::cout << "nb" << std::endl;
   this->_whichBut = IPButton;
 }
 
@@ -54,22 +53,21 @@ void LoginMenu::enterName(Window &win, sf::Event &event)
 
 void LoginMenu::soloFunction(Window &win, sf::Event &event)
 {
-  std::cout << "Play Solo" << std::endl;;
-}
-
-void LoginMenu::playFunction(Window &win, sf::Event &event)
-{
   if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
-    if (_client == nullptr || (_client != nullptr && !_client->isConnected())) {
+    std::cout << "in play" << std::endl;
+    if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
       try {
 	boost::asio::ip::tcp::endpoint endpoint(
 	  boost::asio::ip::address::from_string(_ip.getString()),
 	  static_cast<unsigned short>(std::stoi(_port.getString())));
-
+	std::cout << "in play out" << std::endl;
 	std::cout << _ip.getString() << std::endl;
 	std::cout << static_cast<unsigned short>(std::stoi(_port.getString()))
 		  << std::endl;
 	_client = new TcpClient(endpoint, _state);
+	std::cout << "name = " << getName() << std::endl;
+	const std::string name("200:name:" + getName());
+	_client->write(name);
 	std::cout << "fin du scope" << std::endl;
       }
       catch (std::exception &e) {
@@ -77,6 +75,11 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
       }
     }
   }
+}
+
+void LoginMenu::playFunction(Window &win, sf::Event &event)
+{
+
 }
 
 void LoginMenu::returnFunction(Window &win, sf::Event &event)
@@ -101,6 +104,11 @@ void LoginMenu::getSfLine(Text &text, sf::Event &event)
     }
     text.setString(str);
   }
+}
+
+std::string LoginMenu::getName() const
+{
+  return (this->_name.getString());
 }
 
 void LoginMenu::update(Window &win, sf::Event &event)
@@ -144,5 +152,22 @@ void LoginMenu::draw(Window &win)
   win.draw(this->_ip);
   win.draw(this->_port);
   win.draw(this->_name);
+}
+
+void LoginMenu::setClient(TcpClient *&client) {
+  _client = std::move(client);
+}
+
+void LoginMenu::setMenu(std::vector<std::shared_ptr<IMenu>> &menu)
+{
+  std::cout << "menu = " << menu.size() << std::endl;
+  _vecMenu = menu;
+  std::cout << "menu = " << _vecMenu.size() << std::endl;
+
+}
+
+TcpClient *LoginMenu::getClient()
+{
+  return _client;
 }
 

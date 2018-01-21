@@ -7,12 +7,12 @@
 #include <memory>
 #include "RoomListMenu.hpp"
 
-RoomListMenu::RoomListMenu(MenuState & state, TcpClient &client) :
+
+RoomListMenu::RoomListMenu(MenuState & state) :
   _state(state),
   _back("../assets/RoomListMenu_Background.jpg"),
   _return("../assets/Menu_Button_Back.png", 25, 900),
-  _title("Choose your room", "../Triumph-wheels-rough.ttf", 600, 50),
-  _client(&client)
+  _title("Choose your room", "../Triumph-wheels-rough.ttf", 600, 50)
 {
   this->_return.setScale(0.5f, 0.5f);
   this->_title.setCharacterSize(150);
@@ -42,15 +42,31 @@ void RoomListMenu::genRooms(int nbRoom)
 void RoomListMenu::joinRoom(Window &win, sf::Event &event)
 {
   this->_state = ELobbyMenu;
+  getWhichRoom();
 }
 
 void RoomListMenu::returnFunction(Window &win, sf::Event &event)
 {
-  if (_client != nullptr)
+  if (_client == nullptr)
+    std::cout << "problem" << std::endl;
+  else {
+    std::cout << "working" << std::endl;
+    _client->write("back button");
+  }
+  /*
+  if (_client != nullptr) {
     _client->disconnect();
+    _client = nullptr;
+  }
   else
     std::cout << "problem" << std::endl;
-  this->_state = ELoginMenu;
+  this->_state = ELoginMenu;*/
+}
+
+int RoomListMenu::getWhichRoom()
+{
+  std::cout << "room" << this->_nbRoom << std::endl;
+  return (this->_nbRoom);
 }
 
 void RoomListMenu::update(Window &win, sf::Event &event)
@@ -60,9 +76,11 @@ void RoomListMenu::update(Window &win, sf::Event &event)
 
   this->_return.onClick(fBack, win, event);
 
+  this->_nbRoom = 0;
   for (auto it : this->_vectorRooms)
   {
     it->getBack().onClick(fJoin, win, event);
+    this->_nbRoom++;
   }
   _vectorRooms[0]->updatePlayers(1);
   if (event.type == sf::Event::Closed) {
@@ -87,3 +105,8 @@ void RoomListMenu::draw(Window &win)
   win.draw(this->_title);
   drawItems(win);
 }
+
+void RoomListMenu::setClient(TcpClient *&client) {
+  _client = std::move(client);
+}
+

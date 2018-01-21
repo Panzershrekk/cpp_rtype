@@ -11,13 +11,17 @@
 #include	"MenuState.hpp"
 #include	<boost/bind.hpp>
 
+class IMenu;
+
 class TcpClient
 {
 private:
   boost::asio::io_service _io_service;
   MenuState		&_state;
   TcpClientConnections::ptr _connection;
+  int _menuSet = 0;
 
+  std::vector<std::shared_ptr<IMenu>>	_vecMenu;
   void	connect(boost::asio::ip::tcp::endpoint &);
   void	handleConnect(TcpClientConnections::ptr, const boost::system::error_code&);
   std::thread _thread;
@@ -30,6 +34,10 @@ public:
   void start(MenuState &, boost::asio::ip::tcp::endpoint &);
   void disconnect();
   bool isConnected();
+  void write(const std::string &);
+  void setMenu(std::vector<std::shared_ptr<IMenu>>&);
+  std::vector<std::shared_ptr<IMenu>>& getVecMenu();
+  int	getMenu();
 
 };
 

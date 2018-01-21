@@ -2,8 +2,8 @@
 // Created by grodin on 15/01/18.
 //
 
-#include 	<iostream>
-#include <SFML/Window/Event.hpp>
+#include	<iostream>
+#include	<SFML/Window/Event.hpp>
 #include	"Mouse.hpp"
 #include	"MainMenu.hpp"
 
@@ -56,5 +56,8 @@ void MainMenu::draw(Window &win)
   win.draw(this->_optionButton);
   win.draw(this->_quitButton);
   win.draw(this->_title);
+}
+
+void MainMenu::setClient(TcpClient *&) {
 }
 
