@@ -54,7 +54,9 @@ void GameManager::update()
 
 void GameManager::createProjectile(Player &player)
 {
-    this->_projectile.emplace_back(Projectile(player.getPosition()));
+    Position2D p(player.getPosition().getX(), player.getPosition().getY());
+    this->_projectile.emplace_back();
+    this->_projectile.back().setPosition(p);
 }
 
 void GameManager::spawnEnnemy()

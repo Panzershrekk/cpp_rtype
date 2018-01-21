@@ -30,7 +30,7 @@
 # include "common/network/packets/PacketRoom.hpp"
 # include "common/network/packets/PacketFire.hpp"
 # include "common/network/packets/PacketMove.hpp"
-
+# include "common/network/packets/PacketProjectiles.hpp"
 
 class Serializer
 {
@@ -82,10 +82,10 @@ public:
                 &Serializer::deserializeSpecPacket<Network::Packet::PacketMove>,
                 this,
                 std::placeholders::_1)));
-        factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_PROJECTILES, std::bind(
-                &Serializer::deserializeSpecPacket<Network::Packet::PacketMove>,
-                this,
-                std::placeholders::_1)));
+       factory.emplace(std::make_pair(Network::Packet::PacketType::PACKET_PROJECTILES, std::bind(
+	  &Serializer::deserializeSpecPacket<Network::Packet::PacketProjectiles>,
+	 this,
+	 std::placeholders::_1)));
         //TODO Guillaume
 
         for (auto packetFactory : factory)

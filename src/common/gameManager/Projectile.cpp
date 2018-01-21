@@ -4,12 +4,12 @@
 
 #include <Projectile.hpp>
 
-Projectile::Projectile(const Position2D &pos)
+Projectile::Projectile()
 {
   this->_physic.setSpeed(5);
   this->_hitboxSize = Position2D(7, 6);
   this->_rect = Rectangle(this->_pos.getX() - this->_hitboxSize.getX(), this->_pos.getY() - this->_hitboxSize.getY(), 14, 12);
-  this->_pos = pos;
+  //this->_pos = pos;
 }
 
 Projectile::~Projectile()
