@@ -9,9 +9,9 @@ HeadUpDisplay::HeadUpDisplay(const std::string &path, int x, int y) : _splashScr
     this->_splashScreen.setScale(1.3, 1.5);
     //TODO obtenir le vector de player ici et set les name à la place de player1, player2 etc..
     this->_hudPlayer.emplace(std::make_pair("Player1", std::make_shared<HudPlayer>("../assets/LobbyMenu_SpaceShip_1.png", 75, 905)));
-    this->_hudPlayer.emplace(std::make_pair("Player2", std::make_shared<HudPlayer>("../assets/LobbyMenu_SpaceShip_2.png", 75, 950)));
+    this->_hudPlayer.emplace(std::make_pair("Player2", std::make_shared<HudPlayer>("../assets/LobbyMenu_SpaceShip_2.png", 75, 953)));
     this->_hudPlayer.emplace(std::make_pair("Player3", std::make_shared<HudPlayer>("../assets/LobbyMenu_SpaceShip_3.png", 605, 905)));
-    this->_hudPlayer.emplace(std::make_pair("Player4", std::make_shared<HudPlayer>("../assets/LobbyMenu_SpaceShip_4.png", 605, 950)));
+    this->_hudPlayer.emplace(std::make_pair("Player4", std::make_shared<HudPlayer>("../assets/LobbyMenu_SpaceShip_4.png", 605, 953)));
 }
 
 HeadUpDisplay::~HeadUpDisplay()
