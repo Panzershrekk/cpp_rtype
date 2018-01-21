@@ -45,16 +45,7 @@ void    RequestManager::handlePacketEnemies(Network::Packet::APacket *packet, Ga
 void    RequestManager::handlePacketProjectiles(Network::Packet::APacket *packet, GameRenderer &gr)
 {
     auto    pProjectiles = static_cast<Network::Packet::PacketProjectiles *>(packet);
-
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
+    
     std::cout << "-- Received UpdatePacketProjectile request" << std::endl;
     for (auto &projectile : pProjectiles->getProjectiles())
     {
