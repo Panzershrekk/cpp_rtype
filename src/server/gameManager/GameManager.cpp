@@ -22,7 +22,7 @@ void GameManager::update()
 {
     TimeManager clock;
     TimeManager spwanRate;
-    Network::Core::Endpoint ep("127.0.0.1", 4242);
+    Network::Core::Endpoint     ep("127.0.0.1", 4242);
 
     while (playerStillAlive()) //Todo Connexion rompu? Personnage tous mort ?
     {
@@ -35,6 +35,7 @@ void GameManager::update()
              * createProjectile(Player that fired)
              * */
             EventManager::RefreshEnemies(this->_socket, *this);
+
             dumpEnemy();
             missileCollide();
             updateEntities();
