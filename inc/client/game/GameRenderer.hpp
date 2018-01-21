@@ -23,7 +23,7 @@ class GameRenderer
 
   private:
     PlayablePlayer _player;
-    std::vector<EnemyRenderer> _enemies;
+    std::vector<std::shared_ptr<EnemyRenderer>> _enemies;
     TimeManager _clock;
     TimeManager _attackSpeed;
 };

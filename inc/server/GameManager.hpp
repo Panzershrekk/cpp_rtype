@@ -32,6 +32,7 @@ class GameManager
     void dumpEnnemy();
 
     bool playerStillAlive();
+    bool missileCollide();
 
   private:
     Network::Core::UdpConnection &_socket;

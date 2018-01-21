@@ -46,6 +46,9 @@ void GameRenderer::startGame()
   m.AddNewMusic("../resources/shootingstar.ogg", "ShootingStar");
   m.AddNewMusic("../resources/shrabelmatador.ogg", "Matador");
   m.getMusicByName("ShootingStar").playAudio();
+
+  this->_enemies.emplace_back(std::make_shared<EnemyRenderer>(12));
+
   while (window.isOpen())
   {
     sf::Event event;
@@ -66,6 +69,7 @@ void GameRenderer::startGame()
       this->_player.forbiddenMove(window);
       updateEntities();
       backgroundStars.updateStarfield();
+      destroyEntities();
       this->_clock.restartTimer();
     }
       starsTexture.loadFromImage(starsImage.getImage());
@@ -77,8 +81,15 @@ void GameRenderer::startGame()
 
     if (this->_attackSpeed.getElapsedTime() > 0.4)
     {
-      if (Keyboard::isKeyPressed(Keyboard::Key::Space))
-        this->_player.fire();
+      if (sf::Joystick::isConnected(0))
+      {
+	if (sf::Joystick::isButtonPressed(0, 0))
+	  this->_player.fire();
+      }
+      else {
+	if (Keyboard::isKeyPressed(Keyboard::Key::Space))
+	  this->_player.fire();
+      }
       this->_attackSpeed.restartTimer();
     }
 
@@ -92,15 +103,33 @@ void GameRenderer::startGame()
 void GameRenderer::drawEntities(Window & window)
 {
     for (auto &it : this->_player.getProjectileVector())
-        window.draw(it.getSprite());
+        window.draw(it->getSprite());
     for (auto &it2 : this->_enemies)
-      window.draw(it2.getSprite());
+      window.draw(it2->getSprite());
 }
 
 void GameRenderer::updateEntities()
 {
   for (auto &it : this->_player.getProjectileVector())
-    it.update();
+    it->update();
   for (auto &it2 : this->_enemies)
-    it2.update();
+    it2->update();
+}
+
+void GameRenderer::destroyEntities()
+{
+  for (auto it = this->_enemies.begin(); it != this->_enemies.end(); ++it)
+  {
+    if (it->get()->getPosition().getX() < -100) {
+      this->_enemies.erase(it);
+      it--;
+    }
+  }
+  for (auto it2 = this->_player.getProjectileVector().begin(); it2 != this->_player.getProjectileVector().end(); ++it2)
+  {
+    if (it2->get()->getPosition().getX() > 1900) {
+      this->_player.getProjectileVector().erase(it2);
+      it2--;
+    }
+  }
 }

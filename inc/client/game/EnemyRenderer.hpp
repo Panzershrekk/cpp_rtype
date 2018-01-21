@@ -11,7 +11,7 @@
 class EnemyRenderer : public AEntityRenderer
 {
   public:
-    EnemyRenderer();
+    EnemyRenderer(int);
     ~EnemyRenderer();
 
     void update();

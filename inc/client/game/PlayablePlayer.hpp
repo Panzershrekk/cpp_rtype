@@ -20,11 +20,11 @@ class PlayablePlayer : public AEntityRenderer
     void fire();
     void update();
     void forbiddenMove(Window &);
-    std::vector<ProjectileRenderer> & getProjectileVector();
+    std::vector<std::shared_ptr<ProjectileRenderer>> & getProjectileVector();
 
   private:
     Physic _physic;
-    std::vector<ProjectileRenderer> _projectile;
+    std::vector<std::shared_ptr<ProjectileRenderer>> _projectile;
 
 
 };

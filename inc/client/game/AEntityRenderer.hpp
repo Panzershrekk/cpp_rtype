@@ -21,6 +21,7 @@ class AEntityRenderer
 
     virtual void update() = 0;
   protected:
+    int	  _id;
     Sprite _sprite;
     Position2D _pos;
 };

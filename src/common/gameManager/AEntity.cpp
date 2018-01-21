@@ -30,3 +30,8 @@ int AEntity::getId() const
 {
   return this->_id;
 }
+
+Rectangle &AEntity::getRectangle()
+{
+  return (this->_rect);
+}
