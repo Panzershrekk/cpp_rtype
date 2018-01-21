@@ -20,10 +20,10 @@ private:
     Sprite  _splashScreen;
     std::map<std::string, std::shared_ptr<HudPlayer>>        _hudPlayer;
 public:
-    HeadUpDisplay(const std::string &, int, int);
+    HeadUpDisplay(std::vector<Player> &, const std::string &, int, int);
     ~HeadUpDisplay();
 
-    void update(const std::vector<Player> &);
+    void update(std::vector<Player> &, Window&);
     //void update(Window &, int);
   void displayHud(Window &);
 };

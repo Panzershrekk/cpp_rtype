@@ -21,7 +21,7 @@ private:
     Text    _hp;
 
 public:
-    HudPlayer(const std::string &, int, int);
+    HudPlayer(const std::string &, const std::string &, int, int);
     ~HudPlayer();
 
     void updateHp(int);

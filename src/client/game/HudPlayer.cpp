@@ -4,12 +4,14 @@
 
 #include "client/game/HudPlayer.hpp"
 
-HudPlayer::HudPlayer(const std::string &path, int x, int y) : _ship(path, x, y), _name("toto", "../KOMIKAX_.ttf"), _hp("100", "../KOMIKAX_.ttf"), _score("0", "../KOMIKAX_.ttf")
+HudPlayer::HudPlayer(const std::string &name, const std::string &path, int x, int y) : _ship(path, x, y), _name(name, "../KOMIKAX_.ttf"), _hp("100", "../KOMIKAX_.ttf"), _score("0", "../KOMIKAX_.ttf")
 {
     this->_ship.setScale(0.2F, 0.2F);
     this->_hp.setCharacterSize(15);
     this->_score.setCharacterSize(15);
     this->_name.setCharacterSize(15);
+    this->_score.setColor(254, 239, 21, 1000);
+    this->_hp.setColor(34, 216, 28, 1000);
 }
 
 HudPlayer::~HudPlayer()
@@ -31,7 +33,7 @@ void    HudPlayer::displayInfo(Window &window)
 {
    this->_score.setPosition(this->_ship.getPosition().getX() + 425, this->_ship.getPosition().getY());
    this->_hp.setPosition(this->_ship.getPosition().getX() + 275, this->_ship.getPosition().getY());
-   this->_name.setPosition(this->_ship.getPosition().getX() + 100, this->_ship.getPosition().getY());
+   this->_name.setPosition(this->_ship.getPosition().getX() + 60, this->_ship.getPosition().getY());
 
    window.draw(this->_ship);
    window.draw(this->_name);
