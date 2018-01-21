@@ -5,11 +5,10 @@
 #include 	<SFML/Window/Event.hpp>
 #include	"LobbyMenu.hpp"
 
-LobbyMenu::LobbyMenu(MenuState &state, TcpClient *client) :
+LobbyMenu::LobbyMenu(MenuState &state) :
   _state(state),
   _back("../assets/LobbyMenu_Background.jpg"),
-  _return("../assets/Menu_Button_Back.png", 25, 900),
-  _client(client)
+  _return("../assets/Menu_Button_Back.png", 25, 900)
 {
   this->_players.push_back(std::make_shared<ItemLobbyMenu>("../assets/LobbyMenu_SpaceShip_1.png", 400, 200));
   this->_players.push_back(std::make_shared<ItemLobbyMenu>("../assets/LobbyMenu_SpaceShip_2.png", 1100, 200));
@@ -65,4 +64,8 @@ void LobbyMenu::update(Window &win, sf::Event &event)
 
   if (event.type == sf::Event::Closed)
     win.close();
+}
+
+void LobbyMenu::setClient(TcpClient *client) {
+  _client = client;
 }

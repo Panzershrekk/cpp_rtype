@@ -11,7 +11,8 @@
 #include	<boost/array.hpp>
 #include	<functional>
 #include	<iostream>
-#include	"IMenu.hpp"
+
+class IMenu;
 
 class TcpClientConnections : public std::enable_shared_from_this<TcpClientConnections>
 {

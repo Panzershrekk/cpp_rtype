@@ -6,14 +6,13 @@
 #include	<SFML/Window/Event.hpp>
 #include	"LoginMenu.hpp"
 
-LoginMenu::LoginMenu(MenuState & state, TcpClient *client) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
+LoginMenu::LoginMenu(MenuState & state) : _ip("", "../Triumph-wheels-rough.ttf", 255, 70),
 			 _port("", "../Triumph-wheels-rough.ttf", 255, 220),
 			 _name("", "../Triumph-wheels-rough.ttf", 255, 370),
-			 _state(state), _client(client)
+			 _state(state)
 {
 
   this->_whichBut = NONE;
-
   this->_sprites.emplace(std::make_pair("Back", Sprite("../assets/LoginMenu_Background.png")));
   this->_sprites.emplace(std::make_pair("IpAddress", Sprite("../assets/LoginMenu_Button_IP.png", 50, 100)));
   this->_sprites.emplace(std::make_pair("Port", Sprite("../assets/LoginMenu_Button_Port.png", 50, 250)));
@@ -60,8 +59,8 @@ void LoginMenu::playFunction(Window &win, sf::Event &event)
 {
   if (_ip.getString() != "" && _port.getString() != "" && _name.getString() != "") {
     std::cout << "in play" << std::endl;
-    if (_client == nullptr || (_client != nullptr && _client->isConnected())) {
-      try {
+    if (_client == nullptr)//|| (_client != nullptr && _client->isConnected())) {
+    {      try {
 	boost::asio::ip::tcp::endpoint endpoint(
 	  boost::asio::ip::address::from_string(_ip.getString()),
 	  static_cast<unsigned short>(std::stoi(_port.getString())));
@@ -149,5 +148,9 @@ void LoginMenu::draw(Window &win)
   win.draw(this->_ip);
   win.draw(this->_port);
   win.draw(this->_name);
+}
+
+void LoginMenu::setClient(TcpClient *client) {
+  _client = client;
 }
 

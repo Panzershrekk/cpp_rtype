@@ -58,3 +58,6 @@ void MainMenu::draw(Window &win)
   win.draw(this->_title);
 }
 
+void MainMenu::setClient(TcpClient *) {
+}
+

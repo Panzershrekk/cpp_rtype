@@ -13,6 +13,10 @@ MenuWindow::MenuWindow() : _win(TITLE, 1920, 1080)
   _vecMenu.push_back(std::shared_ptr<IMenu>(_roomListMenu));
   _vecMenu.push_back(std::shared_ptr<IMenu>(_lobbyMenu));
 
+  _loginMenu->setClient(_client);
+  _roomListMenu->setClient(_client);
+  _lobbyMenu->setClient(_client);
+
   this->_state = EMainMenu;
   try
   {

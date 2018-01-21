@@ -8,7 +8,6 @@
 #include	<unordered_map>
 #include	<boost/asio.hpp>
 #include	"IMenu.hpp"
-#include	"TcpClient.hpp"
 #include	<memory>
 
 enum Buttonchoice {IPButton, PortButton, NameButton, NONE};
@@ -32,8 +31,10 @@ class LoginMenu : public IMenu
   void getSfLine(Text &, sf::Event &);
 
   public:
-    explicit LoginMenu(MenuState &, TcpClient *);
+    explicit LoginMenu(MenuState &);
     ~LoginMenu();
+
+  void setClient(TcpClient *);
 
     void start(Window &) override;
     void update(Window &, sf::Event &) override;

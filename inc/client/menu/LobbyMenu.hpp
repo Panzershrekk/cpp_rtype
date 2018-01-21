@@ -20,12 +20,13 @@ class LobbyMenu : public IMenu
   std::vector<std::shared_ptr<ItemLobbyMenu>>	_players;
 
 public:
-    explicit LobbyMenu(MenuState & ,TcpClient *);
+    explicit LobbyMenu(MenuState &);
     ~LobbyMenu() override;
 
     void start(Window &) override;
     void draw(Window &) override;
     void update(Window &, sf::Event &) override;
+    void setClient(TcpClient *);
 
     void drawItems(Window &, ItemLobbyMenu &);
     void setActivePlayers(int);

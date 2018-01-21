@@ -10,8 +10,8 @@
 #include	"TcpClientConnections.hpp"
 #include	"MenuState.hpp"
 #include	<boost/bind.hpp>
-#include	"IMenu.hpp"
 
+class IMenu;
 
 class TcpClient
 {

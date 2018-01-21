@@ -59,7 +59,11 @@ void TcpClient::start(MenuState &state, boost::asio::ip::tcp::endpoint &endpoint
 
 void TcpClient::disconnect()
 {
-  _connection->getSocket().close();
+  if (_connection->getSocket().is_open())
+    std::cout << "socket err" << std::endl;
+  if (_connection != nullptr) {
+    _connection->getSocket().close();
+  }
   std::cout << "socket close" << std::endl;
 }
 
